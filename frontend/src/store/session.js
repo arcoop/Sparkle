@@ -43,6 +43,16 @@ export const login = (user) => async dispatch => {
     return res;
 }
 
+export const logout = () => async dispatch => {
+    const res = await csrfFetch('api/session', {
+        method: 'DELETE'
+    })
+    storeCurrentUser(null)
+    dispatch(removeCurrentUser())
+    return res;
+
+}
+
 const storeCSRFToken = response => {
     const token = response.headers.get("X-CSRF-Token")
     if (token) sessionStorage.setItem("X-CSRF-Token", token)
