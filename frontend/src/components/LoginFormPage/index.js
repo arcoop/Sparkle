@@ -1,7 +1,8 @@
-import { useState } from "react"
 import { useDispatch } from "react-redux"
+import React, { useState } from "react"
 import { login } from "../../store/session"
 import './LoginForm.css'
+
 
 const LoginFormPage = () => {
     const [credential, setCredential] = useState("")
@@ -9,11 +10,11 @@ const LoginFormPage = () => {
     const [errors, setErrors] = useState([])
     const dispatch = useDispatch()
 
-    const user = {credential, password}
-
+    
     const handleSubmit = e => {
         e.preventDefault();
         setErrors([])
+        const user = {credential, password}
         return dispatch(login(user))
             .catch(async(res) => {
                 setErrors(res.errors)
@@ -33,12 +34,14 @@ const LoginFormPage = () => {
                 <label> Username or Email
                     <input 
                         type="text" 
+                        value={credential}
                         onChange={e => setCredential(e.target.value)}
                         />
                 </label>
 
                 <label> Password
                     <input type="password" 
+                    value={password}
                     onChange={e => setPassword(e.target.value)}
                     />
                 </label>
