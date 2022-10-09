@@ -7,7 +7,11 @@ class User < ApplicationRecord
   validates :password, length: {in: 6..255}, allow_nil: true
 
   def self.find_by_credentials(credential, pwd)
-    user = User.find_by(URI::MailTo::EMAIL_REGEXP.match(credential) ? {email: credential} : {username: credential})
+    if URI::MailTo::EMAIL_REGEXP.match(credential)
+      user = User.find_by(email: credential)
+    else
+      user = User.find_by(username: credential)
+    end
     user&.authenticate(pwd) ? user : nil
   end
 
