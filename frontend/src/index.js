@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import configureStore from './store';
-import { BrowserRouter } from 'react-router-dom';
+import configureStore from './store'
 import { Provider } from 'react-redux';
-import csrfFetch, {restoreCSRF} from './store/csrf';
+import { BrowserRouter } from 'react-router-dom';
 import './index.css';
-import * as sessionActions from './store/session';
+import csrfFetch, { restoreCSRF } from './store/csrf';
+import * as sessionActions from './store/session'
 
 
 const store = configureStore();
@@ -17,14 +17,14 @@ if (process.env.NODE_ENV !== 'production') {
   window.sessionActions = sessionActions;
 }
 
-export function Root() {
+function Root() {
   return (
     <Provider store={store}>
       <BrowserRouter>
         <App />
       </BrowserRouter>
     </Provider>
-  );
+  )
 }
 
 const renderApplication = () => {
