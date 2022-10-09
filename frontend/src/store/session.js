@@ -7,7 +7,7 @@ export const REMOVE_CURRENT_USER = 'session/removeCurrentUser'
 
 export const setCurrentUser = (user) => ({
     type: SET_CURRENT_USER,
-    user
+    payload: user
 })
 
 export const removeCurrentUser = () => ({
@@ -15,21 +15,46 @@ export const removeCurrentUser = () => ({
 })
 
 export const login = (user) => async dispatch => {
+    const {credential, password} = user
     const res = await csrfFetch('/api/session', {
         method: 'POST',
-        body: JSON.stringify(user)
-    })
+        body: JSON.stringify({
+            credential, password
+        })
+    });
     const data = await res.json()
     dispatch(setCurrentUser(data.user))
-    return res
+    return res;
 }
 
-const sessionReducer = (state = {user: null}, action) => {
+const storeCSRFToken = response => {
+    const token = response.headers.get("X-CSRF-Token")
+    if (token) sessionStorage.setItem("X-CSRF-Token", token)
+}
+
+export const restoreSession = () => async dispatch => {
+    const res = await csrfFetch("api/session")
+    storeCSRFToken(res)
+    const data = await res.json()
+    storeCurrentUser(data.user)
+    dispatch(setCurrentUser(data.user))
+    return res;
+}
+
+const storeCurrentUser = user => {
+    if (user) {
+        sessionStorage.setItem("currentUser", JSON.stringify(user))
+    } else sessionStorage.removeItem("currentUser")
+}
+
+const initialState = {user: null}
+
+const sessionReducer = (state = initialState, action) => {
     switch(action.type) {
         case SET_CURRENT_USER:
             return {
                 ...state,
-                user: action.user
+                user: action.payload
             }
         case REMOVE_CURRENT_USER:
             return {...state, user: null}

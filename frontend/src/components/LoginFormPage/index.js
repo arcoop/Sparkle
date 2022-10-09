@@ -9,10 +9,10 @@ const LoginFormPage = () => {
     const [errors, setErrors] = useState([])
     const dispatch = useDispatch()
 
+    const user = {credential, password}
 
     const handleSubmit = e => {
-        e.preventDefault()
-        const user = {credential, password}
+        e.preventDefault();
         setErrors([])
         return dispatch(login(user))
             .catch(async(res) => {
