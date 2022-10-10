@@ -1,7 +1,6 @@
 import csrfFetch from "./csrf"
 // POJO action creators:
 
-
 export const SET_CURRENT_USER = 'session/setCurrentUser'
 export const REMOVE_CURRENT_USER = 'session/removeCurrentUser'
 
@@ -27,7 +26,6 @@ export const signup = (user) => async dispatch => {
     storeCurrentUser(data.user)
     dispatch(setCurrentUser(data.user))
     return res
-
 }
 
 export const login = (user) => async dispatch => {
@@ -50,7 +48,6 @@ export const logout = () => async dispatch => {
     storeCurrentUser(null)
     dispatch(removeCurrentUser())
     return res;
-
 }
 
 const storeCSRFToken = response => {

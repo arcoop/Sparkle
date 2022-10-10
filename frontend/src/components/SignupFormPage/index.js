@@ -6,7 +6,7 @@ import { Redirect } from "react-router-dom"
 const SignUpFormPage = () => {
 
     const [email, setEmail] = useState("")
-    const sessionUser = useSelector(state => state.sessionUser)
+    const sessionUser = useSelector(state => state.session.user)
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [errors, setErrors] = useState([])
