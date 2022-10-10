@@ -6,6 +6,9 @@ import * as sessionActions from '../../store/session'
 import { Redirect } from "react-router-dom";
 import './Navigation.css'
 import { Link } from "react-router-dom";
+import LoginFormModal from "../LoginFormModal";
+import React from "react";
+
 
 const Navigation = () => {
     const sessionUser = useSelector(state => state.session.user)
@@ -30,6 +33,7 @@ const Navigation = () => {
                     <Link className="navLinks" to='/'> QUIZZES</Link>
                 </ul>
                 <div className="loginsignup">
+                    <LoginFormModal />
                     <Link className="navLinks" to='/login'>SIGN IN </Link>
                     <Link className="navLinks" to='/signup'>SIGN UP </Link>
                 </div>
