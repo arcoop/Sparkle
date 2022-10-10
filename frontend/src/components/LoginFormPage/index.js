@@ -1,7 +1,9 @@
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import React, { useState } from "react"
 import { login } from "../../store/session"
 import './LoginForm.css'
+import { Redirect } from "react-router-dom"
+
 
 
 const LoginFormPage = () => {
@@ -9,6 +11,9 @@ const LoginFormPage = () => {
     const [password, setPassword] = useState("")
     const [errors, setErrors] = useState([])
     const dispatch = useDispatch()
+    const sessionUser = useSelector(state => state.session.user)
+
+    if (sessionUser) return <Redirect to="/" />;
 
     
     const handleSubmit = e => {

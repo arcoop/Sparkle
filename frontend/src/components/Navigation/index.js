@@ -1,8 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import {  NavLink } from "react-router-dom";
 import { logout } from "../../store/session";
 import ProfileButton from "./ProfileButton";
 import * as sessionActions from '../../store/session'
+import { Redirect } from "react-router-dom";
 
 const Navigation = () => {
     const sessionUser = useSelector(state => state.session.user)
@@ -12,7 +13,7 @@ const Navigation = () => {
         return (
             <>
                 <ul>
-                    <Link to='/'>Home</Link>
+                    <NavLink to='/'>Home</NavLink>
                     <button onClick={() => {dispatch(logout)}}>Logout</button>
                 </ul>
                 <ProfileButton />
@@ -21,9 +22,10 @@ const Navigation = () => {
     } else {
         return (
             <>
+               <Redirect to='/'/>
             <ul>
-                <Link to='/login'>Log In</Link>
-                <Link to='/signup'>Sign Up</Link>
+                <NavLink to='/login'>Log In</NavLink>
+                <NavLink to='/signup'>Sign Up</NavLink>
             </ul>
             </>
         )
