@@ -2,8 +2,9 @@ import React, { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { signup } from "../../store/session"
 import { Redirect } from "react-router-dom"
+import './SignUpForm.css'
 
-const SignUpFormPage = () => {
+const SignupForm = () => {
 
     const [email, setEmail] = useState("")
     const sessionUser = useSelector(state => state.session.user)
@@ -43,37 +44,40 @@ const SignUpFormPage = () => {
                 })}
             </ul>
 
+            <h2>Create your free account</h2>
+
+
             <form onSubmit={handleSubmit}>
-                <label> Email
-                    <input 
-                        type="text" 
-                        value={email}
-                        onChange={e => setEmail(e.target.value)}
-                        />
-                </label>
-
-                <label> Username
-                    <input 
-                        type="text" 
-                        value={username}
-                        onChange={e => setUsername(e.target.value)}
-                        />
-                </label>
-
-                <label> Password
-                    <input type="password"
-                    value={password}
-                    onChange={e => setPassword(e.target.value)}
-                    />
-                </label>
-
-                <label> Confirm Password
-                    <input type="password" 
-                    value={confirmPassword}
-                    onChange={(e => {setConfirmPassword(e.target.value)} )}
+                <input 
+                    type="text" 
+                    value={email}
+                    placeholder="Email"
+                    onChange={e => setEmail(e.target.value)}
                     />
 
-                </label>
+                <input type="password"
+                placeholder="Password"
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+                />
+
+
+    
+                <input type="password" 
+                value={confirmPassword}
+                placeholder="Confirm Password"
+                onChange={(e => {setConfirmPassword(e.target.value)} )}
+                />
+
+        
+                <input 
+                    type="text" 
+                    value={username}
+                    placeholder="Username"
+                    onChange={e => setUsername(e.target.value)}
+                    />
+
+
                 
                 <button type="submit">Sign Up</button>
             </form>
@@ -82,4 +86,4 @@ const SignUpFormPage = () => {
     )
 }
 
-export default SignUpFormPage;
+export default SignupForm;

@@ -33,9 +33,7 @@ const Navigation = () => {
                     <Link className="navLinks" to='/'> QUIZZES</Link>
                 </ul>
                 <div className="loginsignup">
-                    <LoginFormModal />
-                    <Link className="navLinks" to='/login'>SIGN IN </Link>
-                    <Link className="navLinks" to='/signup'>SIGN UP </Link>
+                    <LoginFormModal className="signin"/>
                 </div>
             </div>
         )
