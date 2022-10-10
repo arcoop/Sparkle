@@ -1,0 +1,57 @@
+.signup-credentials {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgb(230, 228, 228);
+    border: 1px solid transparent;
+    box-sizing: border-box;
+    width: 85%;
+    margin-bottom: 10px;
+}
+
+.signup-credentials:hover {
+    box-sizing: border-box;
+    outline: solid 1px black;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.signup-credentials:focus {
+    background-color: white;
+    outline: solid 1px black;
+    transition: .3s;
+}
+
+.signup-submit {
+    margin-top: 30px;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f90;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 13px;
+    display: flex;
+    justify-content: center;
+    width: 85%;
+    transition: .3s;
+    margin-bottom: 30px;
+
+}
+
+.signup-submit:hover {
+    background-color: #fbc36f;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.signuppage {
+    color: rgb(24, 117, 204);
+    background: none;
+    border: none;
+}
+
+.signuppage:hover {
+    color: rgb(24, 117, 204);
+    text-decoration: underline;
+    cursor: pointer;
+}

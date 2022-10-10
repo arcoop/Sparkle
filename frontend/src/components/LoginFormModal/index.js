@@ -3,12 +3,22 @@ import LoginForm from "./LoginForm";
 import { Modal } from "../../context/Modal";
 import './LoginForm.css'
 
-const LoginFormModal = () => {
+const LoginFormModal = ({fromModal = false}) => {
     const [showModal, setShowModal] = useState(false)
+
+    let text;
+    let classText;
+    if (fromModal) {
+        text = "Log In" 
+        classText = "signuppage"
+    } else {
+        text = "SIGN IN"
+        classText = "navbar"
+    }
 
         return (
             <>
-                <button onClick={() => setShowModal(true)}>SIGN IN</button>
+                <button className={classText} onClick={() => setShowModal(true)}>{text}</button>
                 {showModal && (
                     <Modal onClose={() => setShowModal(false)}>
                         <LoginForm />

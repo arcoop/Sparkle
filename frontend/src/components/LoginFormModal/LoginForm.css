@@ -14,7 +14,7 @@ form {
     margin-top: 10px;
     padding: 14px;
     border-radius: 5px;
-    background-color: rgb(238, 237, 237);
+    background-color: rgb(230, 228, 228);
     border: 1px solid transparent;
     box-sizing: border-box;
     width: 85%;
@@ -22,8 +22,15 @@ form {
 
 .credentials:hover {
     box-sizing: border-box;
-    border: solid 1px black;
+    outline: solid 1px black;
     cursor: pointer;
+    transition: .3s;
+}
+
+.credentials:focus {
+    background-color: white;
+    outline: solid 1px black;
+    transition: .3s;
 }
 
 

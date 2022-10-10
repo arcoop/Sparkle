@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { signup } from "../../store/session"
 import { Redirect } from "react-router-dom"
 import './SignUpForm.css'
+import LoginFormModal from "../LoginFormModal"
 
 const SignupForm = () => {
 
@@ -48,14 +49,16 @@ const SignupForm = () => {
 
 
             <form onSubmit={handleSubmit}>
-                <input 
+                <input className="signup-credentials"
                     type="text" 
                     value={email}
                     placeholder="Email"
                     onChange={e => setEmail(e.target.value)}
                     />
 
-                <input type="password"
+                <input 
+                className="signup-credentials"
+                type="password"
                 placeholder="Password"
                 value={password}
                 onChange={e => setPassword(e.target.value)}
@@ -63,23 +66,24 @@ const SignupForm = () => {
 
 
     
-                <input type="password" 
+                <input className="signup-credentials"
+                type="password" 
                 value={confirmPassword}
                 placeholder="Confirm Password"
                 onChange={(e => {setConfirmPassword(e.target.value)} )}
                 />
 
         
-                <input 
+                <input className="signup-credentials"
                     type="text" 
                     value={username}
                     placeholder="Username"
                     onChange={e => setUsername(e.target.value)}
                     />
 
-
                 
-                <button type="submit">Sign Up</button>
+                <button className="signup-submit" type="submit">SUBMIT</button>
+                <LoginFormModal fromModal={true}></LoginFormModal>
             </form>
 
         </>
