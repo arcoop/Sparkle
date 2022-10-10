@@ -59,6 +59,7 @@ export const restoreSession = () => async dispatch => {
     const res = await csrfFetch("api/session")
     storeCSRFToken(res)
     const data = await res.json()
+    console.log(data.user)
     storeCurrentUser(data.user)
     dispatch(setCurrentUser(data.user))
     return res;
@@ -70,7 +71,7 @@ const storeCurrentUser = user => {
     } else sessionStorage.removeItem("currentUser")
 }
 
-const initialState = {user: null}
+const initialState = {user: JSON.parse(sessionStorage.getItem("currentUser"))}
 
 const sessionReducer = (state = initialState, action) => {
     switch(action.type) {

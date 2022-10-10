@@ -2,7 +2,7 @@ const ProfileButton = () => {
     return (
         <> 
             <div>
-                <i class="fa-solid fa-user"></i>
+                <i className="fa-solid fa-user"></i>
             </div>
         </>
     )

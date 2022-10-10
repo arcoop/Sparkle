@@ -14,7 +14,7 @@ const Navigation = () => {
             <>
                 <ul>
                     <NavLink to='/'>Home</NavLink>
-                    <button onClick={() => {dispatch(logout)}}>Logout</button>
+                    <button onClick={() => {dispatch(logout())}}>Logout</button>
                 </ul>
                 <ProfileButton />
             </>
