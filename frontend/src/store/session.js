@@ -56,6 +56,7 @@ const storeCSRFToken = response => {
 }
 
 export const restoreSession = () => async dispatch => {
+    console.log('restoring')
     const res = await csrfFetch("api/session")
     storeCSRFToken(res)
     const data = await res.json()

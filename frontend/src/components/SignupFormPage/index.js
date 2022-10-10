@@ -22,12 +22,14 @@ const SignUpFormPage = () => {
         if (password === confirmPassword) {
             return dispatch(signup(user))
                 .catch(async(res) => {
-                    setErrors(res.errors)
+                    const data = await res.json()
+                    if (data && data.errors) {
+                        setErrors(data.errors)
+                    }
                 })
         } else {
             setErrors(["passwords do not match"])
         }
-
     }
 
 
@@ -40,6 +42,7 @@ const SignUpFormPage = () => {
                     )
                 })}
             </ul>
+
             <form onSubmit={handleSubmit}>
                 <label> Email
                     <input 

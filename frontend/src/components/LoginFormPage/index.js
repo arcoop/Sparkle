@@ -4,8 +4,6 @@ import { login } from "../../store/session"
 import './LoginForm.css'
 import { Redirect } from "react-router-dom"
 
-
-
 const LoginFormPage = () => {
     const [credential, setCredential] = useState("")
     const [password, setPassword] = useState("")
@@ -22,7 +20,10 @@ const LoginFormPage = () => {
         const user = {credential, password}
         return dispatch(login(user))
             .catch(async(res) => {
-                setErrors(res.errors)
+                const data = await res.json();
+                if (data && data.errors) {
+                    setErrors(["Incorrect login information"])
+                }
             })
     }
 
