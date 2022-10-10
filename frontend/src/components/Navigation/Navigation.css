@@ -1,0 +1,28 @@
+.navbar {
+    background-color: #f90;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 00;
+    font-size: .75rem;
+    height: 2.375rem;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navLinks {
+    color: white;
+    text-decoration: none;
+    font-weight: 00;
+    font-size: .75rem; 
+}
+
+.loginsignup {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#home-button {
+    color: white;
+    font-size: 1rem;
+}

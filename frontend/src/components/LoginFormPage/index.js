@@ -39,19 +39,19 @@ const LoginFormPage = () => {
                 <label> Username or Email
                     <input 
                         type="text" 
-                        value={credential}
+                        // value={credential}
                         onChange={e => setCredential(e.target.value)}
                         />
                 </label>
 
                 <label> Password
                     <input type="password" 
-                    value={password}
+                    // value={password}
                     onChange={e => setPassword(e.target.value)}
                     />
                 </label>
                 
-                <button type="submit">Log In</button>
+                <button type="submit">Sign In</button>
             </form>
         </>
     )

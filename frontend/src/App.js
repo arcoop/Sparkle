@@ -15,6 +15,7 @@ function App() {
         <Route path={"/signup"}>
           <SignUpFormPage />
         </Route>
+        <Route path={"/users/:id"}></Route>
       </Switch>
     </>
   );

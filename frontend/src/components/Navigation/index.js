@@ -1,33 +1,39 @@
 import { useDispatch, useSelector } from "react-redux";
-import {  NavLink } from "react-router-dom";
+// import {  NavLink } from "react-router-dom";
 import { logout } from "../../store/session";
 import ProfileButton from "./ProfileButton";
 import * as sessionActions from '../../store/session'
 import { Redirect } from "react-router-dom";
+import './Navigation.css'
+import { Link } from "react-router-dom";
 
 const Navigation = () => {
     const sessionUser = useSelector(state => state.session.user)
-    const dispatch = useDispatch()
 
     if (sessionUser) {
         return (
-            <>
+            <div className="navbar">
                 <ul>
-                    <NavLink to='/'>Home</NavLink>
-                    <button onClick={() => {dispatch(logout())}}>Logout</button>
+                    <Link to="/"><i className="fa-solid fa-house-chimney" id="home-button"></i></Link>
+                    <Link className="navLinks" to='/'> QUIZZES</Link>
                 </ul>
-                <ProfileButton />
-            </>
+                    <ProfileButton user={sessionUser}/>
+                    {/* <button onClick={() => {dispatch(logout())}}>Logout</button> */}
+            </div>
         )
     } else {
         return (
-            <>
+            <div className="navbar">
                <Redirect to='/'/>
-            <ul>
-                <NavLink to='/login'>Log In</NavLink>
-                <NavLink to='/signup'>Sign Up</NavLink>
-            </ul>
-            </>
+                <ul>
+                    <Link to="/"><i className="fa-solid fa-house-chimney" id="home-button"></i></Link>
+                    <Link className="navLinks" to='/'> QUIZZES</Link>
+                </ul>
+                <div className="loginsignup">
+                    <Link className="navLinks" to='/login'>SIGN IN </Link>
+                    <Link className="navLinks" to='/signup'>SIGN UP </Link>
+                </div>
+            </div>
         )
     }
 }
