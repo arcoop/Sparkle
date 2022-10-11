@@ -13,14 +13,23 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-right: 10px;
+    /* padding-right: 10px; */
 }
 
-.list-items {
+.home-link {
+    display: flex;
+    justify-content: space-between;
+    width: 70px;
+    align-items: center;
+    padding: 0 0.75rem;
+}
+
+.nav-link-items {
     list-style: none;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 200px;
 }
 
 
@@ -38,17 +47,22 @@
     background-color: #fbc36f;
 }
 
-.profile {
+.profile-button {
+    position: relative;
     font-size: medium;
+    padding-top: 10px;
+    padding-bottom: 9px;
+    padding-right: 5px;
 }
-
 
 .navLinks {
     color: white;
     text-decoration: none;
     font-size: .75rem; 
-    padding-top: 15px;
-    padding-bottom: 10px;
+    padding: 0 0.75rem;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
 }
 
 .navLinks:hover {
@@ -59,6 +73,7 @@
 .loginsignup {
     display: flex;
     justify-content: flex-end;
+    padding: 10px;
 }
 
 .loginsignup button {
@@ -70,7 +85,7 @@
     
 }
 
-.loginsignup button:hover {
+.loginsignup:hover {
     cursor: pointer;
     background-color: #f9bd64;
     transition: .3s;
@@ -91,13 +106,10 @@
     right: -5px;
 }
 
-.profile:hover {
+.profile-button:hover {
     cursor: pointer;
     background-color: #fbc36f;
-}
-
-.profile {
-    position: relative;
+    /* padding-right: 0; */
 }
 
 #user-profile:hover {

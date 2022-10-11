@@ -23,8 +23,6 @@ ApplicationRecord.transaction do
       password: 'demouser123'
     )
 
-
-  
     # More users
     10.times do 
       User.create!({
@@ -33,6 +31,20 @@ ApplicationRecord.transaction do
         password: 'password'
       }) 
     end
+
+    puts "creating quizzes..."
+
+    5.times do 
+      Quiz.create!({
+        title: Faker::Lorem.question,
+        quiz_type: "classic",
+        description: Faker::Lorem.sentence,
+        quiz_timer: Faker::Number.between(from: 1, to: 10),
+        category: "Geography",
+        quiz_author_id: 1
+      }) 
+    end
+
   
     puts "Done!"
   end

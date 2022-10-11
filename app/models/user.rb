@@ -19,6 +19,8 @@ class User < ApplicationRecord
   validates :password, length: {in: 6..255}, allow_nil: true
   validates :session_token, uniqueness: true
 
+  has_many :quizzes, class_name: :Quiz, foreign_key: :quiz_author_id, dependent: :destroy
+
   def self.find_by_credentials(credential, pwd)
     if URI::MailTo::EMAIL_REGEXP.match(credential)
       user = User.find_by(email: credential)

@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import React, { useState } from "react"
 import { login } from "../../store/session"
-import SignupFormModal from "../SignupFormModal"
+// import SignupFormModal from "../SignupFormModal"
 import './LoginForm.css'
 import LoginFormModal from "."
 import FormModal from "."
@@ -40,7 +40,7 @@ const LoginForm = () => {
     return (
         <>
             <ul className="errors">
-                {errors.map(error => {
+                {errors && errors.map(error => {
                     return (
                         <li className="error" key={error}>{error}</li>
                         )

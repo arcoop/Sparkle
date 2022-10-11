@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { signup } from "../../store/session"
 import { Redirect } from "react-router-dom"
 import './SignUpForm.css'
-import LoginFormModal from "../LoginFormModal"
+// import LoginFormModal from "../LoginFormModal"
 import FormModal from "."
 
 const SignupForm = () => {

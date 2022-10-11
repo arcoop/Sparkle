@@ -4,7 +4,7 @@ import ProfileButton from "./ProfileButton";
 import { Redirect } from "react-router-dom";
 import './Navigation.css'
 import { Link } from "react-router-dom";
-import LoginFormModal from "../LoginFormModal";
+// import LoginFormModal from "../LoginFormModal";
 import React from "react";
 import FormModal from "../FormComponent";
 
@@ -15,35 +15,37 @@ const Navigation = () => {
     if (sessionUser) {
         return (
             <div className="navbar">
-                <ul className="list-items">
-                    <li className="list-item">
-                        <Link to="/"><i className="fa-solid fa-house-chimney" id="home-button"></i></Link>
-                    </li>
-                    <li>
-                        <Link className="navLinks" to='/'> QUIZZES</Link>
-                    </li>
-                </ul>
-                    <div className="profile">
+                <div className="nav-link-items">
+                        <Link className="navLinks" to="/">
+                            <div className="home-link">
+                                <i className="fa-solid fa-house-chimney" id="home-button"></i> 
+                                <p>QUIZZES</p>
+                            </div>
+                        </Link>
+                        <Link className="navLinks" to='/'>QUIZ CREATION</Link>
+                </div>
+
+                    <div className="profile-button">
                         <ProfileButton user={sessionUser}/>
                     </div>
-                    {/* <button onClick={() => {dispatch(logout())}}>Logout</button> */}
             </div>
         )
     } else {
         return (
             <div className="navbar">
                <Redirect to='/'/>
-                <ul className="list-items">
-                    <li className="list-item">
-                        <Link className="navLinks" to='/'><i className="fa-solid fa-house-chimney" id="home-button"></i> QUIZZES</Link>
-                    </li>
-                    <li className="break" id="line-break"></li>
-                </ul>
-                <div className="loginsignup">
-                    {/* <LoginFormModal /> */}
-                    <FormModal />
-                    {/* <FormModal /> */}
+                <div className="nav-link-items">
+                <Link className="navLinks" to="/">
+                            <div className="home-link">
+                                <i className="fa-solid fa-house-chimney" id="home-button"></i> 
+                                <p>QUIZZES</p>
+                            </div>
+                        </Link>
+                    <Link className="navLinks" to='/'><p>QUIZ CREATION</p></Link>
                     
+                </div>
+                <div className="loginsignup">
+                    <FormModal />
                 </div>
             </div>
         )
