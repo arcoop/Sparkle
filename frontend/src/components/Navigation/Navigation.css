@@ -12,22 +12,68 @@
     z-index: 100;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    padding-right: 20px;
+}
+
+.menu {
+    background-color: white;
+    border: none;
+    color: black;
+}
+
+
+
+#user-profile:hover {
+    background-color: #fbc36f;
+    cursor: pointer;
+}
+
+#logout-button {
+    background: white;
+    border: none;
+    color: black;
+}
+
+#logout-button:hover {
+    background-color: #fbc36f;
+}
+
+.profile {
+    font-size: medium;
+}
+
+.profile:hover {
+    cursor: pointer;
+    background-color: #fbc36f;
 }
 
 .navLinks {
     color: white;
     text-decoration: none;
-    font-weight: 00;
     font-size: .75rem; 
+}
+
+.navLinks:hover {
+    background-color: #fbc36f;
+}
+
+.break {
+    width: 1px;
+    height: 60%;
+    margin: 6px;
+    color: black;
 }
 
 .loginsignup {
     display: flex;
     justify-content: flex-end;
+    
 }
 
 .loginsignup button:hover {
     cursor: pointer;
+    background-color: #fbc36f;
 }
 
 

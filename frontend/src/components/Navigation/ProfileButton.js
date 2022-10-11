@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../../store/session";
+import '../Navigation/Navigation.css'
 
 const ProfileButton = ({user}) => {
     
@@ -14,10 +15,12 @@ const ProfileButton = ({user}) => {
     }
 
     const menu = (
-        <ul>
-            <Link to={`/users/${user.id}`}>{user.username}</Link>
+        <ul className="menu">
+            <div id="user-profile">
+                <Link to={`/users/${user.id}`}>{user.username}</Link>
+            </div>
             <br></br>
-            <button onClick={() => {dispatch(logout())}}>Logout</button>
+            <button id="logout-button" onClick={() => {dispatch(logout())}}>Logout</button>
         </ul>
     )
 
@@ -38,7 +41,7 @@ const ProfileButton = ({user}) => {
        return (
         <> 
             <div>
-                <i className="fa-regular fa-user"
+                <i className="fa-solid fa-circle-user"
                     onClick={openMenu}
                 ></i>
                 {menu}
@@ -50,7 +53,7 @@ const ProfileButton = ({user}) => {
         return (
             <> 
                 <div>
-                    <i className="fa-regular fa-user"
+                <i class="fa-solid fa-circle-user"
                         onClick={openMenu}
                     ></i>
                 </div>

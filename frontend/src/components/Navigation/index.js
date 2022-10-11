@@ -20,7 +20,9 @@ const Navigation = () => {
                     <Link to="/"><i className="fa-solid fa-house-chimney" id="home-button"></i></Link>
                     <Link className="navLinks" to='/'> QUIZZES</Link>
                 </ul>
-                    <ProfileButton user={sessionUser}/>
+                    <div className="profile">
+                        <ProfileButton user={sessionUser}/>
+                    </div>
                     {/* <button onClick={() => {dispatch(logout())}}>Logout</button> */}
             </div>
         )
@@ -33,7 +35,7 @@ const Navigation = () => {
                     <Link className="navLinks" to='/'> QUIZZES</Link>
                 </ul>
                 <div className="loginsignup">
-                    <LoginFormModal className="signin"/>
+                    <LoginFormModal />
                 </div>
             </div>
         )

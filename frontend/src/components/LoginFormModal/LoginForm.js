@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux"
 import React, { useState } from "react"
 import { login } from "../../store/session"
 import SignupFormModal from "../SignupFormModal"
-// import './LoginForm.css'
+import './LoginForm.css'
 
 const LoginForm = () => {
     const [credential, setCredential] = useState("")
@@ -30,6 +30,7 @@ const LoginForm = () => {
         return dispatch(login(user))
     }
 
+
     return (
         <>
             <ul>
@@ -39,10 +40,12 @@ const LoginForm = () => {
                         )
                     })}
             </ul>
+
             <h2 id="login-text">Log In</h2>
             <form onSubmit={handleSubmit}>
                 <button className="demo-user" onClick={handleDemoLogin}>LOG IN AS DEMO USER</button>
                 <hr className="hr" /> 
+
                 <input className="credentials"
                     type="text" 
                     // value={credential}
@@ -51,11 +54,11 @@ const LoginForm = () => {
                     />
                 <br></br>
                 <input type="password" 
-                className="credentials"
-                // value={password}
-                placeholder="Password"
-                onChange={e => setPassword(e.target.value)}
-                />
+                    className="credentials"
+                    // value={password}
+                    placeholder="Password"
+                    onChange={e => setPassword(e.target.value)}
+                    />
                 <br></br>
                 <button className="log-in" type="submit">LOG IN</button>
                 <SignupFormModal></SignupFormModal>

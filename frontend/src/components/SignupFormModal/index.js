@@ -11,7 +11,7 @@ const SignupFormModal = () => {
     <button className="signup-link" onClick={() => setShowModal(true)}>Join Sparkle for Free</button>
     {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-            <SignupForm/>
+            <SignupForm />
         </Modal>
     )}
 </>
