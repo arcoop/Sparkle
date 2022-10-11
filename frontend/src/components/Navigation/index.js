@@ -6,7 +6,7 @@ import './Navigation.css'
 import { Link } from "react-router-dom";
 import LoginFormModal from "../LoginFormModal";
 import React from "react";
-
+import FormModal from "../FormComponent";
 
 
 const Navigation = () => {
@@ -40,7 +40,9 @@ const Navigation = () => {
                     <li className="break" id="line-break"></li>
                 </ul>
                 <div className="loginsignup">
-                    <LoginFormModal />
+                    {/* <LoginFormModal /> */}
+                    <FormModal />
+                    
                 </div>
             </div>
         )
