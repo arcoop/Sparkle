@@ -2,6 +2,12 @@
     font-size: 20px;
 }
 
+/* .login-button {
+    background: none;
+    border: none;
+    color: 
+} */
+
 form {
     display: flex;
     flex-direction: column;
@@ -31,7 +37,6 @@ form {
     outline: solid 1px black;
     transition: .3s;
 }
-
 
 .log-in {
     font-family: 'Roboto', sans-serif;
