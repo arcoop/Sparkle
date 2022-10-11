@@ -9,3 +9,7 @@ body {
     color: red;
     list-style: none;
 }
+
+.hidden {
+    display: none;
+}

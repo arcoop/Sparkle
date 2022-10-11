@@ -3,9 +3,9 @@ import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
 import { Modal } from "../../context/Modal";
 
-const FormModal = ({fromSignUp = false}) => {
+const FormModal = () => {
     const [showModal, setShowModal] = useState(false)
-    const [modal, setModal] = useState(LoginForm)
+    const [modal, setModal] = useState("login")
 
     // let text;
     // let classText;
@@ -19,32 +19,45 @@ const FormModal = ({fromSignUp = false}) => {
     //     text = "JOIN SPARKLE FOR FREE"
     // }
 
-    const form = (modal === LoginForm ? <LoginForm /> : <SignupForm />)
+    // let form = (modal === "login" ? <LoginForm /> : <SignupForm />)
+
+    // const handleClick = () => {
+    //     setShowModal(true)
+    //     setModal( modal === "login" ? "signup" : "login")
+    // }
+
+    const toggleModal = () => {
+        setModal( modal === "login" ? "signup" : "login")
+    }
+
+    let classtext;
 
     const handleClick = () => {
         setShowModal(true)
-        setModal( modal === LoginForm ? SignupForm : LoginForm)
+        classtext = "hidden"
     }
-    const toggleModal = () => {
-        console.log('switching modal between log in and sign up')
-    }
-    let text;
-    let classText
-    if (fromSignUp) {
-        text = "Log In"
-        classText = "signuppage"
-    } else if (modal === LoginForm) {
-        text = "JOIN SPARKLE FOR FREE"
-    } else {text = "SIGN IN"}
+
+    // let text;
+    // let classText
+    // if (modal === "login") {
+    //     text = "JOIN SPARKLE FOR FREE"
+    //     classText = "signuppage"
+    // } else if (modal === "login") {
+    //     text = "JOIN SPARKLE FOR FREE"
+    // } else {text = "Already a sparkler? Log In"}
 
     return (
         <>
             {/* <button className={classText} onClick={handleClick}>{text}</button> */}
-            <button className="{classText}" onClick={handleClick}>{text}</button>
+            
+            <button className={classtext} onClick={handleClick}>SIGN IN</button>
+            
+
             {showModal &&
                 <Modal onClose = {() => setShowModal(false)} >
-                    {form}
-                    <button onClick={toggleModal}>Already a Sparkler? Log in!</button>
+                    {modal === 'login' ? <LoginForm /> : <SignupForm />}
+                    <button onClick={toggleModal}>{modal === 'login' ? "JOIN SPARKLE FOR FREE" : "Log in"}
+                    </button>
                 </Modal>
             }
         </>

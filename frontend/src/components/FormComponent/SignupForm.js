@@ -84,8 +84,6 @@ const SignupForm = () => {
                 <button className="signup-submit" type="submit">SUBMIT</button>
             </form>
             <div id="loginformmodal">
-                {/* <LoginFormModal fromModal={true}></LoginFormModal> */}
-                <FormModal fromSignUp={true}></FormModal>
             </div>
 
         </>
