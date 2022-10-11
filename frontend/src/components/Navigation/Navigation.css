@@ -43,30 +43,29 @@
     color: white;
 } */
 
-#logout-button:hover {
-    background-color: #fbc36f;
-}
+
 
 .profile-button {
     position: relative;
-    font-size: medium;
+    font-size: 20px;
     padding-top: 10px;
-    padding-bottom: 9px;
-    padding-right: 5px;
+    padding-bottom: 8px;
+    padding-right: 18px;
+    padding-left: 15px;
 }
 
 .navLinks {
     color: white;
     text-decoration: none;
     font-size: .75rem; 
-    padding: 0 0.75rem;
+    padding: 10px;
     display: flex;
     align-items: center;
     white-space: nowrap;
 }
 
 .navLinks:hover {
-    background-color: #fbc36f;
+    background-color: #f9c576;
     /* color: white; */
 }
 
@@ -102,23 +101,51 @@
     border: none;
     color: black;
     position: absolute;
-    top: 10px;
-    right: -5px;
+    top: 30px;
+    right: 2px;
+    border-radius: 3px;
+    border: 1px solid lightgray;
+    width: 200px;
 }
+
+.menu-list-item {
+    text-decoration: none;
+    color: black;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    font-size: medium;
+}
+
+.menu-list-item:hover {
+    background-color: #fbc36feb;
+    cursor: pointer;
+}
+
+/* .menu-list-item:visited{
+    color: black;
+} */
+
 
 .profile-button:hover {
     cursor: pointer;
-    background-color: #fbc36f;
+    background-color: #fbc36feb;
     /* padding-right: 0; */
 }
 
-#user-profile:hover {
+/* #user-profile:hover {
     background-color: #fbc36f;
+    cursor: pointer;
+} */
+
+#logout-button {
+    background: none;
+    border: none;
+    color: black;
+    font: inherit;
+    padding: 0;
     cursor: pointer;
 }
 
-#logout-button {
-    background: white;
-    border: none;
-    color: black;
-}
+/* #logout-button:hover {
+    background-color: #fbc36f;
+} */

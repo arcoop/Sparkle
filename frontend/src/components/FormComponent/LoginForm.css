@@ -1,14 +1,17 @@
 #login-text {
     font-size: 20px;
+    padding: 26px;
+    font-weight: 600;
 }
 
-/* .login-button {
-    background: none;
-    border: none;
-    color: 
-} */
-
 form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.non-form-items {
     display: flex;
     flex-direction: column;
     justify-content: center;

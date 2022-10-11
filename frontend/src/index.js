@@ -7,8 +7,8 @@ import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import csrfFetch from './store/csrf';
 import * as sessionActions from './store/session'
+import * as quizActions from './store/quizzes'
 import { ModalProvider } from './context/Modal';
-
 
 const store = configureStore();
 
@@ -16,6 +16,7 @@ if (process.env.NODE_ENV !== 'production') {
   window.store = store;
   window.csrfFetch = csrfFetch;
   window.sessionActions = sessionActions;
+  window.quizActions = quizActions;
 }
 
 function Root() {

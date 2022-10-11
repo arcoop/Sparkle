@@ -40,35 +40,36 @@ const LoginForm = () => {
     return (
         <>
             <ul className="errors">
-                {errors && errors.map(error => {
+                {errors.map(error => {
                     return (
                         <li className="error" key={error}>{error}</li>
                         )
                     })}
             </ul>
-
             <h2 id="login-text">Log In</h2>
-            <form onSubmit={handleSubmit}>
+            <div className="non-form-items">
                 <button className="demo-user" onClick={handleDemoLogin}>LOG IN AS DEMO USER</button>
                 <hr className="hr" /> 
+            </div>
+                <form onSubmit={handleSubmit}>
 
-                <input className="credentials"
-                    type="text" 
-                    // value={credential}
-                    placeholder="Email Address or Username"
-                    onChange={e => setCredential(e.target.value)}
-                    />
-                <br></br>
-                <input type="password" 
-                    className="credentials"
-                    // value={password}
-                    placeholder="Password"
-                    onChange={e => setPassword(e.target.value)}
-                    />
-                <br></br>
-                <button className="log-in" type="submit">LOG IN</button>
-                {/* <button className="signup-link">Join Sparkle for Free</button> */}
-            </form>
+                    <input className="credentials"
+                        type="text" 
+                        // value={credential}
+                        placeholder="Email Address or Username"
+                        onChange={e => setCredential(e.target.value)}
+                        />
+                    <br></br>
+                    <input type="password" 
+                        className="credentials"
+                        // value={password}
+                        placeholder="Password"
+                        onChange={e => setPassword(e.target.value)}
+                        />
+                    <br></br>
+                    <button className="log-in" type="submit">LOG IN</button>
+                    {/* <button className="signup-link">Join Sparkle for Free</button> */}
+                </form>
             {/* <div id="signupformmodal">
                 <FormModal />
             </div> */}

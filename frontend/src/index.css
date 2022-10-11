@@ -1,4 +1,4 @@
-@import url();
+@import url('reset.css');
 
 /* TODO Add site wide styles */
 body {
@@ -12,4 +12,12 @@ body {
 
 .hidden {
     display: none;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
 }

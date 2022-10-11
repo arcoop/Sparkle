@@ -16,11 +16,10 @@ const ProfileButton = ({user}) => {
 
     const menu = (
         <ul className="menu">
-            <div id="user-profile">
+            <li className="menu-list-item" id="user-profile">
                 <Link to={`/users/${user.id}`}>{user.username}</Link>
-            </div>
-            <br></br>
-            <button id="logout-button" onClick={() => {dispatch(logout())}}>Logout</button>
+            </li>
+           <li className="menu-list-item"><button id="logout-button" onClick={() => {dispatch(logout())}}>Logout</button></li>
         </ul>
     )
 
@@ -53,7 +52,7 @@ const ProfileButton = ({user}) => {
         return (
             <> 
                 <div>
-                <i class="fa-solid fa-circle-user"
+                <i className="fa-solid fa-circle-user"
                         onClick={openMenu}
                     ></i>
                 </div>
