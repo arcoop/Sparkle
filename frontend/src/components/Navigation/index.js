@@ -34,11 +34,7 @@ const Navigation = () => {
                <Redirect to='/'/>
                 <ul className="list-items">
                     <li className="list-item">
-                        <Link to="/"><i className="fa-solid fa-house-chimney" id="home-button"></i></Link>
-                    </li>
-                    <li className="list-item" id="home-break"></li>
-                    <li className="list-item">
-                        <Link className="navLinks" to='/'> QUIZZES</Link>
+                        <Link className="navLinks" to='/'><i className="fa-solid fa-house-chimney" id="home-button"></i> QUIZZES</Link>
                     </li>
                     <li className="break" id="line-break"></li>
                 </ul>

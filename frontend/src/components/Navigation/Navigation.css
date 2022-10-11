@@ -28,9 +28,11 @@
     width: 5px;
 }
 
+/* 
 .list-item:hover {
-    color: #fbc36f;
-}
+    background-color: #fbc36f;
+    color: white;
+} */
 
 #logout-button:hover {
     background-color: #fbc36f;
@@ -45,11 +47,14 @@
     color: white;
     text-decoration: none;
     font-size: .75rem; 
+    padding-top: 15px;
+    padding-bottom: 10px;
 }
 
-/* .navLinks:hover {
+.navLinks:hover {
     background-color: #fbc36f;
-} */
+    /* color: white; */
+}
 
 .loginsignup {
     display: flex;
@@ -61,12 +66,14 @@
     background: none;
     border: none;
     color: white;
+    transition: .3s;
     
 }
 
 .loginsignup button:hover {
     cursor: pointer;
-    background-color: #fbc36f;
+    background-color: #f9bd64;
+    transition: .3s;
 }
 
 #home-button {

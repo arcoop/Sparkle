@@ -14,8 +14,10 @@ const LoginFormModal = ({fromModal = false}) => {
     //     if (showModal) {
     //         modal.addEventListener("click", closeModal)
     //     }
-       
-    // }, [showModal])
+    //     return () => {
+    //         modal.removeEventListener("click", closeModal)
+    //     }
+    // }, [])
 
     let text;
     let classText;
