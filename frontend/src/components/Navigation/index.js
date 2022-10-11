@@ -1,8 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-// import {  NavLink } from "react-router-dom";
-import { logout } from "../../store/session";
 import ProfileButton from "./ProfileButton";
-import * as sessionActions from '../../store/session'
+// import * as sessionActions from '../../store/session'
 import { Redirect } from "react-router-dom";
 import './Navigation.css'
 import { Link } from "react-router-dom";
@@ -16,9 +14,13 @@ const Navigation = () => {
     if (sessionUser) {
         return (
             <div className="navbar">
-                <ul>
-                    <Link to="/"><i className="fa-solid fa-house-chimney" id="home-button"></i></Link>
-                    <Link className="navLinks" to='/'> QUIZZES</Link>
+                <ul className="list-items">
+                    <li className="list-item">
+                        <Link to="/"><i className="fa-solid fa-house-chimney" id="home-button"></i></Link>
+                    </li>
+                    <li>
+                        <Link className="navLinks" to='/'> QUIZZES</Link>
+                    </li>
                 </ul>
                     <div className="profile">
                         <ProfileButton user={sessionUser}/>
@@ -30,9 +32,15 @@ const Navigation = () => {
         return (
             <div className="navbar">
                <Redirect to='/'/>
-                <ul>
-                    <Link to="/"><i className="fa-solid fa-house-chimney" id="home-button"></i></Link>
-                    <Link className="navLinks" to='/'> QUIZZES</Link>
+                <ul className="list-items">
+                    <li className="list-item">
+                        <Link to="/"><i className="fa-solid fa-house-chimney" id="home-button"></i></Link>
+                    </li>
+                    <li className="list-item" id="home-break"></li>
+                    <li className="list-item">
+                        <Link className="navLinks" to='/'> QUIZZES</Link>
+                    </li>
+                    <li className="break" id="line-break"></li>
                 </ul>
                 <div className="loginsignup">
                     <LoginFormModal />

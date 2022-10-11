@@ -13,26 +13,23 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-right: 20px;
+    padding-right: 10px;
 }
 
-.menu {
-    background-color: white;
-    border: none;
-    color: black;
+.list-items {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 
-
-#user-profile:hover {
-    background-color: #fbc36f;
-    cursor: pointer;
+#home-break {
+    width: 5px;
 }
 
-#logout-button {
-    background: white;
-    border: none;
-    color: black;
+.list-item:hover {
+    color: #fbc36f;
 }
 
 #logout-button:hover {
@@ -43,10 +40,6 @@
     font-size: medium;
 }
 
-.profile:hover {
-    cursor: pointer;
-    background-color: #fbc36f;
-}
 
 .navLinks {
     color: white;
@@ -54,20 +47,20 @@
     font-size: .75rem; 
 }
 
-.navLinks:hover {
+/* .navLinks:hover {
     background-color: #fbc36f;
-}
-
-.break {
-    width: 1px;
-    height: 60%;
-    margin: 6px;
-    color: black;
-}
+} */
 
 .loginsignup {
     display: flex;
     justify-content: flex-end;
+}
+
+.loginsignup button {
+    font-family: 'Roboto', sans-serif;
+    background: none;
+    border: none;
+    color: white;
     
 }
 
@@ -76,8 +69,30 @@
     background-color: #fbc36f;
 }
 
-
 #home-button {
     color: white;
     font-size: 1rem;
+}
+
+/* logged in */
+.menu {
+    background-color: white;
+    border: none;
+    color: black;
+}
+
+.profile:hover {
+    cursor: pointer;
+    background-color: #fbc36f;
+}
+
+#user-profile:hover {
+    background-color: #fbc36f;
+    cursor: pointer;
+}
+
+#logout-button {
+    background: white;
+    border: none;
+    color: black;
 }

@@ -33,10 +33,10 @@ const LoginForm = () => {
 
     return (
         <>
-            <ul>
+            <ul className="errors">
                 {errors.map(error => {
                     return (
-                        <li key={error}>{error}</li>
+                        <li className="error" key={error}>{error}</li>
                         )
                     })}
             </ul>
