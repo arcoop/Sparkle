@@ -3,6 +3,7 @@ import React, { useState } from "react"
 import { login } from "../../store/session"
 import SignupFormModal from "../SignupFormModal"
 import './LoginForm.css'
+import LoginFormModal from "."
 
 const LoginForm = () => {
     const [credential, setCredential] = useState("")
@@ -29,6 +30,10 @@ const LoginForm = () => {
         const user = {credential:"demo-user", password: "demouser123"}
         return dispatch(login(user))
     }
+
+    // const handleClick = () => {
+    //     LoginFormModal.setShowModal()
+    // }
 
 
     return (
@@ -64,7 +69,7 @@ const LoginForm = () => {
                 {/* <button className="signup-link">Join Sparkle for Free</button> */}
             </form>
             <div id="signupformmodal">
-                <SignupFormModal></SignupFormModal>
+                <SignupFormModal />
             </div>
         </>
     )

@@ -8,6 +8,7 @@ import LoginFormModal from "../LoginFormModal";
 import React from "react";
 
 
+
 const Navigation = () => {
     const sessionUser = useSelector(state => state.session.user)
 

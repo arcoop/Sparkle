@@ -8,13 +8,13 @@ const SignupFormModal = () => {
 
    return (
     <>
-    <button id="joinsparkle" className="signup-link" onClick={() => setShowModal(true)}>Join Sparkle for Free</button>
-    {showModal && (
-        <Modal onClose={() => setShowModal(false)} type="signup">
-            <SignupForm />
-        </Modal>
-    )}
-</>
+        <button id="joinsparkle" className="signup-link" onClick={() => setShowModal(true)}>Join Sparkle for Free</button>
+        {showModal && (
+            <Modal onClose={() => setShowModal(false)} type="signup">
+                <SignupForm />
+            </Modal>
+        )}
+    </>
    )
 }
 

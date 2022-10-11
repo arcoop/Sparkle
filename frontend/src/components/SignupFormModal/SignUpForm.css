@@ -9,6 +9,11 @@
     margin-bottom: 10px;
 }
 
+#loginformmodal {
+    display: flex;
+    justify-content: center;
+}
+
 .signup-credentials:hover {
     box-sizing: border-box;
     outline: solid 1px black;

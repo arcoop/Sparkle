@@ -72,7 +72,6 @@ const SignupForm = () => {
                 placeholder="Confirm Password"
                 onChange={(e => {setConfirmPassword(e.target.value)} )}
                 />
-
         
                 <input className="signup-credentials"
                     type="text" 
@@ -80,11 +79,12 @@ const SignupForm = () => {
                     placeholder="Username"
                     onChange={e => setUsername(e.target.value)}
                     />
-
                 
                 <button className="signup-submit" type="submit">SUBMIT</button>
-                <LoginFormModal fromModal={true}></LoginFormModal>
             </form>
+            <div id="loginformmodal">
+                <LoginFormModal fromModal={true}></LoginFormModal>
+            </div>
 
         </>
     )
