@@ -22,9 +22,11 @@ export const ModalProvider = ({...props}) => {
     );
 }
 
-export const Modal = ({onClose, children}) => {
+export const Modal = ({onClose, type, children}) => {
     const modalNode = useContext(ModalContext)
     if (!modalNode) return null
+
+    const divId =(type === "signup" ? "modal-content-signup" : "modal-content-login")
 
     return ReactDOM.createPortal(
         <div id="modal">
@@ -32,7 +34,7 @@ export const Modal = ({onClose, children}) => {
                 onClick={onClose}>
             </div>
 
-            <div id="modal-content">
+            <div id={divId}>
                 {children}
             </div>
 

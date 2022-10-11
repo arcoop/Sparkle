@@ -101,3 +101,9 @@ form {
     text-decoration: underline;
     cursor: pointer;
 }
+
+#signupformmodal {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
