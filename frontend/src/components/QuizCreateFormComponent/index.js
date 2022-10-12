@@ -1,19 +1,42 @@
 import { useState } from 'react'
-import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom'
-import { getQuiz } from '../../store/quizzes';
-import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+// import { Redirect, useHistory } from 'react-router-dom'
+import { createQuiz } from '../../store/quizzes';
 import './QuizCreateForm.css'
+// import { useHistory } from "react-router-dom/cjs/react-router-dom"
 
-const QuizForm = () => {
+
+const QuizForm = ({props}) => {
     const [quizName, setQuizName] = useState("")
     const [quizType, setQuizType] = useState("Classic")
     const quizTypes = ["Classic", "Clickable", "Grid", "Map", "Picture Box", "Picture Click", "Slideshow"]
+    const dispatch = useDispatch();
+    // const [redirect, setRedirect] = useState(false)
+    // const navigate = useNavigate()
+    // const history = useHistory();
+    // redirect state defaults to false
+
+    // useEffect(() => {
+    //     <Redirect to={"/"}/>
+    // }, [redirect])
+    console.log(props)
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        const quiz = {quizName, quizType}
-    }
+        const quiz = {title: quizName, quizType: quizType}
+        return dispatch(createQuiz(quiz))
+            .then(async data => {
+                console.log(data)
+                const id = Object.values(data)[0].id
+                console.log(id)
+                // history.push(`/create/edit/${id}`)
+                // setRedirect(true)
+            })
+        }
+        // return <Redirect to={`/create/edit/${id}`} />
+        
+
+        //redirect if redirect is true
 
     return (
         <div id='quiz-form-container'>
@@ -30,7 +53,7 @@ const QuizForm = () => {
                         <select name="dropdown" id="" onChange={e => setQuizType(e.target.value)}>
                             {quizTypes.map(type => {
                                 return (
-                                    <option value={type}>{type}</option>
+                                    <option key={type} value={type}>{type}</option>
                                 )
                             })}
                         </select>

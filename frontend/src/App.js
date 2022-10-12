@@ -20,7 +20,7 @@ function App() {
           <QuizForm />
         </Route>
 
-        <Route path={"/create/edit/"}>
+        <Route path={"/create/edit/:quizId"}>
           <QuizEditForm/>
         </Route>
 

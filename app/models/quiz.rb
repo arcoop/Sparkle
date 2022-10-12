@@ -13,14 +13,14 @@
 #  answer_heading :string
 #  extra_heading  :string
 #  category       :string
-#  quiz_author_id :bigint
+#  author_id      :bigint           not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #
 class Quiz < ApplicationRecord
-    validates_presence_of :title, :quiz_type
+    validates_presence_of :title, :quiz_type, :author_id
 
-    belongs_to :quiz_author, class_name: :User, foreign_key: :quiz_author_id
+    belongs_to :author, class_name: :User, foreign_key: :author_id
 
     
 end

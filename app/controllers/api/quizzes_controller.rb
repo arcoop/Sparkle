@@ -1,4 +1,5 @@
 class Api::QuizzesController < ApplicationController
+    wrap_parameters include: Quiz.attribute_names + ['quizType']
     before_action :find_quiz, only: [:show, :update, :destroy]
 
     def index
@@ -13,6 +14,7 @@ class Api::QuizzesController < ApplicationController
     
     def create
         @quiz = Quiz.new(quiz_params)
+        @quiz.author = current_user
         if @quiz.save
             render 'api/quizzes/show'
         else
@@ -41,7 +43,7 @@ class Api::QuizzesController < ApplicationController
     end
 
     def quiz_params
-        params.require(:quiz).permit(:title, :quiz_type, :description, :quiz_timer, :permalink, :answer_type, :hint_heading, :answer_heading, :extra_heading, :category, :quiz_author_id)
+        params.require(:quiz).permit(:title, :quiz_type)
     end
 
 end
