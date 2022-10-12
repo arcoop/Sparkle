@@ -19,9 +19,9 @@ export const removeQuiz = quizId => ({
     payload: quizId
 })
 
-export const getQuizzes = state => {state.quizzes ? Object.values(state.quizzes) : []}
+// export const getQuizzes = state => {state.quizzes ? Object.values(state.quizzes) : []}
 
-export const getQuiz = quizId => state => {state.quizzes ? state.quizzes[quizId] : null}
+// export const getQuiz = quizId => state => {state.quizzes ? state.quizzes[quizId] : null}
 
 export const createQuiz = quiz => async dispatch => {
     const res = await csrfFetch('api/quizzes', {
@@ -46,20 +46,18 @@ export const updateQuiz = quiz => async dispatch => {
 export const fetchQuizzes = () => async dispatch => {
     const res = await csrfFetch('api/quizzes')
     const data = await res.json()
-    // console.log (Object.keys(Object.values(data)[0]))
     dispatch(setQuizzes(data))
 }
 
-export const fetchQuizzesByCategory = () => async dispatch => {
-    const res = await csrfFetch('api/quizzes')
-    const allData = await res.json()
-    const dataArray = Object.values(allData)
+// export const fetchQuizzesByCategory = () => async dispatch => {
+//     const res = await csrfFetch('api/quizzes')
+//     const allData = await res.json()
+//     const dataArray = Object.values(allData)
      
-    console.log(dataArray)
-    const data = {}
-    dataArray.forEach(item => {data[item.id] = item})
-    dispatch(setQuizzes(data))
-}
+//     const data = {}
+//     dataArray.forEach(item => {data[item.id] = item})
+//     dispatch(setQuizzes(data))
+// }
 
 export const deleteQuiz = quizId => async dispatch => {
     const res = await csrfFetch(`/api/quizzes/${quizId}`, {
