@@ -3,7 +3,12 @@ class Api::QuizzesController < ApplicationController
 
     def index
         @quizzes = Quiz.all
-        render 'api/quizzes'
+        p @quizzes[0]
+        p "---"
+        p @quizzes[1]
+        p"---"
+        
+        render 'api/quizzes/index'
     end
 
     def show

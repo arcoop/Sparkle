@@ -34,6 +34,24 @@ ApplicationRecord.transaction do
 
     puts "creating quizzes..."
 
+    Quiz.create!(
+      title: Faker::Lorem.question,
+      quiz_type: "classic",
+      description: Faker::Lorem.sentence,
+      quiz_timer: Faker::Number.between(from: 1, to: 10),
+      category: "History",
+      quiz_author_id: 1
+    ) 
+
+    Quiz.create!(
+      title: Faker::Lorem.question,
+      quiz_type: "classic",
+      description: Faker::Lorem.sentence,
+      quiz_timer: Faker::Number.between(from: 1, to: 10),
+      category: "Math",
+      quiz_author_id: 1
+    ) 
+
     5.times do 
       Quiz.create!({
         title: Faker::Lorem.question,

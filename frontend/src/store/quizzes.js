@@ -42,12 +42,18 @@ export const updateQuiz = quiz => async dispatch => {
 export const fetchQuizzes = () => async dispatch => {
     const res = await csrfFetch('api/quizzes')
     const data = await res.json()
+    // console.log (Object.keys(Object.values(data)[0]))
     dispatch(setQuizzes(data))
 }
 
-export const fetchQuizzesByCategory = quizCategory => async dispatch => {
+export const fetchQuizzesByCategory = () => async dispatch => {
     const res = await csrfFetch('api/quizzes')
-    const data = await res.json().where(data.category === quizCategory)
+    const allData = await res.json()
+    const dataArray = Object.values(allData)
+     
+    console.log(dataArray)
+    const data = {}
+    dataArray.forEach(item => {data[item.id] = item})
     dispatch(setQuizzes(data))
 }
 
@@ -58,15 +64,16 @@ export const deleteQuiz = quizId => async dispatch => {
     dispatch(removeQuiz(quizId))
 }
 
+
 const quizReducer = (state = {}, action ) => {
     switch(action.type) {
         case SET_QUIZZES:
-            return {...state, ...action.quizzes}
+            return {...state, ...action.payload}
         case SET_QUIZ:
-            return {...state, quiz: action.quiz}
+            return {...state, quiz: action.payload}
         case REMOVE_QUIZ:
             const nextState = {...state}
-            delete nextState[action.quizId]
+            delete nextState[action.payload]
             return nextState
         default:
             return state
