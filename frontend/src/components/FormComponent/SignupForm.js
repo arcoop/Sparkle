@@ -47,7 +47,7 @@ const SignupForm = () => {
             </ul>
 
             <h2 id="join-text">Join for Free</h2>
-            <p id="small-text">By continuing you agree to our Terms of Use and Privacy Policy.</p>
+            <p id="subtitle">By continuing you agree to our Terms of Use and Privacy Policy.</p>
             <form onSubmit={handleSubmit}>
                 <input className="signup-credentials"
                     type="text" 

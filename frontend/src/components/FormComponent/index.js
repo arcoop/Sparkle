@@ -35,8 +35,8 @@ const FormModal = () => {
             {showModal &&
                 <Modal onClose = {() => setShowModal(false)} type={modalType}>
 
-                    <div id="whole">
-                        <div id="one">
+                    {/* <div id="modal-contents"> */}
+                        <div id="main-contents">
                             {modal === 'login' ? <LoginForm /> : <SignupForm />}
                             
                             <div className="button-links">
@@ -49,16 +49,13 @@ const FormModal = () => {
                             </div>
                         </div>
 
-                        <div className={classText} id="two">
-                            <div  id="sidebar">
-                                <ul className="sidebar-items">
-                                    <li>icon1</li>
-                                    <li>icon2</li>
-                                    <li>icon 3</li>
-                                </ul>
-                            </div>
+                        <div className={classText} id="sidebar-contents">
+                            {/* <div  id="sidebar"> */}
+                                    <div>icon1</div>
+                                    <div>icon2</div>
+                                    <div>icon3</div>
+                            {/* </div> */}
                         </div>
-                    </div>
 
 
 
