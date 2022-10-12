@@ -21,3 +21,15 @@ li {
 a {
     text-decoration: none;
 }
+
+button {
+    background-color: #f90;
+    border: transparent;
+    color: white;
+}
+
+button:hover {
+    background-color: #fbc36f;
+    cursor: pointer;
+    transition: .3s;
+}

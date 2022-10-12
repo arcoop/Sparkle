@@ -35,6 +35,8 @@ module Sparkle
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+    
+    config.railties_order = [:all, :main_app]
 
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore,
@@ -42,5 +44,7 @@ module Sparkle
       same_site: :lax, 
       secure: Rails.env.production?
   end
+
+
   
 end

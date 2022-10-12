@@ -6,7 +6,7 @@ import './Navigation.css'
 import { Link } from "react-router-dom";
 // import LoginFormModal from "../LoginFormModal";
 import React from "react";
-import FormModal from "../FormComponent";
+import FormModal from "../AuthFormComponent";
 
 
 const Navigation = () => {
@@ -16,13 +16,11 @@ const Navigation = () => {
         return (
             <div className="navbar">
                 <div className="nav-link-items">
-                        <Link className="navLinks" to="/">
-                            <div className="home-link">
+                        <Link className="navLinks" to="/" id="home-link">
                                 <i className="fa-solid fa-house-chimney" id="home-button"></i> 
                                 <p>QUIZZES</p>
-                            </div>
                         </Link>
-                        <Link className="navLinks" to='/' id="quiz-create-link">
+                        <Link className="navLinks" to={'/create'} id="quiz-create-link">
                                 <p id="quiz-creation">QUIZ CREATION</p>
                         </Link>
                 </div>
@@ -41,7 +39,7 @@ const Navigation = () => {
                                 <i className="fa-solid fa-house-chimney" id="home-button"></i> 
                                 <p>QUIZZES</p>
                         </Link>
-                        <Link className="navLinks" to='/' id="quiz-create-link">
+                        <Link className="navLinks" to={'/create'} id="quiz-create-link">
                                 <p id="quiz-creation">QUIZ CREATION</p>
                         </Link>
                 </div>

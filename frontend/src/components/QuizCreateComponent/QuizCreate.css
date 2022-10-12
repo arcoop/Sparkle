@@ -1,0 +1,23 @@
+#main-div {
+    font-family: 'Roboto', sans-serif;
+}
+#top-box {
+    height: 15px;
+}
+#top-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.title {
+    font-family: inherit;
+}
+
+#extras-button {
+    background: none;
+    color: black;
+}
+
+#create-quiz-button {
+    font: inherit;
+}
