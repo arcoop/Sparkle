@@ -19,9 +19,13 @@ export const removeQuiz = quizId => ({
     payload: quizId
 })
 
-// export const getQuizzes = state => {state.quizzes ? Object.values(state.quizzes) : []}
+export const getQuizzes = state => {
+   return state.quizzes ? Object.values(state.quizzes) : []
+}
 
-// export const getQuiz = quizId => state => {state.quizzes ? state.quizzes[quizId] : null}
+export const getQuiz = quizId => state => {
+    return state.quizzes ? state.quizzes[quizId] : null
+}
 
 export const createQuiz = quiz => async dispatch => {
     const res = await csrfFetch('api/quizzes', {
