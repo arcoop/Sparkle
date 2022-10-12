@@ -16,7 +16,6 @@ class Api::QuizzesController < ApplicationController
         if @quiz.save
             render 'api/quizzes/show'
         else
-            p @quiz
             render json: {errors: @quiz.errors.full_messages}, status: :unprocessable_entity
         end
     end
@@ -31,12 +30,14 @@ class Api::QuizzesController < ApplicationController
 
     def destroy
         @quiz.destroy
-        render 'api/quizzes'
+        @quizzes = Quiz.all
+
+        render :index
     end
 
     private
     def find_quiz
-        @quiz = quiz.find(params[:id])
+        @quiz = Quiz.find(params[:id])
     end
 
     def quiz_params
