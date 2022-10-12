@@ -10,21 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_11_175037) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_12_204630) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "quizzes", force: :cascade do |t|
     t.string "title", null: false
     t.string "quiz_type", null: false
-    t.text "description", null: false
-    t.integer "quiz_timer", null: false
+    t.text "description"
+    t.integer "quiz_timer"
     t.string "permalink"
     t.string "answer_type"
     t.string "hint_heading"
     t.string "answer_heading"
     t.string "extra_heading"
-    t.string "category", null: false
+    t.string "category"
     t.bigint "quiz_author_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

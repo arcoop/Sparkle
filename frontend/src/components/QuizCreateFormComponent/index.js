@@ -10,10 +10,15 @@ const QuizForm = () => {
     const [quizType, setQuizType] = useState("Classic")
     const quizTypes = ["Classic", "Clickable", "Grid", "Map", "Picture Box", "Picture Click", "Slideshow"]
 
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        const quiz = {quizName, quizType}
+    }
+
     return (
         <div id='quiz-form-container'>
 
-            <form className='quiz-create-form'>
+            <form className='quiz-create-form' onSubmit={handleSubmit}>
                 <label>Quiz Name
                     <input type="text"
                     onChange={(e) => setQuizName(e.target.value)}
@@ -29,14 +34,12 @@ const QuizForm = () => {
                                 )
                             })}
                         </select>
-                        <div></div>
 
                     </div>
                 </label>
 
-                <Link to={'create/edit/'}>
-                    <button type='submit'>Create Quiz</button>
-                </Link>
+                <button type='submit'>Create Quiz</button>
+
             </form>
 
         </div>
