@@ -16,13 +16,20 @@
     /* padding-right: 10px; */
 }
 
-.home-link {
+#home-link {
     display: flex;
     justify-content: space-between;
     width: 70px;
     align-items: center;
-    padding: 0 0.75rem;
+    /* padding: 0 0.75rem; */
 }
+
+#quiz-create-link {
+    display: flex;
+    align-items: center;
+    height: 16px;
+}
+
 
 .nav-link-items {
     list-style: none;
@@ -31,18 +38,6 @@
     align-items: center;
     width: 200px;
 }
-
-
-#home-break {
-    width: 5px;
-}
-
-/* 
-.list-item:hover {
-    background-color: #fbc36f;
-    color: white;
-} */
-
 
 
 .profile-button {
@@ -58,21 +53,30 @@
     color: white;
     text-decoration: none;
     font-size: .75rem; 
-    padding: 10px;
+    padding: 11px;
     display: flex;
     align-items: center;
     white-space: nowrap;
+    transition: .3s;
 }
 
 .navLinks:hover {
     background-color: #f9c576;
-    /* color: white; */
+    transition: .3s;
 }
 
 .loginsignup {
     display: flex;
     justify-content: flex-end;
     padding: 10px;
+    white-space: nowrap;
+    height: 16px;
+}
+
+.loginsignup:hover {
+    cursor: pointer;
+    background-color: #f9bd64;
+    transition: .3s;
 }
 
 .loginsignup button {
@@ -81,13 +85,11 @@
     border: none;
     color: white;
     transition: .3s;
-    
+    font-size: inherit;
 }
 
-.loginsignup:hover {
+.loginsignup button:hover {
     cursor: pointer;
-    background-color: #f9bd64;
-    transition: .3s;
 }
 
 #home-button {
@@ -107,6 +109,11 @@
     border: 1px solid lightgray;
     width: 200px;
 }
+
+#home-break {
+    width: 5px;
+}
+
 
 .menu-list-item {
     text-decoration: none;

@@ -22,7 +22,9 @@ const Navigation = () => {
                                 <p>QUIZZES</p>
                             </div>
                         </Link>
-                        <Link className="navLinks" to='/'>QUIZ CREATION</Link>
+                        <Link className="navLinks" to='/' id="quiz-create-link">
+                                <p id="quiz-creation">QUIZ CREATION</p>
+                        </Link>
                 </div>
 
                     <div className="profile-button">
@@ -35,15 +37,15 @@ const Navigation = () => {
             <div className="navbar">
                <Redirect to='/'/>
                 <div className="nav-link-items">
-                <Link className="navLinks" to="/">
-                            <div className="home-link">
+                        <Link className="navLinks" to="/" id="home-link">
                                 <i className="fa-solid fa-house-chimney" id="home-button"></i> 
                                 <p>QUIZZES</p>
-                            </div>
                         </Link>
-                    <Link className="navLinks" to='/'><p>QUIZ CREATION</p></Link>
-                    
+                        <Link className="navLinks" to='/' id="quiz-create-link">
+                                <p id="quiz-creation">QUIZ CREATION</p>
+                        </Link>
                 </div>
+
                 <div className="loginsignup">
                     <FormModal />
                 </div>

@@ -9,9 +9,51 @@
     margin-bottom: 10px;
 }
 
+#whole {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#two{
+    background-color: lightgray;
+    border-radius: 3px;
+    padding-right: 0;
+
+}
+
 #loginformmodal {
     display: flex;
     justify-content: center;
+}
+
+#join-text {
+    font-size: 20px;
+    padding-top: 35px;
+    padding-left: 35px;
+    padding-right: 35px;
+    padding-bottom: 10px;
+    font-weight: 600;
+}
+
+#small-text {
+    font-size: small;
+    padding-left: 35px;
+    padding-bottom: 15px
+}
+
+.button-links {
+    display: flex;
+    justify-content: center;
+}
+
+.button-text {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#text {
+    font-size: small;
 }
 
 .signup-credentials:hover {
