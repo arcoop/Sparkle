@@ -70,7 +70,10 @@ const quizReducer = (state = {}, action ) => {
         case SET_QUIZZES:
             return {...state, ...action.payload}
         case SET_QUIZ:
-            return {...state, quiz: action.payload}
+            return {...state, ...action.payload}
+            // const newState = {...state}
+            // newState[action.payload.id] = action.payload
+            // return newState
         case REMOVE_QUIZ:
             const nextState = {...state}
             delete nextState[action.payload]

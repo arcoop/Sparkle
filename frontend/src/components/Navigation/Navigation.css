@@ -19,8 +19,9 @@
 #home-link {
     display: flex;
     justify-content: space-between;
-    width: 70px;
+    width: 200px;
     align-items: center;
+    white-space: nowrap;
     /* padding: 0 0.75rem; */
 }
 
@@ -37,6 +38,7 @@
     justify-content: space-between;
     align-items: center;
     width: 200px;
+    
 }
 
 

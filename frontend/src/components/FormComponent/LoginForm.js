@@ -47,6 +47,7 @@ const LoginForm = () => {
                     })}
             </ul>
             <h2 id="login-text">Log In</h2>
+            <p id="subtitle">By continuing you agree to our Community Guidelines.</p>
             <div className="non-form-items">
                 <button className="demo-user" onClick={handleDemoLogin}>LOG IN AS DEMO USER</button>
                 <hr className="hr" /> 
