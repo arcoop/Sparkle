@@ -35,7 +35,7 @@ const QuizCreation = () => {
     
                         <div id='button-box'>
                             <Link to={'/create/new'}>
-                                <button id='create-quiz-button'>Create a Sporlce Quiz</button>
+                                <button className='create-quiz-button'>Create a Sporlce Quiz</button>
                             </Link>
                         </div>
                     </div>

@@ -52,7 +52,7 @@ const LoginForm = () => {
                 <button className="demo-user" onClick={handleDemoLogin}>LOG IN AS DEMO USER</button>
                 <hr className="hr" /> 
             </div>
-                <form onSubmit={handleSubmit}>
+                <form id="loginform" onSubmit={handleSubmit}>
 
                     <input className="credentials"
                         type="text" 

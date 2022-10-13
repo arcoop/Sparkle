@@ -35,3 +35,9 @@ button:hover {
     cursor: pointer;
     transition: .3s;
 }
+
+.page-title {
+    font-size: 2.75rem;
+    font-family: inherit;
+    font-weight: 700;
+}

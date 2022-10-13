@@ -6,7 +6,7 @@
     font-weight: 600;
 }
 
-form {
+#loginform {
     display: flex;
     flex-direction: column;
     justify-content: center;

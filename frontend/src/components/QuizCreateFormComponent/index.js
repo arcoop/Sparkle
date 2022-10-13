@@ -11,18 +11,20 @@ const QuizForm = ({props}) => {
     const dispatch = useDispatch();
     const [redirect, setRedirect] = useState(false)
     const [id, setId] = useState(null)
+    const [errors, setErrors] = useState([])
 
-    
     const handleSubmit = (e) => {
         e.preventDefault()
         const quiz = {title: quizName, quizType: quizType}
         return dispatch(createQuiz(quiz))
+            .catch(async res => {
+                const data = await res.json();
+                if (data && data.errors) {
+                    setErrors(data.errors)
+                }
+            })
             .then(async data => {
-                console.log(data)
-                // console.log(typeof parseInt(Object.keys(data)[0]))
                 setId(parseInt(Object.keys(data)[0]))
-                // console.log(id)
-                // history.push(`/create/edit/${id}`)
                 setRedirect(true)
             })
     }
@@ -30,32 +32,62 @@ const QuizForm = ({props}) => {
         if (redirect) return <Redirect to={`/create/edit/${id}`} />
     
     return (
-        <div id='quiz-form-container'>
+        <div className='page'>
+                <ul className="errors">
+                    {errors.map(error => {
+                        return (
+                            <li className="error" key={error}>{error}</li>
+                            )
+                        })}
+                </ul>
 
-            <form className='quiz-create-form' onSubmit={handleSubmit}>
-                <label>Quiz Name
-                    <input type="text"
-                    onChange={(e) => setQuizName(e.target.value)}
-                    />
-                </label>
+                
+            <div id='page-container'>
+                <h1 className='page-title'>Create a New Quiz</h1>
+                <div id='form-container'>
+                    <div id='quiz-form-container-left-col'>
+                        <form className='quiz-create-form' onSubmit={handleSubmit}>
+                            <div>
+                                <label className='input-label'>Quiz Name
+                                    <input id='quiz-name-input' 
+                                    type="text"
+                                    placeholder='Ideally 1-3 words, e.g. Digits of Pi'
+                                    onChange={(e) => setQuizName(e.target.value)}
+                                    />
+                                </label>
+                            </div>
+                            <div>
+                                <label className='input-label'>Similar Quizzes</label>
+                                <div id='similar-quizzes'></div>
+                            </div>
+                            <label className='input-label'>Quiz Type
+                                <div className='select-button'>
+                                    <select name="dropdown" id="dropdown" onChange={e => setQuizType(e.target.value)}>
+                                        {quizTypes.map(type => {
+                                            return (
+                                                <option className='dropdown-item' key={type} value={type}>{type}</option>
+                                            )
+                                        })}
+                                    </select>
+                                </div>
+                            </label>
+                            <button id="create-quiz" type='submit'>Create Quiz</button>
+                        </form>
+                    </div>
 
-                <label>Quiz Type
-                    <div id='backdrop'>
-                        <select name="dropdown" id="" onChange={e => setQuizType(e.target.value)}>
-                            {quizTypes.map(type => {
-                                return (
-                                    <option key={type} value={type}>{type}</option>
-                                )
-                            })}
-                        </select>
+                    <div id='quiz-form-container-right-col'>
+                        <div id="items">
+                            <div>
+                                <h2>Quizzes Remaining</h2>
+                            </div>
+                            <div>
+                                <h2>Need Help?</h2>
+                            </div>
+                        </div>
 
                     </div>
-                </label>
-
-                <button type='submit'>Create Quiz</button>
-
-            </form>
-
+                </div>
+            </div>
         </div>
     )
 
