@@ -41,14 +41,35 @@
     
 }
 
+#outer-circle {
+    position: relative;
+}
+
+#inner-profile {
+    position: absolute;
+    top: 16%;
+    left: 27%
+}
+
+#profile-circle {
+    font-size: 23px;
+    /* font-weight: 100; */
+}
+
+#profile-user {
+    color: rgb(49, 152, 200);
+    font-size: 11px;
+}
+
 
 .profile-button {
     position: relative;
-    font-size: 20px;
+    
     padding-top: 10px;
     padding-bottom: 8px;
     padding-right: 18px;
     padding-left: 15px;
+    
 }
 
 .navLinks {

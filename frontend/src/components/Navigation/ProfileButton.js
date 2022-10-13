@@ -40,7 +40,8 @@ const ProfileButton = ({user}) => {
        return (
         <> 
             <div>
-                <i className="fa-solid fa-circle-user"
+                <i className="fa-regular fa-user"
+                // <i className="fa-solid fa-circle-user"
                     onClick={openMenu}
                 ></i>
                 {menu}
@@ -52,9 +53,16 @@ const ProfileButton = ({user}) => {
         return (
             <> 
                 <div>
-                <i className="fa-solid fa-circle-user"
-                        onClick={openMenu}
-                    ></i>
+                    <button onClick={openMenu}>
+                        <div id="outer-circle">
+                            <i id="profile-circle" className="fa-regular fa-circle"></i>
+                            <div id="inner-profile">
+                                <i id="profile-user" className="fa-regular fa-user"></i>
+                            </div>
+
+                        </div>
+                    </button>
+                        {/* onClick={openMenu} */}
                 </div>
             </>
         )
