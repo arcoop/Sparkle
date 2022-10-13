@@ -12,7 +12,6 @@ const LoginForm = () => {
     const [errors, setErrors] = useState([])
     const dispatch = useDispatch()
     const sessionUser = useSelector(state => state.session.user)
-
     
     const handleSubmit = e => {
         e.preventDefault();
@@ -27,6 +26,7 @@ const LoginForm = () => {
             })
     }
 
+  
     const handleDemoLogin = () => {
         const user = {credential:"demo-user", password: "demouser123"}
         return dispatch(login(user))
@@ -56,14 +56,14 @@ const LoginForm = () => {
 
                     <input className="credentials"
                         type="text" 
-                        // value={credential}
+                        value={credential}
                         placeholder="Email Address or Username"
                         onChange={e => setCredential(e.target.value)}
                         />
                     <br></br>
                     <input type="password" 
                         className="credentials"
-                        // value={password}
+                        value={password} 
                         placeholder="Password"
                         onChange={e => setPassword(e.target.value)}
                         />

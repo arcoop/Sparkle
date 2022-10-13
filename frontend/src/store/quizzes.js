@@ -39,12 +39,14 @@ export const createQuiz = quiz => async dispatch => {
 }
 
 export const updateQuiz = quiz => async dispatch => {
+    console.log('hi')
     const res = await csrfFetch(`/api/quizzes/${quiz.id}`, {
-        method: 'PATCH',
+        method: 'PUT',
         body: JSON.stringify(quiz)
     })
-
+    console.log('helo')
     const data = await res.json()
+    console.log(data)
     dispatch(setQuiz(data))
 }
 
@@ -52,6 +54,13 @@ export const fetchQuizzes = () => async dispatch => {
     const res = await csrfFetch('/api/quizzes')
     const data = await res.json()
     dispatch(setQuizzes(data))
+}
+
+export const fetchQuiz = quizId => async dispatch => {
+    
+    const res = await csrfFetch(`/api/quizzes/${quizId}`)
+    const data = await res.json()
+    dispatch(setQuiz(data))
 }
 
 // export const fetchQuizzesByCategory = () => async dispatch => {

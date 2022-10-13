@@ -3,6 +3,7 @@
 /* TODO Add site wide styles */
 body {
     margin: 0;
+    font-family: 'Roboto', sans-serif;
 }
 
 .error {
@@ -26,6 +27,7 @@ button {
     background-color: #f90;
     border: transparent;
     color: white;
+    border-radius: 0.25rem;
 }
 
 button:hover {

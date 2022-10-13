@@ -11,6 +11,7 @@ const QuizForm = ({props}) => {
     const dispatch = useDispatch();
     const [redirect, setRedirect] = useState(false)
     const [id, setId] = useState(null)
+
     
     const handleSubmit = (e) => {
         e.preventDefault()

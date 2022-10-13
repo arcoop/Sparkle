@@ -9,11 +9,13 @@
 ApplicationRecord.transaction do 
     puts "Destroying tables..."
     # Unnecessary if using `rails db:seed:replant`
+    Quiz.destroy_all
     User.destroy_all
   
     puts "Resetting primary keys..."
     # For easy testing, so that after seeding, the first `User` has `id` of 1
     ApplicationRecord.connection.reset_pk_sequence!('users')
+    ApplicationRecord.connection.reset_pk_sequence!('quizzes')
   
     puts "Creating users..."
     # Create one user with an easy to remember username, email, and password:
@@ -40,7 +42,7 @@ ApplicationRecord.transaction do
       description: Faker::Lorem.sentence,
       quiz_timer: Faker::Number.between(from: 1, to: 10),
       category: "History",
-      quiz_author_id: 1
+      author_id: 1
     ) 
 
     Quiz.create!(
@@ -49,7 +51,7 @@ ApplicationRecord.transaction do
       description: Faker::Lorem.sentence,
       quiz_timer: Faker::Number.between(from: 1, to: 10),
       category: "Math",
-      quiz_author_id: 1
+      author_id: 1
     ) 
 
     5.times do 
@@ -59,7 +61,7 @@ ApplicationRecord.transaction do
         description: Faker::Lorem.sentence,
         quiz_timer: Faker::Number.between(from: 1, to: 10),
         category: "Geography",
-        quiz_author_id: 1
+        author_id: 1
       }) 
     end
 

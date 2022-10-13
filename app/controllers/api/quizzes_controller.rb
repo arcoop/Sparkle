@@ -23,7 +23,9 @@ class Api::QuizzesController < ApplicationController
     end
 
     def update
-        if @quiz.save
+        p @quiz
+        p quiz_params
+        if @quiz.update(quiz_params)
             render 'api/quizzes/show'
         else
             render json: {errors: @quiz.errors.full_messages}, status: :unprocessable_entity
@@ -43,7 +45,7 @@ class Api::QuizzesController < ApplicationController
     end
 
     def quiz_params
-        params.require(:quiz).permit(:title, :quiz_type)
+        params.require(:quiz).permit(:title, :quiz_type, :description, :quiz_timer, :permalink, :answer_type, :hint_heading, :answer_heading, :extra_heading, :category)
     end
 
 end
