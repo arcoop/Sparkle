@@ -3,10 +3,13 @@
     flex-direction: column;
     align-items: center;
     font-family: 'Roboto', sans-serif;
+    /* justify-content: flex-start; */
 }
 
 .tab {
-    border-bottom: transparent
+    border-bottom: transparent;
+    /* display: flex; */
+    /* justify-content: flex-start; */
 }
 
 .tab-form {
@@ -36,12 +39,16 @@
 }
 
 .tablinks {
+    text-transform: uppercase;
     color: black;
     background: transparent;
     font-family: 'Roboto', sans-serif;
-    font-weight: 500;
+    font-weight: 700;
     font-size: 15px;
     padding-bottom: 10px;
+    outline: transparent;
+    border: 1px solid transparent;
+    box-sizing: border-box;
     /* border-bottom: #d8d8d8; */
 
 }
@@ -49,10 +56,11 @@
 .tablinks:hover {
     color: #f90;
     background: transparent;
+    cursor: pointer;
 }
 
-.tablinks:active {
-    border-bottom: #f90;
+.tablinks:focus {
+    border-bottom: 1px solid #f90;
 }
 
 #save-changes {

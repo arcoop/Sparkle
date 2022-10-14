@@ -78,39 +78,6 @@ const QuizEditForm = () => {
             <div id='quiz-edit-tab' className='tab-form'>
                 <form className='form' onSubmit={handleSubmit}>
 
-                    {/* <table id='quiz-info'>
-                        <tbody>
-                            <tr>
-                                <td>Quiz Type:</td>
-                                <td>
-                                    <select name="dropdown" id='type-select-options' onChange={e => setQuizType(e.target.value)}>
-                                    {quizTypes.map(type => {
-                                        return (
-                                            <option key={type} value={type}>{type}</option>
-                                        )
-                                    })}
-                                    </select>
-                                </td>
-
-                                <td><Link>How To</Link></td>
-                            </tr>
-
-                            <tr>
-                                <td>Quiz Name:</td>
-                                <td>
-                                <input type="text" 
-                                value={quizName}
-                                onChange={e => setQuizName(e.target.value)}
-                            />
-                                </td>
-                            </tr>
-
-
-                        </tbody>
-
-    
-                    </table> */}
-
                     <div className='main-inputs'>
                        
                         <table>
