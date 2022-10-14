@@ -1,5 +1,5 @@
 #users-show-page {
-    border: 1px solid green;
+    /* border: 1px solid green; */
     margin: auto;
     width: 95%;
 }
@@ -43,8 +43,40 @@
     justify-content: space-between;
 }
 
-#show-page-left-bar {
-    border: 1px solid blue;
+#show-page-profile-bar {
+    border: 1px solid #d8d8d8;
+    border-radius: 4px;
+    text-transform: uppercase;
+    box-sizing: border-box;
+    width: 182px;
+}
+
+#profile-header {
+    padding: 12px 18px;
+    background-color: #f1f1f2;
+    font-weight: 600;
+    box-sizing: border-box;
+}
+
+.prof-bar-list-item {
+    padding: 12px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    border-left: 3px solid transparent;
+    margin: 4px;
+}
+
+.prof-bar-list-item:active {
+    border-left: 3px solid #f90;
+}
+
+.prof-bar-list-item:hover {
+    background-color: #ffebcc;
+    border-radius: 3px;
+}
+.prof-bar-link {
+    box-sizing: border-box;
+    /* padding: 5% 15% */
 }
 
 #show-page-middle {
