@@ -50,7 +50,7 @@ const QuizShow = () => {
                     </div>
 
                     <div id="quiz-content">
-
+                        
                     </div>
 
                 </div>

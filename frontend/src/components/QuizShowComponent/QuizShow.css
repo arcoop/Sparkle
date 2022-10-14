@@ -2,6 +2,8 @@
     border: 1px solid red;
     display: flex;
     justify-content: space-between;
+    margin: auto;
+    width: 90%;
 }
 
 #left-side {
@@ -80,6 +82,10 @@
     border: 1px solid #f90;
     box-sizing: border-box;
     width: 334px;
+}
+
+#play-quiz:hover {
+    border: 1px solid #fbc36f;
 }
 
 #right-side {
