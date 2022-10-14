@@ -12,7 +12,7 @@ const Header = () => {
                 </div>
                 <Link id="nav-home-link" to="/">
                     <div className="icon">
-                        <i id="nav-home-link-icon" className="ri-lightbulb-flash-line"></i>
+                        <i id="nav-home-link-icon" className="ri-lightbulb-flash-fill"></i>
                     </div>
                     <p id="nav-home-link-text">sparkle</p>
                 </Link>

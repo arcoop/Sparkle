@@ -41,7 +41,9 @@
     font-size: 40px;
     /* color: #f90; */
     border: black;
-    fill: #f90
+    /* fill: #f90; */
+    color: #f90;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 
 }
 
