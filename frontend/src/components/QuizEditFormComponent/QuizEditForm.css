@@ -21,6 +21,7 @@
     flex-direction: row;
     align-items: flex-start;
     border-top: 1px solid #d8d8d8;
+    box-sizing: border-box;
 }
 
 .main-inputs {
@@ -60,7 +61,7 @@
 }
 
 .tablinks:focus {
-    border-bottom: 1px solid #f90;
+    border-bottom: 2px solid #f90;
 }
 
 #save-changes {
