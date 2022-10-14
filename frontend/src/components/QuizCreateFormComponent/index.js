@@ -71,7 +71,7 @@ const QuizForm = ({props}) => {
                                     </select>
                                 </div>
                             </label>
-                            <button id="create-quiz" type='submit'>Create Quiz</button>
+                            <button className='submit-button' id="create-quiz" type='submit'>Create Quiz</button>
                         </form>
                     </div>
 

@@ -9,14 +9,15 @@
 #quiz-create-page-top-row {
     display: flex;
     justify-content: space-between;
+    padding-bottom: 30px;
 }
 
 .quiz-create-page-title {
     font-family: inherit;
     font-size: 2.75rem;
-    font-weight: 700;
-
+    font-weight: 600;
 }
+
 
 #create-page-extras-button {
     background: none;

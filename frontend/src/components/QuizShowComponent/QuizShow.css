@@ -50,7 +50,36 @@
     margin-left: 30px;
 }
 
+#quiz-div {
+    display: flex;
+    justify-content: center;
+}
+
 #quiz-header {
+    display: flex;
+    padding: 16px;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0 50px;
+    /* dis */
+    /* margin: auto; */
+}
+
+#right-side-quiz-header {
+    display: flex;
+    justify-content: space-evenly;
+    width: 20%;
+}
+
+#play-quiz {
+    font-size: 1.25rem;
+    line-height: 1rem;
+    font-weight: 500;
+    padding: 1rem;
+    border: 1px solid #f90;
+    box-sizing: border-box;
+    width: 334px;
 }
 
 #right-side {
