@@ -8,37 +8,19 @@ import './QuizShow.css'
 const QuizShow = () => {
     const dispatch = useDispatch();
     const {quizId} = useParams();
-    const [author, setAuthor] = useState("")
+
     useEffect(() => {
         dispatch(fetchQuiz(quizId))
     }, [quizId])
-    let quiz = useSelector(getQuiz(quizId)) || {title: "", category: "", description: "", quizType: "", author: "", quizTimer: 0};
-    console.log(quiz.authorId)
+
+    let quiz = useSelector(getQuiz(quizId)) || {title: "", category: ""};
 
     useEffect(() => {
-        if (quiz.authorId) {
-            console.log("quiz.authorid")
-            dispatch(fetchUser(quiz.authorId))
-            console.log("fetched user")
-        }
+        if(quiz.authorId) dispatch(fetchUser(quiz.authorId))
     }, [quiz])
+
+    let user = useSelector(getUser(quiz.authorId)) || {username:"", email:""}
         
-    // if (user) console.log(user)
-    // useEffect(() => {
-    //     setAuthor(user.username)
-    // }, [user])
-    // const [email, setEmail] = useState("")
-    // const [username, setUsername] = useState("")    
-   
-    // console.log(user)
-
-    // if(user) {
-    //     console.log(user)
-    //     console.log("user id")
-    //     console.log(user.id)
-    // }
-    // console.log(user)
-
     const [score, setScore] = useState(0)
     const [timer, setTImer] = useState(quiz.quizTimer)
 
@@ -55,7 +37,7 @@ const QuizShow = () => {
 
     
                 <div id="mid-level-info">
-                    <h3> by {author}</h3>
+                    <h3> by {user.username}</h3>
                 </div>
 
                 <div id="more-info">

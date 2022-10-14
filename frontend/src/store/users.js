@@ -18,14 +18,14 @@ export const getUsers = state => {
 }
 
 export const getUser = userId => state => {
-    return state.users ? state.users[userId] : null
+    return state.users[userId] ? state.users[userId] : null
 }
 
 export const fetchUsers = () => async dispatch => {
     const res = await csrfFetch('/api/users')
     if (res.ok) {
         const data = await res.json()
-        dispatch(setUsers(data.users))
+        dispatch(setUsers(data.users)) // Fred things this needs to just be data because data will 
         return data.users
     }
 }
@@ -44,7 +44,7 @@ const userReducer = (state = {}, action) => {
         case GET_USERS:
             return {...state, ...action.payload}
         case GET_USER:
-            return {...state, ...action.payload}
+            return {...state, [action.payload.id]: action.payload}
         default:
             return state 
     }

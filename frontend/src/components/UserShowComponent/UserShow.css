@@ -1,13 +1,46 @@
 #users-show-page {
-    border: 1px solid green
+    border: 1px solid green;
+    margin: auto;
+    width: 95%;
 }
 
-#show-page-top-row {
+#show-page-top-section {
     border: 1px solid red;
+    display: flex;
+}
+
+#show-page-icon {
+    color: rgb(49, 152, 200);
+    font-size: 80px;
+    padding: 15px;
+}
+
+#user-show-page-info {
+    width: 100%;
+}
+
+#username-and-edit {
+    display: flex;
+    justify-content: space-between;
+}
+
+#show-page-top-info {
+    display: flex;
+}
+
+#users-show-page-bottom-section {
+    display: flex;
+    flex-direction: column;
 }
 
 #show-page-stats-row {
     border: 1px solid purple;
+    margin: auto;
+}
+
+#main-user-profile {
+    display: flex;
+    justify-content: space-between;
 }
 
 #show-page-left-bar {
