@@ -1,0 +1,59 @@
+#quiz-show-page {
+    border: 1px solid red;
+    display: flex;
+    justify-content: space-between;
+}
+
+#left-side {
+    border: 1px solid blue;
+    width: 80%;
+}
+
+#top-row {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 12px;
+    border: 1px solid purple;
+}
+
+#top-level-info {
+    border: 1px solid orange;
+}
+
+.quiz-title {
+    font-size: 2.75rem;
+    font-weight: bold
+}
+
+#mid-level-info {
+    text-transform: capitalize;
+    border-bottom: 1px solid #d8d8d8;
+}
+
+#more-info {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #d8d8d8;
+}
+
+#more-info-header {
+    text-transform: uppercase;
+    font-size: .75rem;
+    font-weight: bold;
+    border-bottom: 1px solid #d8d8d8;
+}
+
+#quiz-type {
+    text-transform: capitalize;
+    font-size: .625rem;
+    color: #666;
+    margin-left: 30px;
+}
+
+#quiz-header {
+}
+
+#right-side {
+    border: 1px solid green;
+    width: 20%;
+}

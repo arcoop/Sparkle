@@ -47,7 +47,7 @@ const Navigation = () => {
                 <div className="profile-button">
                     <ProfileButton user={sessionUser}/>
                 </div>
-                <Redirect to='/'/>
+                {/* <Redirect to='/'/> */}
             </div>
         )
     } else {
