@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchQuiz, getQuiz, setQuiz, updateQuiz } from '../../store/quizzes'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { getUser } from '../../store/users'
 
 const QuizEditForm = () => {
     const {quizId} = useParams()

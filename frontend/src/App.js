@@ -5,13 +5,16 @@ import QuizCreation from './components/QuizCreateComponent';
 import QuizForm from './components/QuizCreateFormComponent';
 import QuizEditForm from './components/QuizEditFormComponent';
 import QuizShow from './components/QuizShowComponent';
+import UserShow from './components/UserShowComponent';
 
 function App() {
   return (
     <>
       <Navigation />
       <Switch>
-        <Route path={"/users/:id"}></Route>
+        <Route path={"/users/:id"}>
+          <UserShow />
+        </Route>
 
         <Route exact path={"/create"}>
           <QuizCreation />

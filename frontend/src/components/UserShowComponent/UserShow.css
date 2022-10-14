@@ -1,0 +1,23 @@
+#users-show-page {
+    border: 1px solid green
+}
+
+#show-page-top-row {
+    border: 1px solid red;
+}
+
+#show-page-stats-row {
+    border: 1px solid purple;
+}
+
+#show-page-left-bar {
+    border: 1px solid blue;
+}
+
+#show-page-middle {
+    border: 1px solid brown;
+}
+
+#show-page-right-bar {
+    border: 1px solid pink;
+}

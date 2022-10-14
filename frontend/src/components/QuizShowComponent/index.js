@@ -2,16 +2,42 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom"
 import { fetchQuiz, getQuiz } from "../../store/quizzes";
+import { fetchUser, fetchUsers, getUser } from "../../store/users";
 import './QuizShow.css'
 
 const QuizShow = () => {
     const dispatch = useDispatch();
     const {quizId} = useParams();
+    const [author, setAuthor] = useState("")
     useEffect(() => {
         dispatch(fetchQuiz(quizId))
     }, [quizId])
-
     let quiz = useSelector(getQuiz(quizId)) || {title: "", category: "", description: "", quizType: "", author: "", quizTimer: 0};
+    console.log(quiz.authorId)
+
+    useEffect(() => {
+        if (quiz.authorId) {
+            console.log("quiz.authorid")
+            dispatch(fetchUser(quiz.authorId))
+            console.log("fetched user")
+        }
+    }, [quiz])
+        
+    // if (user) console.log(user)
+    // useEffect(() => {
+    //     setAuthor(user.username)
+    // }, [user])
+    // const [email, setEmail] = useState("")
+    // const [username, setUsername] = useState("")    
+   
+    // console.log(user)
+
+    // if(user) {
+    //     console.log(user)
+    //     console.log("user id")
+    //     console.log(user.id)
+    // }
+    // console.log(user)
 
     const [score, setScore] = useState(0)
     const [timer, setTImer] = useState(quiz.quizTimer)
@@ -27,8 +53,9 @@ const QuizShow = () => {
                     <h2 className="quiz-description">{quiz.description}</h2>
                 </div>
 
+    
                 <div id="mid-level-info">
-                    <h3> by {quiz.author}</h3>
+                    <h3> by {author}</h3>
                 </div>
 
                 <div id="more-info">
