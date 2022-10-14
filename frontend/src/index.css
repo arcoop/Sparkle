@@ -28,6 +28,8 @@ a {
     border: transparent;
     color: white;
     border-radius: 0.25rem;
+    text-transform: uppercase;
+    font-family: 'Roboto', sans-serif;
 }
 
 .submit-button:hover {

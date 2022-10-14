@@ -4,11 +4,13 @@ import Navigation from './components/Navigation';
 import QuizCreation from './components/QuizCreateComponent';
 import QuizForm from './components/QuizCreateFormComponent';
 import QuizEditForm from './components/QuizEditFormComponent';
+import Header from './components/Header';
 
 function App() {
   return (
     <>
       <Navigation />
+      <Header />
       <Switch>
         <Route path={"/users/:id"}></Route>
 
