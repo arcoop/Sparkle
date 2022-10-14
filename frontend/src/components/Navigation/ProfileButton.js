@@ -25,7 +25,7 @@ const ProfileButton = ({user}) => {
             <li id="break"><hr id="horizontal-line" /></li>
            <li className="menu-list">
                 <button className="menu-list-item" id="logout-button" onClick={() => {dispatch(logout())}}>
-                        <i class="fa-regular fa-circle-right"></i>
+                        <i className="ri-logout-circle-r-line"></i>
                         <p id="logout-text">Logout</p>
                 </button>
             </li>

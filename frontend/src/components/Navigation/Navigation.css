@@ -80,7 +80,7 @@
 
 .profile-button:hover {
     cursor: pointer;
-    background-color: #fbc36feb;
+    background-color: #ffa800;
     /* padding-top: 5px;
     padding-bottom: 2px;
     padding-right: 15px;
@@ -100,7 +100,8 @@
 }
 
 .navLinks:hover {
-    background-color: #f9c576;
+    /* background-color: #f9c576; */
+    background-color: #ffa800;
     transition: .3s;
 }
 
@@ -114,7 +115,7 @@
 
 .loginsignup:hover {
     cursor: pointer;
-    background-color: #f9bd64;
+    background-color: #ffa800;
     transition: .3s;
 }
 
@@ -167,7 +168,7 @@
 
 .menu-list-item:hover {
     cursor: pointer;
-    background-color: #fbc36fd3;
+    background-color: #ffebcc;
     border-radius: 2px;
     color: #f90;
 }
@@ -189,6 +190,10 @@
     justify-content: space-evenly;
 }
 
+#menu-username:hover {
+    color: #f90;
+}
+
 
 #logout-button {
     background: transparent;
@@ -206,7 +211,7 @@
 }
 #logout-button:hover {
     cursor: pointer;
-    background-color: #fbc36fd3;
+    background-color: #ffebcc;
     border-radius: 2px;
     color: #f90;
     /* box-sizing: border-box; */

@@ -1,5 +1,4 @@
 #main-div{
-    border: 1px solid red;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -10,13 +9,14 @@
 #left-nav {
     display: flex;
     justify-content: space-between;
-    width: 60%;
+    width: 50%;
+    margin-left: 15px;
 }
 
 #extras-button {
     border: transparent;
     background: transparent;
-    font-size: 23px;
+    font-size: 24px;
     border-radius: 50%;
     width: 50px;
     height: 50px;
@@ -25,18 +25,33 @@
 
 #extras-button:hover{
     color: #f90;
-    background-color: #fbd090eb;
+    background-color: #ffebcc;
     cursor: pointer;
     transition: .2s;
 }
 
 #nav-home-link {
     font-family: 'Roboto', sans-serif;
-    font-size: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#nav-home-link-icon {
+    font-size: 40px;
+    /* color: #f90; */
+    border: black;
+    fill: #f90
+
+}
+
+#nav-home-link-text {
+    font-size: 40px;
+
 }
 
 #nav-links-left {
-    width: 60%;
+    width: 70%;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -72,7 +87,7 @@
 }
 
 #search-button:hover {
-    background-color: #fbd090eb;
+    background-color: #ffebcc;
     color: #f90;
     border-radius: 50%;
     cursor: pointer;

@@ -10,7 +10,12 @@ const Header = () => {
                         <i className="fa-solid fa-bars"></i>
                     </button>
                 </div>
-                <Link id="nav-home-link" to="/">sporcle</Link>
+                <Link id="nav-home-link" to="/">
+                    <div className="icon">
+                        <i id="nav-home-link-icon" className="ri-lightbulb-flash-line"></i>
+                    </div>
+                    <p id="nav-home-link-text">sparkle</p>
+                </Link>
                 <div id="nav-links-left">
                     <Link className="left-nav-link" to='/'>Categories</Link>
                     <Link className="left-nav-link" to='/'>Badges</Link>
