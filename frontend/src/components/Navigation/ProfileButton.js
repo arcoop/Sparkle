@@ -16,10 +16,19 @@ const ProfileButton = ({user}) => {
 
     const menu = (
         <ul className="menu">
-            <li className="menu-list-item" id="user-profile">
-                <Link to={`/users/${user.id}`}>{user.username}</Link>
+            <li  className="menu-list">
+                <Link to={`/users/${user.id}`} id ="menu-username" className="menu-list-item">
+                    <i id="menu-user-icon" className="fa-regular fa-user"></i>
+                    {user.username}
+                </Link>
             </li>
-           <li className="menu-list-item"><button id="logout-button" onClick={() => {dispatch(logout())}}>Logout</button></li>
+            <li id="break"><hr id="horizontal-line" /></li>
+           <li className="menu-list">
+                <button className="menu-list-item" id="logout-button" onClick={() => {dispatch(logout())}}>
+                        <i class="fa-regular fa-circle-right"></i>
+                        <p id="logout-text">Logout</p>
+                </button>
+            </li>
         </ul>
     )
 
@@ -40,10 +49,14 @@ const ProfileButton = ({user}) => {
        return (
         <> 
             <div>
-                <i className="fa-regular fa-user"
-                // <i className="fa-solid fa-circle-user"
-                    onClick={openMenu}
-                ></i>
+                <button className="profile-button" onClick={openMenu}>
+                    <div id="outer-circle">
+                        <i id="profile-circle" className="fa-regular fa-circle"></i>
+                        <div id="inner-profile">
+                            <i id="profile-user" className="fa-regular fa-user"></i>
+                        </div>
+                    </div>
+                </button>
                 {menu}
             </div>
 
@@ -53,7 +66,7 @@ const ProfileButton = ({user}) => {
         return (
             <> 
                 <div>
-                    <button onClick={openMenu}>
+                    <button className="profile-button" onClick={openMenu}>
                         <div id="outer-circle">
                             <i id="profile-circle" className="fa-regular fa-circle"></i>
                             <div id="inner-profile">
@@ -62,7 +75,6 @@ const ProfileButton = ({user}) => {
 
                         </div>
                     </button>
-                        {/* onClick={openMenu} */}
                 </div>
             </>
         )

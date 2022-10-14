@@ -15,19 +15,36 @@ const Navigation = () => {
     if (sessionUser) {
         return (
             <div className="navbar">
-                <div className="nav-link-items">
-                        <Link className="navLinks" to="/" id="home-link">
-                                <i className="fa-solid fa-house-chimney" id="home-button"></i> 
-                                <p>QUIZZES</p>
-                        </Link>
-                        <Link className="navLinks" to={'/create'} id="quiz-create-link">
-                                <p id="quiz-creation">QUIZ CREATION</p>
-                        </Link>
+                <div className="left-nav">
+                    <div className="nav-link-items">
+                            <Link className="navLinks" to="/" id="home-link">
+                                    <i className="fa-solid fa-house-chimney" id="home-button"></i> 
+                                    <p>quizzes</p>
+                            </Link>
+                            <Link to="/">
+                                <p>events</p>
+                            </Link>
+                            <div id="line-break"></div>
+                            <Link className="navLinks" to={'/create'} id="quiz-create-link">
+                                    <p id="quiz-creation">quiz creation</p>
+                            </Link>
+                            <Link to="/">
+                                <p>community</p>
+                            </Link>
+                            <Link to="/">
+                                <p>videos</p>
+                            </Link>
+                            <Link to="/">
+                                <p>sparklecon</p>
+                            </Link>
+                    </div>
                 </div>
 
+                <div className="right-nav">
                     <div className="profile-button">
                         <ProfileButton user={sessionUser}/>
                     </div>
+                </div>
             </div>
         )
     } else {

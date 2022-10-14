@@ -1,14 +1,3 @@
-// title          :string           not null
-// #  quiz_type      :string           not null
-// #  description    :text             not null
-// #  quiz_timer     :integer          not null
-// #  permalink      :string
-// #  answer_type    :string           not null
-// #  hint_heading   :string
-// #  answer_heading :string
-// #  extra_heading  :string
-// #  category       :string           not null
-
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import './QuizCreate.css'
@@ -28,14 +17,14 @@ const QuizCreation = () => {
                             <h1 className="title">Quiz Management Dashboard</h1>
                             <div id="features">
                                 <div id="extras">
-                                    <button id="extras-button">Extras</button>
+                                    <button className="submit-button" id="extras-button">Extras</button>
                                 </div>
                             </div>
                         </div>
     
                         <div id='button-box'>
                             <Link to={'/create/new'}>
-                                <button className='create-quiz-button'>Create a Sporlce Quiz</button>
+                                <button className="submit-button" id='create-quiz-button'>Create a Sporlce Quiz</button>
                             </Link>
                         </div>
                     </div>

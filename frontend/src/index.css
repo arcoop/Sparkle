@@ -23,14 +23,14 @@ a {
     text-decoration: none;
 }
 
-button {
+.submit-button {
     background-color: #f90;
     border: transparent;
     color: white;
     border-radius: 0.25rem;
 }
 
-button:hover {
+.submit-button:hover {
     background-color: #fbc36f;
     cursor: pointer;
     transition: .3s;
