@@ -5,14 +5,15 @@
 }
 
 #show-page-top-section {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     display: flex;
+    margin-top: 15px;
 }
 
 #show-page-icon {
     color: rgb(49, 152, 200);
     font-size: 80px;
-    padding: 15px;
+    padding: 32px;
 }
 
 #user-show-page-info {
@@ -22,10 +23,64 @@
 #username-and-edit {
     display: flex;
     justify-content: space-between;
+    margin: 33px 28px 15px 28px;
+}
+
+#username {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+#edit-button {
+    background: transparent;
+    /* outline: 1px solid black; */
+    border: 1px solid black;
+    text-transform: uppercase;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 12px;
+    border-radius: 4px;
+    margin-right: 100px;
+    line-height: .75rem;
+    box-sizing: border-box;
+    transition: .2s;
+}
+
+#edit-button:hover {
+    background-color: black;
+    box-sizing: border-box;
+    color: white;
+    cursor: pointer;
+    transition: .2s;
 }
 
 #show-page-top-info {
+    font-size: .9em;
     display: flex;
+    margin: 25px;
+}
+
+
+#online {
+    justify-content: space-evenly;
+    color: #00aa08;
+    display: flex;
+    margin-right: 12px;
+
+}
+
+#online-circle {
+    margin-right: 10px;
+}
+
+#user-since {
+    display: flex;
+}
+
+#clock-icon {
+    color: #cfcbcb;
+    margin: 0 7px;
 }
 
 #users-show-page-bottom-section {
@@ -86,3 +141,5 @@
 #show-page-right-bar {
     border: 1px solid pink;
 }
+
+

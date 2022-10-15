@@ -31,6 +31,7 @@ const Header = () => {
                     <i className="fa-solid fa-magnifying-glass"></i>
                 </button>
             </div>
+
         </div>
     )
 

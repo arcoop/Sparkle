@@ -5,10 +5,11 @@ import { fetchUser, getUser } from '../../store/users';
 import './UserShow.css'
 import { Link } from 'react-router-dom';
 
-
 const UserShow = () => {
     const dispatch = useDispatch();
     const {id} = useParams();
+
+    const sessionUser = useSelector(state => state.session.user)
     
     useEffect(() => {
         dispatch(fetchUser(id))
@@ -16,7 +17,38 @@ const UserShow = () => {
 
     let user = useSelector(getUser(id)) || {username: "username...", email: "email..."}
 
-    
+    const formatDate = date => {
+        const months = {
+            0: 'Jan',
+            1: 'Feb',
+            2: 'Mar',
+            3: 'Apr',
+            4: 'May',
+            5: 'Jun',
+            6: 'Jul',
+            7: 'Aug',
+            8: 'Sept',
+            9: 'Oct',
+            10: 'Nov',
+            11: 'Dec'
+        }
+        const fullDate = new Date(date)
+        const month = months[fullDate.getMonth()];
+        const day = fullDate.getDate();
+        const year = fullDate.getFullYear();
+        return `${month} ${day}, ${year}`
+    }
+
+    let onlineStatus;
+    if (sessionUser) {
+        onlineStatus = 
+        <div id='online'>
+            <i id="online-circle" className="fa-solid fa-circle"></i>
+            <p>Online</p>
+        </div>
+    }  else onlineStatus = ""
+
+    // const onlineId = sessionUser ? "online" : "offline"
     return (
         <div id="users-show-page">
 
@@ -27,11 +59,14 @@ const UserShow = () => {
                 <div id='user-show-page-info'>
                     <div id='username-and-edit'>
                         <h2 id='username'>{user.username}</h2>
-                        <button id='edit-button'>Edit button</button>
+                        <button id='edit-button'>Edit Profile</button>
                     </div>
                     <div id='show-page-top-info'>
-                        <p>Online</p>
-                        <p>User since</p>
+                        {onlineStatus}
+                        <div id='user-since'>
+                            <i id='clock-icon' className="fa-solid fa-clock"></i>
+                            <p>User since {formatDate(user.createdAt)}</p>
+                        </div>
                     </div>
                 </div>
             </div>

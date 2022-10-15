@@ -19,13 +19,13 @@ const ProfileButton = ({user}) => {
             <li  className="menu-list">
                 <Link to={`/users/${user.id}`} id ="menu-username" className="menu-list-item">
                     <i id="menu-user-icon" className="fa-regular fa-user"></i>
-                    {user.username}
+                    <p id="user-username">{user.username}</p>
                 </Link>
             </li>
             <li id="break"><hr id="horizontal-line" /></li>
            <li className="menu-list">
                 <button className="menu-list-item" id="logout-button" onClick={() => {dispatch(logout())}}>
-                        <i className="ri-logout-circle-r-line"></i>
+                        <i id="logout-circle" className="ri-logout-circle-r-line"></i>
                         <p id="logout-text">Logout</p>
                 </button>
             </li>

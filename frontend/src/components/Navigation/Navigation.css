@@ -162,12 +162,9 @@
 .menu-list-item {
     text-decoration: none;
     color: black;
-    /* padding-top: 6px;
-    padding-bottom: 6px; */
     font-size: medium;
     padding: 12px;
     
-    /* padding: 15px; */
 }
 
 .menu-list-item:hover {
@@ -178,26 +175,31 @@
 }
 
 #menu-user-icon {
-    color: rgb(49, 152, 200)
+    color: rgb(49, 152, 200);
+    font-size: 19px;
 }
 
 
 #horizontal-line {
     margin: auto;
     width: 90%;
-    border: 1px solid #e5e5e5;
+    border: .0075em solid #d5d5d5;
 }
 
 #menu-username {
-    padding: 15px;
+    padding: 23px;
     display: flex;
-    justify-content: space-evenly;
+    /* justify-content: space-evenly; */
 }
 
 #menu-username:hover {
     color: #f90;
 }
 
+#user-username {
+    font-size: 15px;
+    margin-left: 15px;
+}
 
 #logout-button {
     background: transparent;
@@ -206,7 +208,6 @@
     display: flex;
     justify-content: flex-start;
     padding: 12px;
-    /* margin-left: 7px; */
     width: 100%;
 }
 
@@ -219,6 +220,10 @@
     border-radius: 2px;
     color: #f90;
     /* box-sizing: border-box; */
+}
+
+#logout-circle {
+    padding-left: 10px;
 }
 
 #logout-text {
@@ -235,3 +240,4 @@
     /* border:  solid #f90; */
     border: 000em solid #f90;
 }
+

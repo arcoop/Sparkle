@@ -42,17 +42,15 @@
 
 #nav-home-link-icon {
     font-size: 40px;
-    /* color: #f90; */
     border: black;
-    /* fill: #f90; */
     color: #f90;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-
 }
 
 #nav-home-link-text {
+    font-family: 'Asap', sans-serif;
     font-size: 40px;
-
+    font-weight: bold;
 }
 
 #nav-links-left {
@@ -88,7 +86,7 @@
     width: 50px;
     font-size: 22px;
     margin-left: 15px;
-    transition: .2s;
+    /* transition: .2s; */
 }
 
 #search-button:hover {
@@ -96,7 +94,7 @@
     color: #f90;
     border-radius: 50%;
     cursor: pointer;
-    transition: .2s;
+    /* transition: .2s; */
 }
 
 #right-nav-button {
