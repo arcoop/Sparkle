@@ -26,7 +26,7 @@ export const fetchUsers = () => async dispatch => {
     const res = await csrfFetch('/api/users')
     if (res.ok) {
         const data = await res.json()
-        dispatch(setUsers(data)) // Fred things this needs to just be data because data will 
+        dispatch(setUsers(data)) 
         return data
     }
 }

@@ -20,7 +20,7 @@ class User < ApplicationRecord
   validates :session_token, uniqueness: true
 
   has_many :quizzes_authored, class_name: :Quiz, foreign_key: :author_id, dependent: :destroy
-  has_many :comments_written, class_name: :Comments, foreign_key: :commenter_id, dependent: :destroy
+  has_many :comments_written, class_name: :Comment, foreign_key: :commenter_id, dependent: :destroy
   has_many :quiz_takes, class_name: :QuizTake, foreign_key: :taker_id
   has_many :quizzes_taken, through: :quiz_takes, source: :quiz
 

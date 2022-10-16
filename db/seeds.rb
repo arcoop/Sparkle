@@ -9,6 +9,7 @@
 ApplicationRecord.transaction do 
     puts "Destroying tables..."
     # Unnecessary if using `rails db:seed:replant`
+    Comment.destroy_all
     Question.destroy_all
     Quiz.destroy_all
     User.destroy_all
@@ -18,6 +19,7 @@ ApplicationRecord.transaction do
     ApplicationRecord.connection.reset_pk_sequence!('users')
     ApplicationRecord.connection.reset_pk_sequence!('quizzes')
     ApplicationRecord.connection.reset_pk_sequence!('questions')
+    ApplicationRecord.connection.reset_pk_sequence!('comments')
   
     puts "Creating users..."
     # Create one user with an easy to remember username, email, and password:
@@ -93,6 +95,31 @@ ApplicationRecord.transaction do
         question_type: "multiple choice"
       })
     end
+
+    p "Creating comments..."
+     Comment.create!(
+      body: "Comment body",
+      quiz_id: 1,
+      commenter_id: 1
+     )
+
+     Comment.create!(
+      body: "second comment body",
+      quiz_id: 1,
+      commenter_id: 1
+     )
+
+     Comment.create!(
+      body: "another comment body",
+      quiz_id: 2,
+      commenter_id: 1
+     )
+
+     Comment.create!(
+      body: " comment body again",
+      quiz_id: 2,
+      commenter_id: 2
+     )
 
   
     puts "Done!"

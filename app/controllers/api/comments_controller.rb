@@ -1,17 +1,18 @@
 class Api::CommentsController < ApplicationController
+    wrap_parameters include: Comment.attribute_names + ['quizId', 'points']
     def index
         @comments = Quiz.find(params[:quiz_id]).comments
-        render 'api/comments/index'
+        render '/api/comments/index'
     end
 
     def create
+        p "creating"
         @comment = Comment.new(comment_params)
-        @comment.quiz_id = params[:quiz_id]
-        @comment.commenter_id = current_user
-
+        @comment.commenter_id = current_user.id
+    
         if @comment.save
             @comments = Quiz.find(params[:quiz_id]).comments
-            render 'api/comments/index'
+            render '/api/comments/index'
         else
             render json: {errors: ['You cannot submit an empty comment']}, status: :unprocessable_entity
         end
@@ -21,7 +22,7 @@ class Api::CommentsController < ApplicationController
         @comment = Comment.find(params[:id])
         if @comment.update(comment_params)
             @comments = Quiz.find(params[:quiz_id]).comments
-            render 'api/comments/index'
+            render '/api/comments/index'
         else
             render json: {errors: @comment.errors.full_messages}, status: :unprocessable_entity
         end
@@ -31,15 +32,12 @@ class Api::CommentsController < ApplicationController
         @comment = Comment.find(params:[:id])
         @comment.destroy
         @comments = Quiz.find(params[:quiz_id]).comments
-        render 'api/comments/index'
+        render '/api/comments/index'
     end
 
     private
-    def find_comment
-    end
-
     def comment_params
-        params.require(:comment).permit(:body)
+        params.require(:comment).permit(:id, :body, :quiz_id, :points)
     end
 
 end

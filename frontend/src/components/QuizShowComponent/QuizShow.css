@@ -1,13 +1,14 @@
-#quiz-show-page {
-    border: 1px solid red;
-    display: flex;
-    justify-content: space-between;
+#quiz-comments-page-container {
     margin: auto;
     width: 90%;
 }
 
+#quiz-show-page {
+    display: flex;
+    justify-content: space-between;
+}
+
 #left-side {
-    border: 1px solid blue;
     width: 80%;
 }
 
@@ -15,12 +16,8 @@
     text-transform: uppercase;
     font-weight: 600;
     font-size: 12px;
-    border: 1px solid purple;
 }
 
-#top-level-info {
-    border: 1px solid orange;
-}
 
 .quiz-title {
     font-size: 2.75rem;

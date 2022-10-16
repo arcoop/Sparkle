@@ -8,11 +8,11 @@ Rails.application.routes.draw do
     resources :users, only: [:create, :show, :index]
     resources :quizzes, except: [:new, :edit] do
       resources :questions, only: [:index, :show]
-      resources :comments, only: [:index, :create]
+      resources :comments, only: [:index]
     end
     resource :session, only: [:show, :create, :destroy]
     resources :questions, only: [:create, :update, :destroy]
-    resources :comments, only: [:update, :destroy]
+    resources :comments, only: [:update, :destroy, :create]
   end
 
   get '*path', to: "static_pages#frontend_index"

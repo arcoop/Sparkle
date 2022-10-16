@@ -24,13 +24,15 @@ export const getComments = state => {
 }
 
 export const fetchComments = quizId => async dispatch => {
-    const res = await csrfFetch(`api/quizzes/${quizId}/comments`)
+    const res = await csrfFetch(`/api/quizzes/${quizId}/comments`)
     const data = await res.json()
+    console.log("inside fetch comments")
+    console.log(data)
     dispatch(setComments(data))
 }
 
-export const createComment = (comment, quizId) => async dispatch => {
-    const res = await csrfFetch(`api/quizzes/${quizId}/comments`, {
+export const createComment = (comment) => async dispatch => {
+    const res = await csrfFetch(`/api/comments`, {
         method: 'POST',
         body: JSON.stringify(comment)
     })
@@ -38,8 +40,8 @@ export const createComment = (comment, quizId) => async dispatch => {
     dispatch(setComment(data))
 }
 
-export const updateComment = (comment, quizId) => async dispatch => {
-    const res = await csrfFetch(`api/quizzes/${quizId}/comments/${comment.id}`, {
+export const updateComment = comment => async dispatch => {
+    const res = await csrfFetch(`/api/comments/${comment.id}`, {
         method: 'PUT',
         body: JSON.stringify(comment)
     })
@@ -49,7 +51,7 @@ export const updateComment = (comment, quizId) => async dispatch => {
 }
 
 export const deleteComment = (commentId, quizId) => async dispatch => {
-    const res = await csrfFetch(`api/quizzes/${quizId}/comments/${commentId}`, {
+    const res = await csrfFetch(`/api/quizzes/${quizId}/comments/${commentId}`, {
         method: 'DELETE'
     })
 
