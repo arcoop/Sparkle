@@ -36,3 +36,7 @@
     box-sizing: border-box;
     line-height: .875rem;
 }
+
+#create-quiz-button:hover {
+    border: 1px solid #fbc36f;
+}

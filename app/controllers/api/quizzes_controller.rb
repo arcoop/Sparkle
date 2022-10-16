@@ -23,8 +23,6 @@ class Api::QuizzesController < ApplicationController
     end
 
     def update
-        p @quiz
-        p quiz_params
         if @quiz.update(quiz_params)
             render 'api/quizzes/show'
         else
@@ -45,7 +43,7 @@ class Api::QuizzesController < ApplicationController
     end
 
     def quiz_params
-        params.require(:quiz).permit(:title, :quiz_type, :description, :quiz_timer, :permalink, :answer_type, :hint_heading, :answer_heading, :extra_heading, :category)
+        params.require(:quiz).permit(:title, :quiz_type, :description, :quiz_timer, :permalink, :answer_type, :hint_heading, :answer_heading, :extra_heading, :category, :created_at, :updated_at)
     end
 
 end

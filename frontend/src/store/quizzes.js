@@ -20,7 +20,7 @@ export const removeQuiz = quizId => ({
 })
 
 export const getQuizzes = state => {
-   return state.quizzes ? Object.values(state.quizzes) : []
+   return Object.values(state.quizzes)
 }
 
 export const getQuiz = quizId => state => {
@@ -39,28 +39,31 @@ export const createQuiz = quiz => async dispatch => {
 }
 
 export const updateQuiz = quiz => async dispatch => {
-    console.log('hi')
     const res = await csrfFetch(`/api/quizzes/${quiz.id}`, {
         method: 'PUT',
         body: JSON.stringify(quiz)
     })
-    console.log('helo')
     const data = await res.json()
-    console.log(data)
     dispatch(setQuiz(data))
 }
 
 export const fetchQuizzes = () => async dispatch => {
     const res = await csrfFetch('/api/quizzes')
-    const data = await res.json()
-    dispatch(setQuizzes(data))
+    if (res.ok) {
+        const data = await res.json()
+        dispatch(setQuizzes(data))
+        return data
+    }
 }
 
 export const fetchQuiz = quizId => async dispatch => {
-    
     const res = await csrfFetch(`/api/quizzes/${quizId}`)
     const data = await res.json()
     dispatch(setQuiz(data))
+}
+
+const fetchQuizzesByCategory = category => async dispatch => {
+    const res = await csrfFetch('api/quizzes')
 }
 
 // export const fetchQuizzesByCategory = () => async dispatch => {
@@ -81,7 +84,7 @@ export const deleteQuiz = quizId => async dispatch => {
 }
 
 
-const quizReducer = (state = {}, action ) => {
+const quizzesReducer = (state = {}, action ) => {
     switch(action.type) {
         case SET_QUIZZES:
             return {...state, ...action.payload}
@@ -99,4 +102,4 @@ const quizReducer = (state = {}, action ) => {
     }
 }
 
-export default quizReducer;
+export default quizzesReducer;

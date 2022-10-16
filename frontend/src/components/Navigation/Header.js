@@ -1,8 +1,31 @@
-import { Link } from "react-router-dom"
+import { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { Link, Redirect, useHistory } from "react-router-dom"
+import { fetchQuizzes, getQuizzes } from "../../store/quizzes"
 import './Header.css'
 
 const Header = () => {
-    return (
+    const dispatch = useDispatch();
+    const history = useHistory()
+
+    
+    useEffect(() => {
+        console.log("dispatching")
+        dispatch(fetchQuizzes())
+        console.log("done dispatching")
+    }, [])
+
+    let quizzes = useSelector(getQuizzes)
+    
+    const handleClick = () => {
+        let idx = Math.floor(Math.random() * quizzes.length)
+        let quiz = quizzes[idx]
+        console.log(quiz)
+        console.log(quiz.id)
+        history.push(`/quizzes/${quiz.id}`)
+    }
+
+   return (
         <div id="main-div">
             <div id="left-nav">
                 <div id="extras">
@@ -26,7 +49,7 @@ const Header = () => {
                 </div>
             </div>
             <div id="nav-buttons-right">
-                <button className="submit-button" id="right-nav-button">Random Quiz</button>
+                <button className="submit-button" id="right-nav-button" onClick={handleClick}>Random Quiz</button>
                 <button id="search-button">
                     <i className="fa-solid fa-magnifying-glass"></i>
                 </button>
@@ -37,4 +60,4 @@ const Header = () => {
 
 }
 
-export default Header
+export default Header;
