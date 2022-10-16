@@ -1,13 +1,18 @@
+import { Link } from "react-router-dom";
+import './Footer.css'
+
 export const Footer = () => {
     return (
         <div id="footer-container">Footer container
             <div id="footer-top-section">
                 <div id="footer-left-nav"> Left nav
-                    <div id="sparkle-logo-section">Sparkle
-                        <p><hr className="hor-line-break"></hr>est. 2022 <hr className="hor-line-break"></hr></p>
+                    <Link to="/" id="sparkle-logo-section">
+                        <p className="nav-home-link-text">sparkle</p>
+                        <div className="line-break" id="footer-line-break">
+                            <span id="est-text">est. 2022</span>
+                        </div>
                         <p>subtitle text</p>
-                    </div>
-        
+                    </Link>
                     <div id="num-quizzes-played"></div>
                 </div>
 
@@ -25,5 +30,6 @@ export const Footer = () => {
             </div>
         </div>
     )
-
 }
+
+export default Footer;

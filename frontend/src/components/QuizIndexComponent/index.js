@@ -4,12 +4,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchQuizzes, getQuizzes } from '../../store/quizzes';
 import { fetchUsers, getUsers } from '../../store/users';
+import Navigation from '../Navigation';
+import Footer from '../Navigation/Footer';
 
 const QuizIndex = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(fetchQuizzes())
+        document.title = "Sparkle!"
     }, [])
 
     const quizzes = useSelector(getQuizzes)
@@ -54,7 +57,7 @@ const QuizIndex = () => {
                     </Link>
                 </div>
             </div>
-
+            <Footer />
        </div>
     )
 }

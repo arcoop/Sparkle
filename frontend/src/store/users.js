@@ -17,8 +17,9 @@ export const getUsers = state => {
     return state.users ? Object.values(state.users) : []
 }
 
-export const getUser = username => state => {
-    return state.users[username] ? state.users[username] : null
+export const getUser = userId => state => {
+    // console.log(Object.values(state.users))
+    return state.users[userId] ? state.users[userId] : null
 }
 
 export const fetchUsers = () => async dispatch => {

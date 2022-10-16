@@ -23,7 +23,7 @@ const Navigation = () => {
                 <Link to="/">
                     <p>events</p>
                 </Link>
-                <div id="line-break"></div>
+                <div className="line-break" id="nav-line-break"></div>
                 <Link className="navLinks" to={'/create'} id="quiz-create-link">
                         <p id="quiz-creation">quiz creation</p>
                 </Link>

@@ -5,3 +5,23 @@
 #footer-left-nav {
     border: 1px solid green;
 }
+
+#footer-line-break {
+    position: relative;
+    width: 123px;
+    height: 1px;
+    border-bottom: 1px solid #666;
+    filter: brightness(.85);
+    margin: 0 1px;
+    padding-top: 8px;
+    /* border: 000em solid #f90; */
+}
+
+#est-text {
+    position: absolute;
+    padding: 0 8px;
+    font-size: small;
+    top: 1.8px;
+    left: 23px;
+    z-index: 200;
+}

@@ -69,11 +69,8 @@ const LoginForm = () => {
                         />
                     <br></br>
                     <button className="log-in" type="submit">LOG IN</button>
-                    {/* <button className="signup-link">Join Sparkle for Free</button> */}
                 </form>
-            {/* <div id="signupformmodal">
-                <FormModal />
-            </div> */}
+            
         </>
     )
 }

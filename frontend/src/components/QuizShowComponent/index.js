@@ -12,8 +12,12 @@ const QuizShow = () => {
     useEffect(() => {
         dispatch(fetchQuiz(quizId))
     }, [quizId])
-
+    
     let quiz = useSelector(getQuiz(quizId)) || {title: "", category: ""};
+    
+    useEffect(() => {
+        document.title = `${quiz.title}`
+    }, [quiz])
 
     useEffect(() => {
         if(quiz.authorId) dispatch(fetchUser(quiz.authorId))

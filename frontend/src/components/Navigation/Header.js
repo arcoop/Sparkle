@@ -37,7 +37,7 @@ const Header = () => {
                     <div className="icon">
                         <i id="nav-home-link-icon" className="ri-lightbulb-flash-fill"></i>
                     </div>
-                    <p id="nav-home-link-text">sparkle</p>
+                    <p className="nav-home-link-text">sparkle</p>
                 </Link>
                 <div id="nav-links-left">
                     <Link className="left-nav-link" to='/'>Categories</Link>

@@ -1,22 +1,29 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { fetchUser, getUser } from '../../store/users';
+import { fetchUser, fetchUsers, getUser } from '../../store/users';
 import './UserShow.css'
 import { Link } from 'react-router-dom';
-
+import Navigation from '../Navigation';
+import Footer from '../Navigation/Footer';
 const UserShow = () => {
     const dispatch = useDispatch();
     const {id} = useParams();
+    // console.log(username)
 
     const sessionUser = useSelector(state => state.session.user)
     
     useEffect(() => {
-        dispatch(fetchUser(id))
+        dispatch(fetchUsers(id))
     },[id])
 
+    
     let user = useSelector(getUser(id)) || {username: "username...", email: "email..."}
-
+    
+    useEffect(() => {
+        document.title = `${user.username}'s Sparkle Profile`
+    }, [user])
+    
     const formatDate = date => {
         const months = {
             0: 'Jan',
@@ -51,7 +58,7 @@ const UserShow = () => {
     // const onlineId = sessionUser ? "online" : "offline"
     return (
         <div id="users-show-page">
-
+            <Navigation />
             <div id="show-page-top-section">
                 <div id='show-page-icon'>
                     <i id="show-page-prof-icon" className="fa-regular fa-user"></i>
@@ -59,6 +66,7 @@ const UserShow = () => {
                 <div id='user-show-page-info'>
                     <div id='username-and-edit'>
                         <h2 id='username'>{user.username}</h2>
+                        {/* {console.log(user)} */}
                         <button id='edit-button'>Edit Profile</button>
                     </div>
                     <div id='show-page-top-info'>
@@ -105,7 +113,7 @@ const UserShow = () => {
                 </div>
 
             </div>
-
+            <Footer />
         </div>
     )
 

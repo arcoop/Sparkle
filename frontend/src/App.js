@@ -7,12 +7,16 @@ import QuizEditForm from './components/QuizEditFormComponent';
 import QuizIndex from './components/QuizIndexComponent';
 import QuizShow from './components/QuizShowComponent';
 import UserShow from './components/UserShowComponent';
+import Footer from './components/Navigation/Footer';
 
 function App() {
   return (
     <>
-      <Navigation />
       <Switch>
+        <Route exact path={"/"}>
+          <Navigation />
+          <QuizIndex />
+        </Route>
         <Route exact path={"/quizzes"}>
           <QuizIndex />
         </Route>
@@ -22,6 +26,7 @@ function App() {
         </Route>
 
         <Route exact path={"/create"}>
+          <Navigation />
           <QuizCreation />
         </Route>
 
@@ -30,10 +35,12 @@ function App() {
         </Route>
 
         <Route path={"/create/edit/:quizId"}>
+          <Navigation />
           <QuizEditForm/>
         </Route>
 
         <Route path={"/quizzes/:quizId"}>
+          <Navigation />
           <QuizShow />
         </Route>
 

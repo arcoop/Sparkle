@@ -3,8 +3,14 @@ import { useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom'
 import { createQuiz } from '../../store/quizzes';
 import './QuizCreateForm.css'
+import Navigation from '../Navigation';
 
-const QuizForm = ({props}) => {
+const QuizForm = () => {
+
+    useEffect(() => {
+        document.title = "Create a new quiz"
+    })
+
     const [quizName, setQuizName] = useState("")
     const [quizType, setQuizType] = useState("Classic")
     const quizTypes = ["Classic", "Clickable", "Grid", "Map", "Picture Box", "Picture Click", "Slideshow"]
@@ -33,6 +39,7 @@ const QuizForm = ({props}) => {
     
     return (
         <div className='page'>
+            <Navigation />
                 <ul className="errors">
                     {errors.map(error => {
                         return (

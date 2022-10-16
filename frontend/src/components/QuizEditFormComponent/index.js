@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchQuiz, getQuiz, setQuiz, updateQuiz } from '../../store/quizzes'
 import { useEffect, useState } from 'react'
+import Navigation from '../Navigation'
 import { Link } from 'react-router-dom'
 import { getUser } from '../../store/users'
 
@@ -10,6 +11,7 @@ const QuizEditForm = () => {
     const {quizId} = useParams()
     useEffect(() => {
         dispatch(fetchQuiz(quizId))
+        document.title = `Editing ${quiz.title}`
     }, [quizId])
     
     let quiz = useSelector(getQuiz(quizId)) || {title: "", quizType: ""};

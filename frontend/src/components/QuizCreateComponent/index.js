@@ -1,15 +1,18 @@
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import './QuizCreate.css'
 
 const QuizCreation = () => {
 
-    const sessionUser = useSelector(state => state.session.user)
+    useEffect(() => {
+        document.title = "Quiz Management Dashboard"
+    }, [])
 
-    if (sessionUser) {
-        return (
-            <div id='quiz-create-page-div'>
-                <div id="top-box"></div>
+    const sessionUser = useSelector(state => state.session.user)
+    const PageContent = () => {
+        if (sessionUser) {
+            return (
                 <div id="quiz-create-page-header-container">
                     <div id="quiz-create-page-top-row">
                         <h1 className="quiz-create-page-title">Quiz Management Dashboard</h1>
@@ -26,17 +29,20 @@ const QuizCreation = () => {
                         </Link>
                     </div>
                 </div>
-            </div>
-        )
-    
-    } else {
-        return (
-            <div>
-                <p>not logged in</p>
-            </div>
-        )
-    }
+            )
+        } else {
+            return (
+                <div>Not Logged In</div>
+            )
+        }
+    } 
 
+    return (
+        <div id='quiz-create-page-div'>
+            <div id="top-box"></div>
+            <PageContent />
+        </div>
+    )
 }
 
 export default QuizCreation;
