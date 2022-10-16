@@ -11,6 +11,7 @@ import * as quizActions from './store/quizzes'
 import { ModalProvider } from './context/Modal';
 import * as userActions from './store/users'
 import * as questionActions from './store/questions'
+import * as commentActions from './store/comments'
 
 const store = configureStore();
 
@@ -21,6 +22,7 @@ if (process.env.NODE_ENV !== 'production') {
   window.quizActions = quizActions;
   window.userActions = userActions;
   window.questionActions = questionActions;
+  window.commentActions = commentActions;
 }
 
 function Root() {

@@ -10,9 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_15_211813) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_16_170407) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.text "body"
+    t.bigint "quiz_id"
+    t.bigint "commenter_id"
+    t.integer "points", default: 1
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["commenter_id"], name: "index_comments_on_commenter_id"
+    t.index ["quiz_id"], name: "index_comments_on_quiz_id"
+  end
 
   create_table "questions", force: :cascade do |t|
     t.text "body", null: false
@@ -22,6 +33,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_15_211813) do
     t.datetime "updated_at", null: false
     t.string "question_type", null: false
     t.index ["quiz_id"], name: "index_questions_on_quiz_id"
+  end
+
+  create_table "quiz_takes", force: :cascade do |t|
+    t.bigint "taker_id"
+    t.bigint "quiz_id"
+    t.integer "score", default: 0
+    t.integer "time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["quiz_id"], name: "index_quiz_takes_on_quiz_id"
+    t.index ["taker_id"], name: "index_quiz_takes_on_taker_id"
   end
 
   create_table "quizzes", force: :cascade do |t|
@@ -54,6 +76,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_15_211813) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "comments", "quizzes"
+  add_foreign_key "comments", "users", column: "commenter_id"
   add_foreign_key "questions", "quizzes"
+  add_foreign_key "quiz_takes", "quizzes"
+  add_foreign_key "quiz_takes", "users", column: "taker_id"
   add_foreign_key "quizzes", "users", column: "author_id"
 end
