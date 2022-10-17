@@ -5,21 +5,57 @@ import { Link } from "react-router-dom"
 import { fetchUser, getUser } from "../../store/users"
 import './CommentTile.css'
 import ExtrasButton from "./ExtrasButton"
+import CommentsUpdateForm from "../CommentsUpdateFormComponent"
+import { deleteComment } from "../../store/comments"
 
 const CommentTile = ({comment}) => {
     const dispatch = useDispatch()
-
+    
     const userId = comment.commenterId
     useEffect(() => {
         dispatch(fetchUser(userId))
     }, [])
     
-    const sessionUser = useSelector(state => state.session.user)
+    //const sessionUser = useSelector(state => state.session.user)
     const commenter = useSelector(getUser(userId))
     const [numPoints, setNumPoints] = useState(comment.points)
     const commenterUsername = commenter ? commenter.username : ""
     const [upVote, setUpVote] = useState("vote")
     const [downVote, setDownVote] = useState("vote")
+    // const [showMenu, setShowMenu] = useState(false)
+    const [editing, setEditing] = useState(false)
+
+    // const openMenu = () => {
+    //     if (!showMenu) setShowMenu(true)
+    // }
+
+    // const signedInMenu = (
+    //     <ul className="comment-menu">
+    //         <li className="comment-menu-list-item">
+    //             <button id="comment-edit-button" className="comment-menu-button">
+    //                 <i class="fa-regular fa-pen-to-square"></i>
+    //                 <p>Edit</p>
+    //             </button>
+    //         </li>
+    //         <li className="comment-menu-list-item">
+    //             <button onClick={() => dispatch(deleteComment(comment.id))} className="comment-menu-button" id="delete-button">
+    //                 <i class="fa-regular fa-trash-can"></i>
+    //                 <p>Delete</p>
+    //             </button>
+    //         </li>
+    //         <li className="comment-menu-list-item"> <button className="comment-menu-button" id="hide-button">Hide</button></li>
+    //     </ul>
+    // )
+
+    // const signedOutMenu = (
+    //     <ul className="comment-menu">
+    //         <li className="comment-menu-list-item">
+    //             <button className="comment-menu-button" id="hide-button">Hide</button>
+    //         </li>
+    //     </ul>
+    // )
+
+    // const menu = sessionUser.id === comment.commenterId ? signedInMenu : signedOutMenu
 
     let pointsText;
     if (numPoints === 1) {
@@ -29,6 +65,18 @@ const CommentTile = ({comment}) => {
     useEffect(() => {
         dispatch(updateComment({...comment, points: numPoints}))
     }, [numPoints])
+
+    // useEffect(() => {
+    //     const closeMenu = () => {
+    //         setShowMenu(false)
+    //     }
+    //     if (showMenu) {
+    //         document.addEventListener("click", closeMenu)
+    //     }
+    //     return () => {
+    //         document.removeEventListener("click", closeMenu)
+    //     }
+    // }, [showMenu])
 
     const handleVote = (type) => {
         if (type === "up") {
@@ -49,7 +97,33 @@ const CommentTile = ({comment}) => {
             setNumPoints(prevPoint => prevPoint + 1)
             setDownVote("vote")
         }
-        // comment.points = numPoints
+    }
+
+    // const MenuReturn = () => {
+    //     if (showMenu) {
+    //         return (
+    //             <div id="comment-menu">
+    //                 <button className="comment-extras-button"><i className="fa-solid fa-ellipsis"></i></button>
+    //                 {menu}
+    //             </div>
+    //         )
+    //     } else {
+    //         return (
+    //             <div id="comment-menu">
+    //                 <button onClick={openMenu} className="comment-extras-button"><i className="fa-solid fa-ellipsis"></i></button>
+    //             </div>
+    //         )
+    //     }
+    // }
+    let commentBody;
+    if (editing) {
+        commentBody = (
+            <CommentsUpdateForm comment={comment}/>
+        ) 
+    } else {
+        commentBody = (
+            comment.body
+        )
     }
 
     return (
@@ -70,7 +144,7 @@ const CommentTile = ({comment}) => {
                         <Link className="commenter-username" to={`/users/${userId}`}>{commenterUsername}</Link>
                         <div className="comment-time">10 minutes ago</div>
                     </div>
-                    <div className="comment-body">{comment.body}</div>
+                    <div className="comment-body">{commentBody}</div>
                     <div className="comment-points">
                         <button onClick={() => handleVote("up")} className={upVote}><i className="fa-regular fa-thumbs-up"></i></button>
                         <button onClick={() => handleVote("down")} className={downVote}><i className="fa-regular fa-thumbs-down"></i></button>
@@ -80,8 +154,7 @@ const CommentTile = ({comment}) => {
             </div>
 
             <div className="side-comment-tile">
-                <ExtrasButton key={comment} comment={comment} />
-                {/* <button className="comment-extras-button"><i className="fa-solid fa-ellipsis"></i></button> */}
+                <ExtrasButton stateChanger={setEditing} comment={comment}/>
             </div>
         </div>
     )

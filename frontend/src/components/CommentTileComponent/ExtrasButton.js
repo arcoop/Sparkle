@@ -3,13 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteComment } from "../../store/comments";
 import './CommentTile.css'
 
-const ExtrasButton = ({comment}) => {
+const ExtrasButton = ({stateChanger, comment}) => {
     const [showMenu, setShowMenu] = useState(false)
-    // const [hideButtonClass, setHideButtonClass] = useState("hide-button")
-    // const [editButtonClass, setEditButtonClass] = useState("edit-button")
     const dispatch = useDispatch();
-    // const [commentExists, setCommentExists] = useState(true)
-
     const openMenu = () => {
         if (!showMenu) setShowMenu(true)
     }
@@ -20,7 +16,7 @@ const ExtrasButton = ({comment}) => {
     const signedInMenu = (
         <ul className="comment-menu">
             <li className="comment-menu-list-item">
-                <button id="comment-edit-button" className="comment-menu-button">
+                <button onClick={() => stateChanger(true)} id="comment-edit-button" className="comment-menu-button">
                     <i class="fa-regular fa-pen-to-square"></i>
                     <p>Edit</p>
                 </button>

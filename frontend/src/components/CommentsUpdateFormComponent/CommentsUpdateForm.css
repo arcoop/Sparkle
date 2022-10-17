@@ -1,8 +1,4 @@
-#comment-create-div {
-    display: flex;
-}
-
-#comment-create-body {
+#comment-update-body {
     width: 900px;
     height: 100px;
     background-color: #e5e5e5;
@@ -15,19 +11,18 @@
     margin-left: 10px
 }
 
-
-#comment-create-body:hover {
+#comment-update-body:hover {
     outline: 1px solid black;
     cursor: pointer;
 }
 
-#comment-create-body:focus {
+#comment-update-body:focus {
     background-color: white;
     outline: 1px solid black;
     cursor: text;
 }
 
-#comment-submit-button {
+#comment-update-submit-button {
     border-radius: 4px;
     box-sizing: border-box;
     font-size: .75rem;

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { fetchUser, fetchUsers, getUser } from '../../store/users';
+import { fetchUsers, getUser } from '../../store/users';
 import './UserShow.css'
 import { Link } from 'react-router-dom';
 import Navigation from '../Navigation';
@@ -9,7 +9,6 @@ import Footer from '../Navigation/Footer';
 const UserShow = () => {
     const dispatch = useDispatch();
     const {id} = useParams();
-    // console.log(username)
 
     const sessionUser = useSelector(state => state.session.user)
     

@@ -27,8 +27,8 @@ const CommentsCreate = () => {
             </div>
             <div id='main-create-comment-section'>
                 <form id='comment-create-form' onSubmit={handleSubmit}>
-                    <textarea type="text"
-                        id='comment-body'
+                    <textarea
+                        id='comment-create-body'
                         placeholder='Post a new comment...'
                         onChange={(e)=> setBody(e.target.value)} 
                     />

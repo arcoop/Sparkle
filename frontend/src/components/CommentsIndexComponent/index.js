@@ -11,10 +11,7 @@ const CommentsIndex = ({quizId}) => {
         dispatch(fetchComments(quizId))
     }, [dispatch, quizId])
     
-    let comments = useSelector(getComments)
-    // console.log(comments)
-
-    
+    let comments = useSelector(getComments)    
 
     return (
         <div id="comments-index-section">
