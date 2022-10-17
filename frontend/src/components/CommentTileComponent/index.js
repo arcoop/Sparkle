@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
-import { fetchComments, getComments, updateComment } from "../../store/comments"
+import { deleteComment, fetchComments, getComments, updateComment } from "../../store/comments"
 import { Link } from "react-router-dom"
 import { fetchUser, getUser } from "../../store/users"
 import './CommentTile.css'
@@ -26,24 +25,23 @@ const CommentTile = ({comment}) => {
         pointsText = 'point'
     } else pointsText = 'points'
 
-    const commentButtonMenu = () => {
-        let button1;
-        let button2;
-        let button3 = "Report"
+
+    const CommentButtonMenu = () => {
         if (sessionUser === commenter) {
-            button1 = "Edit"
-            button2 = "Delete"
+            return (
+                <div>
+                    <button>Edit</button>
+                    <button>Delete</button>
+                    <button>Hide</button>
+                </div>
+            )
         } else {
-            button1 = ""
-            button2 = ""
+            return (
+                <div>
+                    <button>Hide</button>
+                </div>
+            )
         }
-        return (
-            <div>
-                <button>{button1}</button>
-                <button>{button2}</button>
-                <button>{button3}</button>
-            </div>
-        )
     }
 
     const handleVote = (type) => {

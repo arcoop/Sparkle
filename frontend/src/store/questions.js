@@ -28,7 +28,7 @@ export const getQuestion = questionId => state => {
 }
 
 export const createQuestion = question => async dispatch => {
-    const res = await csrfFetch('api/questions', {
+    const res = await csrfFetch('/api/questions', {
         method: 'POST',
         body: JSON.stringify(question)
     })
@@ -39,7 +39,7 @@ export const createQuestion = question => async dispatch => {
 }
 
 export const updateQuestion = question => async dispatch => {
-    const res = await csrfFetch(`api/questions/${question.id}`, {
+    const res = await csrfFetch(`/api/questions/${question.id}`, {
         method: 'PUT',
         body: JSON.stringify(question)
     })
@@ -48,7 +48,7 @@ export const updateQuestion = question => async dispatch => {
 }
 
 export const deleteQuestion = questionId => async dispatch => {
-    const res = await csrfFetch(`api/questions/${questionId}`, {
+    const res = await csrfFetch(`/api/questions/${questionId}`, {
         method: 'DELETE'
     })
     dispatch(removeQuestion(questionId))
@@ -56,14 +56,14 @@ export const deleteQuestion = questionId => async dispatch => {
 }
 
 export const fetchQuestions = quizId => async dispatch => {
-    const res = await csrfFetch(`api/quizzes/${quizId}/questions`)
+    const res = await csrfFetch(`/api/quizzes/${quizId}/questions`)
     const data = await res.json()
     dispatch(setQuestions(data))
     return data
 }
 
 export const fetchQuestion = (quizId, questionId) => async dispatch => {
-    const res = await csrfFetch(`api/quizzes/${quizId}/questions/${questionId}`)
+    const res = await csrfFetch(`/api/quizzes/${quizId}/questions/${questionId}`)
     const data = await res.json()
     dispatch(setQuestion(data))
     return data

@@ -7,6 +7,7 @@ import './QuizShow.css'
 import { fetchComments, getComments } from "../../store/comments";
 import CommentTile from "../CommentTileComponent";
 import CommentsCreate from "../CommentsCreateFormComponent";
+import QuestionIndex from "../QuestionIndexComponent";
 
 const QuizShow = () => {
     const dispatch = useDispatch();
@@ -19,9 +20,9 @@ const QuizShow = () => {
     let quiz = useSelector(getQuiz(quizId)) || {title: "", category: ""};
 
     useEffect(() => {
-        console.log("fetching comments")
+        console.log("fetchingcomments")
         dispatch(fetchComments(quizId))
-    }, [quiz])
+    }, [quizId])
 
     let comments = useSelector(getComments)
     
@@ -72,7 +73,7 @@ const QuizShow = () => {
                     </div>
                     <div id="quiz-content">
                         <hr />
-                        QUIZ QUIZ QUIZ
+                        <QuestionIndex />
                         <hr />
                     </div>
                     <div id="comments-index-section">

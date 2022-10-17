@@ -50,8 +50,8 @@ export const updateComment = comment => async dispatch => {
     dispatch(setComment(data))
 }
 
-export const deleteComment = (commentId, quizId) => async dispatch => {
-    const res = await csrfFetch(`/api/quizzes/${quizId}/comments/${commentId}`, {
+export const deleteComment = commentId => async dispatch => {
+    const res = await csrfFetch(`/api/comments/${commentId}`, {
         method: 'DELETE'
     })
 

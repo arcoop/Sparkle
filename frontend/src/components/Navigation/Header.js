@@ -29,7 +29,7 @@ const Header = () => {
         <div id="main-div">
             <div id="left-nav">
                 <div id="extras">
-                    <button id="extras-button">
+                    <button id="headers-extras-button">
                         <i className="fa-solid fa-bars"></i>
                     </button>
                 </div>
@@ -44,7 +44,7 @@ const Header = () => {
                     <Link className="left-nav-link" to='/'>Badges</Link>
                     <Link className="left-nav-link" to='/'>Playlists</Link>
                     <Link className="left-nav-link" to='/'>Events</Link>
-                    <Link className="left-nav-link" to='/'>Create</Link>
+                    <Link className="left-nav-link" to='/create'>Create</Link>
                     <Link className="left-nav-link" to='/'>Quiz Lab</Link>
                 </div>
             </div>

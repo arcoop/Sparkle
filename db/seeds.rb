@@ -29,6 +29,12 @@ ApplicationRecord.transaction do
       password: 'demouser123'
     )
 
+    User.create!(
+      username: 'arc',
+      email: 'arc@email.com',
+      password: 'password'
+    )
+
     # More users
     10.times do 
       User.create!({
@@ -50,12 +56,12 @@ ApplicationRecord.transaction do
     ) 
 
     Quiz.create!(
-      title: Faker::Lorem.question,
+      title: "What does each letter in SPIREG stand for?",
       quiz_type: "classic",
-      description: Faker::Lorem.sentence,
-      quiz_timer: Faker::Number.between(from: 1, to: 10),
-      category: "Math",
-      author_id: 1
+      description: "Can you name all 6 words in under 1 minute?",
+      quiz_timer: 1,
+      category: "Science",
+      author_id: 2
     ) 
 
     5.times do 
@@ -67,15 +73,49 @@ ApplicationRecord.transaction do
         category: "Geography",
         author_id: 1
       }) 
+
+
     end
 
     puts 'creating questions...'
     
     Question.create!(
-      body: "is this the question body?",
-      answer: "this is the question answer!",
-      quiz_id: 1,
-      question_type: "true/false"
+      body: "S",
+      answer: "self.find_by_credentials",
+      quiz_id: 2,
+      question_type: "short answer"
+    )
+    
+    Question.create!(
+      body: "P",
+      answer: "password =",
+      quiz_id: 2,
+      question_type: "short answer"
+    )
+    Question.create!(
+      body: "I",
+      answer: "is password",
+      quiz_id: 2,
+      question_type: "short answer"
+    )
+    Question.create!(
+      body: "R",
+      answer: "reset session token",
+      quiz_id: 2,
+      question_type: "short answer"
+    )
+    Question.create!(
+      body: "E",
+      answer: "ensure session token",
+      quiz_id: 2,
+      question_type: "short answer"
+    )
+
+    Question.create!(
+      body: "G",
+      answer: "generate secure session token",
+      quiz_id: 2,
+      question_type: "short answer"
     )
 
     3.times do 
@@ -91,7 +131,7 @@ ApplicationRecord.transaction do
       Question.create!({
         body: Faker::Lorem.question,
         answer: Faker::Lorem.sentence,
-        quiz_id: 2,
+        quiz_id: 3,
         question_type: "multiple choice"
       })
     end

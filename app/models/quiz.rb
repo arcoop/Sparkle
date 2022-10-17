@@ -16,6 +16,7 @@
 #  author_id      :bigint           not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
+#  max_score      :integer          default(1)
 #
 class Quiz < ApplicationRecord
     validates_presence_of :title, :quiz_type, :author_id

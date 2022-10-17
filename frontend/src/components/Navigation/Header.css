@@ -16,7 +16,7 @@
     overflow: hidden;
 }
 
-#extras-button {
+#headers-extras-button {
     border: transparent;
     background: transparent;
     font-size: 24px;
@@ -26,7 +26,7 @@
     transition: .2s;
 }
 
-#extras-button:hover{
+#headers-extras-button:hover{
     color: #f90;
     background-color: #ffebcc;
     cursor: pointer;

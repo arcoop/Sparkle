@@ -24,7 +24,13 @@
     color: black;
     font-weight: 700;
     font-size: .75rem;
+    border: 1px solid transparent;
+}
 
+#create-page-extras-button:hover {
+    color: #f90;
+    text-decoration: underline;
+    
 }
 
 #create-quiz-button {
