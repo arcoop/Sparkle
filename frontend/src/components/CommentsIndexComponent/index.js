@@ -6,7 +6,7 @@ import CommentTile from "../CommentTileComponent"
 const CommentsIndex = ({quizId}) => {
     const dispatch = useDispatch()
     const [dummy, setDummy] = useState(false)
-    console.log(quizId)
+    // console.log(quizId)
     useEffect(() => {
         dispatch(fetchComments(quizId))
     }, [dispatch, quizId])

@@ -14,7 +14,7 @@ const QuizShow = () => {
     const dispatch = useDispatch();
     const {quizId} = useParams();
 
-    let quiz = useSelector(getQuiz(quizId)) || {title: "", category: ""};
+    let quiz = useSelector(getQuiz(quizId)) || {title: "", category: "",};
     
     document.title = `${quiz.title}` || 'Sparkle'
     
@@ -27,7 +27,7 @@ const QuizShow = () => {
         if (quiz.authorId) dispatch(fetchUser(quiz.authorId))
     }, [dispatch, quiz.authorId])
     
-    let user = useSelector(getUser(quiz.authorId)) || {username:"", email:""}
+    let user = useSelector(getUser(quiz.authorId)) || {username:"", email:"", id: null}
 
     return (
         <div id="quiz-show-page-container">
