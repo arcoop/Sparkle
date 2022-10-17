@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteComment } from "../../store/comments";
+import './CommentTile.css'
 
 const ExtrasButton = ({comment}) => {
     const [showMenu, setShowMenu] = useState(false)
@@ -14,25 +15,30 @@ const ExtrasButton = ({comment}) => {
 
     const sessionUser = useSelector(state => state.session.user)
 
+    const SharedDiv = () => {
+        return (
+            <ul className="comment-menu">
+            </ul>
+        )
+    }
+
 
     const signedInMenu = (
-        <ul className="comments-menu">
+        <ul className="comment-menu">
             <li className="comment-menu-list-item">
-                <button className="edit-button">Edit</button>
+                <button id="edit-button" className="menu-button">Edit</button>
             </li>
             <li className="comment-menu-list-item">
-                <button onClick={() => {dispatch(deleteComment(comment.id))}} className="delete-button">Delete</button>
+                <button onClick={() => {dispatch(deleteComment(comment.id))}} className="menu-button" id="delete-button">Delete</button>
             </li>
-            <li className="comment-menu-list-item">
-                <button className="hide-button">Hide</button>
-            </li>
+            <li> <button className="menu-button" id="hide-button">Hide</button></li>
         </ul>
     )
 
     const signedOutMenu = (
-        <ul className="comments-menu">
-            <li className="comment-menu-list-item">
-                <button className="hide-button">Hide</button>
+        <ul className="comment-menu">
+            <li>
+                <button className="menu-button" id="hide-button">Hide</button>
             </li>
         </ul>
     )

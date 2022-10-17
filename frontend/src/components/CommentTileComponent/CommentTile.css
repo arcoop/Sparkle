@@ -19,8 +19,12 @@
     height: 44px;
     width: 44px;
     font-size: 23px;
-    /* border-radius: 150px;
-    background-color: #eae5e5; */
+    border-radius: 150px;
+    background-color: #eae5e5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: -5px 0 0 -6px;
 }
 
 .comment-top-level-info {
@@ -46,8 +50,12 @@
     margin-left: 20px;
 }
 
+.comment-body-section {
+    margin-left: 14px;
+}
+
 .comment-body {
-    margin: 25px 0;
+    margin: 28px 0;
 }
 
 .comment-points {
@@ -107,3 +115,23 @@
 }
 
 /* EXTRAS BUTTON */
+
+.side-comment-tile {
+    position: relative;
+}
+
+.comment-menu {
+    background-color: white;
+    color: black;
+    position: absolute;
+    top: 35px;
+    right: 2px;
+    border-radius: 3px;
+    border: 1px solid lightgray;
+    width: 200px;
+}
+
+.comment-menu-list-item {
+   border: 1px solid transparent;
+}
+

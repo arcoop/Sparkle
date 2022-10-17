@@ -26,12 +26,16 @@ const CommentTile = ({comment}) => {
         pointsText = 'point'
     } else pointsText = 'points'
 
+    useEffect(() => {
+        dispatch(updateComment({...comment, points: numPoints}))
+    }, [numPoints])
+
 
     const handleVote = (type) => {
-        comment.points = numPoints
         if (type === "up") {
             if (upVote === "vote") {
-                setNumPoints(numPoints + 1)
+                console.log('hi')
+                setNumPoints(prevPoint => prevPoint + 1)
                 setUpVote("selected-up")
                 setDownVote("vote")
             } else {
@@ -39,15 +43,14 @@ const CommentTile = ({comment}) => {
                 setUpVote("vote")
             }
         } else if (downVote === "vote") {
-            setNumPoints(numPoints - 1)
+            setNumPoints(prevPoint => prevPoint - 1)
             setDownVote("selected-down")
             setUpVote("vote")
         } else {
-            setNumPoints(numPoints + 1)
+            setNumPoints(prevPoint => prevPoint + 1)
             setDownVote("vote")
         }
-        comment.points = numPoints
-        dispatch(updateComment(comment))
+        // comment.points = numPoints
     }
 
     return (

@@ -25,14 +25,15 @@ const CommentsCreate = () => {
                     <i id="commenter-user-icon" className="fa-regular fa-user"></i>
                 </div>
             </div>
-            <div id='main-create-comment-sextion'>
-                <form onSubmit={handleSubmit}>
+            <div id='main-create-comment-section'>
+                <form id='comment-create-form' onSubmit={handleSubmit}>
                     <textarea type="text"
                     id='comment-body'
                     placeholder='Post a new comment...'
                     value={body}
                     onChange={(e)=> setBody(e.target.value)} 
                     />
+                    <br />
                     <button id="comment-submit-button" className='submit-button'>Post Comment</button>
                 </form>
             </div>
