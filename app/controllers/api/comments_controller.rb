@@ -1,5 +1,5 @@
 class Api::CommentsController < ApplicationController
-    wrap_parameters include: Comment.attribute_names + ['quizId', 'points']
+    wrap_parameters include: Comment.attribute_names + ['commenterId','quizId','points']
     def index
         @comments = Quiz.find(params[:quiz_id]).comments
         render '/api/comments/index'
@@ -7,9 +7,7 @@ class Api::CommentsController < ApplicationController
 
     def create
         p "creating"
-        @comment = Comment.new(comment_params)
-        @comment.commenter_id = current_user.id
-    
+        @comment = Comment.new(comment_params)    
         if @comment.save
             @comments = Quiz.find(params[:quiz_id]).comments
             render '/api/comments/index'
@@ -37,7 +35,7 @@ class Api::CommentsController < ApplicationController
 
     private
     def comment_params
-        params.require(:comment).permit(:id, :body, :quiz_id, :points)
+        params.require(:comment).permit(:id, :body, :quiz_id, :commenter_id, :points)
     end
 
 end

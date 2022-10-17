@@ -71,3 +71,37 @@
     color: #666;
     margin-left: 10px;
 }
+
+.comment-extras-button {
+    background-color: transparent;
+    border: 1px solid transparent;
+    font-size: 25px;
+    margin-right: 4px;
+    border-radius: 4px;
+}
+
+.comment-extras-button:hover {
+    color: #f90;
+    background-color: #ffebcc;
+    cursor: pointer;
+}
+
+.selected-up {
+    color: #00aa08;
+    background-color: transparent;
+    border: 1px solid transparent;
+}
+
+.selected-up:hover {
+    cursor: pointer;
+}
+
+.selected-down {
+    color: red;
+    background-color: transparent;
+    border: 1px solid transparent;
+}
+
+.selected-down:hover {
+    cursor: pointer;
+}

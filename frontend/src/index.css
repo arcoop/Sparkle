@@ -25,7 +25,7 @@ a {
 
 .submit-button {
     background-color: #f90;
-    border: transparent;
+    border: 1px solid #f90;
     color: white;
     border-radius: 0.25rem;
     text-transform: uppercase;
@@ -34,6 +34,7 @@ a {
 
 .submit-button:hover {
     background-color: #fbc36f;
+    border: 1px solid #fbc36f;
     cursor: pointer;
     transition: .3s;
 }

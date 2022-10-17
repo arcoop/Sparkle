@@ -18,6 +18,8 @@ const CommentTile = ({comment}) => {
     const commenter = useSelector(getUser(userId))
     const [numPoints, setNumPoints] = useState(comment.points)
     const commenterUsername = commenter ? commenter.username : ""
+    const [upVote, setUpVote] = useState("vote")
+    const [downVote, setDownVote] = useState("vote")
 
     let pointsText;
     if (numPoints === 1) {
@@ -45,9 +47,25 @@ const CommentTile = ({comment}) => {
     }
 
     const handleVote = (type) => {
-        setNumPoints( type === "up" ? numPoints + 1 : numPoints -1)
         comment.points = numPoints
-        comment.body = comment.body
+        if (type === "up") {
+            if (upVote === "vote") {
+                setNumPoints(numPoints + 1)
+                setUpVote("selected-up")
+                setDownVote("vote")
+            } else {
+                setNumPoints(numPoints - 1)
+                setUpVote("vote")
+            }
+        } else if (downVote === "vote") {
+            setNumPoints(numPoints - 1)
+            setDownVote("selected-down")
+            setUpVote("vote")
+        } else {
+            setNumPoints(numPoints + 1)
+            setDownVote("vote")
+        }
+        comment.points = numPoints
         dispatch(updateComment(comment))
     }
 
@@ -71,15 +89,15 @@ const CommentTile = ({comment}) => {
                     </div>
                     <div className="comment-body">{comment.body}</div>
                     <div className="comment-points">
-                        <button onClick={() => handleVote("up")} className="vote"><i className="fa-regular fa-thumbs-up"></i></button>
-                        <button onClick={() => handleVote("down")} className="vote"><i className="fa-regular fa-thumbs-down"></i></button>
+                        <button onClick={() => handleVote("up")} className={upVote}><i className="fa-regular fa-thumbs-up"></i></button>
+                        <button onClick={() => handleVote("down")} className={downVote}><i className="fa-regular fa-thumbs-down"></i></button>
                         <p className="num-points">{numPoints} {pointsText}</p>
                     </div>
                 </div>
             </div>
 
             <div className="side-comment-tile">
-                <button><i className="fa-solid fa-ellipsis"></i></button>
+                <button className="comment-extras-button"><i className="fa-solid fa-ellipsis"></i></button>
             </div>
         </div>
     )

@@ -6,6 +6,7 @@ import { fetchUser, getUser } from "../../store/users";
 import './QuizShow.css'
 import { fetchComments, getComments } from "../../store/comments";
 import CommentTile from "../CommentTileComponent";
+import CommentsCreate from "../CommentsCreateFormComponent";
 
 const QuizShow = () => {
     const dispatch = useDispatch();
@@ -83,7 +84,10 @@ const QuizShow = () => {
                             </div>
                         )
                         })}
-            </div>
+                    </div>
+                    <div id="post-comment-section">
+                        <CommentsCreate />
+                    </div>
                 </div>
                 <div id="right-side">
                     <p>right side</p>

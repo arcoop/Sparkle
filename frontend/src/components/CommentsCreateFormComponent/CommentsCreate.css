@@ -1,0 +1,36 @@
+#comment-create-div {
+    display: flex;
+}
+
+#comment-body {
+    width: 900px;
+    height: 100px;
+    background-color: #e5e5e5;
+    border: 1px solid transparent;
+    outline: 1px solid transparent;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 3px;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+#comment-body:hover {
+    outline: 1px solid black;
+    cursor: pointer;
+}
+
+#comment-body:focus {
+    background-color: white;
+    outline: 1px solid black;
+    cursor: text;
+}
+
+#comment-submit-button {
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: .75rem;
+    font-weight: 700;
+    line-height: .875rem;
+    padding: 0.75rem 1rem;
+
+}
