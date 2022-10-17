@@ -1,15 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom"
 import { fetchQuiz, getQuiz } from "../../store/quizzes";
 import { fetchUser, getUser } from "../../store/users";
 import './QuizShow.css'
-import { fetchComments, getComments } from "../../store/comments";
-import CommentTile from "../CommentTileComponent";
 import CommentsCreate from "../CommentsCreateFormComponent";
 import QuestionIndex from "../QuestionIndexComponent";
 import { Link } from "react-router-dom";
 import CommentsIndex from "../CommentsIndexComponent";
+import ExtrasButton from "./ExtrasButton";
 
 const QuizShow = () => {
     const dispatch = useDispatch();
@@ -42,8 +41,10 @@ const QuizShow = () => {
                         <h2 className="quiz-description">{quiz.description}</h2>
                     </div>
                     <div id="mid-level-info">
-                        <h3> By <Link id="quiz-show-username-link" to={`/users/${user.id}`}>{user.username}</Link> 
+                        <h3 id="by-line"> 
+                            By <Link id="quiz-show-username-link" to={`/users/${user.id}`}>{user.username}</Link> 
                         </h3>
+                        <ExtrasButton author={user} quiz={quiz} />
                     </div>
                     <div id="more-info">
                         <div id="more-info-header">

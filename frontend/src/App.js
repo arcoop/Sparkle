@@ -30,20 +30,20 @@ function App() {
           <QuizCreation />
         </Route>
 
-        <Route path={"/create/new"}>
+        <Route path="/create/new">
           <QuizForm />
         </Route>
 
-        <Route path={"/create/edit/:quizId"}>
+        <Route path="/create/edit/:quizId">
           <Navigation />
           <QuizEditForm/>
         </Route>
 
-        <Route path={"/quizzes/:quizId"}>
+        <Route path="/quizzes/:quizId">
           <Navigation />
           <QuizShow />
         </Route>
-
+        
       </Switch>
 
     </>
