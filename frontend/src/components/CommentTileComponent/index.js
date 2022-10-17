@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { deleteComment, fetchComments, getComments, updateComment } from "../../store/comments"
+import { updateComment } from "../../store/comments"
 import { Link } from "react-router-dom"
 import { fetchUser, getUser } from "../../store/users"
 import './CommentTile.css'
+import ExtrasButton from "./ExtrasButton"
 
 const CommentTile = ({comment}) => {
     const dispatch = useDispatch()
@@ -25,24 +26,6 @@ const CommentTile = ({comment}) => {
         pointsText = 'point'
     } else pointsText = 'points'
 
-
-    const CommentButtonMenu = () => {
-        if (sessionUser === commenter) {
-            return (
-                <div>
-                    <button>Edit</button>
-                    <button>Delete</button>
-                    <button>Hide</button>
-                </div>
-            )
-        } else {
-            return (
-                <div>
-                    <button>Hide</button>
-                </div>
-            )
-        }
-    }
 
     const handleVote = (type) => {
         comment.points = numPoints
@@ -95,7 +78,8 @@ const CommentTile = ({comment}) => {
             </div>
 
             <div className="side-comment-tile">
-                <button className="comment-extras-button"><i className="fa-solid fa-ellipsis"></i></button>
+                <ExtrasButton key={comment} comment={comment} />
+                {/* <button className="comment-extras-button"><i className="fa-solid fa-ellipsis"></i></button> */}
             </div>
         </div>
     )
