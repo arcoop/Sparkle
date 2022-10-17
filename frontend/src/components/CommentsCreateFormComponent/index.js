@@ -13,7 +13,7 @@ const CommentsCreate = () => {
     const sessionUser = useSelector(state => state.session.user)
    
     const handleSubmit = e => {
-        e.preventDefault();
+        // e.preventDefault();
         const comment = {body: body, quizId: quizId, commenterId: sessionUser.id}
         dispatch(createComment(comment))
     }
@@ -28,10 +28,9 @@ const CommentsCreate = () => {
             <div id='main-create-comment-section'>
                 <form id='comment-create-form' onSubmit={handleSubmit}>
                     <textarea type="text"
-                    id='comment-body'
-                    placeholder='Post a new comment...'
-                    value={body}
-                    onChange={(e)=> setBody(e.target.value)} 
+                        id='comment-body'
+                        placeholder='Post a new comment...'
+                        onChange={(e)=> setBody(e.target.value)} 
                     />
                     <br />
                     <button id="comment-submit-button" className='submit-button'>Post Comment</button>

@@ -8,37 +8,30 @@ import { fetchComments, getComments } from "../../store/comments";
 import CommentTile from "../CommentTileComponent";
 import CommentsCreate from "../CommentsCreateFormComponent";
 import QuestionIndex from "../QuestionIndexComponent";
+import { Link } from "react-router-dom";
+import CommentsIndex from "../CommentsIndexComponent";
 
 const QuizShow = () => {
     const dispatch = useDispatch();
     const {quizId} = useParams();
 
+    let quiz = useSelector(getQuiz(quizId)) || {title: "", category: ""};
+    
+    document.title = `${quiz.title}` || 'Sparkle'
+    
     useEffect(() => {
         dispatch(fetchQuiz(quizId))
-    }, [quizId])
+    }, [dispatch, quizId])
+        
+
+    useEffect(() => {
+        if (quiz.authorId) dispatch(fetchUser(quiz.authorId))
+    }, [dispatch, quiz.authorId])
     
-    let quiz = useSelector(getQuiz(quizId)) || {title: "", category: ""};
-
-    useEffect(() => {
-        console.log("fetchingcomments")
-        dispatch(fetchComments(quizId))
-    }, [quizId])
-
-    let comments = useSelector(getComments)
-    
-    useEffect(() => {
-        document.title = `${quiz.title}`
-    }, [quiz])
-
-    useEffect(() => {
-        if(quiz.authorId) dispatch(fetchUser(quiz.authorId))
-    }, [quiz])
-
-
     let user = useSelector(getUser(quiz.authorId)) || {username:"", email:""}
 
     return (
-        <div id="quiz-comments-page-container">
+        <div id="quiz-show-page-container">
             <div id="quiz-show-page">
                 <div id="left-side">
                     <div id="top-row">
@@ -49,7 +42,8 @@ const QuizShow = () => {
                         <h2 className="quiz-description">{quiz.description}</h2>
                     </div>
                     <div id="mid-level-info">
-                        <h3> by {user.username}</h3>
+                        <h3> By <Link id="quiz-show-username-link" to={`/users/${user.id}`}>{user.username}</Link> 
+                        </h3>
                     </div>
                     <div id="more-info">
                         <div id="more-info-header">
@@ -60,32 +54,25 @@ const QuizShow = () => {
                         </div>
                     </div>
                     <div id="quiz-div">
-                        <div id="quiz-header">
-                            <button id="play-quiz" className="submit-button">Play Quiz</button>
-                            <div id="right-side-quiz-header">
-                                <h3 id="score">Score</h3>
-                                <h3 id="timer">Time: {quiz.quizTimer}:00</h3>
+
+                        <div id="quiz-content-container">
+                            <div id="quiz-header">
+                                <button id="play-quiz" className="submit-button">Play Quiz</button>
+                                <div id="right-side-quiz-header">
+                                    <h3 id="score">Score</h3>
+                                    <h3 id="timer">Time: {quiz.quizTimer}:00</h3>
+                                </div>
+                            </div>
+                            
+                            <div id="quiz-content">
+                                    <QuestionIndex />
                             </div>
                         </div>
-                        <div id="quiz-content">
-            
-                        </div>
+                    
                     </div>
-                    <div id="quiz-content">
-                        <hr />
-                        <QuestionIndex />
-                        <hr />
-                    </div>
-                    <div id="comments-index-section">
-                        {comments.map(comment => {
-                            return (
-                            <div>
-                                <CommentTile comment={comment}/>
-                                <hr />
-                            </div>
-                        )
-                        })}
-                    </div>
+
+                    <CommentsIndex quizId={quizId}/>
+
                     <div id="post-comment-section">
                         <CommentsCreate />
                     </div>

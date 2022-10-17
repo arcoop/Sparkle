@@ -2,7 +2,7 @@ import csrfFetch from "./csrf"
 
 const SET_COMMENTS = 'comments/setComments'
 const SET_COMMENT = 'comments/setComment'
-const REMOVE_COMMENT = 'comments/setComment'
+const REMOVE_COMMENT = 'comments/removeComment'
 
 export const setComments = comments => ({
     type: SET_COMMENTS,
@@ -20,7 +20,7 @@ export const removeComment = commentId => ({
 })
 
 export const getComments = state => {
-    return Object.values(state.comments)
+    return Object.values(state.comments) || []
 }
 
 export const fetchComments = quizId => async dispatch => {
@@ -54,7 +54,6 @@ export const deleteComment = commentId => async dispatch => {
     const res = await csrfFetch(`/api/comments/${commentId}`, {
         method: 'DELETE'
     })
-
     dispatch(removeComment(commentId))
     return res
 }

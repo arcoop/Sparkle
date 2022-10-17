@@ -124,14 +124,37 @@
     background-color: white;
     color: black;
     position: absolute;
-    top: 35px;
+    top: 25px;
     right: 2px;
     border-radius: 3px;
     border: 1px solid lightgray;
-    width: 200px;
+    width: 100px;
+}
+
+.comment-menu-button {
+    background: transparent;
+    border: 1px solid transparent;
+    font-size: medium;
+    color: black;
+    padding: 12px 12px 12px 0;
+    width: 80px;
+    margin-left: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.comment-menu-button:hover {
+    cursor: pointer;
+    background-color: #ffebcc;
+    color: #f90;
 }
 
 .comment-menu-list-item {
-   border: 1px solid transparent;
+    padding: 12px 0 0 0;
+    display: flex;
+    /* justify-content: center; */
 }
 
+.comment-menu-list-item:hover {
+    cursor: pointer;
+}

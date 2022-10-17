@@ -30,7 +30,6 @@ const CommentTile = ({comment}) => {
         dispatch(updateComment({...comment, points: numPoints}))
     }, [numPoints])
 
-
     const handleVote = (type) => {
         if (type === "up") {
             if (upVote === "vote") {

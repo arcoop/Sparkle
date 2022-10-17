@@ -6,7 +6,6 @@ class Api::CommentsController < ApplicationController
     end
 
     def create
-        p "creating"
         @comment = Comment.new(comment_params)    
         if @comment.save
             @comments = Quiz.find(params[:quiz_id]).comments
@@ -27,10 +26,12 @@ class Api::CommentsController < ApplicationController
     end
 
     def destroy 
-        @comment = Comment.find(params:[:id])
+        @comment = Comment.find(params[:id])
+        quizId = @comment.quiz_id
+        p quizId
         @comment.destroy
-        @comments = Quiz.find(params[:quiz_id]).comments
-        render '/api/comments/index'
+        @comments = Quiz.find(quizId).comments
+        render 'api/comments/index'
     end
 
     private

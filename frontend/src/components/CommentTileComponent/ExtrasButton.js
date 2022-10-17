@@ -8,6 +8,7 @@ const ExtrasButton = ({comment}) => {
     // const [hideButtonClass, setHideButtonClass] = useState("hide-button")
     // const [editButtonClass, setEditButtonClass] = useState("edit-button")
     const dispatch = useDispatch();
+    // const [commentExists, setCommentExists] = useState(true)
 
     const openMenu = () => {
         if (!showMenu) setShowMenu(true)
@@ -15,30 +16,29 @@ const ExtrasButton = ({comment}) => {
 
     const sessionUser = useSelector(state => state.session.user)
 
-    const SharedDiv = () => {
-        return (
-            <ul className="comment-menu">
-            </ul>
-        )
-    }
-
 
     const signedInMenu = (
         <ul className="comment-menu">
             <li className="comment-menu-list-item">
-                <button id="edit-button" className="menu-button">Edit</button>
+                <button id="comment-edit-button" className="comment-menu-button">
+                    <i class="fa-regular fa-pen-to-square"></i>
+                    <p>Edit</p>
+                </button>
             </li>
             <li className="comment-menu-list-item">
-                <button onClick={() => {dispatch(deleteComment(comment.id))}} className="menu-button" id="delete-button">Delete</button>
+                <button onClick={() => dispatch(deleteComment(comment.id))} className="comment-menu-button" id="delete-button">
+                    <i class="fa-regular fa-trash-can"></i>
+                    <p>Delete</p>
+                </button>
             </li>
-            <li> <button className="menu-button" id="hide-button">Hide</button></li>
+            <li className="comment-menu-list-item"> <button className="comment-menu-button" id="hide-button">Hide</button></li>
         </ul>
     )
 
     const signedOutMenu = (
         <ul className="comment-menu">
-            <li>
-                <button className="menu-button" id="hide-button">Hide</button>
+            <li className="comment-menu-list-item">
+                <button className="comment-menu-button" id="hide-button">Hide</button>
             </li>
         </ul>
     )
