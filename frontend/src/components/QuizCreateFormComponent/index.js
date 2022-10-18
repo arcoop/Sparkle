@@ -10,11 +10,11 @@ const QuizForm = () => {
     useEffect(() => {
         document.title = "Create a new quiz"
     })
-
+    
+    const dispatch = useDispatch();
     const [quizName, setQuizName] = useState("")
     const [quizType, setQuizType] = useState("Classic")
     const quizTypes = ["Classic", "Clickable", "Grid", "Map", "Picture Box", "Picture Click", "Slideshow"]
-    const dispatch = useDispatch();
     const [redirect, setRedirect] = useState(false)
     const [id, setId] = useState(null)
     const [errors, setErrors] = useState([])
@@ -26,41 +26,49 @@ const QuizForm = () => {
         const file = e.currentTarget.files[0];
         if (file) {
             const fileReader = new FileReader();
-            fileReader.readAsDataURL(file);
-            fileReader.onload = () => {
-                setQuizIcon(file)
-                setQuizIconUrl(fileReader.result);
-            };
+            setQuizIcon(file)
+            // fileReader.readAsDataURL(file);
+            // fileReader.onload = () => {
+            //     setQuizIconUrl(fileReader.result);
+            // };
         }
     }
 
     const handleSubmit = (e) => {
         e.preventDefault()
         const formData = new FormData();
+        // formData['title'] = quizName;
+        // formData['quizType'] = quizType;
+        // formData['categoryId'] = 1;
+        
         formData.append('quiz[title]', quizName);
         formData.append('quiz[quiz_type]', quizType);
         formData.append('quiz[category_id]', 1);
         if (quizIcon) {
+            console.log(quizIcon)
             formData.append('quiz[icon]', quizIcon)
+            for (var key of formData.entries()) {
+                console.log(key[0] + ', ' + key[1])
+            }
         }
-        // const quiz = {title: quizName, quizType: quizType, category_id: 1}
-        return dispatch(createQuiz(formData))
-            .catch(async res => {
-                const data = await res.json();
-                if (data && data.errors) {
-                    setErrors(data.errors)
-                }
-            })
+        dispatch(createQuiz(formData))
+
+            // .catch(async res => {
+            //     const data = await res.json();
+            //     if (data && data.errors) {
+            //         setErrors(data.errors)
+            //     }
+            // })
             .then(async data => {
-                setId(parseInt(Object.keys(data)[0]))
-                setRedirect(true)
-                setQuizIcon(null)
-                setQuizIconUrl(null)
-                fileRef.current.value=null;
+                setId((Object.keys(data)[0]))
+                // setRedirect(true)
+            //     // setQuizIcon(null)
+            //     // setQuizIconUrl(null)
+            //     // fileRef.current.value=null;
             })
     }
 
-    if (redirect) return <Redirect to={`/create/edit/${id}`} />
+    // if (redirect) return <Redirect to={`/create/edit/${id}`} />
 
     const preview = quizIconUrl ? <img src={quizIconUrl} alt=""/> : null;
 
@@ -106,8 +114,9 @@ const QuizForm = () => {
                                 </div>
                             </label>
                             <label className='input-label'>Quiz Icon
-                                <input type="file" ref={fileRef} onChange={handleFile}/>
+                                <input type="file" onChange={handleFile}/>
                             </label>
+                            {preview}
                             <button className='submit-button' id="create-quiz" type='submit'>Create Quiz</button>
                         </form>
                     </div>

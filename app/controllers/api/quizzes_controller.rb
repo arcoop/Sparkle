@@ -1,5 +1,5 @@
 class Api::QuizzesController < ApplicationController
-    wrap_parameters include: Quiz.attribute_names + ['quizType']
+    wrap_parameters include: Quiz.attribute_names + ['quizType', 'categoryId', 'icon'] 
     before_action :find_quiz, only: [:show, :update, :destroy]
 
     def index
@@ -9,6 +9,7 @@ class Api::QuizzesController < ApplicationController
     end
 
     def quizzes_by_category 
+
         @quizzes = Quiz.where(category_id: params[:category_id])
         p @quizzes
 
@@ -20,6 +21,7 @@ class Api::QuizzesController < ApplicationController
     end
     
     def create
+        p "inside create"
         @quiz = Quiz.new(quiz_params)
         @quiz.author = current_user
         if @quiz.save
