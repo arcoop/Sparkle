@@ -26,51 +26,44 @@ const QuizForm = () => {
         const file = e.currentTarget.files[0];
         if (file) {
             const fileReader = new FileReader();
-            setQuizIcon(file)
-            // fileReader.readAsDataURL(file);
-            // fileReader.onload = () => {
-            //     setQuizIconUrl(fileReader.result);
-            // };
+            console.log(fileReader.result)
+            fileReader.readAsDataURL(file);
+            fileReader.onload = () => {
+                setQuizIcon(file)
+                setQuizIconUrl(fileReader.result);
+            };
         }
     }
 
     const handleSubmit = (e) => {
         e.preventDefault()
         const formData = new FormData();
-        // formData['title'] = quizName;
-        // formData['quizType'] = quizType;
-        // formData['categoryId'] = 1;
         
         formData.append('quiz[title]', quizName);
         formData.append('quiz[quiz_type]', quizType);
         formData.append('quiz[category_id]', 1);
         if (quizIcon) {
-            console.log(quizIcon)
             formData.append('quiz[icon]', quizIcon)
-            for (var key of formData.entries()) {
-                console.log(key[0] + ', ' + key[1])
-            }
         }
         dispatch(createQuiz(formData))
-
-            // .catch(async res => {
-            //     const data = await res.json();
-            //     if (data && data.errors) {
-            //         setErrors(data.errors)
-            //     }
-            // })
+            .catch(async res => {
+                const data = await res.json();
+                if (data && data.errors) {
+                    setErrors(data.errors)
+                }
+            })
             .then(async data => {
                 setId((Object.keys(data)[0]))
-                // setRedirect(true)
-            //     // setQuizIcon(null)
-            //     // setQuizIconUrl(null)
-            //     // fileRef.current.value=null;
+                setRedirect(true)
+                setQuizIcon(null)
+                setQuizIconUrl(null)
+                fileRef.current.value=null;
             })
     }
 
-    // if (redirect) return <Redirect to={`/create/edit/${id}`} />
+    if (redirect) return <Redirect to={`/create/edit/${id}`} />
 
-    const preview = quizIconUrl ? <img src={quizIconUrl} alt=""/> : null;
+    const preview = quizIconUrl ? <img src={quizIconUrl} alt=""/> : <></>;
 
     return (
         <div className='page'>
