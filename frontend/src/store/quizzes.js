@@ -62,25 +62,17 @@ export const fetchQuiz = quizId => async dispatch => {
     dispatch(setQuiz(data))
 }
 
-const fetchQuizzesByCategory = category => async dispatch => {
-    const res = await csrfFetch('api/quizzes')
-}
-
-// export const fetchQuizzesByCategory = () => async dispatch => {
-//     const res = await csrfFetch('api/quizzes')
-//     const allData = await res.json()
-//     const dataArray = Object.values(allData)
-     
-//     const data = {}
-//     dataArray.forEach(item => {data[item.id] = item})
-//     dispatch(setQuizzes(data))
-// }
-
 export const deleteQuiz = quizId => async dispatch => {
     const res = await csrfFetch(`/api/quizzes/${quizId}`, {
         method: 'DELETE'
     })
     dispatch(removeQuiz(quizId))
+}
+
+export const fetchQuizzesByCat = categoryId => async dispatch => {
+    const res = await csrfFetch(`/api/categories/${categoryId}/quizzes`)
+    const data = await res.json()
+    dispatch(setQuizzes(data))
 }
 
 

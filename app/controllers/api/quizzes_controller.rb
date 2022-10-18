@@ -43,7 +43,7 @@ class Api::QuizzesController < ApplicationController
     end
 
     def quiz_params
-        params.require(:quiz).permit(:id, :title, :quiz_type, :description, :quiz_timer, :permalink, :answer_type, :hint_heading, :answer_heading, :extra_heading, :category, :created_at, :updated_at)
+        params.require(:quiz).permit(:id, :title, :quiz_type, :description, :quiz_timer, :permalink, :answer_type, :hint_heading, :answer_heading, :extra_heading, :category_id, :created_at, :updated_at)
     end
 
 end

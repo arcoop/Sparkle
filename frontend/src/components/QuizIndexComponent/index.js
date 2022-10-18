@@ -42,6 +42,8 @@ const QuizIndex = () => {
                 <h3>The latest quizzes published by Sparkle</h3>
             </div>
 
+            <div id='quizzes-by-category'></div>
+
             <div id='quizzes-list'>
                 {quizzes.map(quiz => {
                     return (

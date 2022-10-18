@@ -8,6 +8,7 @@ import QuizIndex from './components/QuizIndexComponent';
 import QuizShow from './components/QuizShowComponent';
 import UserShow from './components/UserShowComponent';
 import Footer from './components/Navigation/Footer';
+import QuizByCategory from './components/QuizByCategoryIndexComponent';
 
 function App() {
   return (
@@ -42,6 +43,15 @@ function App() {
         <Route path="/quizzes/:quizId">
           <Navigation />
           <QuizShow />
+        </Route>
+
+        <Route path="/categories/:categoryId/quizzes">
+          <Navigation />
+          <QuizByCategory />
+        </Route>
+
+        <Route>
+          <h1>path not found</h1>
         </Route>
         
       </Switch>

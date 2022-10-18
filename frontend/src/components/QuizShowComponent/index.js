@@ -14,27 +14,30 @@ const QuizShow = () => {
     const dispatch = useDispatch();
     const {quizId} = useParams();
 
-    let quiz = useSelector(getQuiz(quizId)) || {title: "", category: "",};
+    let quiz = useSelector(getQuiz(quizId)) || {title: "", categoryId: 1};
+
+    const categoryId = quiz ? quiz.categoryId : 1
+
+    let category = useSelector(state => state.categories[categoryId])
     
     document.title = `${quiz.title}` || 'Sparkle'
     
     useEffect(() => {
         dispatch(fetchQuiz(quizId))
     }, [dispatch, quizId])
-        
-
+    
+    
     useEffect(() => {
         if (quiz.authorId) dispatch(fetchUser(quiz.authorId))
     }, [dispatch, quiz.authorId])
     
     let user = useSelector(getUser(quiz.authorId)) || {username:"", email:"", id: null}
-
     return (
         <div id="quiz-show-page-container">
             <div id="quiz-show-page">
                 <div id="left-side">
                     <div id="top-row">
-                        <p className="quiz-category">{quiz.category}</p>
+                        <p className="quiz-category">{category.name}</p>
                     </div>
                     <div id="top-level-info">
                         <h1 className="quiz-title">{quiz.title}</h1>

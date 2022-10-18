@@ -12,6 +12,7 @@ ApplicationRecord.transaction do
     Comment.destroy_all
     Question.destroy_all
     Quiz.destroy_all
+    Category.destroy_all
     User.destroy_all
   
     puts "Resetting primary keys..."
@@ -20,6 +21,7 @@ ApplicationRecord.transaction do
     ApplicationRecord.connection.reset_pk_sequence!('quizzes')
     ApplicationRecord.connection.reset_pk_sequence!('questions')
     ApplicationRecord.connection.reset_pk_sequence!('comments')
+    ApplicationRecord.connection.reset_pk_sequence!('categories')
   
     puts "Creating users..."
     # Create one user with an easy to remember username, email, and password:
@@ -44,6 +46,15 @@ ApplicationRecord.transaction do
       }) 
     end
 
+    puts "creating categories..."
+    CATS = ['Entertainment', 'Gaming', 'Geography', 'History', 'Holiday', 'Just For Fun', 'Language', 'Literature', 'Miscellaneous', 'Movies', 'Music', 'Religious', 'Science', 'Sports', 'Television']
+    CATS.each do |cat|
+      Category.create!(
+        name: cat
+      )
+    end
+
+
     puts "creating quizzes..."
 
     Quiz.create!(
@@ -51,7 +62,7 @@ ApplicationRecord.transaction do
       quiz_type: "classic",
       description: Faker::Lorem.sentence,
       quiz_timer: Faker::Number.between(from: 1, to: 10),
-      category: "History",
+      category_id: 1,
       author_id: 1
     ) 
 
@@ -60,7 +71,7 @@ ApplicationRecord.transaction do
       quiz_type: "classic",
       description: "Can you name all 6 words in under 1 minute?",
       quiz_timer: 1,
-      category: "Science",
+      category_id: 2,
       author_id: 2
     ) 
 
@@ -70,14 +81,14 @@ ApplicationRecord.transaction do
         quiz_type: "classic",
         description: Faker::Lorem.sentence,
         quiz_timer: Faker::Number.between(from: 1, to: 10),
-        category: "Geography",
+        category_id: 5,
         author_id: 1
       }) 
 
 
     end
 
-    puts 'creating questions...'
+    puts "creating questions..."
     
     Question.create!(
       body: "S",
@@ -136,7 +147,8 @@ ApplicationRecord.transaction do
       })
     end
 
-    p "Creating comments..."
+    p "creating comments..."
+    
      Comment.create!(
       body: "Comment body",
       quiz_id: 1,

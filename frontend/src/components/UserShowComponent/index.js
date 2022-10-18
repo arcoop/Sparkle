@@ -65,7 +65,6 @@ const UserShow = () => {
                 <div id='user-show-page-info'>
                     <div id='username-and-edit'>
                         <h2 id='username'>{user.username}</h2>
-                        {/* {console.log(user)} */}
                         <button id='edit-button'>Edit Profile</button>
                     </div>
                     <div id='show-page-top-info'>
