@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   
   namespace :api, defaults: {format: :json} do
     resources :users, only: [:create, :show, :index]
-    resources :categories, only: [:show, :index] do
-      resources :quizzes, only: [:show, :index]
+    resources :categories, only: [] do
+      get "/quizzes", to: "quizzes#quizzes_by_category"
     end
     resources :quizzes, except: [:new, :edit] do
       resources :questions, only: [:index, :show]

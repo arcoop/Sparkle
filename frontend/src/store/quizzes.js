@@ -3,6 +3,7 @@ import csrfFetch from "./csrf";
 const SET_QUIZZES = 'quizzes/setQuizzes'
 const SET_QUIZ = 'quizzes/addQuiz'
 const REMOVE_QUIZ = 'quizzes/removeQuiz'
+const SET_QUIZZES_BY_CATEGORY = 'quizzes/setQuizzesByCategory'
 
 export const setQuizzes = quizzes => ({
     type: SET_QUIZZES,
@@ -19,8 +20,13 @@ export const removeQuiz = quizId => ({
     payload: quizId
 })
 
+export const setQuizzesByCategory = quizzes => ({
+    type: SET_QUIZZES_BY_CATEGORY,
+    payload: quizzes
+})
+
 export const getQuizzes = state => {
-   return Object.values(state.quizzes)
+    return Object.values(state.quizzes)
 }
 
 export const getQuiz = quizId => state => {
@@ -72,9 +78,8 @@ export const deleteQuiz = quizId => async dispatch => {
 export const fetchQuizzesByCat = categoryId => async dispatch => {
     const res = await csrfFetch(`/api/categories/${categoryId}/quizzes`)
     const data = await res.json()
-    dispatch(setQuizzes(data))
+    dispatch(setQuizzesByCategory(data))
 }
-
 
 const quizzesReducer = (state = {}, action ) => {
     switch(action.type) {
@@ -82,9 +87,8 @@ const quizzesReducer = (state = {}, action ) => {
             return {...state, ...action.payload}
         case SET_QUIZ:
             return {...state, ...action.payload}
-            // const newState = {...state}
-            // newState[action.payload.id] = action.payload
-            // return newState
+        case SET_QUIZZES_BY_CATEGORY:
+            return {...action.payload}
         case REMOVE_QUIZ:
             const nextState = {...state}
             delete nextState[action.payload]

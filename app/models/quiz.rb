@@ -20,6 +20,7 @@
 #
 class Quiz < ApplicationRecord
     validates_presence_of :title, :quiz_type, :author_id
+    validates_presence_of :category_id, {allow_nil: true}
 
     belongs_to :author, class_name: :User, foreign_key: :author_id
     belongs_to :category
@@ -27,5 +28,7 @@ class Quiz < ApplicationRecord
     has_many :comments, dependent: :destroy
     has_many :takes, class_name: :QuizTake, foreign_key: :quiz_id
     has_many :takers, through: :takes, source: :taker
+
+    has_one_attached :icon
     
 end

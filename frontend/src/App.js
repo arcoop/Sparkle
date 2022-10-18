@@ -45,7 +45,7 @@ function App() {
           <QuizShow />
         </Route>
 
-        <Route path="/categories/:categoryId/quizzes">
+        <Route path="/categories/:categoryId/">
           <Navigation />
           <QuizByCategory />
         </Route>

@@ -1,11 +1,12 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
-import { fetchQuizzesByCat, getQuizzes } from "../../store/quizzes"
+import { fetchQuizzes, fetchQuizzesByCat, getQuizzes } from "../../store/quizzes"
 import QuizTile from "../QuizTileComponent"
 
 const QuizByCategory = () => {
     const {categoryId} = useParams()
+    // console.log(categoryId)
 
     const dispatch = useDispatch()
 
@@ -14,12 +15,13 @@ const QuizByCategory = () => {
     }, [])
 
     const quizzes = useSelector(getQuizzes)
+    console.log(quizzes)
 
     return ( 
         <div>
             {quizzes.map(quiz => {
                 return (
-                    <QuizTile key={quiz} quiz={quiz}/>
+                    <QuizTile quiz={quiz}/>
                 )
             })} 
 

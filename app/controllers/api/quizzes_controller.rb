@@ -8,6 +8,13 @@ class Api::QuizzesController < ApplicationController
         render 'api/quizzes/index'
     end
 
+    def quizzes_by_category 
+        @quizzes = Quiz.where(category_id: params[:category_id])
+        p @quizzes
+
+        render 'api/quizzes/quizzes_by_category'
+    end
+
     def show
         render 'api/quizzes/show'
     end
@@ -43,7 +50,7 @@ class Api::QuizzesController < ApplicationController
     end
 
     def quiz_params
-        params.require(:quiz).permit(:id, :title, :quiz_type, :description, :quiz_timer, :permalink, :answer_type, :hint_heading, :answer_heading, :extra_heading, :category_id, :created_at, :updated_at)
+        params.require(:quiz).permit(:id, :title, :quiz_type, :description, :quiz_timer, :permalink, :answer_type, :hint_heading, :answer_heading, :extra_heading, :category_id, :icon, :created_at, :updated_at)
     end
 
 end

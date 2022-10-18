@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom'
 import { createQuiz } from '../../store/quizzes';
@@ -18,11 +18,33 @@ const QuizForm = () => {
     const [redirect, setRedirect] = useState(false)
     const [id, setId] = useState(null)
     const [errors, setErrors] = useState([])
+    const [quizIcon, setQuizIcon] = useState(null);
+    const [quizIconUrl, setQuizIconUrl] = useState(null)
+    const fileRef = useRef(null);
+
+    const handleFile = e => {
+        const file = e.currentTarget.files[0];
+        if (file) {
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(file);
+            fileReader.onload = () => {
+                setQuizIcon(file)
+                setQuizIconUrl(fileReader.result);
+            };
+        }
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        const quiz = {title: quizName, quizType: quizType}
-        return dispatch(createQuiz(quiz))
+        const formData = new FormData();
+        formData.append('quiz[title]', quizName);
+        formData.append('quiz[quiz_type]', quizType);
+        formData.append('quiz[category_id]', 1);
+        if (quizIcon) {
+            formData.append('quiz[icon]', quizIcon)
+        }
+        // const quiz = {title: quizName, quizType: quizType, category_id: 1}
+        return dispatch(createQuiz(formData))
             .catch(async res => {
                 const data = await res.json();
                 if (data && data.errors) {
@@ -32,11 +54,16 @@ const QuizForm = () => {
             .then(async data => {
                 setId(parseInt(Object.keys(data)[0]))
                 setRedirect(true)
+                setQuizIcon(null)
+                setQuizIconUrl(null)
+                fileRef.current.value=null;
             })
     }
 
-        if (redirect) return <Redirect to={`/create/edit/${id}`} />
-    
+    if (redirect) return <Redirect to={`/create/edit/${id}`} />
+
+    const preview = quizIconUrl ? <img src={quizIconUrl} alt=""/> : null;
+
     return (
         <div className='page'>
             <Navigation />
@@ -77,6 +104,9 @@ const QuizForm = () => {
                                         })}
                                     </select>
                                 </div>
+                            </label>
+                            <label className='input-label'>Quiz Icon
+                                <input type="file" ref={fileRef} onChange={handleFile}/>
                             </label>
                             <button className='submit-button' id="create-quiz" type='submit'>Create Quiz</button>
                         </form>

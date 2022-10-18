@@ -24,6 +24,8 @@ class User < ApplicationRecord
   has_many :quiz_takes, class_name: :QuizTake, foreign_key: :taker_id
   has_many :quizzes_taken, through: :quiz_takes, source: :quiz
 
+  has_one_attached :icon
+
   def self.find_by_credentials(credential, pwd)
     if URI::MailTo::EMAIL_REGEXP.match(credential)
       user = User.find_by(email: credential)

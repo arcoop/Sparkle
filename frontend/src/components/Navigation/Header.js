@@ -10,9 +10,9 @@ const Header = () => {
 
     
     useEffect(() => {
-        console.log("dispatching")
-        dispatch(fetchQuizzes())
-        console.log("done dispatching")
+        // console.log("dispatching")
+        // dispatch(fetchQuizzes())
+        // console.log("done dispatching")
     }, [])
 
     let quizzes = useSelector(getQuizzes)
