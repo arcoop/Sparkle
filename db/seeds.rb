@@ -99,7 +99,7 @@ ApplicationRecord.transaction do
     
     Question.create!(
       body: "P",
-      answer: "password =",
+      answer: "password=",
       quiz_id: 2,
       question_type: "short answer"
     )

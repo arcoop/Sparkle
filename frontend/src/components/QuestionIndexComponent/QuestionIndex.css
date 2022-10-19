@@ -3,3 +3,65 @@
     flex-direction: column;
     align-items: center;
 }
+
+.answer-input {
+    border: 1px solid #d8d8d8;
+    border-radius: .25rem;
+    padding: 2px;
+    padding: 1rem;
+    box-sizing: border-box;
+    line-height: 1rem;
+    width: 400px;
+    font-size: 1rem;
+    height: 2.875rem;
+}
+
+.answer-input:focus{
+    border: 1px solid blue;
+}
+
+#answer-box {
+    border: none;
+}
+
+#play-quiz {
+    font-size: 1.25rem;
+    line-height: 1rem;
+    font-weight: 500;
+    padding: 1rem;
+    border: 1px solid #f90;
+    box-sizing: border-box;
+    width: 334px;
+    height: 2.875rem;
+
+}
+
+#play-quiz:hover {
+    border: 1px solid #fbc36f;
+}
+
+.answer-input-text {
+    font-size: 1.25rem;
+    margin-bottom: 6px;
+    height: 15px;
+}
+
+.question-table-question {
+    border: 1px solid #d8d8d8;
+}
+
+.question-table-row {
+    border: 1px solid #d8d8d8;
+}
+
+#revealed-answer {
+    width: 100px;
+}
+
+#right-side-quiz-header {
+    white-space: nowrap;
+}
+
+#score {
+    margin-right: 15px
+}

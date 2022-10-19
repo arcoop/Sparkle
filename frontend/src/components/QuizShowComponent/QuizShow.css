@@ -91,7 +91,7 @@
     width: 20%;
 }
 
-#play-quiz {
+/* #play-quiz {
     font-size: 1.25rem;
     line-height: 1rem;
     font-weight: 500;
@@ -103,7 +103,7 @@
 
 #play-quiz:hover {
     border: 1px solid #fbc36f;
-}
+} */
 
 #num-comments-header {
     font-size: 1.75rem;

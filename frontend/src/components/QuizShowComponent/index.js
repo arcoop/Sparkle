@@ -60,16 +60,16 @@ const QuizShow = () => {
                     <div id="quiz-div">
 
                         <div id="quiz-content-container">
-                            <div id="quiz-header">
+                            {/* <div id="quiz-header">
                                 <button id="play-quiz" className="submit-button">Play Quiz</button>
                                 <div id="right-side-quiz-header">
                                     <h3 id="score">Score</h3>
                                     <h3 id="timer">Time: {quiz.quizTimer}:00</h3>
                                 </div>
-                            </div>
+                            </div> */}
                             
                             <div id="quiz-content">
-                                    <QuestionIndex />
+                                    <QuestionIndex quiz={quiz}/>
                             </div>
                         </div>
                     

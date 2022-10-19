@@ -7,6 +7,8 @@ import './CommentTile.css'
 import ExtrasButton from "./ExtrasButton"
 import CommentsUpdateForm from "../CommentsUpdateFormComponent"
 import { deleteComment } from "../../store/comments"
+// import {moment} from moment;
+
 
 const CommentTile = ({comment}) => {
     const dispatch = useDispatch()
