@@ -7,7 +7,9 @@ import { Link } from 'react-router-dom';
 import Navigation from '../Navigation';
 import Footer from '../Navigation/Footer';
 import { fetchQuizTakes, getQuizTakes } from '../../store/quizTakes';
-import { fetchQuizzes } from '../../store/quizzes';
+import { fetchQuizzes, getQuizzes } from '../../store/quizzes';
+import { useState } from 'react';
+
 const UserShow = () => {
     const dispatch = useDispatch();
     const {id} = useParams();
@@ -20,11 +22,12 @@ const UserShow = () => {
     },[id])
 
     let user = useSelector(getUser(id)) || {username: "username...", email: "email..."}
+    console.log(user)
+    console.log(user.quizzesAuthored)
 
     const quizTakes = useSelector(getQuizTakes)
 
     let userQuizTakes = []
-    
     quizTakes.forEach(take => {
         if (take['takerId'] == id) {
             userQuizTakes.push(take)
@@ -34,6 +37,8 @@ const UserShow = () => {
     useEffect(() => {
         dispatch(fetchQuizzes())
     }, [user])
+
+    const quizzes = useSelector(getQuizzes)
     
     useEffect(() => {
         document.title = `${user.username}'s Sparkle Profile`
@@ -61,6 +66,50 @@ const UserShow = () => {
         return `${month} ${day}, ${year}`
     }
 
+    const formatTime = date => {
+     
+        const start = new Date(date)
+      
+        const now = new Date()
+
+        let finalTimeDiff;
+        let elapsedTime = now - start
+        elapsedTime /= 1000
+        if (Math.round(elapsedTime / 3600) >= 1){
+            finalTimeDiff = Math.round(elapsedTime /= 3600)
+        } else {
+            finalTimeDiff = Math.round(elapsedTime / 60)
+        }
+  
+        let timeText; 
+        if (finalTimeDiff === 1) {
+            timeText = "hour"
+        } else if (finalTimeDiff > 1) {
+            timeText = "hours"
+        } else timeText = "minutes"
+    
+        return `${finalTimeDiff} ${timeText} ago`
+    }
+
+    const [playsTabClass, setPlaysTabClass] = useState("user-profile-tab-links")
+    const [quizzesTabClass, setQuizzesTabClass] = useState("hide")
+    const [playsButton, setPlaysButton] = useState("button-active")
+    const [quizzesButton, setQuizzesButton] = useState("user-profile-tab-button")
+
+    const handleClick = (tab) => {
+       if (tab === "plays") {
+        setPlaysTabClass("hide")
+        setQuizzesTabClass('user-profile-tab-links')
+        setQuizzesButton("button-active")
+        setPlaysButton("user-profile-tab-button")
+       } else if (tab === "quizzes") {
+        setQuizzesTabClass("hide")
+        setPlaysTabClass("user-profile-tab-links")
+        setPlaysButton("button-active")
+        setQuizzesButton("user-profile-tab-button")
+       }
+    }
+
     let onlineStatus;
     if (sessionUser) {
         onlineStatus = 
@@ -70,7 +119,22 @@ const UserShow = () => {
         </div>
     }  else onlineStatus = ""
 
-    // const onlineId = sessionUser ? "online" : "offline"
+    const ShowQuizzesAuthored = () => {
+        if (user.quizzesAuthored) {
+            return (
+                <ul>
+                    {user.quizzesAuthored.map(quiz => {
+                        return (
+                            <li>{quiz.title}</li>
+                        )
+                    })}
+                </ul>
+            )
+        } else {
+            return <></>
+        }
+    } 
+
     return (
         <div id="users-show-page">
             <Navigation />
@@ -101,20 +165,11 @@ const UserShow = () => {
                 <div id='main-user-profile'>
                     <div id="show-page-profile-bar">
                         <div id='profile-header'>Profile</div>
-                        <ul>
-                            <li className='prof-bar-list-item'>
-                                <Link className='prof-bar-link'>Overview</Link> 
-                            </li>
-                            <li className='prof-bar-list-item'>
-                                <Link className='prof-bar-link'>Plays</Link>
-                            </li>
-                            <li className='prof-bar-list-item'>
-                                <Link className='prof-bar-link'>Stats</Link>
-                            </li>
-                            <li className='prof-bar-list-item'>
-                                <Link className='prof-bar-link'>Quizzes</Link>
-                            </li>
-                        </ul>
+                        <div className='user-prof-tab'>
+                            <button id='user-plays-tab-button' className={playsButton} onClick={() => handleClick('quizzes')}>Plays</button>
+                            <button id='user-quizzes-tab-button'className={quizzesButton} onClick={() => handleClick('plays')}>Quizzes</button>
+                        </div>
+
                     </div>
 
                     <div id="show-page-middle">
@@ -128,11 +183,31 @@ const UserShow = () => {
 
             </div>
 
-            <div id='user-quiz-plays' className='user-profile-tab-links'>
-                
+            <div id='user-quiz-plays' className={playsTabClass}>
+                <ul> 
+                    {quizTakes.map(take => {
+                        if (quizzes[take.quizId -1]) {
+                            return (
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>{quizzes[take.quizId -1].title}</td>
+                                            <td>{formatTime(take.createdAt)}</td>
+                                            <td>{take.score}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            )
+                        }
+                    })}
+                </ul>
             </div>
 
-            <Footer />
+            <div id='user-quizzes-created' className={quizzesTabClass}>
+                <ShowQuizzesAuthored />
+            </div>
+
+            {/* <Footer /> */}
         </div>
     )
 

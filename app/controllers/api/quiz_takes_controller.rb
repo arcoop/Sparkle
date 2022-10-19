@@ -1,5 +1,5 @@
 class Api::QuizTakesController < ApplicationController
-    wrap_parameters include: QuizTake.attribute_names + ['takerId', 'quizId', 'quizTake']
+    wrap_parameters include: QuizTake.attribute_names + ['takerId', 'quizId', 'quizTake', 'createdAt']
 
     def index 
         @quiz_takes = QuizTake.all
