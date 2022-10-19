@@ -136,6 +136,15 @@ table {
     padding-left: 50px
 }
 
-.presentation-tabform {
-
+#presentation-tab {
+    width: 500px;
+    border-top: 1px solid #d8d8d8;
+    padding: 20px 20px 50px;
 }
+
+.presentation-tabform {
+    display: flex;
+    flex-direction: column;
+    margin: 30px;
+}
+
