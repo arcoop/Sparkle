@@ -31,20 +31,14 @@
     box-sizing: border-box;
     width: 600px;
     height: 450px;
-    /* width: 600px; */
-    /* height: 500px; */
 }
 
-.form {
-   
-}
 
 #quiz-edit-table {
     margin-bottom: 30px;
 }
 
 #quiz-edit-table-body {
-    /* padding-left: 50px; */
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -118,6 +112,7 @@
     font-weight: 700;
     padding: .75rem 1rem;
     width: 130px;
+    margin: auto;
 }
 
 #save-text {
@@ -194,4 +189,15 @@ table {
     background-color: white;
     width: 180px;
     margin-bottom: 15px;
+}
+
+#quiz-icon-preview {
+    margin-bottom: 15px;
+    height: 40%;
+    width: 40%;
+}
+
+#image-preview-and-save {
+    display: flex;
+    flex-direction: column;
 }

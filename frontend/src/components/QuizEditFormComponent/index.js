@@ -103,9 +103,7 @@ const QuizEditForm = () => {
 
     }
 
-    const preview = quizIconUrl ? <img src={quizIconUrl} alt=""/> : <></>;
-
-    const [tabClass, setTabClass] = useState('tab-form')
+    const preview = quizIconUrl ? <img id='quiz-icon-preview' src={quizIconUrl} alt=""/> : <div id='quiz-icon-preview'></div>;
 
     const handleClick = (tab) => {
         if (tab === "presentation") {
@@ -283,8 +281,10 @@ const QuizEditForm = () => {
                             <p id='quiz-icon-label'>Quiz Icon</p>
                             <input className='upload-image-button' type="file" onChange={handleFile}/>
                         </label>
-                        {preview}
-                        <button className="submit-button" id='save-changes' type='submit'>Save Changes</button>
+                        <div id='image-preview-and-save'>
+                            {preview}
+                            <button className="submit-button" id='save-changes' type='submit'>Save Changes</button>
+                        </div>
                     </form>
                 </div>
             </div>
