@@ -2,19 +2,19 @@ import './QuizEditForm.css'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchQuiz, getQuiz, setQuiz, updateQuiz } from '../../store/quizzes'
-import { useEffect, useState } from 'react'
-import Navigation from '../Navigation'
-import { Link } from 'react-router-dom'
-import { getUser } from '../../store/users'
+import { useEffect, useRef, useState } from 'react'
 
 const QuizEditForm = () => {
     const {quizId} = useParams()
+    console.log(quizId)
+
+    let quiz = useSelector(getQuiz(quizId)) || {title: "", quizType: "", id: 1};
+
     useEffect(() => {
         dispatch(fetchQuiz(quizId))
         document.title = `Editing ${quiz.title}`
     }, [quizId])
     
-    let quiz = useSelector(getQuiz(quizId)) || {title: "", quizType: ""};
     
     useEffect(() => {
         setQuizName(quiz.title)
@@ -36,57 +36,113 @@ const QuizEditForm = () => {
     const [answerHeading, setAnswerHeading] = useState("Answer")
     const [extraHeading, setExtraHeading] = useState("")
     const [category, setCategory] = useState("no category chosen")
+    
     const categories = [
-        "no category chosen",
-        "Entertainment",
-        "Gaming",
-        "Geography",
-        "History",
-        "Holiday",
-        "Just For Fun",
-        "Language",
-        "Literature",
-        "Miscellaneous",
-        "Movies",
-        "Music",
-        "Religion",
-        "Science",
-        "Sports",
-        "Television"
+        [0,"no category chosen"],
+        [1, "Entertainment"],
+        [2, "Gaming"], 
+        [3, "Geography"],
+        [4, "History"],
+        [5, "Holiday"],
+        [6, "Just For Fun"],
+        [7, "Language"],
+        [8, "Literature"],
+        [9, "Miscellaneous"],
+        [10, "Movies"],
+        [11, "Music"],
+        [12, "Religion"],
+        [13, "Science"],
+        [14, "Sports"],
+        [15,"Television"]
     ]
     
     const [sourceURL, setSourceURL] = useState("")
     const [crossLinkURL, setCossLinkURL] = useState("")
     const [moreInfo, setMoreInfo] = useState("")
+    const [quizIcon, setQuizIcon] = useState(null);
+    const [quizIconUrl, setQuizIconUrl] = useState(null)
+    const [errors, setErrors] = useState([])
+    const fileRef = useRef(null);
     
     const dispatch = useDispatch();
+
+    const handleFile = e => {
+        const file = e.currentTarget.files[0];
+        if (file) {
+            const fileReader = new FileReader();
+            console.log(fileReader.result)
+            fileReader.readAsDataURL(file);
+            fileReader.onload = () => {
+                setQuizIcon(file)
+                setQuizIconUrl(fileReader.result);
+            };
+        }
+    }
 
     
     const handleSubmit = e => {
         e.preventDefault()
-        quiz = {title: quizName, quizType: quizType, description: description, quizTimer: timer, permalink: permalink, answerType: answerType, hintHeading: hintHeading, answerHeading: answerHeading, extraHeading: extraHeading, category: category}
-        quiz.id = quizId
-        console.log("dispatching")
-        return dispatch(updateQuiz(quiz))
+        setErrors([])
+        const formData = new FormData();
+        formData.append('quiz[title]', quizName)
+        formData.append('quiz[quiz_type]', quizType);
+        formData.append('quiz[category_id]', category[0]);
+        formData.append('quiz[description]', description);
+        formData.append('quiz[quiz_timer]', timer);
+        if (quizIcon) formData.append('quiz[icon]', quizIcon)
+        if (quizId) {
+            formData.append('quiz[id]', quizId)
+            dispatch(updateQuiz(formData))
+                .catch(async res => {
+                    const data = await res.json();
+                    if (data && data.errors) {
+                        setErrors(data.errors)
+                    }
+                })
+        }
+
     }
-    
+
+    const preview = quizIconUrl ? <img src={quizIconUrl} alt=""/> : <></>;
+
+    const [tabClass, setTabClass] = useState('tab-form')
+
+    const handleClick = (tab) => {
+        if (tab === "presentation") {
+            setPresentationTabClassName("display-none")
+            setEditTabClassName('tab-form')
+            setEditButton("active")
+            setPresentationButton("tablinks")
+        } else if (tab === 'quiz-edit') {
+            setEditTabClassName("display-none")
+            setPresentationTabClassName('tab-form')
+            setPresentationButton("active")
+            setEditButton("tablinks")
+        }
+    }
+
+    const [editTabClassName, setEditTabClassName] = useState('tab-form')
+    const [presentationTabClassName, setPresentationTabClassName] = useState('display-none')
+    const [editButton, setEditButton] = useState("active")
+    const [presentationButton, setPresentationButton] = useState("tablinks")
+
     return (
         <div id='edit-management-form'> 
-            <h1 id='quiz-name-heading'>{quizName}</h1>
+            <h1 id='quiz-name-heading'>{quiz.title}</h1>
             <div className='tab'>
-                <button className='tablinks'>Quiz Edit</button>
-                <button className='tablinks'>Options</button>
+                <button onClick={() => handleClick('presentation')} id='quiz-edit-tab-button' className={editButton}>Quiz Edit</button>
+                <button onClick={() => handleClick('quiz-edit')} id="presentation-tab-button" className={presentationButton}>Presentation</button>
             </div>
 
-            <div id='quiz-edit-tab' className='tab-form'>
+            <div id='quiz-edit-tab' className={editTabClassName}>
                 <form className='form' onSubmit={handleSubmit}>
 
                     <div className='main-inputs'>
                        
-                        <table>
-                            <tbody>
+                        <table id='quiz-edit-table'>
+                            <tbody id='quiz-edit-table-body'> 
                                 <tr>
-                                    <td>Quiz Type</td>
+                                    <td className="table-heading">Quiz Type</td>
                                     <td>
                                         <select name="dropdown" id='type-select-options' onChange={e => setQuizType(e.target.value)}>
                                             {quizTypes.map(type => {
@@ -97,7 +153,7 @@ const QuizEditForm = () => {
                                         </select>
                                     </td>
                                 </tr>
-                                <tr><td>Quiz Name</td>
+                                <tr><td className="table-heading">Quiz Name</td>
                                     <td>
                                         <input type="text"
                                         value={quizName}
@@ -105,7 +161,7 @@ const QuizEditForm = () => {
                                         />
                                     </td>
                                 </tr>
-                                <tr> <td>Description</td>
+                                <tr> <td className='table-heading'>Description</td>
                                     <td>
                                         <input type="text"
                                         value={description}
@@ -113,7 +169,7 @@ const QuizEditForm = () => {
                                         />
                                     </td>
                                 </tr>
-                                <tr> <td>Permalink</td>
+                                <tr> <td className='table-heading'>Permalink</td>
                                     <td>
                                         <input type="text"
                                         value={permalink}
@@ -121,7 +177,7 @@ const QuizEditForm = () => {
                                         />
                                     </td>
                                 </tr>
-                                <tr> <td>Quiz Timer</td>
+                                <tr> <td className="table-heading">Quiz Timer</td>
                                     <td>
                                         <select name="dropdown" id="timer-select-options" onChange={e => setTimer(e.target.value)}>
                                             {times.map(time => {
@@ -132,7 +188,7 @@ const QuizEditForm = () => {
                                         </select>
                                     </td>
                                 </tr>
-                                <tr> <td>Answer type</td>
+                                <tr> <td className="table-heading">Answer type</td>
                                     <td>
                                         <input type="text"
                                         value={answerType}
@@ -140,7 +196,7 @@ const QuizEditForm = () => {
                                         />
                                     </td>
                                 </tr>
-                                <tr> <td>Hint Heading</td>
+                                <tr> <td className="table-heading">Hint Heading</td>
                                 <td>
                                     <input type="text"
                                         value={hintHeading}
@@ -148,7 +204,7 @@ const QuizEditForm = () => {
                                         />
                                 </td>
                                 </tr>
-                                <tr> <td>Answer Heading</td>
+                                <tr> <td className="table-heading">Answer Heading</td>
                                 <td>
                                     <input type="text"
                                         value={answerHeading}
@@ -156,7 +212,7 @@ const QuizEditForm = () => {
                                         />
                                 </td>
                                 </tr>
-                                <tr> <td>Extra Heading</td>
+                                <tr> <td className="table-heading">Extra Heading</td>
                                 <td>
                                     <input type="text"
                                         value={extraHeading}
@@ -164,12 +220,12 @@ const QuizEditForm = () => {
                                         />
                                 </td>
                                 </tr>
-                                <tr> <td>Category</td>
+                                <tr> <td className="table-heading">Category</td>
                                     <td>
                                         <select name="dropdown" id="category-select-options" onChange={e => setCategory(e.target.value)}>
                                             {categories.map(cat => {
                                                 return (
-                                                    <option key={cat} value={cat}>{cat}</option>
+                                                    <option key={cat} value={cat}>{cat[1]}</option>
                                                 )
                                             })}
                                         </select>
@@ -178,11 +234,14 @@ const QuizEditForm = () => {
                             </tbody>
                         </table>
 
-                        <button id='save-changes' type='submit'>Save Changes</button>
+                        <div className='save'>
+                            <button className='submit-button' id='save-changes' type='submit'>Save Changes</button>
+                            <p id='save-text'>You must click 'Save Changes' to save your changes</p>
+                        </div>
 
                     </div>
 
-                    <div className='extras'>
+                    {/* <div className='extras'>
                         <table>
                             <tbody>
                                 <tr> <td>Source URL (optional)</td>
@@ -213,7 +272,7 @@ const QuizEditForm = () => {
                         </table>
 
 
-                    </div>
+                    </div> */}
 
                   
                 </form>
@@ -221,6 +280,18 @@ const QuizEditForm = () => {
 
                 
             </div>
+
+            <div id='presentation-tab' className={presentationTabClassName}>
+                <form className='presentation-tab-form' onSubmit={handleSubmit}>
+                    <label className='input-label'>Quiz Icon
+                        <input type="file" onChange={handleFile}/>
+                    </label>
+                    {preview}
+                    <button className="submit-button" id='save-changes' type='submit'>Save Changes</button>
+                </form>
+            </div>
+
+
         </div>
     )
 }

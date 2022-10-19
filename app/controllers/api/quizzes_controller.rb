@@ -32,9 +32,13 @@ class Api::QuizzesController < ApplicationController
     end
 
     def update
+        p "in quiz update"
         if @quiz.update(quiz_params)
+            p "quiz parama"
+            p quiz_params
             render 'api/quizzes/show'
         else
+            p @quiz.errors.full_messages
             render json: {errors: @quiz.errors.full_messages}, status: :unprocessable_entity
         end
     end
@@ -48,7 +52,13 @@ class Api::QuizzesController < ApplicationController
 
     private
     def find_quiz
-        @quiz = Quiz.find(params[:id])
+        p "start of find quiz"
+        if params[:id] != "undefined"
+            @quiz = Quiz.find(params[:id])
+        else
+            @quiz = Quiz.find(quiz_params[:id])
+        end
+        p "end of find quiz"
     end
 
     def quiz_params
