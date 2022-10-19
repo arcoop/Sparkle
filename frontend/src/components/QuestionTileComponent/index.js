@@ -3,29 +3,26 @@ import { useDispatch, useSelector } from "react-redux";
 import { getQuiz } from "../../store/quizzes";
 import './QuestionTile.css'
 
-const QuestionTile = ({quizId, question, setScore, inputVal, setInputVal, setRevealedAnswer, setShouldClear}) => {
-    const dispatch = useDispatch();
-    // const [shouldClear, setShouldClear] = useState(false)
-
-    // const quiz = useSelector(getQuiz(quizId))
+const QuestionTile = ({quizId, question, setScore, inputVal, setInputVal}) => {
 
     useEffect(() => {
         if (inputVal === question.answer) {
             setScore(prevScore => prevScore + 1)
-            setRevealedAnswer(question.answer)
-            setShouldClear(true)
             setInputVal("")
+            let answer = document.getElementById(question)
+            document.getElementById("revealed-answer").className="hidden"
+            answer.className=("revealed-answer")
             
         }
     }, [inputVal])
 
 
 
-    return (
-        <div id="question-container"> 
-            <p className="question-body">{question.body}</p>
-        </div>
-    )
+    // return (
+    //     <div id="question-container"> 
+    //         <p className="question-body">{question.body}</p>
+    //     </div>
+    // )
 
 }
 

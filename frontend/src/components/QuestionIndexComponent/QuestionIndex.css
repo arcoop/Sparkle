@@ -54,8 +54,13 @@
     border: 1px solid #d8d8d8;
 }
 
-#revealed-answer {
+#empty-div {
     width: 100px;
+}
+
+.revealed-answer-hidden {
+    width: 100px;
+    display: none;
 }
 
 #right-side-quiz-header {

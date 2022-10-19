@@ -6,6 +6,8 @@ import './UserShow.css'
 import { Link } from 'react-router-dom';
 import Navigation from '../Navigation';
 import Footer from '../Navigation/Footer';
+import { fetchQuizTakes, getQuizTakes } from '../../store/quizTakes';
+import { fetchQuizzes } from '../../store/quizzes';
 const UserShow = () => {
     const dispatch = useDispatch();
     const {id} = useParams();
@@ -14,10 +16,24 @@ const UserShow = () => {
     
     useEffect(() => {
         dispatch(fetchUsers(id))
+        dispatch(fetchQuizTakes())
     },[id])
 
-    
     let user = useSelector(getUser(id)) || {username: "username...", email: "email..."}
+
+    const quizTakes = useSelector(getQuizTakes)
+
+    let userQuizTakes = []
+    
+    quizTakes.forEach(take => {
+        if (take['takerId'] == id) {
+            userQuizTakes.push(take)
+        }
+    })
+
+    useEffect(() => {
+        dispatch(fetchQuizzes())
+    }, [user])
     
     useEffect(() => {
         document.title = `${user.username}'s Sparkle Profile`
@@ -78,9 +94,9 @@ const UserShow = () => {
             </div>
 
             <div id='users-show-page-bottom-section'>
-                <div id="show-page-stats-row">
+                {/* <div id="show-page-stats-row">
                     stats
-                </div>
+                </div> */}
 
                 <div id='main-user-profile'>
                     <div id="show-page-profile-bar">
@@ -111,6 +127,11 @@ const UserShow = () => {
                 </div>
 
             </div>
+
+            <div id='user-quiz-plays' className='user-profile-tab-links'>
+                
+            </div>
+
             <Footer />
         </div>
     )

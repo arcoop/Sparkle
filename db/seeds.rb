@@ -58,24 +58,34 @@ ApplicationRecord.transaction do
     puts "creating quizzes..."
 
     Quiz.create!(
-      title: Faker::Lorem.question,
-      quiz_type: "classic",
-      description: Faker::Lorem.sentence,
-      quiz_timer: Faker::Number.between(from: 1, to: 10),
-      category_id: 1,
-      author_id: 1
-    ) 
-
-    Quiz.create!(
       title: "What does each letter in SPIREG stand for?",
       quiz_type: "classic",
       description: "Can you name all 6 words in under 1 minute?",
       quiz_timer: 1,
-      category_id: 2,
-      author_id: 2
+      category_id: 6,
+      author_id: 2,
+      max_score: 6
     ) 
 
-    5.times do 
+    Quiz.create!(
+      title: "Can you name every borough of New York City?",
+      quiz_type: "classic",
+      quiz_timer: 1,
+      category_id: 3,
+      author_id: 1,
+      max_score: 5
+    )
+
+    # Quiz.create!(
+    #   title: "Can you name every player piece in Monopoly?",
+    #   quiz_type: "classic",
+    #   quiz_timer: 3,
+    #   category_id: 2,
+    #   author_id: 2
+    # )
+
+
+    3.times do 
       Quiz.create!({
         title: Faker::Lorem.question,
         quiz_type: "classic",
@@ -93,47 +103,58 @@ ApplicationRecord.transaction do
     Question.create!(
       body: "S",
       answer: "self.find_by_credentials",
-      quiz_id: 2,
+      quiz_id: 1,
       question_type: "short answer"
     )
     
     Question.create!(
       body: "P",
       answer: "password=",
-      quiz_id: 2,
+      quiz_id: 1,
       question_type: "short answer"
     )
     Question.create!(
       body: "I",
-      answer: "is password",
-      quiz_id: 2,
+      answer: "is_password",
+      quiz_id: 1,
       question_type: "short answer"
     )
     Question.create!(
       body: "R",
-      answer: "reset session token",
-      quiz_id: 2,
+      answer: "reset_session_token",
+      quiz_id: 1,
       question_type: "short answer"
     )
     Question.create!(
       body: "E",
-      answer: "ensure session token",
-      quiz_id: 2,
+      answer: "ensure_session_token",
+      quiz_id: 1,
       question_type: "short answer"
     )
 
     Question.create!(
       body: "G",
-      answer: "generate secure session token",
-      quiz_id: 2,
+      answer: "generate_secure_session_token",
+      quiz_id: 1,
       question_type: "short answer"
     )
+
+  
+    items = [["1", "Manhattan"], ["2","Brooklyn"], ["3", "Staten Island"], ["4","Queens"], ["5", "Bronx"]]
+    items.each do |item|
+      Question.create!({
+        body: item[0], 
+        answer: item[1],
+        quiz_id: 2,
+        question_type: "short answer"
+      })
+    end
 
     3.times do 
       Question.create!({
         body: Faker::Lorem.question,
         answer: Faker::Lorem.sentence,
-        quiz_id: 1,
+        quiz_id: 5,
         question_type: "true/false"
       })
     end
@@ -142,7 +163,7 @@ ApplicationRecord.transaction do
       Question.create!({
         body: Faker::Lorem.question,
         answer: Faker::Lorem.sentence,
-        quiz_id: 3,
+        quiz_id: 4,
         question_type: "multiple choice"
       })
     end
@@ -150,25 +171,25 @@ ApplicationRecord.transaction do
     p "creating comments..."
     
      Comment.create!(
-      body: "Comment body",
+      body: "Great Quiz!",
       quiz_id: 1,
       commenter_id: 1
      )
 
      Comment.create!(
-      body: "second comment body",
+      body: "Agree, I love this quiz!",
       quiz_id: 1,
-      commenter_id: 1
+      commenter_id: 2
      )
 
      Comment.create!(
-      body: "another comment body",
+      body: "I really enjoyed this but think there should be more time.",
       quiz_id: 2,
       commenter_id: 1
      )
 
      Comment.create!(
-      body: " comment body again",
+      body: "This was the perfect quiz.",
       quiz_id: 2,
       commenter_id: 2
      )

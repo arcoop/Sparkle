@@ -82,7 +82,6 @@ const QuizShow = () => {
                     </div>
                 </div>
                 <div id="right-side">
-                    <p>right side</p>
                 </div>
                 
             </div>

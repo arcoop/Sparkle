@@ -102,3 +102,7 @@
     font-size: .75rem;
     font-weight: 700;
 }
+
+#bottom {
+    height: 30px;
+}

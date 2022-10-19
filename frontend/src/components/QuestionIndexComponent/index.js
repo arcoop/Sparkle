@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchQuestions, getQuestions } from "../../store/questions";
+import { createQuizTake } from "../../store/quizTakes";
 import QuestionTile from "../QuestionTileComponent/index";
 import './QuestionIndex.css'
 
@@ -9,15 +10,40 @@ const QuestionIndex = ({quiz}) => {
     const dispatch = useDispatch()
     const questions = useSelector(getQuestions)
 
+    const sessionUser = useSelector(state => state.session.user)
+
     const {quizId} = useParams()
     const [score, setScore] = useState(0)
+    const [time, setTime] = useState(quiz.time)
     const [inputVal, setInputVal] = useState("")
-    const [revealedAnswer, setRevealedAnswer] = useState("")
-    const [shouldClear, setShouldClear] = useState(false)
+    const [usedAnswers, setUsedAnswers] = useState([])
 
     useEffect(() => {
         dispatch(fetchQuestions(quizId))
     }, [quizId])
+
+    useEffect(() => {
+        console.log(score)
+        console.log(quiz.maxScore)
+        if (score === quiz.maxScore || time === 0) {
+            const quizTake = {takerId: sessionUser.id, quizId: quizId, score: score, time: time }
+            console.log("creating quiz take")
+            dispatch(createQuizTake(quizTake))
+        }
+    }, [score])
+
+    useEffect(() => {
+        questions.forEach(q => {
+            if (Object.values(q)[2].toLowerCase() === inputVal.toLowerCase() && !usedAnswers.includes(Object.values(q)[2])) {
+                setScore(score + 1)
+                setInputVal("")
+                let answer = document.getElementById(Object.values(q)[0])
+                answer.className = "revealed-answer"
+                setUsedAnswers(prev => prev + [Object.values(q)[2]])
+            }
+        })
+    }, [inputVal])
+
 
    
     const playQuiz = (e) => {
@@ -25,12 +51,6 @@ const QuestionIndex = ({quiz}) => {
         let answerBox = document.getElementById("answer-box")
         answerBox.className = "answer-box"
     }
-
-    // handleInputChange = (e) => {
-    //     if (shouldClear) {
-    //         setInputVal("")
-    //     } else setInputVal(e.target.v)
-    // }
 
     return (
         <div id="quiz-questions-index">
@@ -64,20 +84,13 @@ const QuestionIndex = ({quiz}) => {
                         return (
                             <tr className="question-table-row">
                                 <td className="question-table-question">
-                                    <QuestionTile 
-                                        key={question} 
-                                        quizId={quizId} 
-                                        question={question} 
-                                        setScore={setScore}
-                                        inputVal={inputVal}
-                                        setInputVal={setInputVal}
-                                        setRevealedAnswer={setRevealedAnswer}
-                                        setShouldClear={setShouldClear}
-                                    />
+                                    <div id="question-container">
+                                        <p className="question-body">{question.body}</p>
+                                    </div>
                                 </td>
                                 <td>
-                                    <div id="revealed-answer"></div>
-                                    <div className="hidden">{question.answer}</div>
+                                    <div id="empty-div"></div>
+                                    <div id={Object.values(question)[0]} className="revealed-answer-hidden">{question.answer}</div>
                                 </td>
                             </tr>
                         )

@@ -68,6 +68,41 @@ const CommentTile = ({comment}) => {
         dispatch(updateComment({...comment, points: numPoints}))
     }, [numPoints])
 
+    const formatTime = date => {
+     
+        const start = new Date(date)
+      
+        const now = new Date()
+
+        let finalTimeDiff;
+        let elapsedTime = now - start
+        elapsedTime /= 1000
+        if (Math.round(elapsedTime / 3600) >= 1){
+            finalTimeDiff = Math.round(elapsedTime /= 3600)
+        } else {
+            finalTimeDiff = Math.round(elapsedTime / 60)
+        }
+        // if (elapsedTime < 1) {
+        //     elapsedTime /
+        // } 
+
+        let timeText; 
+        if (finalTimeDiff === 1) {
+            timeText = "hour"
+        } else if (finalTimeDiff > 1) {
+            timeText = "hours"
+        } else timeText = "minutes"
+    
+        
+        // const day = fullDate.getDate();
+        // const year = fullDate.getFullYear();
+        return `${finalTimeDiff} ${timeText} ago`
+    }
+
+    // const formatPostTime = () => {
+    //     new Date(comment.updatedAt) 
+    // }
+
     // useEffect(() => {
     //     const closeMenu = () => {
     //         setShowMenu(false)
@@ -144,7 +179,7 @@ const CommentTile = ({comment}) => {
                 <div className="comment-body-section">
                     <div className="comment-top-level-info">
                         <Link className="commenter-username" to={`/users/${userId}`}>{commenterUsername}</Link>
-                        <div className="comment-time">10 minutes ago</div>
+                        <div className="comment-time">{formatTime(comment.updatedAt)}</div>
                     </div>
                     <div className="comment-body">{commentBody}</div>
                     <div className="comment-points">

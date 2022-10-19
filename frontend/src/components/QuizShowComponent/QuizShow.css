@@ -1,6 +1,6 @@
 #quiz-show-page-container {
     margin: auto;
-    width: 90%;
+    width: 70%;
 }
 
 #quiz-show-page {
@@ -115,7 +115,7 @@
 }
 
 #right-side {
-    border: 1px solid green;
+    /* border: 1px solid green; */
     width: 20%;
 }
 
