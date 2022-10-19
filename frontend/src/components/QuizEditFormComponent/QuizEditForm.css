@@ -1,7 +1,12 @@
+#edit-form-container {
+    display: flex;
+    justify-content: center;
+}
+
 #edit-management-form {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
     font-family: 'Roboto', sans-serif;
     /* justify-content: flex-start; */
 }
@@ -12,20 +17,26 @@
     /* justify-content: flex-start; */
 }
 
-.tab-form {
-    background-color: #f1f1f2;
+#quiz-name-heading {
+    font-weight: 700;
+    font-size: 2.75rem;
 }
 
-.form {
+.tab-form {
+    background-color: #f1f1f2;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
     border-top: 1px solid #d8d8d8;
     box-sizing: border-box;
+    width: 600px;
+    height: 450px;
+    /* width: 600px; */
+    /* height: 500px; */
 }
 
-#quiz-edit-tab {
-   width: 600px;
+.form {
+   
 }
 
 #quiz-edit-table {
@@ -33,7 +44,12 @@
 }
 
 #quiz-edit-table-body {
-    padding-left: 50px;
+    /* padding-left: 50px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 100%;
+
 }
 
 .main-inputs {
@@ -46,11 +62,6 @@
     flex-direction: column;
     justify-content: flex-start;
 }
-
-#quiz-name-heading {
-    font-size: large;
-}
-
 
 .tablinks {
     text-transform: uppercase;
@@ -118,26 +129,40 @@
 
 .display-none {
     display: none;
+    width: 600px;
+    height: 500px;
 }
-
-/* tbody {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-} */
 
 table {
     display: flex;
 }
 
-.table-heading {
+.row-heading {
     font-weight: bold;
     font-size: .875rem;
-    padding-left: 50px
+    padding-left: 20px;
+    width: 100px;
+    flex-grow: 1;
+}
+
+.row-info {
+    flex-grow: 5;
+    padding-left: 0;
+    display: flex;
+    justify-content: left;
+    width: 300px;
+}
+
+.table-row {
+    border-bottom: 1px solid #d8d8d8;
+    display: flex;
+    justify-content: space-between;
+    height: 52.53px;
+    align-items: center;
 }
 
 #presentation-tab {
-    width: 500px;
+    /* width: 500px; */
     border-top: 1px solid #d8d8d8;
     padding: 20px 20px 50px;
 }
@@ -145,6 +170,28 @@ table {
 .presentation-tabform {
     display: flex;
     flex-direction: column;
-    margin: 30px;
+    /* margin: 30px; */
 }
 
+.quiz-edit-input {
+    border-radius: 3px;
+    outline: 1px solid black;
+    border: none;
+}
+
+#quiz-icon-div {
+    display: flex;
+    flex-direction: column;
+}
+
+#quiz-icon-label {
+    font-size: 9pt;
+    padding-bottom: 6px;
+}
+
+.upload-image-button {
+    font-size: 9pt;
+    background-color: white;
+    width: 180px;
+    margin-bottom: 15px;
+}

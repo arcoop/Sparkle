@@ -127,171 +127,167 @@ const QuizEditForm = () => {
     const [presentationButton, setPresentationButton] = useState("tablinks")
 
     return (
-        <div id='edit-management-form'> 
-            <h1 id='quiz-name-heading'>{quiz.title}</h1>
-            <div className='tab'>
-                <button onClick={() => handleClick('presentation')} id='quiz-edit-tab-button' className={editButton}>Quiz Edit</button>
-                <button onClick={() => handleClick('quiz-edit')} id="presentation-tab-button" className={presentationButton}>Presentation</button>
-            </div>
 
-            <div id='quiz-edit-tab' className={editTabClassName}>
-                <form className='form' onSubmit={handleSubmit}>
-
-                    <div className='main-inputs'>
-                       
-                        <table id='quiz-edit-table'>
-                            <tbody id='quiz-edit-table-body'> 
-                                <tr>
-                                    <td className="table-heading">Quiz Type</td>
-                                    <td>
-                                        <select name="dropdown" id='type-select-options' onChange={e => setQuizType(e.target.value)}>
-                                            {quizTypes.map(type => {
-                                                return (
-                                                    <option key={type} value={type}>{type}</option>
-                                                )
-                                            })}
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr><td className="table-heading">Quiz Name</td>
+        <div id='edit-form-container'>
+            <div id='edit-management-form'>
+                <h1 id='quiz-name-heading'>{quiz.title}</h1>
+                <div className='tab'>
+                    <button onClick={() => handleClick('presentation')} id='quiz-edit-tab-button' className={editButton}>Quiz Edit</button>
+                    <button onClick={() => handleClick('quiz-edit')} id="presentation-tab-button" className={presentationButton}>Presentation</button>
+                </div>
+                <div id='quiz-edit-tab' className={editTabClassName}>
+                    <form className='form' onSubmit={handleSubmit}>
+                        <div className='main-inputs'>
+            
+                            <table id='quiz-edit-table'>
+                                <tbody id='quiz-edit-table-body'>
+                                    <tr className='table-row'>
+                                        <td className="row-heading">Quiz Type</td>
+                                        <td className='row-info'>
+                                            <select className='quiz-edit-input' name="dropdown" id='type-select-options' onChange={e => setQuizType(e.target.value)}>
+                                                {quizTypes.map(type => {
+                                                    return (
+                                                        <option key={type} value={type}>{type}</option>
+                                                    )
+                                                })}
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr className='table-row'><td className="row-heading">Quiz Name</td>
+                                        <td className='row-info'>
+                                            <input type="text"
+                                            className='quiz-edit-input'
+                                            value={quizName}
+                                            onChange={e => setQuizName(e.target.value)}
+                                            />
+                                        </td>
+                                    </tr>
+                                    <tr className='table-row'> 
+                                        <td className='row-heading'>Description</td>
+                                        <td className='row-info'>
+                                            <input type="text"
+                                            // className='quiz-edit-input'
+                                            id='desription-input'
+                                            value={description}
+                                            onChange={e => setDescription(e.target.value)}
+                                            />
+                                        </td>
+                                    </tr>
+                                    {/* <tr className='table-row'> <td className='table-heading'>Permalink</td>
+                                        <td>
+                                            <input type="text"
+                                            value={permalink}
+                                            onChange={e => setPermalink(e.target.value)}
+                                            />
+                                        </td>
+                                    </tr> */}
+                                    <tr className='table-row'> <td className="row-heading">Quiz Timer</td>
+                                        <td className='row-info'>
+                                            <select className='quiz-edit-input' name="dropdown" id="timer-select-options" onChange={e => setTimer(e.target.value)}>
+                                                {times.map(time => {
+                                                    return (
+                                                        <option key={time} value={time}>{`${time}:00`}</option>
+                                                    )
+                                                })}
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    {/* <tr className='table-row'> <td className="table-heading">Answer type</td>
+                                        <td>
+                                            <input type="text"
+                                            value={answerType}
+                                            onChange={e => setAnswerType(e.target.value)}
+                                            />
+                                        </td>
+                                    </tr> */}
+                                    {/* <tr className='table-row'> <td className="table-heading">Hint Heading</td>
                                     <td>
                                         <input type="text"
-                                        value={quizName}
-                                        onChange={e => setQuizName(e.target.value)}
-                                        />
+                                            value={hintHeading}
+                                            onChange={e => setHintHeading(e.target.value)}
+                                            />
                                     </td>
-                                </tr>
-                                <tr> <td className='table-heading'>Description</td>
+                                    </tr> */}
+                                    {/* <tr className='table-row'> <td className="table-heading">Answer Heading</td>
                                     <td>
                                         <input type="text"
-                                        value={description}
-                                        onChange={e => setDescription(e.target.value)}
-                                        />
+                                            value={answerHeading}
+                                            onChange={e => setAnswerHeading(e.target.value)}
+                                            />
                                     </td>
-                                </tr>
-                                <tr> <td className='table-heading'>Permalink</td>
-                                    <td>
-                                        <input type="text"
-                                        value={permalink}
-                                        onChange={e => setPermalink(e.target.value)}
-                                        />
-                                    </td>
-                                </tr>
-                                <tr> <td className="table-heading">Quiz Timer</td>
-                                    <td>
-                                        <select name="dropdown" id="timer-select-options" onChange={e => setTimer(e.target.value)}>
-                                            {times.map(time => {
-                                                return (
-                                                    <option key={time} value={time}>{`${time}:00`}</option>
-                                                )
-                                            })}
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr> <td className="table-heading">Answer type</td>
-                                    <td>
-                                        <input type="text"
-                                        value={answerType}
-                                        onChange={e => setAnswerType(e.target.value)}
-                                        />
-                                    </td>
-                                </tr>
-                                <tr> <td className="table-heading">Hint Heading</td>
-                                <td>
-                                    <input type="text"
-                                        value={hintHeading}
-                                        onChange={e => setHintHeading(e.target.value)}
-                                        />
-                                </td>
-                                </tr>
-                                <tr> <td className="table-heading">Answer Heading</td>
-                                <td>
-                                    <input type="text"
-                                        value={answerHeading}
-                                        onChange={e => setAnswerHeading(e.target.value)}
-                                        />
-                                </td>
-                                </tr>
-                                <tr> <td className="table-heading">Extra Heading</td>
-                                <td>
-                                    <input type="text"
-                                        value={extraHeading}
-                                        onChange={e => setExtraHeading(e.target.value)}
-                                        />
-                                </td>
-                                </tr>
-                                <tr> <td className="table-heading">Category</td>
-                                    <td>
-                                        <select name="dropdown" id="category-select-options" onChange={e => setCategory(e.target.value)}>
-                                            {categories.map(cat => {
-                                                return (
-                                                    <option key={cat} value={cat}>{cat[1]}</option>
-                                                )
-                                            })}
-                                        </select>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <div className='save'>
-                            <button className='submit-button' id='save-changes' type='submit'>Save Changes</button>
-                            <p id='save-text'>You must click 'Save Changes' to save your changes</p>
+                                    </tr> */}
+                                    {/* <tr className='table-row'> 
+                                        <td className="row-heading">Extra Heading</td>
+                                        <td className='row-info'>
+                                            <input type="text"
+                                                value={extraHeading}
+                                                onChange={e => setExtraHeading(e.target.value)}
+                                                />
+                                            </td>
+                                    </tr> */}
+                                    <tr className='table-row'> <td className="row-heading">Category</td>
+                                        <td className='row-info'>
+                                            <select className='quiz-edit-input' name="dropdown" id="category-select-options" onChange={e => setCategory(e.target.value)}>
+                                                {categories.map(cat => {
+                                                    return (
+                                                        <option  key={cat} value={cat}>{cat[1]}</option>
+                                                    )
+                                                })}
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div className='save'>
+                                <button className='submit-button' id='save-changes' type='submit'>Save Changes</button>
+                                <p id='save-text'>You must click 'Save Changes' to save your changes</p>
+                            </div>
                         </div>
-
-                    </div>
-
-                    {/* <div className='extras'>
-                        <table>
-                            <tbody>
-                                <tr> <td>Source URL (optional)</td>
-                                    <td>
-                                        <input type="text"
-                                        value={sourceURL}
-                                        onChange={e => setSourceURL(e.target.value)}
-                                        />
-                                    </td>
-                                </tr>
-                                <tr> <td>Cross Link URL</td>
-                                    <td>
-                                        <input type="text"
-                                        value={crossLinkURL}
-                                        onChange={e => setCossLinkURL(e.target.value)}
-                                        />
-                                    </td>
-                                </tr>
-                                <tr> <td>More info</td>
-                                    <td>
-                                        <input type="textarea"
-                                        value={moreInfo}
-                                        onChange={e => setMoreInfo(e.target.value)}
-                                        />
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-
-                    </div> */}
-
-                  
-                </form>
-                
-
-                
+                        {/* <div className='extras'>
+                            <table>
+                                <tbody>
+                                    <tr> <td>Source URL (optional)</td>
+                                        <td>
+                                            <input type="text"
+                                            value={sourceURL}
+                                            onChange={e => setSourceURL(e.target.value)}
+                                            />
+                                        </td>
+                                    </tr>
+                                    <tr> <td>Cross Link URL</td>
+                                        <td>
+                                            <input type="text"
+                                            value={crossLinkURL}
+                                            onChange={e => setCossLinkURL(e.target.value)}
+                                            />
+                                        </td>
+                                    </tr>
+                                    <tr> <td>More info</td>
+                                        <td>
+                                            <input type="textarea"
+                                            value={moreInfo}
+                                            onChange={e => setMoreInfo(e.target.value)}
+                                            />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div> */}
+            
+                    </form>
+            
+                </div>
+                <div id='presentation-tab' className={presentationTabClassName}>
+                    <form className='presentation-tab-form' onSubmit={handleSubmit}>
+                        <label id='quiz-icon-div' className='input-label'>
+                            <p id='quiz-icon-label'>Quiz Icon</p>
+                            <input className='upload-image-button' type="file" onChange={handleFile}/>
+                        </label>
+                        {preview}
+                        <button className="submit-button" id='save-changes' type='submit'>Save Changes</button>
+                    </form>
+                </div>
             </div>
-
-            <div id='presentation-tab' className={presentationTabClassName}>
-                <form className='presentation-tab-form' onSubmit={handleSubmit}>
-                    <label className='input-label'>Quiz Icon
-                        <input type="file" onChange={handleFile}/>
-                    </label>
-                    {preview}
-                    <button className="submit-button" id='save-changes' type='submit'>Save Changes</button>
-                </form>
-            </div>
-
-
         </div>
     )
 }
