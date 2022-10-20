@@ -16,9 +16,9 @@ const QuizTile = ({quiz}) => {
 
     let category = useSelector(state => state.categories[categoryId])
 
-    // const user = useSelector(getUser(quiz.authorId)) || {username: "Loading"}
+    const user = useSelector(getUser(quiz.authorId)) || {username: "Loading"}
 
-    const user = quiz.author
+    // const user = quiz.author
 
     const image = quiz.iconUrl ? <img src={quiz.iconUrl} alt="" /> : <></>
 
