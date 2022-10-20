@@ -16,7 +16,7 @@ const QuizShow = () => {
     const dispatch = useDispatch();
     const {quizId} = useParams();
     
-    let quiz = useSelector(getQuiz(quizId)) || {title: "", categoryId: 1};
+    let quiz = useSelector(state => state.quizzes[quizId]) || {title: "", categoryId: 1};
     
     const image = quiz.iconUrl ? <img className="quiz-icon" src={quiz.iconUrl} alt="" /> : <></>
     
@@ -41,7 +41,7 @@ const QuizShow = () => {
     let comments = numComments === 1? "comment" : "comments"
     
     //let user = useSelector(() => getUser(quiz.authorId)) || {username:"", email:"", id: null}
-    let user = useSelector(state => state.users[quiz.authorId]) || {username:"", email:"", id: null}
+    let user = useSelector(state => state.users[quiz.authorId]) || {username:"", email:""}
     // console.log(user)
 
     return (

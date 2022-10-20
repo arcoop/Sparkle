@@ -15,13 +15,9 @@ const QuizIndex = () => {
     }, [])
 
     const quizzes = useSelector(getQuizzes)
-    console.log(quizzes.length)
-    
-    let sortedQuizzes = quizzes.slice()
+    console.log(quizzes)
 
-    let subsection1;
-    let subsection2;
-    let subsection3;
+    const sessionUser = state => state.session.user
 
     // const sortQuizzesByDate = () => {
     //     let sorted = false
@@ -39,6 +35,14 @@ const QuizIndex = () => {
     //     console.log(sortedQuizzes)
     //     return sortedQuizzes;
     // }
+
+    let topDivText;
+
+    if (sessionUser) {
+        topDivText = `hello ${sessionUser}`
+    } else {
+        topDivText = ""
+    }
     
     return (
         <div id='index-page'>

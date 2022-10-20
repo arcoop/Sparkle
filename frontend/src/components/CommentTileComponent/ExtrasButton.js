@@ -10,8 +10,7 @@ const ExtrasButton = ({stateChanger, comment}) => {
         if (!showMenu) setShowMenu(true)
     }
 
-    const sessionUser = useSelector(state => state.session.user)
-
+    const sessionUser = useSelector(state => state.session.user) || {}
 
     const signedInMenu = (
         <ul className="comment-menu">

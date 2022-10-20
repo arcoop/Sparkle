@@ -4,19 +4,16 @@ import { useHistory } from "react-router-dom";
 import { deleteQuiz } from "../../store/quizzes";
 
 const ExtrasButton = ({author, quiz}) => {
-    console.log(author)
     const [showMenu, setShowMenu] = useState(false)
     const history = useHistory()
 
     const dispatch = useDispatch();
 
-
     const openMenu = () => {
         if (!showMenu) setShowMenu(true)
     }
 
-    const sessionUser = useSelector(state => state.session.user) || {}
-
+    const sessionUser = useSelector(state => state.session.user ) || {} 
 
     const handleEditClick = () => {
         history.push(`/create/edit/${quiz.id}`)
