@@ -57,7 +57,6 @@ const Header = () => {
                 </div>
             </div>
 
-            <div id="bottom"></div>
         </div>
     )
 

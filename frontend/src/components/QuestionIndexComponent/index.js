@@ -10,7 +10,7 @@ const QuestionIndex = ({quiz}) => {
     const dispatch = useDispatch()
     const questions = useSelector(getQuestions)
 
-    const sessionUser = useSelector(state => state.session.user)
+    const sessionUser = useSelector(state => state.session.user) || {}
 
     const {quizId} = useParams()
     const [score, setScore] = useState(0)
@@ -26,7 +26,7 @@ const QuestionIndex = ({quiz}) => {
         console.log(score)
         console.log(quiz.maxScore)
         if (score === quiz.maxScore || time === 0) {
-            const quizTake = {takerId: sessionUser.id, quizId: quizId, score: score, time: time }
+            const quizTake = {takerId: sessionUser ? sessionUser.id : null, quizId: quizId, score: score, time: time }
             console.log("creating quiz take")
             dispatch(createQuizTake(quizTake))
         }

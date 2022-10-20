@@ -1,10 +1,32 @@
+#top-of-page {
+    background-color: #f1f1f2;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
 #index-header {
-    border: 1px solid green;
+    display: flex;
+    justify-content: center;
+    font-weight: 700;
+    margin-top: 30px;
+}
+
+#home-page-user-link {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+#index-center-content {
+    display: flex;
+    justify-content: center;
 }
 
 #index-content-container {
     display: flex;
     justify-content: center;
+    flex-direction: column;
 }
 
 #quizzes-list {

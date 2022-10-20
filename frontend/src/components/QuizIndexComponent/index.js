@@ -14,10 +14,9 @@ const QuizIndex = () => {
         document.title = "Sparkle!"
     }, [])
 
-    const quizzes = useSelector(getQuizzes)
-    console.log(quizzes)
+    const quizzes = useSelector(getQuizzes) || []
 
-    const sessionUser = state => state.session.user
+    const sessionUser = useSelector(state => state.session.user) || {}
 
     // const sortQuizzesByDate = () => {
     //     let sorted = false
@@ -39,16 +38,18 @@ const QuizIndex = () => {
     let topDivText;
 
     if (sessionUser) {
-        topDivText = `hello ${sessionUser}`
+        topDivText = <div>Welcome, <Link id="home-page-user-link" to={`/users/${sessionUser.id}`}>{sessionUser.username}</Link>!</div>
     } else {
         topDivText = ""
     }
     
     return (
         <div id='index-page'>
+            <div id="top-of-page">
+                {topDivText}
+            </div>
             <div id='index-header'>
-                <h1>Quizzes by Day</h1>
-                <h3>The latest quizzes published by Sparkle</h3>
+                <h1>All Quizzes</h1>
             </div>
             <div id="index-content-container">
                 <div id='index-center-content'>

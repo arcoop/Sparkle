@@ -11,6 +11,7 @@ class Api::QuizTakesController < ApplicationController
         if @quiz_take.save
             render '/api/quiz_takes/show'
         else
+            p @quiz_take.errors.full_messages
             render json: {errors: @quiz_take.errors.full_messages}, status: :unprocessable_entity
         end
     end
