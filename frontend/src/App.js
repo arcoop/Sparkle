@@ -10,6 +10,7 @@ import UserShow from './components/UserShowComponent';
 import Footer from './components/Navigation/Footer';
 import QuizByCategory from './components/QuizByCategoryIndexComponent';
 import CategoriesIndex from './components/CategoryIndexComponent';
+import {CategoryIndexPage} from './components/CategoryIndexComponent'
 
 function App() {
   return (
@@ -49,7 +50,7 @@ function App() {
 
         <Route exact path='/categories'>
           <Navigation />
-          <CategoriesIndex />
+          <CategoryIndexPage />
         </Route>
 
         <Route exact path="/categories/:categoryId/">

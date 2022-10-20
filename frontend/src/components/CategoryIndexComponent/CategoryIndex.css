@@ -9,9 +9,15 @@
 
 #category-index {
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
 }
 
 .category-item {
     margin: 2px;
+}
+
+.cat-index-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

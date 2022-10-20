@@ -17,8 +17,14 @@ const CategoriesIndex = () => {
         })
 
     )
+}
 
-
+export const CategoryIndexPage = () => {
+    return (
+        <div className='cat-index-container'>
+            <CategoriesIndex />
+        </div>
+    )
 }
 
 export default CategoriesIndex;

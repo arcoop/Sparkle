@@ -91,22 +91,22 @@ const UserShow = () => {
         return `${finalTimeDiff} ${timeText} ago`
     }
 
-    const [playsTabClass, setPlaysTabClass] = useState("user-profile-tab-links")
+    const [playsTabClass, setPlaysTabClass] = useState("user-profile-tab")
     const [quizzesTabClass, setQuizzesTabClass] = useState("hide")
     const [playsButton, setPlaysButton] = useState("button-active")
     const [quizzesButton, setQuizzesButton] = useState("user-profile-tab-button")
 
     const handleClick = (tab) => {
        if (tab === "plays") {
-        setPlaysTabClass("hide")
-        setQuizzesTabClass('user-profile-tab-links')
-        setQuizzesButton("button-active")
-        setPlaysButton("user-profile-tab-button")
-       } else if (tab === "quizzes") {
-        setQuizzesTabClass("hide")
-        setPlaysTabClass("user-profile-tab-links")
-        setPlaysButton("button-active")
+        setPlaysTabClass("user-profile-tab")
+        setQuizzesTabClass('hidden')
         setQuizzesButton("user-profile-tab-button")
+        setPlaysButton("button-active")
+       } else if (tab === "quizzes") {
+        setQuizzesTabClass("user-profile-tab")
+        setPlaysTabClass("hidden")
+        setPlaysButton("user-profile-tab-button")
+        setQuizzesButton("button-active")
        }
     }
 
@@ -122,10 +122,10 @@ const UserShow = () => {
     const ShowQuizzesAuthored = () => {
         if (user.quizzesAuthored) {
             return (
-                <ul>
+                <ul className='quizzes-created-list'>
                     {user.quizzesAuthored.map(quiz => {
                         return (
-                            <li>{quiz.title}</li>
+                            <li className='quizzes-created-link'><Link to={`/quizzes/${quiz.id}`}>{quiz.title}</Link></li>
                         )
                     })}
                 </ul>
@@ -157,55 +157,49 @@ const UserShow = () => {
                 </div>
             </div>
 
-            <div id='users-show-page-bottom-section'>
-                {/* <div id="show-page-stats-row">
-                    stats
-                </div> */}
 
-                <div id='main-user-profile'>
+            <div id='main-user-profile'>
+                <div  id='profile-bar-container'>
                     <div id="show-page-profile-bar">
                         <div id='profile-header'>Profile</div>
                         <div className='user-prof-tab'>
-                            <button id='user-plays-tab-button' className={playsButton} onClick={() => handleClick('quizzes')}>Plays</button>
-                            <button id='user-quizzes-tab-button'className={quizzesButton} onClick={() => handleClick('plays')}>Quizzes</button>
+                            <button id='user-plays-tab-button' className={playsButton} onClick={() => handleClick('plays')}>Plays</button>
+                            <button id='user-quizzes-tab-button'className={quizzesButton} onClick={() => handleClick('quizzes')}>Quizzes</button>
                         </div>
-
-                    </div>
-
-                    <div id="show-page-middle">
-                        middle section
-                    </div>
-
-                    <div id="show-page-right-bar" >
-                        right bar
                     </div>
                 </div>
 
-            </div>
-
-            <div id='user-quiz-plays' className={playsTabClass}>
-                <ul> 
-                    {quizTakes.map(take => {
-                        if (quizzes[take.quizId -1]) {
-                            return (
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td>{quizzes[take.quizId -1].title}</td>
-                                            <td>{formatTime(take.createdAt)}</td>
-                                            <td>{take.score}</td>
+                <div id='user-quiz-plays' className={playsTabClass}>
+                    <table className='quiz-takes-table'> 
+                        <tbody className='quiz-takes-table-body'>
+                            <tr className='quiz-takes-heading-row'>
+                                <th className='quiz-takes-heading'>Quiz</th>
+                                <th className='quiz-takes-heading'>Time Taken</th>
+                                <th className='quiz-takes-heading'>Score</th>
+                            </tr>
+                            {quizTakes.map(take => {
+                                if (quizzes[take.quizId -1]) {
+                                    return (
+                                        <tr className='quiz-takes-row'>
+                                            <td className='quiz-takes-data'>{quizzes[take.quizId -1].title}</td>
+                                            <td className='quiz-takes-data'>{formatTime(take.createdAt)}</td>
+                                            <td className='quiz-takes-data'>{take.score}</td>
                                         </tr>
-                                    </tbody>
-                                </table>
-                            )
-                        }
-                    })}
-                </ul>
+                                    )
+                                }
+                            })}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id='user-quizzes-created' className={quizzesTabClass}>
+                    <h2 className='tab-heading'>Quizzes Created</h2>
+                    <ShowQuizzesAuthored />
+                </div>
             </div>
 
-            <div id='user-quizzes-created' className={quizzesTabClass}>
-                <ShowQuizzesAuthored />
-            </div>
+           
+           
 
             {/* <Footer /> */}
         </div>

@@ -1,12 +1,38 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, Redirect, useHistory } from "react-router-dom"
 import { fetchQuizzes, getQuizzes } from "../../store/quizzes"
 import './Header.css'
+import CategoriesIndex from "../CategoryIndexComponent"
+
 
 const Header = () => {
     const dispatch = useDispatch();
     const history = useHistory()
+    const [showMenu, setShowMenu] = useState(false)
+    
+    const openMenu = () => {
+        if (!showMenu) setShowMenu(true)
+    }
+
+    const menu = (
+        showMenu ? <div className="categories-menu"><h2 className="categories-menu-heading">All Categories</h2><CategoriesIndex /> </div> : <></>
+    )
+
+    useEffect(() => {
+        const closeMenu = () => {
+            setShowMenu(false)
+        }
+
+        if (showMenu) {
+            document.addEventListener("click", closeMenu)
+        }
+
+        return () => {
+            document.removeEventListener("click", closeMenu)
+        }
+    }, [showMenu])
+       
 
     
     useEffect(() => {
@@ -30,9 +56,10 @@ const Header = () => {
             <div id="main-div">
                 <div id="left-nav">
                     <div id="extras">
-                        <button id="headers-extras-button">
+                        <button onClick={openMenu} id="headers-extras-button">
                             <i className="fa-solid fa-bars"></i>
                         </button>
+                        {menu}
                     </div>
                     <Link id="nav-home-link" to="/">
                         <div className="icon">
@@ -54,6 +81,7 @@ const Header = () => {
                     <button id="search-button">
                         <i className="fa-solid fa-magnifying-glass"></i>
                     </button>
+                    
                 </div>
             </div>
 
