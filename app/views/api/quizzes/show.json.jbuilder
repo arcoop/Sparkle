@@ -1,4 +1,6 @@
 json.set! @quiz.id do
     json.partial! 'quiz', quiz: @quiz
-    json.icon @quiz.icon.url
+    p "icon"
+    p @quiz.icon.url
+    json.iconUrl @quiz.icon.url
 end

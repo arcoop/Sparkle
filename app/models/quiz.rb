@@ -30,5 +30,11 @@ class Quiz < ApplicationRecord
     has_many :takers, through: :takes, source: :taker, dependent: :destroy
 
     has_one_attached :icon
+
+    # def ensure_photo
+    #     unless self.photo.attached?
+    #         errors.add(:photo, "must be attached")
+    #     end
+    # end
     
 end

@@ -15,6 +15,8 @@ const QuizShow = () => {
     const {quizId} = useParams();
 
     let quiz = useSelector(getQuiz(quizId)) || {title: "", categoryId: 1};
+    
+    console.log(quiz.iconUrl)
 
     const categoryId = quiz ? quiz.categoryId : 1
 
@@ -40,6 +42,7 @@ const QuizShow = () => {
                         <p className="quiz-category">{category.name}</p>
                     </div>
                     <div id="top-level-info">
+                        <img src={quiz.iconUrl} alt="" />
                         <h1 className="quiz-title">{quiz.title}</h1>
                         <h2 className="quiz-description">{quiz.description}</h2>
                     </div>

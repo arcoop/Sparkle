@@ -18,6 +18,7 @@ const QuizTile = ({quiz}) => {
 
     return (
         <div>
+            <div>Image: {quiz.icon}</div>
             <div>Title: {quiz.title}</div>
             <div>Author: {user.username}</div>
             <div>Description: {quiz.description}</div>

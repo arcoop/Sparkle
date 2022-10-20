@@ -20,22 +20,27 @@ const Navigation = () => {
                     <i className="fa-solid fa-house-chimney" id="home-button"></i> 
                     <p>quizzes</p>
                 </Link>
-                <Link to="/">
-                    <p>events</p>
-                </Link>
-                <div className="line-break" id="nav-line-break"></div>
                 <Link className="navLinks" to={'/create'} id="quiz-create-link">
                         <p id="quiz-creation">quiz creation</p>
                 </Link>
-                <Link to="/">
-                    <p>community</p>
-                </Link>
-                <Link to="/">
-                    <p>videos</p>
-                </Link>
-                <Link to="/">
+                
+                <div className="line-break" id="nav-line-break"></div>
+
+                <a className="navLinks" href="mailto:cooperadina@gmail.com?subject='Love your work!'&body='Really enjoyed looking at your work. Would love to set up a time to talk.'">
+                    <i id="email-icon" className="fa-regular fa-envelope"></i>
+                    <p>Email me!</p>
+                </a>
+                
+                <a className="navLinks" href="https://www.linkedin.com/in/adina-cooper/">
+                    <i id='LinkedIn' className="fa-brands fa-linkedin"></i>
+                    {/* <p>LinkedIn</p> */}
+                </a>
+                <a className="navLinks" href="https://github.com/arcoop">
+                    <i id="github-link" class="fa-brands fa-github"></i>
+                </a>
+                {/* <Link to="/">
                     <p>sparklecon</p>
-                </Link>
+                </Link> */}
             </div>
         </div>
     )
