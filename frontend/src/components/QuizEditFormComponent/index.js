@@ -26,7 +26,6 @@ const QuizEditForm = () => {
     const [quizType, setQuizType] = useState(quiz.quizType)
     const quizTypes = ["Classic", "Clickable", "Grid", "Map", "Picture Box", "Picture Click", "Slideshow"]
     const [description, setDescription] = useState(`Can you name the ${quizName}?`)
-    const [permalink, setPermalink] = useState(quizName)
     const [timer, setTimer] = useState("10:00")
     const times = []
     for (let i = 10; i < 26; i++) {
@@ -249,7 +248,7 @@ const QuizEditForm = () => {
                                             <select className='quiz-edit-input' name="dropdown" id="category-select-options" onChange={e => setCategory(e.target.value)}>
                                                 {categories.map(cat => {
                                                     return (
-                                                        <option key={cat} value={cat}>{cat[1]}</option>
+                                                        <option key={cat} value={cat} selected={quiz.categoryId === cat[0]}>{cat[1]}</option>
                                                     )
                                                 })}
                                             </select>

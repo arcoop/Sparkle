@@ -15,8 +15,13 @@ const QuizIndex = () => {
     }, [])
 
     const quizzes = useSelector(getQuizzes)
+    console.log(quizzes.length)
     
     let sortedQuizzes = quizzes.slice()
+
+    let subsection1;
+    let subsection2;
+    let subsection3;
 
     // const sortQuizzesByDate = () => {
     //     let sorted = false
@@ -36,26 +41,26 @@ const QuizIndex = () => {
     // }
     
     return (
-        <div id="index-page">
+        <div id='index-page'>
             <div id='index-header'>
                 <h1>Quizzes by Day</h1>
                 <h3>The latest quizzes published by Sparkle</h3>
             </div>
-
-            <div id='quizzes-by-category'></div>
-
-            <div id='quizzes-list'>
-                {quizzes.map(quiz => {
-                    return (
-                        <Link to={`/quizzes/${quiz.id}`}>
-                            <QuizTile quiz={quiz}/>
-                        </Link>
-                    )
-                })}
-
+            <div id="index-content-container">
+                <div id='index-center-content'>
+                    {/* <div id='quizzes-by-category'></div> */}
+                    <ul id='quizzes-list'>
+                        {quizzes.map(quiz => {
+                            return (
+                                <li key={quiz.id} className='quiz-index-list-item'>
+                                    <QuizTile quiz={quiz}/>
+                                </li>
+                            )
+                        })}
+                    </ul>
+                </div>
             </div>
-            <Footer />
-       </div>
+        </div>
     )
 }
 

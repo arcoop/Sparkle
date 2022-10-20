@@ -9,9 +9,7 @@ class Api::QuizzesController < ApplicationController
     end
 
     def quizzes_by_category 
-
         @quizzes = Quiz.where(category_id: params[:category_id])
-        p @quizzes
 
         render 'api/quizzes/quizzes_by_category'
     end
@@ -32,10 +30,7 @@ class Api::QuizzesController < ApplicationController
     end
 
     def update
-        p "in quiz update"
         if @quiz.update(quiz_params)
-            p "quiz parama"
-            p quiz_params
             render 'api/quizzes/show'
         else
             p @quiz.errors.full_messages

@@ -17,6 +17,7 @@ function App() {
       <Switch>
         <Route exact path={"/"}>
           <Navigation />
+          <QuizIndex />
         </Route>
         <Route exact path={"/quizzes"}>
           <Navigation/>
