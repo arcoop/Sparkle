@@ -17,7 +17,7 @@ const QuizTile = ({quiz}) => {
     const user = useSelector(getUser(quiz.authorId)) || {username: "Loading"}
 
     return (
-        <div>QUIZ TILE
+        <div>
             <div>Title: {quiz.title}</div>
             <div>Author: {user.username}</div>
             <div>Description: {quiz.description}</div>

@@ -1,8 +1,10 @@
 import './QuizEditForm.css'
-import { useParams } from 'react-router-dom'
+import { Redirect, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchQuiz, getQuiz, setQuiz, updateQuiz } from '../../store/quizzes'
 import { useEffect, useRef, useState } from 'react'
+import QuestionsForm from '../QuestionsFormComponent'
+import { Link } from 'react-router-dom'
 
 const QuizEditForm = () => {
     const {quizId} = useParams()
@@ -36,6 +38,7 @@ const QuizEditForm = () => {
     const [answerHeading, setAnswerHeading] = useState("Answer")
     const [extraHeading, setExtraHeading] = useState("")
     const [category, setCategory] = useState("no category chosen")
+    const [redirect, setRedirect] = useState(false)
     
     const categories = [
         [0,"no category chosen"],
@@ -99,6 +102,9 @@ const QuizEditForm = () => {
                         setErrors(data.errors)
                     }
                 })
+                .then(async data => {
+                    setRedirect(true)
+                })
         }
 
     }
@@ -106,16 +112,27 @@ const QuizEditForm = () => {
     const preview = quizIconUrl ? <img id='quiz-icon-preview' src={quizIconUrl} alt=""/> : <div id='quiz-icon-preview'></div>;
 
     const handleClick = (tab) => {
-        if (tab === "presentation") {
+        if (tab === "quiz-edit") {
             setPresentationTabClassName("display-none")
+            setQuestionsTabClassName("display-none")
             setEditTabClassName('tab-form')
             setEditButton("active")
             setPresentationButton("tablinks")
-        } else if (tab === 'quiz-edit') {
+            setQuestionsButton("tablinks")
+        } else if (tab === 'presentation') {
             setEditTabClassName("display-none")
+            setQuestionsTabClassName("display-none")
             setPresentationTabClassName('tab-form')
             setPresentationButton("active")
             setEditButton("tablinks")
+            setQuestionsButton("tablinks")
+        } else if (tab === "questions") {
+            setQuestionsTabClassName("tab-form")
+            setPresentationTabClassName("display-none")
+            setEditTabClassName("display-none")
+            setPresentationButton("tablinks")
+            setEditButton("tablinks")
+            setQuestionsButton("active")
         }
     }
 
@@ -123,15 +140,28 @@ const QuizEditForm = () => {
     const [presentationTabClassName, setPresentationTabClassName] = useState('display-none')
     const [editButton, setEditButton] = useState("active")
     const [presentationButton, setPresentationButton] = useState("tablinks")
+    const [questionsTabClassName, setQuestionsTabClassName] = useState('display-none')
+    const [questionsButton, setQuestionsButton] = useState('tablinks')
+
+    if (redirect) return <Redirect to={`/quizzes/${quizId}`} />
 
     return (
 
         <div id='edit-form-container'>
             <div id='edit-management-form'>
-                <h1 id='quiz-name-heading'>{quiz.title}</h1>
+
+                <div id='quiz-edit-top-level-info'>
+                    <h1 id='quiz-name-heading'>{quiz.title}</h1>
+                    <div id='view-quiz-text'>Quiz Link:
+                        <Link id='view-quiz-link' to={`/quizzes/${quizId}`}>
+                            <button id='view-quiz-button'>View Quiz</button>
+                        </Link>
+                    </div>
+                </div>
                 <div className='tab'>
-                    <button onClick={() => handleClick('presentation')} id='quiz-edit-tab-button' className={editButton}>Quiz Edit</button>
-                    <button onClick={() => handleClick('quiz-edit')} id="presentation-tab-button" className={presentationButton}>Presentation</button>
+                    <button onClick={() => handleClick('quiz-edit')} id='quiz-edit-tab-button' className={editButton}>Quiz Edit</button>
+                    <button onClick={() => handleClick('presentation')} id="presentation-tab-button" className={presentationButton}>Presentation</button>
+                    <button onClick={() => handleClick('questions')} id="presentation-tab-button" className={questionsButton}>Questions</button>
                 </div>
                 <div id='quiz-edit-tab' className={editTabClassName}>
                     <form className='form' onSubmit={handleSubmit}>
@@ -164,21 +194,13 @@ const QuizEditForm = () => {
                                         <td className='row-heading'>Description</td>
                                         <td className='row-info'>
                                             <input type="text"
-                                            // className='quiz-edit-input'
                                             id='desription-input'
                                             value={description}
                                             onChange={e => setDescription(e.target.value)}
                                             />
                                         </td>
                                     </tr>
-                                    {/* <tr className='table-row'> <td className='table-heading'>Permalink</td>
-                                        <td>
-                                            <input type="text"
-                                            value={permalink}
-                                            onChange={e => setPermalink(e.target.value)}
-                                            />
-                                        </td>
-                                    </tr> */}
+
                                     <tr className='table-row'> <td className="row-heading">Quiz Timer</td>
                                         <td className='row-info'>
                                             <select className='quiz-edit-input' name="dropdown" id="timer-select-options" onChange={e => setTimer(e.target.value)}>
@@ -286,6 +308,12 @@ const QuizEditForm = () => {
                             <button className="submit-button" id='save-changes' type='submit'>Save Changes</button>
                         </div>
                     </form>
+                </div>
+
+                <div id='questions-tab' className={questionsTabClassName}>
+                    <div className='questions-form'>
+                        <QuestionsForm />
+                    </div>
                 </div>
             </div>
         </div>

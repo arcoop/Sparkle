@@ -9,6 +9,7 @@ import QuizShow from './components/QuizShowComponent';
 import UserShow from './components/UserShowComponent';
 import Footer from './components/Navigation/Footer';
 import QuizByCategory from './components/QuizByCategoryIndexComponent';
+import CategoriesIndex from './components/CategoryIndexComponent';
 
 function App() {
   return (
@@ -45,7 +46,12 @@ function App() {
           <QuizShow />
         </Route>
 
-        <Route path="/categories/:categoryId/">
+        <Route exact path='/categories'>
+          <Navigation />
+          <CategoriesIndex />
+        </Route>
+
+        <Route exact path="/categories/:categoryId/">
           <Navigation />
           <QuizByCategory />
         </Route>

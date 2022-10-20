@@ -26,8 +26,8 @@ class Quiz < ApplicationRecord
     belongs_to :category
     has_many :questions, dependent: :destroy
     has_many :comments, dependent: :destroy
-    has_many :takes, class_name: :QuizTake, foreign_key: :quiz_id
-    has_many :takers, through: :takes, source: :taker
+    has_many :takes, class_name: :QuizTake, foreign_key: :quiz_id, dependent: :destroy
+    has_many :takers, through: :takes, source: :taker, dependent: :destroy
 
     has_one_attached :icon
     

@@ -1,0 +1,29 @@
+#questions-table {
+    display: flex;
+    justify-content: center; 
+    width: 580px;
+}
+
+#questions-table-body {
+    width: 480px;
+}
+
+.header-row {
+    display: flex;
+    justify-content: space-around;
+}
+
+.questions-table-row {
+    border: 1px solid transparent;
+    /* border-right: 1px solid #888686; */
+    display: flex;
+    justify-content: space-between;
+    height: 20px;
+    align-items: center;
+}
+
+
+#questions-form-submit-button {
+    
+}
+

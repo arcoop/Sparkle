@@ -179,7 +179,7 @@ const CommentTile = ({comment}) => {
                 <div className="comment-body-section">
                     <div className="comment-top-level-info">
                         <Link className="commenter-username" to={`/users/${userId}`}>{commenterUsername}</Link>
-                        <div className="comment-time">{formatTime(comment.updatedAt)}</div>
+                        <div className="comment-time">{formatTime(comment.createdAt)}</div>
                     </div>
                     <div className="comment-body">{commentBody}</div>
                     <div className="comment-points">

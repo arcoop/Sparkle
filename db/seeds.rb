@@ -9,8 +9,8 @@
 ApplicationRecord.transaction do 
     puts "Destroying tables..."
     # Unnecessary if using `rails db:seed:replant`
-    Comment.destroy_all
     Question.destroy_all
+    Comment.destroy_all
     Quiz.destroy_all
     Category.destroy_all
     User.destroy_all
@@ -95,7 +95,6 @@ ApplicationRecord.transaction do
         author_id: 1
       }) 
 
-
     end
 
     puts "creating questions..."
@@ -104,39 +103,38 @@ ApplicationRecord.transaction do
       body: "S",
       answer: "self.find_by_credentials",
       quiz_id: 1,
-      question_type: "short answer"
     )
     
     Question.create!(
       body: "P",
       answer: "password=",
       quiz_id: 1,
-      question_type: "short answer"
+      
     )
     Question.create!(
       body: "I",
       answer: "is_password",
       quiz_id: 1,
-      question_type: "short answer"
+      
     )
     Question.create!(
       body: "R",
       answer: "reset_session_token",
       quiz_id: 1,
-      question_type: "short answer"
+      
     )
     Question.create!(
       body: "E",
       answer: "ensure_session_token",
       quiz_id: 1,
-      question_type: "short answer"
+      
     )
 
     Question.create!(
       body: "G",
       answer: "generate_secure_session_token",
       quiz_id: 1,
-      question_type: "short answer"
+      
     )
 
   
@@ -146,7 +144,7 @@ ApplicationRecord.transaction do
         body: item[0], 
         answer: item[1],
         quiz_id: 2,
-        question_type: "short answer"
+        
       })
     end
 
@@ -155,7 +153,6 @@ ApplicationRecord.transaction do
         body: Faker::Lorem.question,
         answer: Faker::Lorem.sentence,
         quiz_id: 5,
-        question_type: "true/false"
       })
     end
 
@@ -164,7 +161,6 @@ ApplicationRecord.transaction do
         body: Faker::Lorem.question,
         answer: Faker::Lorem.sentence,
         quiz_id: 4,
-        question_type: "multiple choice"
       })
     end
 

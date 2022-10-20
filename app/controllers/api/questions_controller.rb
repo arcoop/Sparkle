@@ -1,4 +1,5 @@
 class Api::QuestionsController < ApplicationController
+    wrap_parameters include: Quiz.attribute_names + ['quizId', 'body', 'answer'] 
     def index 
         @questions = Quiz.find(params[:quiz_id]).questions
         render 'api/questions/index'
@@ -11,7 +12,10 @@ class Api::QuestionsController < ApplicationController
     
     def create
         @question = Question.new(question_params)
-        if !@question.save
+        if @question.save
+            render 'api/questions/show'
+        else
+            p @question.errors.full_messages
             render json: {errors: @question.errors.full_messages}, status: :unprocessable_entity
         end
     end
@@ -31,7 +35,7 @@ class Api::QuestionsController < ApplicationController
 
     private
     def question_params
-        params.require(:question).permit(:body, :answer, :question_type)
+        params.require(:question).permit(:body, :answer, :quiz_id,)
     end
 
 end

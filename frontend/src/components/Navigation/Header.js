@@ -41,7 +41,7 @@ const Header = () => {
                         <p className="nav-home-link-text">sparkle</p>
                     </Link>
                     <div id="nav-links-left">
-                        <Link className="left-nav-link" to='/'>Categories</Link>
+                        <Link className="left-nav-link" to='/categories'>Categories</Link>
                         <Link className="left-nav-link" to='/'>Badges</Link>
                         <Link className="left-nav-link" to='/'>Playlists</Link>
                         <Link className="left-nav-link" to='/'>Events</Link>

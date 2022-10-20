@@ -1,0 +1,17 @@
+.category-link {
+    text-decoration: none;
+    color: black;
+}
+
+.category-link:hover {
+    color: gray;
+}
+
+#category-index {
+    display: flex;
+    justify-content: center;
+}
+
+.category-item {
+    margin: 2px;
+}
