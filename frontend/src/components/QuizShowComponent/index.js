@@ -40,8 +40,9 @@ const QuizShow = () => {
     let numComments = commentsArr.length;
     let comments = numComments === 1? "comment" : "comments"
     
-    let user = useSelector(getUser(quiz.authorId)) || {username:"", email:"", id: null}
-    console.log(user)
+    //let user = useSelector(() => getUser(quiz.authorId)) || {username:"", email:"", id: null}
+    let user = useSelector(state => state.users[quiz.authorId]) || {username:"", email:"", id: null}
+    // console.log(user)
 
     return (
         <div id="quiz-show-page-container">
