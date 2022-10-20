@@ -18,16 +18,66 @@
     font-size: 12px;
 }
 
+#top-level-info {
+    display: flex;
+    align-items: center;
+    /* justify-content: flex-start; */
+}
+
+.quiz-icon {
+    width: 75px;
+    height: 75px;
+}
+
 .quiz-title {
     font-size: 2.75rem;
-    font-weight: bold
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+#title-description {
+    margin: 15px;
+}
+
+.quiz-description {
+    font-weight: bold;
+    font-size: 1.125rem;
+    margin-left: 4px;
 }
 
 #mid-level-info {
     border-bottom: 1px solid #d8d8d8;
     display: flex;
     align-items: center;
-    margin: 10px 0;
+    margin: 10px;
+}
+
+#comments-link {
+    color: black;
+    display: flex;
+}
+
+
+#comments-icon {
+    margin-right: 5px;
+    position: relative;
+    font-size: 22px;
+}
+
+#num-comments {
+    position: absolute;
+    right: 8px;
+    top: 3px;
+    font-size: 10px;
+}
+
+#comments-icon:hover{
+    color: #f90;
+}
+
+
+.mid-line {
+    margin-right: 10px;
 }
 
 #by-line {

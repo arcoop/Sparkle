@@ -9,29 +9,36 @@ import QuestionIndex from "../QuestionIndexComponent";
 import { Link } from "react-router-dom";
 import CommentsIndex from "../CommentsIndexComponent";
 import ExtrasButton from "./ExtrasButton";
+import { fetchQuizTakes } from "../../store/quizTakes";
+import { fetchComments } from "../../store/comments";
 
 const QuizShow = () => {
     const dispatch = useDispatch();
     const {quizId} = useParams();
-
+    
     let quiz = useSelector(getQuiz(quizId)) || {title: "", categoryId: 1};
     
-    console.log(quiz.iconUrl)
-
+    const image = quiz.iconUrl ? <img className="quiz-icon" src={quiz.iconUrl} alt="" /> : <></>
+    
     const categoryId = quiz ? quiz.categoryId : 1
-
-    let category = useSelector(state => state.categories[categoryId])
+    
+    let category = useSelector(state => state.categories[categoryId]) || ""
     
     document.title = `${quiz.title}` || 'Sparkle'
     
     useEffect(() => {
         dispatch(fetchQuiz(quizId))
+        dispatch(fetchQuizTakes)
     }, [dispatch, quizId])
     
-    
-    useEffect(() => {
-        if (quiz.authorId) dispatch(fetchUser(quiz.authorId))
-    }, [dispatch, quiz.authorId])
+
+    let takes = quiz.id ? quiz.takes : []
+    let numTakes = takes.length;
+    let plays = numTakes === 1 ? "play" : "plays"
+
+    let commentsArr = quiz.id ? quiz.comments : [];
+    let numComments = commentsArr.length;
+    let comments = numComments === 1? "comment" : "comments"
     
     let user = useSelector(getUser(quiz.authorId)) || {username:"", email:"", id: null}
     return (
@@ -42,15 +49,23 @@ const QuizShow = () => {
                         <p className="quiz-category">{category.name}</p>
                     </div>
                     <div id="top-level-info">
-                        <img src={quiz.iconUrl} alt="" />
-                        <h1 className="quiz-title">{quiz.title}</h1>
-                        <h2 className="quiz-description">{quiz.description}</h2>
+                        {image}
+                        <div id="title-description">
+                            <h1 className="quiz-title">{quiz.title}</h1>
+                            <h2 className="quiz-description">{quiz.description}</h2>
+                        </div>
                     </div>
                     <div id="mid-level-info">
-                        <h3 id="by-line"> 
+                        <h3 className="mid-line" id="by-line"> 
                             By <Link id="quiz-show-username-link" to={`/users/${user.id}`}>{user.username}</Link> 
                         </h3>
                         <ExtrasButton author={user} quiz={quiz} />
+                        <h3 className="mid-line" id="num-plays">{numTakes} {plays}</h3>
+                        <Link id="comments-link" className="mid-line" to="#comments">
+                            <i id="comments-icon" className="fa-regular fa-message">
+                                <h3 id="num-comments">{numComments}</h3>
+                            </i>
+                        </Link>
                     </div>
                     <div id="more-info">
                         <div id="more-info-header">
@@ -78,7 +93,10 @@ const QuizShow = () => {
                     
                     </div>
 
-                    <CommentsIndex quizId={quizId}/>
+                    <div id="#comments">
+                        <CommentsIndex quizId={quizId}/>
+                    </div>
+
 
                     <div id="post-comment-section">
                         <CommentsCreate />

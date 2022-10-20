@@ -1,10 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
-// import * as sessionActions from '../../store/session'
 import { Redirect } from "react-router-dom";
 import './Navigation.css'
 import { Link } from "react-router-dom";
-// import LoginFormModal from "../LoginFormModal";
 import React from "react";
 import FormModal from "../AuthFormComponent";
 import Header from "./Header";
@@ -26,17 +24,17 @@ const Navigation = () => {
                 
                 <div className="line-break" id="nav-line-break"></div>
 
-                <a className="navLinks" href="mailto:cooperadina@gmail.com?subject='Love your work!'&body='Really enjoyed looking at your work. Would love to set up a time to talk.'">
+                <a className="navLinks"  target="_blank" href="mailto:cooperadina@gmail.com?subject='Love your work!'&body='Really enjoyed looking at your work. Would love to set up a time to talk.'">
                     <i id="email-icon" className="fa-regular fa-envelope"></i>
                     <p>Email me!</p>
                 </a>
                 
-                <a className="navLinks" href="https://www.linkedin.com/in/adina-cooper/">
+                <a className="navLinks" target="_blank" href="https://www.linkedin.com/in/adina-cooper/">
                     <i id='LinkedIn' className="fa-brands fa-linkedin"></i>
                     {/* <p>LinkedIn</p> */}
                 </a>
-                <a className="navLinks" href="https://github.com/arcoop">
-                    <i id="github-link" class="fa-brands fa-github"></i>
+                <a className="navLinks" target="_blank" href="https://github.com/arcoop">
+                    <i id="github-link" className="fa-brands fa-github"></i>
                 </a>
                 {/* <Link to="/">
                     <p>sparklecon</p>

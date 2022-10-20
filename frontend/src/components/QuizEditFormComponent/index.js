@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom'
 
 const QuizEditForm = () => {
     const {quizId} = useParams()
-    console.log(quizId)
 
     let quiz = useSelector(getQuiz(quizId)) || {title: "", quizType: "", id: 1};
 
@@ -37,7 +36,7 @@ const QuizEditForm = () => {
     const [hintHeading, setHintHeading] = useState("Hint")
     const [answerHeading, setAnswerHeading] = useState("Answer")
     const [extraHeading, setExtraHeading] = useState("")
-    const [category, setCategory] = useState("no category chosen")
+    const [category, setCategory] = useState(quiz.category)
     const [redirect, setRedirect] = useState(false)
     
     const categories = [
@@ -250,7 +249,7 @@ const QuizEditForm = () => {
                                             <select className='quiz-edit-input' name="dropdown" id="category-select-options" onChange={e => setCategory(e.target.value)}>
                                                 {categories.map(cat => {
                                                     return (
-                                                        <option  key={cat} value={cat}>{cat[1]}</option>
+                                                        <option key={cat} value={cat}>{cat[1]}</option>
                                                     )
                                                 })}
                                             </select>
