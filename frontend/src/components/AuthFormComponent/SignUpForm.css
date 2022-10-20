@@ -7,6 +7,7 @@
     box-sizing: border-box;
     width: 85%;
     margin-bottom: 10px;
+    margin-left: 30px;
 }
 
 #modal-contents {
@@ -20,8 +21,54 @@
     width: 64px;
     padding: 32px 16px 32px 16px;
     border-radius: 0 12px 12px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
+.sidebar-links {
+    margin-bottom: 150px;
+}
+
+#sidebar-email {
+    color: #f90;
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+    transform: .2s;
+}
+
+#sidebar-linkedin {
+    color: #f90;
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+}
+
+#sidebar-github {
+    color: #f90;
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+    transform: .2s;
+}
+
+#sidebar-email:hover {
+    color: white;
+    text-shadow: -1px 0 #f90, 0 1px #f90, 1px 0 #f90, 0 -1px #f90;
+    transform: .2s;
+}
+
+#sidebar-linkedin:hover {
+    color: white;
+    text-shadow: -1px 0 #f90, 0 1px #f90, 1px 0 #f90, 0 -1px #f90;
+    transform: .2s;
+}
+
+#sidebar-github:hover {
+    color: white;
+    text-shadow: -1px 0 #f90, 0 1px #f90, 1px 0 #f90, 0 -1px #f90;
+    transform: .2s;
+}
+
+
+.sidebar-a {
+    font-size: 32px;
+}
 
 #main-contents {
     width: 100%;
@@ -91,6 +138,7 @@
     width: 85%;
     transition: .3s;
     margin-bottom: 30px;
+    margin-left: 30px
 
 }
 

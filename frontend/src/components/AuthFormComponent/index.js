@@ -51,9 +51,21 @@ const FormModal = () => {
 
                         <div className={classText} id="sidebar-contents">
                             {/* <div  id="sidebar"> */}
-                                    <div>icon1</div>
-                                    <div>icon2</div>
-                                    <div>icon3</div>
+                                    <div className="sidebar-links">
+                                        <a className="sidebar-a" target="_blank" href="mailto:cooperadina@gmail.com?subject='Love your work!'&body='Really enjoyed looking at your work. Would love to set up a time to talk.'">
+                                            <i id="sidebar-email" className="fa-regular fa-envelope"></i>
+                                        </a>
+                                    </div>
+                                    <div className="sidebar-links">
+                                        <a className="sidebar-a" target="_blank" href="https://www.linkedin.com/in/adina-cooper/">
+                                            <i id="sidebar-linkedin" className="fa-brands fa-linkedin"></i>
+                                        </a>
+                                    </div>
+                                    <div className="sidebar-links">
+                                        <a className="sidebar-a" target="_blank" href="https://github.com/arcoop">
+                                            <i id="sidebar-github" className="fa-brands fa-github"></i>
+                                        </a>
+                                    </div>
                             {/* </div> */}
                         </div>
 

@@ -10,7 +10,7 @@
 #left-nav {
     display: flex;
     justify-content: space-between;
-    width: 50%;
+    width: 440px;
     margin-left: 15px;
     white-space: nowrap;
     overflow: hidden;
@@ -54,7 +54,7 @@
 }
 
 #nav-links-left {
-    width: 70%;
+    width: 40%;
     display: flex;
     justify-content: space-evenly;
     align-items: center;

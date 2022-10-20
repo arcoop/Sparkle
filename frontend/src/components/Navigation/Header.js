@@ -69,11 +69,11 @@ const Header = () => {
                     </Link>
                     <div id="nav-links-left">
                         <Link className="left-nav-link" to='/categories'>Categories</Link>
-                        <Link className="left-nav-link" to='/'>Badges</Link>
-                        <Link className="left-nav-link" to='/'>Playlists</Link>
-                        <Link className="left-nav-link" to='/'>Events</Link>
+                        {/* <Link className="left-nav-link" to='/'>Badges</Link> */}
+                        {/* <Link className="left-nav-link" to='/'>Playlists</Link> */}
+                        {/* <Link className="left-nav-link" to='/'>Events</Link> */}
                         <Link className="left-nav-link" to='/create'>Create</Link>
-                        <Link className="left-nav-link" to='/'>Quiz Lab</Link>
+                        {/* <Link className="left-nav-link" to='/'>Quiz Lab</Link> */}
                     </div>
                 </div>
                 <div id="nav-buttons-right">

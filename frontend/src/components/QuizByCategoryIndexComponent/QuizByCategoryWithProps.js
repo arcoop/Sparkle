@@ -4,10 +4,11 @@ import { useParams } from "react-router-dom"
 import { fetchQuizzes, fetchQuizzesByCat, getQuizzes } from "../../store/quizzes"
 import QuizTile from "../QuizTileComponent"
 
-const QuizByCategory = () => {
-    const {categoryId} = useParams()
-    
+const QuizByCategoryWithProps = ({category}) => {
+    console.log(category)
 
+    const categoryId = category.id
+    
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -20,7 +21,7 @@ const QuizByCategory = () => {
         <div>
             {quizzes.map(quiz => {
                 return (
-                    <QuizTile quiz={quiz}/>
+                    <QuizTile key={quiz.id} quiz={quiz}/>
                 )
             })} 
 
@@ -29,4 +30,4 @@ const QuizByCategory = () => {
 
 }
 
-export default QuizByCategory;
+export default QuizByCategoryWithProps

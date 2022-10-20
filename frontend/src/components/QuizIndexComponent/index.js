@@ -38,7 +38,7 @@ const QuizIndex = () => {
     let topDivText;
 
     if (sessionUser) {
-        topDivText = <div>Welcome, <Link id="home-page-user-link" to={`/users/${sessionUser.id}`}>{sessionUser.username}</Link>!</div>
+        topDivText = <div>Welcome<Link id="home-page-user-link" to={`/users/${sessionUser.id}`}>{sessionUser.username}</Link>!</div>
     } else {
         topDivText = ""
     }
@@ -49,7 +49,7 @@ const QuizIndex = () => {
                 {topDivText}
             </div>
             <div id='index-header'>
-                <h1>All Quizzes</h1>
+                <h1 className='quiz-index-heading'>All Quizzes</h1>
             </div>
             <div id="index-content-container">
                 <div id='index-center-content'>
