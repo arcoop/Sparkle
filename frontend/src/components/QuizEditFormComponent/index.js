@@ -257,7 +257,7 @@ const QuizEditForm = () => {
                                     </tr> */}
                                     <tr className='table-row'> <td className="row-heading">Category</td>
                                         <td className='row-info'>
-                                            <select defaultValue={quiz.categoryId ? quiz.category.name : categories[0][1]} className='quiz-edit-input' name="dropdown" id="category-select-options" onChange={e => setCategory(e.target.value)}>
+                                            <select className='quiz-edit-input' name="dropdown" id="category-select-options" onChange={e => setCategory(e.target.value)}>
                                                 {categories.map(cat => {
                                                     return (
                                                         <option key={cat} value={cat}>{cat[1]}</option>
