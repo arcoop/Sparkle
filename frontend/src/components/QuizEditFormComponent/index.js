@@ -11,6 +11,8 @@ const QuizEditForm = () => {
 
     let quiz = useSelector(getQuiz(quizId)) || {title: "", quizType: "", id: 1};
 
+    let cat = useSelector(state => state.categories[quiz.categoryId]) || {}
+
     useEffect(() => {
         dispatch(fetchQuiz(quizId))
         document.title = `Editing ${quiz.title}`
@@ -37,6 +39,7 @@ const QuizEditForm = () => {
     const [hintHeading, setHintHeading] = useState("Hint")
     const [answerHeading, setAnswerHeading] = useState("Answer")
     const [extraHeading, setExtraHeading] = useState("")
+    // const [category, setCategory] = useState(quiz.category)
     const [category, setCategory] = useState(quiz.category)
     const [redirect, setRedirect] = useState(false)
     const [succesMessage, setSuccessMessage] = useState([])
@@ -253,10 +256,10 @@ const QuizEditForm = () => {
                                     </tr> */}
                                     <tr className='table-row'> <td className="row-heading">Category</td>
                                         <td className='row-info'>
-                                            <select className='quiz-edit-input' name="dropdown" id="category-select-options" onChange={e => setCategory(e.target.value)}>
+                                            <select defaultValue={quiz.categoryId ? quiz.category.name : categories[0][1]} className='quiz-edit-input' name="dropdown" id="category-select-options" onChange={e => setCategory(e.target.value)}>
                                                 {categories.map(cat => {
                                                     return (
-                                                        <option key={cat} value={cat} selected={quiz.categoryId === cat[0]}>{cat[1]}</option>
+                                                        <option key={cat} value={cat}>{cat[1]}</option>
                                                     )
                                                 })}
                                             </select>
