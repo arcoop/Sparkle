@@ -87,6 +87,7 @@
 #quiz-show-username-link {
     text-decoration: underline;
     font-weight: bold;
+    color: black;
 }
 
 #quiz-show-username-link:hover {
