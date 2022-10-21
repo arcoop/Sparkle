@@ -19,6 +19,7 @@ const QuizForm = () => {
     const [id, setId] = useState(null)
     const [errors, setErrors] = useState([])
     const [quizDescription, setQuizDescription] = useState("")
+    // const [quizCategory, setQuizCategory] = useState(1)
     // const [quizIcon, setQuizIcon] = useState(null);
     // const [quizIconUrl, setQuizIconUrl] = useState(null)
     // const fileRef = useRef(null);
