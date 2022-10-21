@@ -45,9 +45,15 @@
     outline: 1px solid black;
 }
 
+#similar-quizzes:focus {
+    background-color: white;
+    outline: 1px solid black;
+}
+
 #similar-quizzes {
     padding: 12px;
-    height: 175px;
+    height: 80px;
+    /* height: 175px; */
     border-radius: 5px;
     overflow: auto;
     padding: 0.75rem;
@@ -56,6 +62,8 @@
     box-sizing: border-box;
     margin: 7px 0 7px 0;
     width: 100%;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
 }
 
 #quiz-form-container-right-col {

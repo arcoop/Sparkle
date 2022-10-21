@@ -18,6 +18,7 @@ const QuizForm = () => {
     const [redirect, setRedirect] = useState(false)
     const [id, setId] = useState(null)
     const [errors, setErrors] = useState([])
+    const [quizDescription, setQuizDescription] = useState("")
     // const [quizIcon, setQuizIcon] = useState(null);
     // const [quizIconUrl, setQuizIconUrl] = useState(null)
     // const fileRef = useRef(null);
@@ -41,6 +42,7 @@ const QuizForm = () => {
         
         formData.append('quiz[title]', quizName);
         formData.append('quiz[quiz_type]', quizType);
+        formData.append('quiz[description]', quizDescription)
         formData.append('quiz[category_id]', 1);
         // if (quizIcon) {
         //     formData.append('quiz[icon]', quizIcon)
@@ -93,8 +95,12 @@ const QuizForm = () => {
                                 </label>
                             </div>
                             <div>
-                                <label className='input-label'>Similar Quizzes</label>
-                                <div id='similar-quizzes'></div>
+                                {/* <label className='input-label'>Similar Quizzes</label> */}
+                                <label className='input-label'>Quiz Description</label>
+                                <textarea id="similar-quizzes"
+                                    onChange={(e) => setQuizDescription(e.target.value) }
+                                />
+                                {/* <div id='similar-quizzes'></div> */}
                             </div>
                             <label className='input-label'>Quiz Type
                                 <div className='select-button'>
@@ -115,7 +121,7 @@ const QuizForm = () => {
                         </form>
                     </div>
 
-                    <div id='quiz-form-container-right-col'>
+                    {/* <div id='quiz-form-container-right-col'>
                         <div id="items">
                             <div>
                                 <h2>Quizzes Remaining</h2>
@@ -125,7 +131,7 @@ const QuizForm = () => {
                             </div>
                         </div>
 
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

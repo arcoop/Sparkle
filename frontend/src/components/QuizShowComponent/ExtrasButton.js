@@ -19,7 +19,7 @@ const ExtrasButton = ({author, quiz}) => {
         history.push(`/create/edit/${quiz.id}`)
     }
 
-    const signedInMenu = (
+    const menu = (
         <ul className="quiz-extras-menu">
             <li className="quiz-menu-list-item">
                 <button onClick={handleEditClick}  id="quiz-menu-edit-button" className="quiz-menu-button">
@@ -33,27 +33,27 @@ const ExtrasButton = ({author, quiz}) => {
                     <p>Delete</p>
                 </button>
             </li>
-            <li className="quiz-menu-list-item">
+            {/* <li className="quiz-menu-list-item">
                 <button className="quiz-menu-button">
                     <i className="fa-regular fa-heart"></i>
                     <p>Favorite</p>
                 </button>
-            </li>
+            </li> */}
         </ul>
     )
 
-    const signedOutMenu = (
-        <ul className="quiz-extras-menu">
-            <li className="quiz-menu-list-item">
-                <button className="quiz-menu-button">
-                    <i className="fa-regular fa-heart"></i>
-                    <p>Favorite</p>
-                </button>
-            </li>
-        </ul>
-    )
+    // const signedOutMenu = (
+    //     <ul className="quiz-extras-menu">
+    //         <li className="quiz-menu-list-item">
+    //             <button className="quiz-menu-button">
+    //                 <i className="fa-regular fa-heart"></i>
+    //                 <p>Favorite</p>
+    //             </button>
+    //         </li>
+    //     </ul>
+    // )
 
-    const menu = sessionUser.id === author.id ? signedInMenu : signedOutMenu
+    // const menu = sessionUser.id === author.id ? signedInMenu : signedOutMenu
 
     useEffect(() => {
         const closeMenu = () => {

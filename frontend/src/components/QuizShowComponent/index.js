@@ -15,6 +15,8 @@ import { fetchComments } from "../../store/comments";
 const QuizShow = () => {
     const dispatch = useDispatch();
     const {quizId} = useParams();
+
+    const sessionUser = useSelector(state => state.session.user) || {}
     
     let quiz = useSelector(state => state.quizzes[quizId]) || {title: "", categoryId: 1};
     
@@ -44,6 +46,8 @@ const QuizShow = () => {
     let user = useSelector(state => state.users[quiz.authorId]) || {username:"", email:""}
     // console.log(user)
 
+    const extrasbutton = sessionUser.id === quiz.authorId ? <ExtrasButton author={user} quiz={quiz} /> : ""
+
     return (
         <div id="quiz-show-page-container">
             <div id="quiz-show-page">
@@ -62,7 +66,7 @@ const QuizShow = () => {
                         <h3 className="mid-line" id="by-line"> 
                             By <Link id="quiz-show-username-link" to={`/users/${user.id}`}>{user.username}</Link> 
                         </h3>
-                        <ExtrasButton author={user} quiz={quiz} />
+                        {extrasbutton}
                         <h3 className="mid-line" id="num-plays">{numTakes} {plays}</h3>
                         <Link id="comments-link" className="mid-line" to="#comments">
                             <i id="comments-icon" className="fa-regular fa-message">
