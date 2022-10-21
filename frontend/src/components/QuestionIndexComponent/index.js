@@ -23,8 +23,6 @@ const QuestionIndex = ({quiz}) => {
     }, [quizId])
 
     useEffect(() => {
-        console.log(score)
-        console.log(quiz.maxScore)
         if (score === quiz.maxScore || time === 0) {
             const quizTake = {takerId: sessionUser ? sessionUser.id : null, quizId: quizId, score: score, time: time }
             console.log("creating quiz take")
@@ -43,8 +41,6 @@ const QuestionIndex = ({quiz}) => {
             }
         })
     }, [inputVal])
-
-
    
     const playQuiz = (e) => {
         e.currentTarget.className = "hidden"

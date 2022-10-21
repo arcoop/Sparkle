@@ -63,6 +63,11 @@
     display: none;
 }
 
+.revealed-answer {
+    background-color: firebrick;
+    color: white;
+}
+
 #right-side-quiz-header {
     white-space: nowrap;
 }

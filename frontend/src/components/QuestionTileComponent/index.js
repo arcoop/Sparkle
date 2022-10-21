@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getQuiz } from "../../store/quizzes";
 import './QuestionTile.css'
 
-const QuestionTile = ({quizId, question, setScore, inputVal, setInputVal}) => {
+const QuestionTile = ({question, setScore, inputVal, setInputVal}) => {
 
     useEffect(() => {
         if (inputVal === question.answer) {
@@ -15,15 +15,6 @@ const QuestionTile = ({quizId, question, setScore, inputVal, setInputVal}) => {
             
         }
     }, [inputVal])
-
-
-
-    // return (
-    //     <div id="question-container"> 
-    //         <p className="question-body">{question.body}</p>
-    //     </div>
-    // )
-
 }
 
 export default QuestionTile;

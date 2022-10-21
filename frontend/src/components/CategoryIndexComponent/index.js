@@ -60,7 +60,7 @@ export const CategoryIndexPage = () => {
                                             if (quiz.categoryId == cat.id) {
                                                 return (
                                                     <li className='quiz-title-list-item' key={quiz.id}>
-                                                        {quiz.title}
+                                                        <Link to={`/quizzes/${quiz.id}`}>{quiz.title}</Link>
                                                     </li>
                                                 )
                                             }
