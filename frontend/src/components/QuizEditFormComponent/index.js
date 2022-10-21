@@ -60,13 +60,9 @@ const QuizEditForm = () => {
         [15,"Television"]
     ]
     
-    const [sourceURL, setSourceURL] = useState("")
-    const [crossLinkURL, setCossLinkURL] = useState("")
-    const [moreInfo, setMoreInfo] = useState("")
     const [quizIcon, setQuizIcon] = useState(null);
     const [quizIconUrl, setQuizIconUrl] = useState(null)
     const [errors, setErrors] = useState([])
-    const fileRef = useRef(null);
     
     const dispatch = useDispatch();
 
@@ -101,6 +97,7 @@ const QuizEditForm = () => {
                     const data = await res.json();
                     if (data && data.errors) {
                         setErrors(data.errors)
+                        console.log(errors)
                     }
                 })
                 .then(async data => {

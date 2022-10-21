@@ -21,7 +21,7 @@
 #
 class Quiz < ApplicationRecord
     validates_presence_of :title, :quiz_type, :author_id
-    validates_presence_of :category_id, {allow_nil: true}
+    # validates_presence_of :category_id, {allow_nil: true}
 
     belongs_to :author, class_name: :User, foreign_key: :author_id
     belongs_to :category

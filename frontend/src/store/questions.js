@@ -72,9 +72,9 @@ export const fetchQuestion = (quizId, questionId) => async dispatch => {
 const questionsReducer = (state ={}, action) => {
     switch(action.type) {
         case SET_QUESTIONS:
-            return {...state, ...action.payload}
+            return {...action.payload}
         case SET_QUESTION:
-            return {...state, ...action.payload}
+            return {...action.payload}
         case REMOVE_QUESTION:
             const nextState = {...state}
             delete nextState[action.payload]

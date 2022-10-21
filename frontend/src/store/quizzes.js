@@ -1,7 +1,8 @@
 import csrfFetch from "./csrf";
 
 const SET_QUIZZES = 'quizzes/setQuizzes'
-const SET_QUIZ = 'quizzes/addQuiz'
+const SET_QUIZ = 'quizzes/setQuiz'
+const RECEIVE_QUIZ = `quizzes/receiveQuiz`
 const REMOVE_QUIZ = 'quizzes/removeQuiz'
 const SET_QUIZZES_BY_CATEGORY = 'quizzes/setQuizzesByCategory'
 
@@ -12,6 +13,11 @@ export const setQuizzes = quizzes => ({
 
 export const setQuiz = quiz => ({
     type: SET_QUIZ,
+    payload: quiz
+})
+
+export const receiveQuiz = quiz => ({
+    type: RECEIVE_QUIZ,
     payload: quiz
 })
 
@@ -67,7 +73,7 @@ export const fetchQuizzes = () => async dispatch => {
 export const fetchQuiz = quizId => async dispatch => {
     const res = await csrfFetch(`/api/quizzes/${quizId}`)
     const data = await res.json()
-    dispatch(setQuiz(data))
+    dispatch(receiveQuiz(data))
 }
 
 export const deleteQuiz = quizId => async dispatch => {
@@ -89,6 +95,8 @@ const quizzesReducer = (state = {}, action ) => {
             return {...state, ...action.payload}
         case SET_QUIZ:
             return {...state, ...action.payload}
+        case RECEIVE_QUIZ:
+            return {...action.payload}
         case SET_QUIZZES_BY_CATEGORY:
             return {...action.payload}
         case REMOVE_QUIZ:

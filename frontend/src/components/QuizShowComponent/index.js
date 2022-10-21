@@ -11,14 +11,21 @@ import CommentsIndex from "../CommentsIndexComponent";
 import ExtrasButton from "./ExtrasButton";
 import { fetchQuizTakes } from "../../store/quizTakes";
 import { fetchComments } from "../../store/comments";
+import { fetchQuestions } from "../../store/questions";
 
 const QuizShow = () => {
     const dispatch = useDispatch();
     const {quizId} = useParams();
 
+    useEffect(() => {
+        dispatch(fetchQuiz(quizId))
+        dispatch(fetchQuizTakes())
+        dispatch(fetchQuestions(quizId))
+    }, [quizId])
+    
     const sessionUser = useSelector(state => state.session.user) || {}
     
-    let quiz = useSelector(state => state.quizzes[quizId]) || {title: "", categoryId: 1};
+    const quiz = useSelector(state => state.quizzes[quizId]) || {title: "", categoryId: 1};
     
     const image = quiz.iconUrl ? <img className="quiz-icon" src={quiz.iconUrl} alt="" /> : <img className="quiz-icon" src="https://cdn.writermag.com/2019/03/question-marks.jpg" alt="" />
     
@@ -27,11 +34,6 @@ const QuizShow = () => {
     let category = useSelector(state => state.categories[categoryId]) || ""
     
     document.title = `${quiz.title}` || 'Sparkle'
-    
-    useEffect(() => {
-        dispatch(fetchQuiz(quizId))
-        dispatch(fetchQuizTakes())
-    }, [])
     
 
     let takes = quiz.id ? quiz.takes : []
@@ -53,7 +55,7 @@ const QuizShow = () => {
             <div id="quiz-show-page">
                 <div id="left-side">
                     <div id="top-row">
-                        <p className="quiz-category">{category.name}</p>
+                        <p className="quiz-category"><Link to={`/categories/${category.id}`}>{category.name}</Link></p>
                     </div>
                     <div id="top-level-info">
                         {image}

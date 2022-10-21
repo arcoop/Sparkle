@@ -181,7 +181,7 @@ const UserShow = () => {
                                 if (quizzes[take.quizId -1]) {
                                     return (
                                         <tr className='quiz-takes-row'>
-                                            <td className='quiz-takes-data'>{quizzes[take.quizId -1].title}</td>
+                                            <td className='quiz-takes-data'><Link className='quiztake-link' to={`/quizzes/${quizzes[take.quizId -1].id}`}>{quizzes[take.quizId -1].title}</Link></td>
                                             <td className='quiz-takes-data'>{formatTime(take.createdAt)}</td>
                                             <td className='quiz-takes-data'>{take.score}</td>
                                         </tr>
