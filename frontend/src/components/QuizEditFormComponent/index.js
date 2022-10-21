@@ -86,6 +86,8 @@ const QuizEditForm = () => {
     
     const handleSubmit = e => {
         e.preventDefault()
+        console.log("category")
+        console.log(category)
         setErrors([])
         const formData = new FormData();
         formData.append('quiz[title]', quizName)
