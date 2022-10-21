@@ -235,3 +235,23 @@ table {
     display: flex;
     flex-direction: column;
 }
+
+#save-q-button {
+    width: 140px;
+}
+
+#save-q-button:hover {
+    cursor: pointer;
+}
+
+.question-number {
+    width: 30px;
+}
+
+.button-saved {
+    color: #f90;
+}
+
+.save-saved{
+    display: none;
+}

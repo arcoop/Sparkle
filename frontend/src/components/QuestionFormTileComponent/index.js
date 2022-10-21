@@ -8,17 +8,21 @@ const QuestionsFormTile = ({quiz, num}) => {
     const {quizId} = useParams()
     const [body, setBody] = useState("")
     const [answer, setAnswer] = useState("")
+    const [saveText, setSavedText] = useState("save question")
+    const [buttonClass, setButtonClass] = useState("")
 
     const dispatch = useDispatch()
 
     let question;
 
     function saveQuestion(e) {
-        console.log("save-question")
         e.preventDefault()
         question = {body: body, answer: answer, quizId: quizId}
-        console.log("Creating question")
         dispatch(createQuestion(question))
+        setButtonClass("button-saved")
+        setSavedText("question saved")
+        // let button = document.getElementById("save-q-button")
+        // button.className = "button-saved"
     }
 
     // const handleChange = debounce(() => saveQuestion())
@@ -40,7 +44,9 @@ const QuestionsFormTile = ({quiz, num}) => {
                         />
                 </td>
                 <td>
-                    <button onClick={saveQuestion}>save question</button>
+                    <button id="save-q-button" className={buttonClass} onClick={saveQuestion}>{saveText}
+                        {/* <p id="saved-text" className="hidden">saved!</p> */}
+                    </button>
                 </td>
             </tr>
     )

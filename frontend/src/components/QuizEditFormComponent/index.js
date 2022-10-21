@@ -24,9 +24,10 @@ const QuizEditForm = () => {
         setQuizType(quiz.quizType)
     }, [quiz]);
 
+    const [quizName, setQuizName] = useState(quiz.title)
+    
     let quizDescript = quiz.description ? quiz.description : `Can you name the ${quizName}?`
 
-    const [quizName, setQuizName] = useState(quiz.title)
     const [quizType, setQuizType] = useState(quiz.quizType)
     const quizTypes = ["Classic", "Clickable", "Grid", "Map", "Picture Box", "Picture Click", "Slideshow"]
     const [description, setDescription] = useState(quizDescript)
