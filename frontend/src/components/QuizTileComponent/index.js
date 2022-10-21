@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { fetchUser } from "../../store/users"
+import { fetchUser, fetchUsers } from "../../store/users"
 import { getUser } from "../../store/users"
 import { Link } from "react-router-dom"
 import './QuizTile.css'
@@ -16,7 +16,11 @@ const QuizTile = ({quiz}) => {
 
     let category = useSelector(state => state.categories[categoryId])
 
-    const user = useSelector(getUser(quiz.authorId)) || {username: "Loading"}
+    useEffect(() => {
+        dispatch(fetchUsers())
+    }, [quiz])
+
+    const user = useSelector(state => state.users[quiz.authorId]) || {username: "Loading username"}
 
     // const user = quiz.author
 

@@ -76,28 +76,74 @@ ApplicationRecord.transaction do
       max_score: 5
     )
 
-    # Quiz.create!(
-    #   title: "Can you name every player piece in Monopoly?",
-    #   quiz_type: "classic",
-    #   quiz_timer: 3,
-    #   category_id: 2,
-    #   author_id: 2
-    # )
+    Quiz.create!(
+      title: "Can you name the original 8 Monopoly pieces?",
+      quiz_type: "classic",
+      quiz_timer: 3,
+      category_id: 2,
+      author_id: 2
+    )
 
-
-    3.times do 
-      Quiz.create!({
-        title: Faker::Lorem.question,
-        quiz_type: "classic",
-        description: Faker::Lorem.sentence,
-        quiz_timer: Faker::Number.between(from: 1, to: 10),
-        category_id: 5,
-        author_id: 1
-      }) 
+    Quiz.create! (
+      title: "Can you name the original 8 Monopoly pieces?",
+      quiz_type: "classic",
+      quiz_timer: 3,
+      category_id: 1,
+      author_id: 2
+    )
 
     end
 
     puts "creating questions..."
+
+    Question.create! (
+      body: "1",
+      answer: "cannon",
+      quiz_id: 3,
+    )
+
+    Question.create! (
+      body: "2",
+      answer: "thimble",
+      quiz_id: 3,
+    )
+
+    Question.create! (
+      body: "3",
+      answer: "top hat",
+      quiz_id: 3,
+    )
+
+    Question.create! (
+      body: "4",
+      answer: "iron",
+      quiz_id: 3,
+    )
+
+    Question.create! (
+      body: "5",
+      answer: "battleship",
+      quiz_id: 3,
+    )
+
+    Question.create! (
+      body: "6",
+      answer: "boot",
+      quiz_id: 3,
+    )
+
+    Question.create! (
+      body: "7",
+      answer: "racecar",
+      quiz_id: 3,
+    )
+
+    Question.create! (
+      body: "8",
+      answer: "purse",
+      quiz_id: 3,
+    )
+
     
     Question.create!(
       body: "S",
@@ -136,7 +182,6 @@ ApplicationRecord.transaction do
       quiz_id: 1,
       
     )
-
   
     items = [["1", "Manhattan"], ["2","Brooklyn"], ["3", "Staten Island"], ["4","Queens"], ["5", "Bronx"]]
     items.each do |item|
