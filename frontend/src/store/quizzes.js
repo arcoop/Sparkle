@@ -34,7 +34,6 @@ export const getQuiz = quizId => state => {
 }
 
 export const createQuiz = quiz => async dispatch => {
-    console.log(JSON.stringify(quiz))
     const res = await csrfFetch('/api/quizzes', {
         method: 'POST',
         // body: JSON.stringify(quiz)

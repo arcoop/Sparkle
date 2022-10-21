@@ -24,7 +24,7 @@ const QuizTile = ({quiz}) => {
 
     // const user = quiz.author
 
-    const image = quiz.iconUrl ? <img src={quiz.iconUrl} alt="" /> : <></>
+    const image = quiz.iconUrl ? <img src={quiz.iconUrl} alt="" /> : <img className="quiz-icon" src="https://cdn.writermag.com/2019/03/question-marks.jpg" alt="" />
 
     return (
         <div className="quiz-tile">

@@ -70,7 +70,7 @@ const QuestionIndex = ({quiz}) => {
                     </div>
                     <div id="right-side-quiz-header">
                         <h3 id="score">Score: {score} </h3>
-                        <h3 id="timer">Time: {quiz.quizTimer}:00</h3>
+                        {/* <h3 id="timer">Time: {quiz.quizTimer}:00</h3> */}
                     </div>
                 </div>
 

@@ -20,7 +20,7 @@ const QuizShow = () => {
     
     let quiz = useSelector(state => state.quizzes[quizId]) || {title: "", categoryId: 1};
     
-    const image = quiz.iconUrl ? <img className="quiz-icon" src={quiz.iconUrl} alt="" /> : <></>
+    const image = quiz.iconUrl ? <img className="quiz-icon" src={quiz.iconUrl} alt="" /> : <img className="quiz-icon" src="https://cdn.writermag.com/2019/03/question-marks.jpg" alt="" />
     
     const categoryId = quiz ? quiz.categoryId : 1
     
@@ -30,7 +30,7 @@ const QuizShow = () => {
     
     useEffect(() => {
         dispatch(fetchQuiz(quizId))
-        dispatch(fetchQuizTakes)
+        dispatch(fetchQuizTakes())
     }, [])
     
 

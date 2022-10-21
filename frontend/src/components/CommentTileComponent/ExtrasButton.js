@@ -26,7 +26,7 @@ const ExtrasButton = ({stateChanger, comment}) => {
                     <p>Delete</p>
                 </button>
             </li>
-            <li className="comment-menu-list-item"> <button className="comment-menu-button" id="hide-button">Hide</button></li>
+            {/* <li className="comment-menu-list-item"> <button className="comment-menu-button" id="hide-button">Hide</button></li> */}
         </ul>
     )
 
