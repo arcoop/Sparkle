@@ -31,7 +31,7 @@ const QuizShow = () => {
     useEffect(() => {
         dispatch(fetchQuiz(quizId))
         dispatch(fetchQuizTakes)
-    }, [dispatch, quizId])
+    }, [])
     
 
     let takes = quiz.id ? quiz.takes : []

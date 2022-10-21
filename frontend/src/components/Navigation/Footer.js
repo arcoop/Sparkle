@@ -3,15 +3,15 @@ import './Footer.css'
 
 export const Footer = () => {
     return (
-        <div id="footer-container">Footer container
+        <div id="footer-container">
             <div id="footer-top-section">
-                <div id="footer-left-nav"> Left nav
+                <div id="footer-left-nav">
                     <Link to="/" id="sparkle-logo-section">
                         <p className="nav-home-link-text">sparkle</p>
                         <div className="line-break" id="footer-line-break">
                             <span id="est-text">est. 2022</span>
                         </div>
-                        <p>subtitle text</p>
+                        {/* <p>subtitle text</p> */}
                     </Link>
                     <div id="num-quizzes-played"></div>
                 </div>
@@ -23,11 +23,11 @@ export const Footer = () => {
                 </div>
 
             </div>
-            <div id="footer-bottom-section">
+            {/* <div id="footer-bottom-section">
                 <div id="footer-bottom-section-1">bottom section1</div>
                 <div id="footer-bottom-section-2">bottom section2</div>
                 <div id="footer-bottom-section-3">bottom section3</div>
-            </div>
+            </div> */}
         </div>
     )
 }

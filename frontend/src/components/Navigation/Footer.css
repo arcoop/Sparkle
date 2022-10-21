@@ -1,16 +1,16 @@
 #footer-container {
-    border: 1px solid red;
+    border-top: 1px solid #d8d8d8;
+    border-bottom: 1px solid #d8d8d8;
+    height: 400px;
+    padding: 30px;
 }
 
-#footer-left-nav {
-    border: 1px solid green;
-}
 
 #footer-line-break {
     position: relative;
     width: 123px;
     height: 1px;
-    border-bottom: 1px solid #666;
+    /* border-bottom: 1px solid #666; */
     filter: brightness(.85);
     margin: 0 1px;
     padding-top: 8px;

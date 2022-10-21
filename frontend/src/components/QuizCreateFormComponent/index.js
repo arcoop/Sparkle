@@ -14,7 +14,9 @@ const QuizForm = () => {
     const dispatch = useDispatch();
     const [quizName, setQuizName] = useState("")
     const [quizType, setQuizType] = useState("Classic")
-    const quizTypes = ["Classic", "Clickable", "Grid", "Map", "Picture Box", "Picture Click", "Slideshow"]
+    const quizTypes = ["Classic"]
+    //future quiz types
+    // "Clickable", "Grid", "Map", "Picture Box", "Picture Click", "Slideshow"]
     const [redirect, setRedirect] = useState(false)
     const [id, setId] = useState(null)
     const [errors, setErrors] = useState([])

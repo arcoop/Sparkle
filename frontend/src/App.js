@@ -19,43 +19,52 @@ function App() {
         <Route exact path={"/"}>
           <Navigation />
           <QuizIndex />
+          <Footer />
         </Route>
         <Route exact path={"/quizzes"}>
           <Navigation/>
           <QuizIndex />
+          <Footer />
         </Route>
 
         <Route path={"/users/:id"}>
           <UserShow />
+          <Footer />
         </Route>
 
         <Route exact path={"/create"}>
           <Navigation />
           <QuizCreation />
+          <Footer />
         </Route>
 
         <Route path="/create/new">
           <QuizForm />
+          <Footer/>
         </Route>
 
         <Route path="/create/edit/:quizId">
           <Navigation />
           <QuizEditForm/>
+          <Footer/>
         </Route>
 
         <Route path="/quizzes/:quizId">
           <Navigation />
           <QuizShow />
+          <Footer />
         </Route>
 
         <Route exact path='/categories'>
           <Navigation />
           <CategoryIndexPage />
+          <Footer />
         </Route>
 
         <Route exact path="/categories/:categoryId/">
           <Navigation />
           <QuizByCategory />
+          <Footer />
         </Route>
 
         <Route>

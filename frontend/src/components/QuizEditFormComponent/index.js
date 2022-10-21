@@ -39,6 +39,7 @@ const QuizEditForm = () => {
     const [extraHeading, setExtraHeading] = useState("")
     const [category, setCategory] = useState(quiz.category)
     const [redirect, setRedirect] = useState(false)
+    const [succesMessage, setSuccessMessage] = useState([])
     
     const categories = [
         [0,"no category chosen"],
@@ -103,6 +104,7 @@ const QuizEditForm = () => {
                     }
                 })
                 .then(async data => {
+                    setSuccessMessage(["quiz saved!"])
                     setRedirect(true)
                 })
         }
@@ -148,6 +150,13 @@ const QuizEditForm = () => {
     return (
 
         <div id='edit-form-container'>
+            <ul className="sucess">
+                {succesMessage.map(message => {
+                    return (
+                        <li className="message" key={message}>{message}</li>
+                        )
+                    })}
+            </ul>
             <div id='edit-management-form'>
 
                 <div id='quiz-edit-top-level-info'>
