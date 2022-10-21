@@ -37,10 +37,10 @@ const QuizIndex = () => {
 
     let topDivText;
 
-    if (sessionUser) {
-        topDivText = <div>Welcome<Link id="home-page-user-link" to={`/users/${sessionUser.id}`}>{sessionUser.username}</Link>!</div>
+    if (sessionUser.id) {
+        topDivText = <div>Welcome, <Link id="home-page-user-link" to={`/users/${sessionUser.id}`}>{sessionUser.username}</Link>!</div>
     } else {
-        topDivText = ""
+        topDivText = <div>Welcome to the world’s largest quiz community. Play a quiz or create your own. A sparkle shines in everyone!</div>
     }
     
     return (

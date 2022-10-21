@@ -2,17 +2,32 @@ import { useState } from "react";
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
 import { Modal } from "../../context/Modal";
+import { useParams } from "react-router-dom";
 
-const FormModal = () => {
+const FormModal = ({type = "login"}) => {
     const [showModal, setShowModal] = useState(false)
-    const [modal, setModal] = useState("login")
+    const [modal, setModal] = useState(type)
 
     const toggleModal = () => {
-        setModal( modal === "login" ? "signup" : "login")
+        setModal( modal === ("login" || "create-quiz-login")  ? "signup" : "login")
     }
 
     const handleClick = () => {
         setShowModal(true)
+    }
+
+    let buttonText;
+    let buttonClass;
+    if (type === "create-quiz-login") {
+        buttonText = "Log in"
+        buttonClass="button-create-form-login"
+
+    } else if (type === "create-quiz-signup")  {
+        buttonText = "Sign Up"
+        buttonClass = "button-create-form-signup"
+    } else {
+        buttonText = "SIGN IN"
+        buttonClass = ""
     }
 
     let classText;
@@ -25,12 +40,12 @@ const FormModal = () => {
     const formClass = (modal === "login" ? "signup-link" : "signup-link")
 
     const text = (
-        (modal === 'signup' ? 'Already a sporcler?' : "")
+        (modal === 'signup' ? 'Already sparkling?' : "")
     )
     
     return (
         <>            
-            <button onClick={handleClick}>SIGN IN</button>
+            <button className={buttonClass} onClick={handleClick}>{buttonText}</button>
             
             {showModal &&
                 <Modal onClose = {() => setShowModal(false)} type={modalType}>
@@ -43,7 +58,7 @@ const FormModal = () => {
                                 <div className="button-text">
                                     <p id="text">{text}</p>
                                     <button 
-                                        className={formClass} onClick={toggleModal}>{modal === 'login' ? "Join Sparkle for Free" : "Log in"}
+                                        className={formClass} onClick={toggleModal}>{modal === 'login' ? "Start Sparkling for Free" : "Log in"}
                                     </button>
                                 </div>
                             </div>

@@ -18,7 +18,6 @@
     font-weight: 600;
 }
 
-
 #create-page-extras-button {
     background: none;
     color: black;
@@ -45,4 +44,102 @@
 
 #create-quiz-button:hover {
     border: 1px solid #fbc36f;
+}
+
+.quiz-create-not-logged-in {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.not-logged-in-main {
+    margin-top: 30px;
+}
+
+.quiz-create-not-logged-in-page {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.not-logged-in-create-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.not-logged-in-create-header h1 {
+    font-size: 34px;
+    font-weight: 700;
+}
+
+.not-logged-in-create-header h3 {
+    font-size: 20px;
+    font-weight: 350;
+    margin-top: 10px;
+    color: #666;
+}
+
+.quiz-promo-list {
+    font-size: 18px;
+    text-align: left;
+}
+
+.quiz-promo-list li {
+    padding-left: 28px;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.quiz-promo-list li span {
+    line-height: 24px;
+    vertical-align: text-bottom;
+}
+
+.signup-form-modal-button {
+    width: 250px;
+    margin: auto;
+    text-align: center;
+}
+
+.button-create-form-signup {
+    background-color: #f90;
+    border: 1px solid #f90;
+    color: white;
+    margin-bottom: 1rem;
+    width: 12rem;
+    border-radius: .25rem;
+    box-sizing: border-box;
+    text-transform: uppercase;
+    font-size: .75rem;
+    font-weight: 700;
+    line-height: .875rem;
+    padding: .75rem 1rem;
+}
+
+.button-create-form-signup:hover {
+    cursor: pointer;
+    background-color: #ffa800;
+    border: 1px solid #ffa800;
+}
+
+.button-create-form-login {
+    background: transparent;
+    border: 1px solid transparent;
+    color: black;
+    font-size: .9375rem;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.button-create-form-login:hover {
+    cursor: pointer;
+    color: #f90;
+}
+
+.login-form-modal-button {
+    font-size: .9375rem;
+    display: flex;
+    align-items: center;
 }
