@@ -37,10 +37,10 @@
 }
 
 #quizzes-list {
-    margin: 30px;
+    margin: 20px;
     display: grid;
-    grid-template-rows: 500px 500px 500px;
-    grid-template-columns: 500px 500px;
+    grid-template-rows: 400px 400px 400px;
+    grid-template-columns: 400px 400px;
 }
 
 .quiz-index-list-item {
