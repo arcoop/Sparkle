@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, Redirect, useHistory } from "react-router-dom"
-import { fetchQuizzes, getQuizzes } from "../../store/quizzes"
+import { fetchQuiz, fetchQuizzes, getQuizzes } from "../../store/quizzes"
 import './Header.css'
 import CategoriesIndex from "../CategoryIndexComponent"
 
@@ -43,9 +43,11 @@ const Header = () => {
 
     let quizzes = useSelector(getQuizzes)
     
+    let quiz;
+    
     const handleClick = () => {
         let idx = Math.floor(Math.random() * quizzes.length)
-        let quiz = quizzes[idx]
+        quiz = quizzes[idx]
         console.log(quiz)
         console.log(quiz.id)
         history.push(`/quizzes/${quiz.id}`)
