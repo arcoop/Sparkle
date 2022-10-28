@@ -21,6 +21,10 @@ const FormModal = ({type = "login"}) => {
         // setModal( modal === ("login" || "create-quiz-login")  ? "signup" : "login")
     }
 
+    const otherToggleModal = () => {
+        setModal("login")
+    }
+
     const handleClick = () => {
         setShowModal(true)
     }
@@ -93,6 +97,8 @@ const FormModal = ({type = "login"}) => {
                                         // className={formClass} onClick={toggleModal}>{modal === 'login' ? "Start Sparkling for Free" : "Log in"}
                                         className={formClass} onClick={toggleModal}>{submitButtonText}
                                     </button>
+                                    {modal === "interimSignup" ? <p>Already Sparkling?</p> : <></>}
+                                    {modal === "interimSignup" ? <button className="signup-link" onClick={otherToggleModal}>Log In</button> : <></>}
                                 </div>
                             </div>
                         </div>

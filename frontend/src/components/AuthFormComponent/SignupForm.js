@@ -64,7 +64,6 @@ const SignupForm = ({email, setEmail}) => {
                 onChange={e => setPassword(e.target.value)}
                 />
 
-
     
                 <input className="signup-credentials"
                 type="password" 
