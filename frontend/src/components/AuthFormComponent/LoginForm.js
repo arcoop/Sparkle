@@ -11,7 +11,7 @@ const LoginForm = () => {
     const [password, setPassword] = useState("")
     const [errors, setErrors] = useState([])
     const dispatch = useDispatch()
-    const sessionUser = useSelector(state => state.session.user)
+    //const sessionUser = useSelector(state => state.session.user)
     
     const handleSubmit = e => {
         e.preventDefault();

@@ -38,13 +38,16 @@ const FormModal = ({type = "login"}) => {
     }
 
     let classText;
-    if (modal === 'signup') {
+    if (modal === 'signup' || 'interimSignup') {
         classText = "show-sidebar"
     } else classText = "hidden"
 
-    const modalType = (modal === "login" ? "login" : "signup")
+   // const modalType = (modal === "login" ? "login" : "signup")
 
-    const formClass = (modal === "login" ? "signup-link" : "signup-link")
+    ///const formClass = (modal === "login" ? "signup-link" : "signup-link")
+    let formClass;
+    if (modal === 'login') formClass = "signup-link"
+    if (modal === 'signup') formClass = "signup-link"
 
     const text = (
         (modal === 'signup' ? 'Already sparkling?' : "")
