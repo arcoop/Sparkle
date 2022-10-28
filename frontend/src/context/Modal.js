@@ -25,8 +25,13 @@ export const ModalProvider = ({...props}) => {
 export const Modal = ({onClose, type, children}) => {
     const modalNode = useContext(ModalContext)
     if (!modalNode) return null
+    
+    //(type === "signup" ? "modal-content-signup" : "modal-content-login")
 
-    const divId = (type === "signup" ? "modal-content-signup" : "modal-content-login")
+    let divId;
+    if (type === "signup") divId = "modal-content-signup"
+    if (type === "login") divId = "modal-content-login"
+    if (type === "interimSignup") divId = "modal-content-interim"
 
     return ReactDOM.createPortal(
         <div id="modal">

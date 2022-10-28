@@ -8,8 +8,15 @@ const FormModal = ({type = "login"}) => {
     const [showModal, setShowModal] = useState(false)
     const [modal, setModal] = useState(type)
 
+    //types: login, interimSignup, signup,
+
     const toggleModal = () => {
-        setModal( modal === ("login" || "create-quiz-login")  ? "signup" : "login")
+        if (modal == "login" || "create-quiz-login") {
+            setModal("interimSignup")
+        } else if (modal === "signup") {
+            setModal("login")
+        } else if (modal === "interimSignup") setModal("signup")
+        // setModal( modal === ("login" || "create-quiz-login")  ? "signup" : "login")
     }
 
     const handleClick = () => {
@@ -48,7 +55,8 @@ const FormModal = ({type = "login"}) => {
             <button className={buttonClass} onClick={handleClick}>{buttonText}</button>
             
             {showModal &&
-                <Modal onClose = {() => setShowModal(false)} type={modalType}>
+                // <Modal onClose = {() => setShowModal(false)} type={modalType}>
+                <Modal onClose = {() => setShowModal(false)} type={modal}>
 
                     {/* <div id="modal-contents"> */}
                         <div id="main-contents">
