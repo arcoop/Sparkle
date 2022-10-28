@@ -6,9 +6,9 @@ import './SignUpForm.css'
 // import LoginFormModal from "../LoginFormModal"
 import FormModal from "."
 
-const SignupForm = () => {
+const SignupForm = ({email, setEmail}) => {
 
-    const [email, setEmail] = useState("")
+    //const [email, setEmail] = useState("")
     const sessionUser = useSelector(state => state.session.user)
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")

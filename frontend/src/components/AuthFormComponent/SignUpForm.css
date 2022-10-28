@@ -159,3 +159,26 @@
     text-decoration: underline;
     cursor: pointer;
 }
+
+.interim-signup-link {
+    margin-top: 30px;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f90;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 13px;
+    display: flex;
+    justify-content: center;
+    transition: .3s;
+    margin-bottom: 30px;
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 400px;
+}
+
+.interim-signup-link:hover {
+    background-color: #fbc36f;
+    cursor: pointer;
+    transition: .3s;
+}

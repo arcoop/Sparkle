@@ -8,11 +8,12 @@ import InterimSignUp from "./InterimModalForm";
 const FormModal = ({type = "login"}) => {
     const [showModal, setShowModal] = useState(false)
     const [modal, setModal] = useState(type)
+    const [email, setEmail] = useState("")
 
     //types: login, interimSignup, signup,
 
     const toggleModal = () => {
-        if (modal == "login" || "create-quiz-login") {
+        if (modal === "login" || modal === "create-quiz-login") {
             setModal("interimSignup")
         } else if (modal === "signup") {
             setModal("login")
@@ -47,9 +48,20 @@ const FormModal = ({type = "login"}) => {
 
     ///const formClass = (modal === "login" ? "signup-link" : "signup-link")
     let formClass;
-    if (modal === 'login') formClass = "signup-link"
-    if (modal === 'signup') formClass = "signup-link"
-    if (modal === 'interimSignup') formClass = "signup-link"
+    let submitButtonText;
+    if (modal === 'login') {
+        formClass = "signup-link"
+        submitButtonText = "Start Sparkling for Free"
+    }
+
+    if (modal === 'signup') {
+        formClass = "signup-link"
+        submitButtonText = "Login"
+    }
+    if (modal === 'interimSignup') {
+        formClass = "interim-signup-link"
+        submitButtonText = "CONTINUE"
+    }
 
     const text = (
         (modal === 'signup' ? 'Already sparkling?' : "")
@@ -57,8 +69,8 @@ const FormModal = ({type = "login"}) => {
 
     let modalForm;
     if (modal === 'login') modalForm = <LoginForm />
-    if (modal === 'signup') modalForm = <SignupForm />
-    if (modal === 'interimSignup') modalForm = <InterimSignUp />
+    if (modal === 'signup') modalForm = <SignupForm email={email} setEmail={setEmail}/>
+    if (modal === 'interimSignup') modalForm = <InterimSignUp email={email} setEmail={setEmail}/>
 
     
     return (
@@ -78,7 +90,8 @@ const FormModal = ({type = "login"}) => {
                                 <div className="button-text">
                                     <p id="text">{text}</p>
                                     <button 
-                                        className={formClass} onClick={toggleModal}>{modal === 'login' ? "Start Sparkling for Free" : "Log in"}
+                                        // className={formClass} onClick={toggleModal}>{modal === 'login' ? "Start Sparkling for Free" : "Log in"}
+                                        className={formClass} onClick={toggleModal}>{submitButtonText}
                                     </button>
                                 </div>
                             </div>

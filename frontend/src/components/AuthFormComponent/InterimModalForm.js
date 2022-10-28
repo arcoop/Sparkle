@@ -6,15 +6,16 @@ import './SignUpForm.css'
 // import LoginFormModal from "../LoginFormModal"
 import FormModal from "."
 
-const InterimSignUp = () => {
+const InterimSignUp = ({email, setEmail}) => {
 
-    const [email, setEmail] = useState("")
+    //const [email, setEmail] = useState("")
     const sessionUser = useSelector(state => state.session.user)
 
     if (sessionUser) return <Redirect to="/" />;
 
     const handleSubmit = e => {
         e.preventDefault();
+        
     }
 
     return (
@@ -36,8 +37,6 @@ const InterimSignUp = () => {
                     placeholder="Email"
                     onChange={e => setEmail(e.target.value)}
                     />
-                
-                <button className="signup-submit" type="submit">CONTINUE</button>
             </form>
             <div id="loginformmodal">
             </div>
