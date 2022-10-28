@@ -28,8 +28,32 @@ const LoginForm = () => {
 
   
     const handleDemoLogin = () => {
-        const user = {credential:"demo-user", password: "demouser123"}
-        return dispatch(login(user))
+        const demoCredential = "demo-user".split("")
+        const demoPassword = "demouser123".split("")
+        setCredential("")
+        setPassword("")
+        let tempCredential = ""
+        let tempPassword = ""
+        const loginAnimation = () => {
+            const interval = setInterval(() => {
+                if (demoCredential.length > 0) {
+                    tempCredential += demoCredential.shift()
+                    console.log("tempCredential")
+                    console.log(tempCredential)
+                    setCredential(tempCredential)
+                } else if (demoPassword.length > 0) {
+                    tempPassword += demoPassword.shift()
+                    setPassword(tempPassword)
+                } else {
+                    clearInterval(interval)
+                    setCredential(tempCredential)
+                    setPassword(tempPassword)
+                    return dispatch(login({credential: tempCredential, password: tempPassword}))
+                }
+            }, 65)
+        };
+
+        loginAnimation()
     }
 
     // const handleClick = () => {
