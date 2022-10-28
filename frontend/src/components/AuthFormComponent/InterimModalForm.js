@@ -19,13 +19,13 @@ const InterimSignUp = () => {
 
     return (
         <>
-            <ul className="errors">
+            {/* <ul className="errors">
                 {errors.map(error => {
                     return (
                         <li className="error" key={error}>{error}</li>
                     )
                 })}
-            </ul>
+            </ul> */}
 
             <h2 id="join-text">Join for Free</h2>
             <p id="subtitle">By continuing you agree to our Terms of Use and Privacy Policy.</p>

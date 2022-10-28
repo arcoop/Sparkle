@@ -3,6 +3,7 @@ import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
 import { Modal } from "../../context/Modal";
 import { useParams } from "react-router-dom";
+import InterimSignUp from "./InterimModalForm";
 
 const FormModal = ({type = "login"}) => {
     const [showModal, setShowModal] = useState(false)
@@ -38,7 +39,7 @@ const FormModal = ({type = "login"}) => {
     }
 
     let classText;
-    if (modal === 'signup' || 'interimSignup') {
+    if (modal === 'signup' || modal === 'interimSignup') {
         classText = "show-sidebar"
     } else classText = "hidden"
 
@@ -48,10 +49,17 @@ const FormModal = ({type = "login"}) => {
     let formClass;
     if (modal === 'login') formClass = "signup-link"
     if (modal === 'signup') formClass = "signup-link"
+    if (modal === 'interimSignup') formClass = "signup-link"
 
     const text = (
         (modal === 'signup' ? 'Already sparkling?' : "")
     )
+
+    let modalForm;
+    if (modal === 'login') modalForm = <LoginForm />
+    if (modal === 'signup') modalForm = <SignupForm />
+    if (modal === 'interimSignup') modalForm = <InterimSignUp />
+
     
     return (
         <>            
@@ -63,7 +71,8 @@ const FormModal = ({type = "login"}) => {
 
                     {/* <div id="modal-contents"> */}
                         <div id="main-contents">
-                            {modal === 'login' ? <LoginForm /> : <SignupForm />}
+                            {/* {modal === 'login' ? <LoginForm /> : <SignupForm />} */}
+                            {modalForm}
                             
                             <div className="button-links">
                                 <div className="button-text">
