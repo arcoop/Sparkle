@@ -97,6 +97,8 @@ const FormModal = ({type = "login"}) => {
                                         // className={formClass} onClick={toggleModal}>{modal === 'login' ? "Start Sparkling for Free" : "Log in"}
                                         className={formClass} onClick={toggleModal}>{submitButtonText}
                                     </button>
+                                </div>
+                                <div className="second-button">
                                     {modal === "interimSignup" ? <p>Already Sparkling?</p> : <></>}
                                     {modal === "interimSignup" ? <button className="signup-link" onClick={otherToggleModal}>Log In</button> : <></>}
                                 </div>

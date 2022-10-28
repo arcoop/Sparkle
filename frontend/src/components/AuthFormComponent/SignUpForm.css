@@ -100,6 +100,7 @@
 .button-links {
     display: flex;
     justify-content: center;
+    flex-direction: column;
 }
 
 .button-text {
@@ -181,4 +182,9 @@
     background-color: #fbc36f;
     cursor: pointer;
     transition: .3s;
+}
+
+.second-button {
+    display: flex;
+    align-items: center;
 }
