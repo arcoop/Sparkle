@@ -10,6 +10,7 @@ const Header = () => {
     const dispatch = useDispatch();
     const history = useHistory()
     const [showMenu, setShowMenu] = useState(false)
+    const [randomQuiz, setRandomQuiz] = useState(false)
     
     const openMenu = () => {
         if (!showMenu) setShowMenu(true)
@@ -32,26 +33,37 @@ const Header = () => {
             document.removeEventListener("click", closeMenu)
         }
     }, [showMenu])
-       
 
+    const quizIds = useSelector(state => Object.keys(state.quizzes))
     
-    useEffect(() => {
-        // console.log("dispatching")
-        // dispatch(fetchQuizzes())
-        // console.log("done dispatching")
-    }, [])
-
-    let quizzes = useSelector(getQuizzes)
-    
-    let quiz;
+    console.log('quizids')
+    console.log(quizIds)
+    let quizId;
+    let idx;
     
     const handleClick = () => {
-        let idx = Math.floor(Math.random() * quizzes.length)
-        quiz = quizzes[idx]
-        console.log(quiz)
-        console.log(quiz.id)
-        history.push(`/quizzes/${quiz.id}`)
+        setRandomQuiz(true)
+        idx = Math.floor(Math.random() * quizIds.length)
+        console.log('idx')
+        console.log(idx)
+        quizId = parseInt(quizIds[idx])
+        // console.log(quizId)
+        // console.log(quiz)
+        // console.log(quiz.id)
+        history.push(`/quizzes/${quizId}`)
+        setRandomQuiz(false)
     }
+    
+    useEffect(() => {
+        dispatch(fetchQuizzes())
+    }, [randomQuiz])
+    
+    // useEffect(() => {
+    //     dispatch(fetchQuiz(quizId))
+    //     // console.log("dispatching")
+    //     // dispatch(fetchQuizzes())
+    //     // console.log("done dispatching")
+    // }, [quizId])
 
    return (
         <div>
@@ -79,7 +91,7 @@ const Header = () => {
                     </div>
                 </div>
                 <div id="nav-buttons-right">
-                    {/* <button className="submit-button" id="right-nav-button" onClick={handleClick}>Random Quiz</button> */}
+                    <button className="submit-button" id="right-nav-button" onClick={handleClick}>Random Quiz</button>
                     {/* <button id="search-button">
                         <i className="fa-solid fa-magnifying-glass"></i>
                     </button> */}
