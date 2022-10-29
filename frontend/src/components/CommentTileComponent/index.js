@@ -14,10 +14,12 @@ const CommentTile = ({comment}) => {
     const dispatch = useDispatch()
     
     const userId = comment.commenterId
+    
     useEffect(() => {
         dispatch(fetchUser(userId))
     }, [])
-    
+
+
     //const sessionUser = useSelector(state => state.session.user)
     const commenter = useSelector(getUser(userId))
     const [numPoints, setNumPoints] = useState(comment.points)
