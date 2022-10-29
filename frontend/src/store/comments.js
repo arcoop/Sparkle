@@ -26,7 +26,9 @@ export const getComments = state => {
 export const fetchComments = quizId => async dispatch => {
     const res = await csrfFetch(`/api/quizzes/${quizId}/comments`)
     const data = await res.json()
+    console.log("fetch comments data")
     console.log(data)
+    console.log("end data")
     dispatch(setComments(data))
 }
 
@@ -60,9 +62,9 @@ export const deleteComment = commentId => async dispatch => {
 const commentsReducer = (state = {}, action) => {
     switch(action.type) {
         case SET_COMMENTS:
-            return {...state, ...action.payload}
+            return {...action.payload}
         case SET_COMMENT:
-            return {...state, ...action.payload}
+            return {...action.payload}
         case REMOVE_COMMENT:
             const nextState = {...state}
             delete nextState[action.payload]

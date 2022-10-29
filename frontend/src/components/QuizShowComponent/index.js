@@ -21,6 +21,7 @@ const QuizShow = () => {
         dispatch(fetchQuiz(quizId))
         dispatch(fetchQuizTakes())
         dispatch(fetchQuestions(quizId))
+        dispatch(fetchComments(quizId))
     }, [quizId])
     
     const sessionUser = useSelector(state => state.session.user) || {}
@@ -30,6 +31,8 @@ const QuizShow = () => {
     const image = quiz.iconUrl ? <img className="quiz-icon" src={quiz.iconUrl} alt="" /> : <img className="quiz-icon" src="https://cdn.writermag.com/2019/03/question-marks.jpg" alt="" />
     
     const categoryId = quiz ? quiz.categoryId : 1
+
+    const quizComments = useSelector(state => Object.values(state.comments))
     
     let category = useSelector(state => state.categories[categoryId]) || ""
     
@@ -103,7 +106,7 @@ const QuizShow = () => {
                     </div>
 
                     <div id="#comments">
-                        <CommentsIndex quizId={quizId}/>
+                        <CommentsIndex quizComments={quizComments} quizId={quizId}/>
                     </div>
 
 
