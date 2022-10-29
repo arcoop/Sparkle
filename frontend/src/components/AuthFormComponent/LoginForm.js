@@ -80,7 +80,7 @@ const LoginForm = () => {
 
 
     return (
-        <>
+        <div>
             <ul className="errors">
                 {errors.map(error => {
                     return (
@@ -92,7 +92,11 @@ const LoginForm = () => {
             <p id="subtitle">By continuing you agree to <a id="subtitle-link" href="https://www.linkedin.com/in/adina-cooper/">view my LinkedIn</a>.</p>
             <div className="non-form-items">
                 <button className="demo-user" onClick={handleDemoLogin}>LOG IN AS DEMO USER</button>
-                <hr className="hr" /> 
+                {/* <hr className="hr" />  */}
+                <div className="line-break-or">
+                    <div className="hr"></div>
+                    <p className="or-text">or</p>
+                </div>
             </div>
                 <form id="loginform" onSubmit={handleSubmit}>
                         <div className="cred-div">
@@ -120,7 +124,7 @@ const LoginForm = () => {
                     <button className="log-in" type="submit">LOG IN</button>
                 </form>
             
-        </>
+        </div>
     )
 }
 
