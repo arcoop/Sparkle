@@ -17,7 +17,6 @@ const SignupForm = ({email, setEmail}) => {
     const [passwordPlaceholder, setPasswordPlaceholder] = useState("")
     const [confirmPassPlaceholder, setConfirmPassPlaceholder] = useState("Confirm Password")
     const [usernamePlaceholder, setUsernamePlaceholder] = useState("Username")
-    const [active, setActive] = useState(true)
     const dispatch = useDispatch()
 
     if (sessionUser) return <Redirect to="/" />;
@@ -40,7 +39,6 @@ const SignupForm = ({email, setEmail}) => {
     }
 
     const confirmPasswordClick = () => {
-        setActive(false)
         setPasswordPlaceholder("Password")
         setConfirmPassPlaceholder("")
     }

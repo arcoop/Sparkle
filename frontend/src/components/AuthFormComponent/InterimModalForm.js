@@ -10,7 +10,8 @@ const InterimSignUp = ({email, setEmail, errors}) => {
 
     //const [email, setEmail] = useState("")
     const sessionUser = useSelector(state => state.session.user)
-    const [emailPlaceholder, setEmailPlaceholder] = useState("Email")
+    //const [emailPlaceholder, setEmailPlaceholder] = useState("Email")
+    const [float, setFloat] = useState("email-label")
 
     if (sessionUser) return <Redirect to="/" />;
 
@@ -22,7 +23,7 @@ const InterimSignUp = ({email, setEmail, errors}) => {
     // }
 
     return (
-        <>
+        <div>
             <ul className="errors">
                 {errors.map(error => {
                     return (
@@ -33,19 +34,21 @@ const InterimSignUp = ({email, setEmail, errors}) => {
 
             <h2 id="join-text">Join for Free</h2>
             <p id="subtitle">By continuing you agree to our Terms of Use and Privacy Policy.</p>
-            {/* <form onSubmit={handleSubmit}> */}
-                <input className="signup-credentials"
-                    type="text" 
-                    value={email}
-                    placeholder={emailPlaceholder}
-                    onClick={() => setEmailPlaceholder("")}
-                    onChange={e => setEmail(e.target.value)}
-                    />
-            {/* </form> */}
+
+    
+                <div className="email-cred-div">
+                    <label onClick={() => setFloat("email-label floating")} className={float}>Email</label>
+                    <input className="signup-credentials"
+                        type="text"
+                        value={email}
+                        onClick={() => setFloat("email-label floating")}
+                        onChange={e => setEmail(e.target.value)}
+                        />
+                </div>
             <div id="loginformmodal">
             </div>
 
-        </>
+        </div>
     )
 }
 

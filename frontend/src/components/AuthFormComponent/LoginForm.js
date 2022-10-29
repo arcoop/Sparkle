@@ -12,7 +12,7 @@ const LoginForm = () => {
     const [password, setPassword] = useState("")
     const [errors, setErrors] = useState([])
     //const [credentialPlaceholder, setCredentialPlaceholder] = useState("Email Address or Username")
-    const [usernameFloat, setUsernameFloat] = useState("label")
+    const [usernameFloat, setUsernameFloat] = useState("label floating")
     const [passwordFloat, setPasswordFloat] = useState(false)
 
     //1 = username float
@@ -104,7 +104,6 @@ const LoginForm = () => {
                             <input className="credentials"
                                 type="text"
                                 value={credential}
-                                //placeholder={credentialPlaceholder === 1 ? "Email Address or Username" : ""}
                                 onClick={handleUsernameClick}
                                 onChange={e => setCredential(e.target.value)}
                                 />
@@ -115,7 +114,6 @@ const LoginForm = () => {
                         <input type="password"
                             className="credentials"
                             value={password}
-                            //placeholder={passwordPlaceholder === 1? "Password" : ""}
                             onClick={handlePasswordClick}
                             onChange={e => setPassword(e.target.value)}
                             />
