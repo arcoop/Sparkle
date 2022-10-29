@@ -151,6 +151,7 @@
     background: transparent;
     color: #666;
     padding: 9px;
+    pointer-events: none;
 }
 
 .label:hover {
