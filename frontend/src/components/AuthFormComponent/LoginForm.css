@@ -27,7 +27,7 @@
     background-color: rgb(230, 228, 228);
     border: 1px solid transparent;
     box-sizing: border-box;
-    width: 85%;
+    width: 100%;
 }
 
 .credentials:hover {
@@ -78,10 +78,26 @@
 }
 
 .hr {
-    color: rgb(194, 193, 193);
-    height: 0.1%;
+    position: absolute;
     width: 98%;
-    border-width: 1px;
+    border: .0007rem solid rgb(194, 193, 193);
+}
+
+.line-break-or {
+    position: relative;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.or-text {
+    position: absolute;
+    top: -8px;
+    left: 130px;
+    font-size: 12px;
+    background-color: white;
+    padding: 0 30px;
+    color: #666;
 }
 
 .demo-user:hover {
@@ -106,4 +122,49 @@
     margin-top: 30px;
     display: flex;
     justify-content: center;
+}
+
+#subtitle-link {
+    color: black;
+}
+
+#subtitle-link:hover {
+    text-decoration: underline;
+    color: #f90;
+}
+
+.cred-div {
+    width: 85%;
+    position: relative;
+}
+
+.label {
+    position: absolute;
+    top: 30%;
+    font-size: 14px;
+    background: transparent;
+    color: #666;
+    padding: 9px;
+}
+
+.label:hover {
+    cursor: text;
+}
+
+.label.floating {
+    position: absolute;
+    font-size: 12px;
+    font-weight: bold;
+    color: #666;
+    background: white;
+    left: 12px;
+    top: 1px;
+    padding: 1px;
+    transition-duration: .2s;
+    transition-property: top, font-size, font-weight, opacity;
+    transition-timing-function: ease-in;
+}
+
+.label.hidden {
+    display: none;
 }
