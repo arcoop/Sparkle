@@ -11,6 +11,8 @@ const LoginForm = () => {
     const [password, setPassword] = useState("")
     const [errors, setErrors] = useState([])
     const dispatch = useDispatch()
+    const [credentialPlaceholder, setCredentialPlaceholder] = useState("Email Address or Username")
+    const [passwordPlaceholder, setPasswordPlaceholder] = useState("Password")
     //const sessionUser = useSelector(state => state.session.user)
     
     const handleSubmit = e => {
@@ -81,14 +83,16 @@ const LoginForm = () => {
                     <input className="credentials"
                         type="text" 
                         value={credential}
-                        placeholder="Email Address or Username"
+                        placeholder={credentialPlaceholder}
+                        onClick={() => setCredentialPlaceholder("")}
                         onChange={e => setCredential(e.target.value)}
                         />
                     <br></br>
                     <input type="password" 
                         className="credentials"
                         value={password} 
-                        placeholder="Password"
+                        placeholder={passwordPlaceholder}
+                        onClick={() => setPasswordPlaceholder("")}
                         onChange={e => setPassword(e.target.value)}
                         />
                     <br></br>

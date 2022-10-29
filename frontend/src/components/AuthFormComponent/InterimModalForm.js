@@ -10,6 +10,7 @@ const InterimSignUp = ({email, setEmail}) => {
 
     //const [email, setEmail] = useState("")
     const sessionUser = useSelector(state => state.session.user)
+    const [emailPlaceholder, setEmailPlaceholder] = useState("Email")
     const [errors, setErrors] = useState([])
 
     if (sessionUser) return <Redirect to="/" />;
@@ -37,7 +38,8 @@ const InterimSignUp = ({email, setEmail}) => {
                 <input className="signup-credentials"
                     type="text" 
                     value={email}
-                    placeholder="Email"
+                    placeholder={emailPlaceholder}
+                    onClick={() => setEmailPlaceholder("")}
                     onChange={e => setEmail(e.target.value)}
                     />
             {/* </form> */}

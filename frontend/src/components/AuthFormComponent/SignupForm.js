@@ -14,6 +14,10 @@ const SignupForm = ({email, setEmail}) => {
     const [password, setPassword] = useState("")
     const [errors, setErrors] = useState([])
     const [confirmPassword, setConfirmPassword] = useState("")
+    const [passwordPlaceholder, setPasswordPlaceholder] = useState("")
+    const [confirmPassPlaceholder, setConfirmPassPlaceholder] = useState("Confirm Password")
+    const [usernamePlaceholder, setUsernamePlaceholder] = useState("Username")
+    const [active, setActive] = useState(true)
     const dispatch = useDispatch()
 
     if (sessionUser) return <Redirect to="/" />;
@@ -33,6 +37,12 @@ const SignupForm = ({email, setEmail}) => {
         } else {
             setErrors(["passwords do not match"])
         }
+    }
+
+    const confirmPasswordClick = () => {
+        setActive(false)
+        setPasswordPlaceholder("Password")
+        setConfirmPassPlaceholder("")
     }
 
 
@@ -57,9 +67,11 @@ const SignupForm = ({email, setEmail}) => {
                     />
 
                 <input 
-                className="signup-credentials"
+                className={"signup-credentials"}
+                autoFocus
                 type="password"
-                placeholder="Password"
+                placeholder={passwordPlaceholder}
+                onClick={() => setPasswordPlaceholder("")}
                 value={password}
                 onChange={e => setPassword(e.target.value)}
                 />
@@ -68,14 +80,16 @@ const SignupForm = ({email, setEmail}) => {
                 <input className="signup-credentials"
                 type="password" 
                 value={confirmPassword}
-                placeholder="Confirm Password"
+                placeholder={confirmPassPlaceholder}
                 onChange={(e => {setConfirmPassword(e.target.value)} )}
+                onClick={confirmPasswordClick}
                 />
         
                 <input className="signup-credentials"
                     type="text" 
                     value={username}
-                    placeholder="Username"
+                    placeholder={usernamePlaceholder}
+                    onClick={() => setUsernamePlaceholder("")}
                     onChange={e => setUsername(e.target.value)}
                     />
                 
