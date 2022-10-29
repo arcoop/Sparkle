@@ -12,8 +12,8 @@ const LoginForm = () => {
     const [password, setPassword] = useState("")
     const [errors, setErrors] = useState([])
     //const [credentialPlaceholder, setCredentialPlaceholder] = useState("Email Address or Username")
-    const [usernameFloat, setUsernameFloat] = useState("label floating")
-    const [passwordFloat, setPasswordFloat] = useState(false)
+    const [usernameFloat, setUsernameFloat] = useState("label has-focus")
+    const [passwordFloat, setPasswordFloat] = useState("label")
 
     //1 = username float
 
@@ -45,11 +45,13 @@ const LoginForm = () => {
         const loginAnimation = () => {
             const interval = setInterval(() => {
                 if (demoCredential.length > 0) {
+                    setUsernameFloat("label floating")
                     tempCredential += demoCredential.shift()
                     console.log("tempCredential")
                     console.log(tempCredential)
                     setCredential(tempCredential)
                 } else if (demoPassword.length > 0) {
+                    setPasswordFloat("label floating")
                     tempPassword += demoPassword.shift()
                     setPassword(tempPassword)
                 } else {
@@ -101,7 +103,7 @@ const LoginForm = () => {
                 <form id="loginform" onSubmit={handleSubmit}>
                         <div className="cred-div">
                             <label onClick={handleUsernameClick} className={usernameFloat}>Email Address or Username</label>
-                            <input className="credentials"
+                            <input className={usernameFloat === "label has-focus" ? "credentials has-focus" : "credentials"}
                                 type="text"
                                 value={credential}
                                 onClick={handleUsernameClick}
