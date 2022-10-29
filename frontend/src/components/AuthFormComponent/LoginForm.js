@@ -7,14 +7,20 @@ import LoginFormModal from "."
 import FormModal from "."
 
 const LoginForm = () => {
+    const dispatch = useDispatch()
     const [credential, setCredential] = useState("")
     const [password, setPassword] = useState("")
     const [errors, setErrors] = useState([])
-    const dispatch = useDispatch()
-    const [credentialPlaceholder, setCredentialPlaceholder] = useState("Email Address or Username")
-    const [passwordPlaceholder, setPasswordPlaceholder] = useState("Password")
+    //const [credentialPlaceholder, setCredentialPlaceholder] = useState("Email Address or Username")
+    const [usernameFloat, setUsernameFloat] = useState("label")
+    const [passwordFloat, setPasswordFloat] = useState(false)
+
+    //1 = username float
+
     //const sessionUser = useSelector(state => state.session.user)
     
+    let username
+
     const handleSubmit = e => {
         e.preventDefault();
         setErrors([])
@@ -27,7 +33,7 @@ const LoginForm = () => {
                 }
             })
     }
-
+    
   
     const handleDemoLogin = () => {
         const demoCredential = "demo-user".split("")
@@ -58,9 +64,19 @@ const LoginForm = () => {
         loginAnimation()
     }
 
-    // const handleClick = () => {
-    //     LoginFormModal.setShowModal()
-    // }
+    const handleUsernameClick = () => {
+        if (password.length < 1) {
+            setPasswordFloat("label")
+        } else setPasswordFloat("label hidden")
+        setUsernameFloat("label floating")
+    }
+
+    const handlePasswordClick = () => {
+        if (credential.length < 1) {
+            setUsernameFloat("label")
+        } else setUsernameFloat("label hidden")
+        setPasswordFloat("label floating")
+    }
 
 
     return (
@@ -73,28 +89,33 @@ const LoginForm = () => {
                     })}
             </ul>
             <h2 id="login-text">Log In</h2>
-            <p id="subtitle">By continuing you agree to our Community Guidelines.</p>
+            <p id="subtitle">By continuing you agree to <a id="subtitle-link" href="https://www.linkedin.com/in/adina-cooper/">view my LinkedIn</a>.</p>
             <div className="non-form-items">
                 <button className="demo-user" onClick={handleDemoLogin}>LOG IN AS DEMO USER</button>
                 <hr className="hr" /> 
             </div>
                 <form id="loginform" onSubmit={handleSubmit}>
-
-                    <input className="credentials"
-                        type="text" 
-                        value={credential}
-                        placeholder={credentialPlaceholder}
-                        onClick={() => setCredentialPlaceholder("")}
-                        onChange={e => setCredential(e.target.value)}
-                        />
+                        <div className="cred-div">
+                            <label onClick={handleUsernameClick} className={usernameFloat}>Email Address or Username</label>
+                            <input className="credentials"
+                                type="text"
+                                value={credential}
+                                //placeholder={credentialPlaceholder === 1 ? "Email Address or Username" : ""}
+                                onClick={handleUsernameClick}
+                                onChange={e => setCredential(e.target.value)}
+                                />
+                        </div>
                     <br></br>
-                    <input type="password" 
-                        className="credentials"
-                        value={password} 
-                        placeholder={passwordPlaceholder}
-                        onClick={() => setPasswordPlaceholder("")}
-                        onChange={e => setPassword(e.target.value)}
-                        />
+                    <div className="cred-div">
+                        <label onClick={handlePasswordClick} className={passwordFloat}>Password</label>
+                        <input type="password"
+                            className="credentials"
+                            value={password}
+                            //placeholder={passwordPlaceholder === 1? "Password" : ""}
+                            onClick={handlePasswordClick}
+                            onChange={e => setPassword(e.target.value)}
+                            />
+                    </div>
                     <br></br>
                     <button className="log-in" type="submit">LOG IN</button>
                 </form>
