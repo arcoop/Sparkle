@@ -43,6 +43,12 @@
     transition: .3s;
 }
 
+.credentials.has-focus {
+    background-color: white;
+    outline: solid 1px black;
+    transition: .3s;
+}
+
 .log-in {
     font-family: 'Roboto', sans-serif;
     background-color: #f90;
@@ -165,6 +171,20 @@
     transition-timing-function: ease-in;
 }
 
+.label.has-focus {
+    position: absolute;
+    font-size: 12px;
+    font-weight: bold;
+    color: #666;
+    background: white;
+    left: 12px;
+    top: 1px;
+    padding: 1px;
+    transition-duration: .2s;
+    transition-property: top, font-size, font-weight, opacity;
+    transition-timing-function: ease-in;
+}
+
 .label.hidden {
     display: none;
 }
@@ -202,5 +222,4 @@
     transition-duration: .2s;
     transition-property: top, font-size, font-weight, opacity;
     transition-timing-function: ease-in;
-
 }
