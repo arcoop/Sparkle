@@ -168,3 +168,39 @@
 .label.hidden {
     display: none;
 }
+
+.email-cred-div {
+    position: relative;
+}
+
+.signup-credentials:hover{
+    cursor: text;
+}
+
+.email-label {
+    position: absolute;
+    top: 20%;
+    font-size: 14px;
+    background: transparent;
+    color: #666;
+    padding: 9px 40px;
+}
+
+.email-label:hover {
+    cursor: text;
+}
+
+.email-label.floating {
+    position: absolute;
+    font-size: 12px;
+    font-weight: bold;
+    color: #666;
+    background: white;
+    left: 40px;
+    top: -2px;
+    padding: 1px;
+    transition-duration: .2s;
+    transition-property: top, font-size, font-weight, opacity;
+    transition-timing-function: ease-in;
+
+}
