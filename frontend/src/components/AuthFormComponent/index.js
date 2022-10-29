@@ -2,13 +2,13 @@ import { useState } from "react";
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
 import { Modal } from "../../context/Modal";
-import { useParams } from "react-router-dom";
 import InterimSignUp from "./InterimModalForm";
 
 const FormModal = ({type = "login"}) => {
     const [showModal, setShowModal] = useState(false)
     const [modal, setModal] = useState(type)
     const [email, setEmail] = useState("")
+    const [errors, setErrors] = useState([])
 
     //types: login, interimSignup, signup,
 
@@ -27,6 +27,12 @@ const FormModal = ({type = "login"}) => {
 
     const handleClick = () => {
         setShowModal(true)
+    }
+
+    const handleClose = () => {
+        setShowModal(false)
+        setModal('login')
+        setEmail("")
     }
 
     let buttonText;
@@ -67,9 +73,9 @@ const FormModal = ({type = "login"}) => {
         submitButtonText = "CONTINUE"
     }
 
-    const text = (
-        (modal === 'signup' ? 'Already sparkling?' : "")
-    )
+    let text;
+    if (modal === "login") text = ""
+    if (modal === "signup") text = "Already sparkling?"
 
     let modalForm;
     if (modal === 'login') modalForm = <LoginForm />
@@ -80,10 +86,19 @@ const FormModal = ({type = "login"}) => {
     return (
         <>            
             <button className={buttonClass} onClick={handleClick}>{buttonText}</button>
+
+            <ul className="errors">
+                {errors.map(error => {
+                    return (
+                        <li className="error" key={error}>{error}</li>
+                    )
+                })}
+            </ul>
             
             {showModal &&
                 // <Modal onClose = {() => setShowModal(false)} type={modalType}>
-                <Modal onClose = {() => setShowModal(false)} type={modal}>
+                // <Modal onClose = {() => setShowModal(false)} type={modal}>
+                <Modal onClose = {handleClose} type={modal}>
 
                     {/* <div id="modal-contents"> */}
                         <div id="main-contents">
@@ -99,8 +114,8 @@ const FormModal = ({type = "login"}) => {
                                     </button>
                                 </div>
                                 <div className="second-button">
-                                    {modal === "interimSignup" ? <p>Already Sparkling?</p> : <></>}
-                                    {modal === "interimSignup" ? <button className="signup-link" onClick={otherToggleModal}>Log In</button> : <></>}
+                                    {modal === "interimSignup" ? <p className="login-m-text">Already Sparkling?</p> : <></>}
+                                    {modal === "interimSignup" ? <button id="login-m-link" className="signup-link" onClick={otherToggleModal}>Log In</button> : <></>}
                                 </div>
                             </div>
                         </div>

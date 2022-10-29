@@ -10,13 +10,16 @@ const InterimSignUp = ({email, setEmail}) => {
 
     //const [email, setEmail] = useState("")
     const sessionUser = useSelector(state => state.session.user)
+    const [errors, setErrors] = useState([])
 
     if (sessionUser) return <Redirect to="/" />;
 
-    const handleSubmit = e => {
-        e.preventDefault();
-        
-    }
+    // const handleSubmit = e => {
+    //     e.preventDefault();
+    //     if (email.length < 7 || !email.includes("@") || !email.split(".").length === 2) {
+    //         setErrors(["Enter a valid email"])
+    //     }
+    // }
 
     return (
         <>
@@ -30,14 +33,14 @@ const InterimSignUp = ({email, setEmail}) => {
 
             <h2 id="join-text">Join for Free</h2>
             <p id="subtitle">By continuing you agree to our Terms of Use and Privacy Policy.</p>
-            <form onSubmit={handleSubmit}>
+            {/* <form onSubmit={handleSubmit}> */}
                 <input className="signup-credentials"
                     type="text" 
                     value={email}
                     placeholder="Email"
                     onChange={e => setEmail(e.target.value)}
                     />
-            </form>
+            {/* </form> */}
             <div id="loginformmodal">
             </div>
 

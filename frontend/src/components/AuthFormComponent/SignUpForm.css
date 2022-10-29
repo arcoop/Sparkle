@@ -105,7 +105,7 @@
 
 .button-text {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
 }
 
@@ -187,4 +187,9 @@
 .second-button {
     display: flex;
     align-items: center;
+    justify-content: center;
+}
+
+.login-m-text {
+    font-size: small;
 }
