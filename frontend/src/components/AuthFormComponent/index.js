@@ -13,11 +13,20 @@ const FormModal = ({type = "login"}) => {
     //types: login, interimSignup, signup,
 
     const toggleModal = () => {
+        setErrors([])
         if (modal === "login" || modal === "create-quiz-login") {
             setModal("interimSignup")
         } else if (modal === "signup") {
             setModal("login")
-        } else if (modal === "interimSignup") setModal("signup")
+        } else if (modal === "interimSignup") {
+            setErrors([])
+            if (email.length < 7 || !email.includes("@") || !email.split(".").length === 2) {
+                setErrors(["Invalid Email"])
+            } else {
+                setModal("signup")
+            }
+        }
+        
         // setModal( modal === ("login" || "create-quiz-login")  ? "signup" : "login")
     }
 
@@ -80,20 +89,12 @@ const FormModal = ({type = "login"}) => {
     let modalForm;
     if (modal === 'login') modalForm = <LoginForm />
     if (modal === 'signup') modalForm = <SignupForm email={email} setEmail={setEmail}/>
-    if (modal === 'interimSignup') modalForm = <InterimSignUp email={email} setEmail={setEmail}/>
+    if (modal === 'interimSignup') modalForm = <InterimSignUp email={email} setEmail={setEmail} errors={errors}/>
 
     
     return (
         <>            
             <button className={buttonClass} onClick={handleClick}>{buttonText}</button>
-
-            <ul className="errors">
-                {errors.map(error => {
-                    return (
-                        <li className="error" key={error}>{error}</li>
-                    )
-                })}
-            </ul>
             
             {showModal &&
                 // <Modal onClose = {() => setShowModal(false)} type={modalType}>

@@ -6,12 +6,11 @@ import './SignUpForm.css'
 // import LoginFormModal from "../LoginFormModal"
 import FormModal from "."
 
-const InterimSignUp = ({email, setEmail}) => {
+const InterimSignUp = ({email, setEmail, errors}) => {
 
     //const [email, setEmail] = useState("")
     const sessionUser = useSelector(state => state.session.user)
     const [emailPlaceholder, setEmailPlaceholder] = useState("Email")
-    const [errors, setErrors] = useState([])
 
     if (sessionUser) return <Redirect to="/" />;
 
@@ -24,13 +23,13 @@ const InterimSignUp = ({email, setEmail}) => {
 
     return (
         <>
-            {/* <ul className="errors">
+            <ul className="errors">
                 {errors.map(error => {
                     return (
                         <li className="error" key={error}>{error}</li>
                     )
                 })}
-            </ul> */}
+            </ul>
 
             <h2 id="join-text">Join for Free</h2>
             <p id="subtitle">By continuing you agree to our Terms of Use and Privacy Policy.</p>
