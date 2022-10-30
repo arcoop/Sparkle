@@ -9,8 +9,12 @@ class Api::QuizzesController < ApplicationController
     end
 
     def search
-        @quizzes = Quiz.all
-        redner 'api/quizzes/index'
+        # query = params[:s]
+        query = "let"
+        @quizzes = Quiz.where("title LIKE ?", 
+            Quiz.sanitize_sql_like("%" + query + "%")
+
+        render 'api/quizzes/index'
     end
 
     def quizzes_by_category 
@@ -62,7 +66,7 @@ class Api::QuizzesController < ApplicationController
     end
 
     def quiz_params
-        params.require(:quiz).permit(:id, :title, :quiz_type, :description, :quiz_timer, :permalink, :answer_type, :hint_heading, :answer_heading, :extra_heading, :category_id, :icon, :created_at, :updated_at)
+        params.require(:quiz).permit(:id, :title, :quiz_type, :description, :quiz_timer, :permalink, :answer_type, :hint_heading, :answer_heading, :extra_heading, :category_id, :icon, :created_at, :updated_at, :s)
     end
 
 end
