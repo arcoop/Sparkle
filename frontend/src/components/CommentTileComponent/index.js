@@ -76,24 +76,23 @@ const CommentTile = ({comment}) => {
       
         const now = new Date()
 
+        let timeText; 
         let finalTimeDiff;
         let elapsedTime = now - start
         elapsedTime /= 1000
-        if (Math.round(elapsedTime / 3600) >= 1){
+        if (Math.round(elapsedTime / 86400) >= 1) {
+            finalTimeDiff = Math.round(elapsedTime /= 86400)
+            timeText = finalTimeDiff === 1 ? "day" : "days"
+        } else if (Math.round(elapsedTime / 3600) >= 1){
             finalTimeDiff = Math.round(elapsedTime /= 3600)
+            timeText = finalTimeDiff === 1 ? "hour" : "hours"
         } else {
             finalTimeDiff = Math.round(elapsedTime / 60)
+            timeText = finalTimeDiff === 1 ? "minute" : "minutes"
         }
         // if (elapsedTime < 1) {
         //     elapsedTime /
         // } 
-
-        let timeText; 
-        if (finalTimeDiff === 1) {
-            timeText = "hour"
-        } else if (finalTimeDiff > 1) {
-            timeText = "hours"
-        } else timeText = "minutes"
     
         
         // const day = fullDate.getDate();
