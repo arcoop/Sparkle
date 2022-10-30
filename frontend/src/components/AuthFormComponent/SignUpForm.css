@@ -193,3 +193,36 @@
 .login-m-text {
     font-size: small;
 }
+
+.sign-up-label {
+    position: absolute;
+    top: 25%;
+    left: 30px;
+    font-size: 14px;
+    background: transparent;
+    color: #666;
+    padding: 9px;
+    pointer-events: none;
+}
+
+.sign-up-label:hover {
+    cursor: text;
+}
+
+.sign-up-label.floating {
+    position: absolute;
+    font-size: 12px;
+    font-weight: bold;
+    color: #666;
+    background: white;
+    left: 40px;
+    top: 1px;
+    padding: 1px;
+    transition-duration: .2s;
+    transition-property: top, font-size, font-weight, opacity;
+    transition-timing-function: ease-in;
+}
+
+.sign-up-label.hidden {
+    display: none;
+}

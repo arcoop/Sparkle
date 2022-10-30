@@ -14,9 +14,10 @@ const SignupForm = ({email, setEmail}) => {
     const [password, setPassword] = useState("")
     const [errors, setErrors] = useState([])
     const [confirmPassword, setConfirmPassword] = useState("")
-    const [passwordPlaceholder, setPasswordPlaceholder] = useState("")
-    const [confirmPassPlaceholder, setConfirmPassPlaceholder] = useState("Confirm Password")
-    const [usernamePlaceholder, setUsernamePlaceholder] = useState("Username")
+    const [emailFloat, setEmailFloat] = useState("sign-up-label floating")
+    const [passwordFloat, setPasswordFloat] = useState("sign-up-label")
+    const [confirmPasswordFloat, setConfirmPasswordFloat] = useState("sign-up-label")
+    const [usernameFloat, setUsernameFloat] = useState("sign-up-label")
     const dispatch = useDispatch()
 
     if (sessionUser) return <Redirect to="/" />;
@@ -38,11 +39,40 @@ const SignupForm = ({email, setEmail}) => {
         }
     }
 
-    const confirmPasswordClick = () => {
-        setPasswordPlaceholder("Password")
-        setConfirmPassPlaceholder("")
+    // const confirmPasswordClick = () => {
+    //     setPasswordPlaceholder("Password")
+    //     setConfirmPassPlaceholder("")
+    // }
+
+    const handlePasswordClick = () => {
+        if (confirmPassword.length < 1)  {
+            setConfirmPasswordFloat("sign-up-label")
+        } else setConfirmPasswordFloat("sign-up-label hidden")
+        if (username.length < 1) {
+            setUsernameFloat("sign-up-label")
+        } else setUsernameFloat("sign-up-label-hidden")
+        setPasswordFloat("sign-up-label floating")
     }
 
+    const handleConfirmPassClick = () => {
+        if (password.length < 1)  {
+            setPasswordFloat("sign-up-label")
+        } else setPasswordFloat("sign-up-label hidden")
+        if (username.length < 1) {
+            setUsernameFloat("sign-up-label")
+        } else setUsernameFloat("sign-up-label hidden")
+        setConfirmPasswordFloat("sign-up-label floating")
+    }
+    
+    const handleUsernameClick = () => {
+        if (password.length < 1)  {
+            setPasswordFloat("sign-up-label")
+        } else setPasswordFloat("sign-up-label hidden")
+        if (confirmPassword.length < 1)  {
+            setConfirmPasswordFloat("sign-up-label")
+        } else setConfirmPasswordFloat("sign-up-label hidden")
+        setUsernameFloat("sign-up-label floating")
+    }
 
     return (
         <>
@@ -57,39 +87,47 @@ const SignupForm = ({email, setEmail}) => {
             <h2 id="join-text">Join for Free</h2>
             <p id="subtitle">By continuing you agree to our Terms of Use and Privacy Policy.</p>
             <form onSubmit={handleSubmit}>
-                <input className="signup-credentials"
-                    type="text" 
-                    value={email}
-                    placeholder="Email"
-                    onChange={e => setEmail(e.target.value)}
-                    />
+                <div className="cred-div">
+                    <label className="sign-up-label floating">Email</label>
+                    <input className="signup-credentials"
+                        disabled
+                        type="text"
+                        value={email}
+                        onChange={e => setEmail(e.target.value)}
+                        />
+                </div>
 
-                <input 
-                className={"signup-credentials"}
-                autoFocus
-                type="password"
-                placeholder={passwordPlaceholder}
-                onClick={() => setPasswordPlaceholder("")}
-                value={password}
-                onChange={e => setPassword(e.target.value)}
-                />
+                <div className="cred-div">
+                    <label onClick={handlePasswordClick} className={passwordFloat}>Password</label>
+                    <input className={"signup-credentials"}
+                        autoFocus
+                        type="password"
+                        onClick={handlePasswordClick}
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
+                    />
+                </div>
 
     
-                <input className="signup-credentials"
-                type="password" 
-                value={confirmPassword}
-                placeholder={confirmPassPlaceholder}
-                onChange={(e => {setConfirmPassword(e.target.value)} )}
-                onClick={confirmPasswordClick}
-                />
-        
-                <input className="signup-credentials"
-                    type="text" 
-                    value={username}
-                    placeholder={usernamePlaceholder}
-                    onClick={() => setUsernamePlaceholder("")}
-                    onChange={e => setUsername(e.target.value)}
+                <div className="cred-div">
+                    <label onClick={handleConfirmPassClick} className={confirmPasswordFloat}>Confirm Password</label>
+                    <input className="signup-credentials"
+                        type="password"
+                        value={confirmPassword}
+                        onChange={(e => {setConfirmPassword(e.target.value)} )}
+                        onClick={handleConfirmPassClick}
                     />
+                </div>
+        
+                <div className="cred-div">
+                    <label onClick={handleUsernameClick} className={usernameFloat}>Username</label>
+                    <input className="signup-credentials"
+                        type="text"
+                        value={username}
+                        onClick={handleUsernameClick}
+                        onChange={e => setUsername(e.target.value)}
+                        />
+                </div>
                 
                 <button className="signup-submit" type="submit">SUBMIT</button>
             </form>

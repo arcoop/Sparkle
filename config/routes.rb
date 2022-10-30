@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     resources :quiz_takes, only: [:create, :show, :index]
   end
 
-  # get '/quizzes/search'
+  get '/api/quizzes/search', to: "api/quizzes#search"
 
   get '*path', to: "static_pages#frontend_index"
 

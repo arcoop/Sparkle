@@ -8,6 +8,11 @@ class Api::QuizzesController < ApplicationController
         render 'api/quizzes/index'
     end
 
+    def search
+        @quizzes = Quiz.all
+        redner 'api/quizzes/index'
+    end
+
     def quizzes_by_category 
         @quizzes = Quiz.where(category_id: params[:category_id])
 
