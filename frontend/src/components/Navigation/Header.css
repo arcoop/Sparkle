@@ -86,6 +86,7 @@
     width: 50px;
     font-size: 22px;
     margin-left: 15px;
+    position: relative;
     /* transition: .2s; */
 }
 
@@ -112,6 +113,7 @@
     border-radius: 3px;
     border: 1px solid #d8d8d8;
     position: absolute;
+    z-index: 1;
 }
 
 .categories-menu-heading {
@@ -120,4 +122,17 @@
 
 #headers-extras-button {
     position: relative;
+}
+
+.search-bar-menu {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    top: 70px;
+    left: -10px;
+
+}
+
+.fa-solid.fa-x {
+    color: #f90;
 }

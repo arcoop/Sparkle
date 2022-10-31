@@ -3,6 +3,7 @@ import csrfFetch from "./csrf";
 const SET_QUIZZES = 'quizzes/setQuizzes'
 const SET_QUIZ = 'quizzes/setQuiz'
 const RECEIVE_QUIZ = `quizzes/receiveQuiz`
+const RECEIVE_QUIZZES = `quizzes/receiveQuizzes`
 const REMOVE_QUIZ = 'quizzes/removeQuiz'
 const SET_QUIZZES_BY_CATEGORY = 'quizzes/setQuizzesByCategory'
 
@@ -19,6 +20,11 @@ export const setQuiz = quiz => ({
 export const receiveQuiz = quiz => ({
     type: RECEIVE_QUIZ,
     payload: quiz
+})
+
+export const receiveQuizzes = quizzes => ({
+    type: RECEIVE_QUIZZES,
+    payload: quizzes
 })
 
 export const removeQuiz = quizId => ({
@@ -70,6 +76,13 @@ export const fetchQuizzes = () => async dispatch => {
     }
 }
 
+export const searchQuizzes = query => async dispatch => {
+    const res = await csrfFetch(`/api/search/?s=${query}`)
+    const data = await res.json()
+    dispatch(receiveQuizzes(data))
+}
+
+
 export const fetchQuiz = quizId => async dispatch => {
     const res = await csrfFetch(`/api/quizzes/${quizId}`)
     const data = await res.json()
@@ -96,6 +109,8 @@ const quizzesReducer = (state = {}, action ) => {
         case SET_QUIZ:
             return {...state, ...action.payload}
         case RECEIVE_QUIZ:
+            return {...action.payload}
+        case RECEIVE_QUIZZES:
             return {...action.payload}
         case SET_QUIZZES_BY_CATEGORY:
             return {...action.payload}

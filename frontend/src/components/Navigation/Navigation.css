@@ -255,3 +255,6 @@
     border: 000em solid #f90;
 }
 
+.inner-header {
+    position: relative;
+}

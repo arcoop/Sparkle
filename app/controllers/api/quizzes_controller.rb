@@ -8,15 +8,17 @@ class Api::QuizzesController < ApplicationController
         render 'api/quizzes/index'
     end
 
-    def search
-        @quizzes = Quiz.all
-        redner 'api/quizzes/index'
-    end
-
     def quizzes_by_category 
         @quizzes = Quiz.where(category_id: params[:category_id])
 
         render 'api/quizzes/quizzes_by_category'
+    end
+
+    def search
+        query = "%#{params[:s]}%"
+        @quizzes = Quiz.where("lower(title) LIKE ?", query.downcase)
+        # .or(Quiz.where("author.username LIKE ?", query))
+        render 'api/quizzes/search'
     end
 
     def show
@@ -62,7 +64,7 @@ class Api::QuizzesController < ApplicationController
     end
 
     def quiz_params
-        params.require(:quiz).permit(:id, :title, :quiz_type, :description, :quiz_timer, :permalink, :answer_type, :hint_heading, :answer_heading, :extra_heading, :category_id, :icon, :created_at, :updated_at)
+        params.require(:quiz).permit(:id, :author, :title, :quiz_type, :description, :quiz_timer, :permalink, :answer_type, :hint_heading, :answer_heading, :extra_heading, :category_id, :icon, :created_at, :updated_at, :s)
     end
 
 end
