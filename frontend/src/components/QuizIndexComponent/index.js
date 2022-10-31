@@ -17,26 +17,11 @@ const QuizIndex = () => {
         document.title = "Sparkle!"
     }, [])
 
-    const quizzes = useSelector(getQuizzes) || []
+    const quizzes = useSelector(state => Object.values(state.quizzes)) || []
+
+    const sortedQuizzesByDate = quizzes.slice().sort((a,b) => a.createdAt < b.createdAt ? 1 : -1)
 
     const sessionUser = useSelector(state => state.session.user) || {}
-
-    // const sortQuizzesByDate = () => {
-    //     let sorted = false
-    //     while (!sorted) {
-    //         sorted = true
-    //         for (let i = 0; i < sortedQuizzes.length; i++) {
-    //             if (sortedQuizzes[i].createdAt < sortedQuizzes[i + 1].createdAt) {
-    //                 let temp = sortedQuizzes[i]
-    //                 sortedQuizzes[i] = sortedQuizzes[i + 1]
-    //                 sortedQuizzes[i + 1] = temp;
-    //                 sorted = false;
-    //             }
-    //         }
-    //     }
-    //     console.log(sortedQuizzes)
-    //     return sortedQuizzes;
-    // }
 
     let topDivText;
 
@@ -60,7 +45,7 @@ const QuizIndex = () => {
                     <div id='index-center-content'>
                         {/* <div id='quizzes-by-category'></div> */}
                         <ul id='quizzes-list'>
-                            {quizzes.map(quiz => {
+                            {sortedQuizzesByDate.map(quiz => {
                                 return (
                                     <li key={quiz.id} className='quiz-index-list-item'>
                                         <QuizTile quiz={quiz} author={quiz.author}/>
