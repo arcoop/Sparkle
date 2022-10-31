@@ -19,8 +19,7 @@ const SearchResults = () => {
     const quizzes = useSelector(state => Object.values(state.quizzes))
 
     return (
-        <div className="page-wrapper">
-            <Navigation />
+   
             <div>
                 <ul>
                     {quizzes.map(quiz => {
@@ -30,8 +29,7 @@ const SearchResults = () => {
                     })}
                 </ul>
             </div>
-            <Footer />
-        </div>
+   
     )
 
 }
