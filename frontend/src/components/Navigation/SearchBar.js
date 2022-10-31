@@ -8,7 +8,7 @@ const SearchBar = () => {
     const [labelStatus, setLabelStatus] = useState("search-label")
 
     const searchForQuizzes = () => {
-        history.push(`/search/?s=${query}`)
+        history.push(`/search/quizzes/?s=${query}`)
     }
 
     const handleKeyDown = e => {

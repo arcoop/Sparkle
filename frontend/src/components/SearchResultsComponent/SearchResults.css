@@ -1,0 +1,48 @@
+.search-results-container {
+    margin: 110px 0 25px 0;
+    height: 400px;
+}
+
+.search-results {
+    margin-top: 15px;
+}
+
+.results-list-item {
+    padding: 10px;
+    margin-bottom: 5px;
+}
+
+.result-title {
+    font-weight: bold;
+    font-size: 1.25rem;
+    margin-bottom: 0.625rem;
+    text-decoration: none;
+}
+
+.result-title:hover {
+    color: #f90;
+    text-decoration: underline;
+}
+
+.result-description {
+    margin-top: 0.625rem;
+    margin-bottom: 0.625rem;
+    font-size: 14px;
+    line-height: 1.25rem;
+}
+
+.result-author-category {
+    color: #666;
+    font-size: .75rem;
+    margin: 0;
+    line-height: 1.25rem;
+}
+
+.result-info {
+    text-decoration: none;
+}
+
+.result-info:hover {
+    text-decoration: underline;
+    color:#f90
+}

@@ -17,7 +17,8 @@ Rails.application.routes.draw do
     resources :questions, only: [:create, :update, :destroy]
     resources :comments, only: [:update, :destroy, :create]
     resources :quiz_takes, only: [:create, :show, :index]
-    get '/search', to: "quizzes#search"
+    get '/search/quizzes', to: "quizzes#search"
+    get '/search/users', to: "users#search"
   end
 
 

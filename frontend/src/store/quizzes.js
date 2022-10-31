@@ -77,7 +77,7 @@ export const fetchQuizzes = () => async dispatch => {
 }
 
 export const searchQuizzes = query => async dispatch => {
-    const res = await csrfFetch(`/api/search/?s=${query}`)
+    const res = await csrfFetch(`/api/search/quizzes/?s=${query}`)
     const data = await res.json()
     dispatch(receiveQuizzes(data))
 }
