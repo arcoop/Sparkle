@@ -1,13 +1,15 @@
+.quiz-tile {
+    width: 300px;
+}
 .quiz-icon-tile {
     position: relative;
-    width: 350px;
     margin: 0;
     padding: 0;
 }
 
 .quiz-icon-tile.large {
     position: relative;
-    width: 723px;
+    width: 622px;
     margin: 0;
     padding: 0;
 }
