@@ -8,10 +8,6 @@ import './QuizTile.css'
 const QuizTile = ({quiz, author}) => {
     const dispatch = useDispatch()
 
-    // useEffect(() => {
-    //     dispatch(fetchUser(quiz.authorId))
-    // }, [quiz])
-
     const categoryId = quiz ? quiz.categoryId : 1
 
     let category = useSelector(state => state.categories[categoryId])
@@ -19,7 +15,7 @@ const QuizTile = ({quiz, author}) => {
     // useEffect(() => {
     //     dispatch(fetchUsers())
     // }, [quiz])
-    
+    quiz ||= {}
     const user = useSelector(state => state.users[quiz.authorId]) || {username: "Loading username"}
 
     // const user = quiz.author

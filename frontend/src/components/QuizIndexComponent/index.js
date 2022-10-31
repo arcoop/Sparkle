@@ -38,21 +38,38 @@ const QuizIndex = () => {
                 <div id="top-of-page">
                     {topDivText}
                 </div>
-                <div id='index-header'>
-                    <h1 className='quiz-index-heading'>All Quizzes</h1>
-                </div>
+                <div className='quiz-index-carousel'>Quizzes carousel</div>
                 <div id="index-content-container">
+                    <div id='quiz-index-left-col'>
+                        <div id='quiz-index-left-top'>
+                            <h1 className='quiz-index-heading'>New Published Quizzes</h1>
+                            <div id='main-new-quiz'>
+                                <QuizTile quiz={sortedQuizzesByDate[0]} type="large"/>
+                            </div>
+                            <div id='other-new-quizzes'>
+                                <QuizTile quiz={sortedQuizzesByDate[1]}  type="small"/>
+                                <QuizTile quiz={sortedQuizzesByDate[2]}  type="small"/>
+                            </div>
+                        </div>
+                        <div id='quiz-index-left-bottom'>Other Quizzes
+                            <ul id='quizzes-list'>
+                                {quizzes.map(quiz => {
+                                    return (
+                                        <li key={quiz.id} className='quiz-index-list-item'>
+                                            <QuizTile quiz={quiz} author={quiz.authorId} type="medium"/>
+                                        </li>
+                                    )
+                                })}
+                            </ul>
+                        </div>
+
+                    </div>
+                    <div id='quiz-index-right-col'>
+
+                    </div>
                     <div id='index-center-content'>
                         {/* <div id='quizzes-by-category'></div> */}
-                        <ul id='quizzes-list'>
-                            {sortedQuizzesByDate.map(quiz => {
-                                return (
-                                    <li key={quiz.id} className='quiz-index-list-item'>
-                                        <QuizTile quiz={quiz} author={quiz.author}/>
-                                    </li>
-                                )
-                            })}
-                        </ul>
+                        
                     </div>
                 </div>
             </div>
