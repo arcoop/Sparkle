@@ -5,9 +5,21 @@
     padding: 0;
 }
 
+.quiz-icon-tile.large {
+    position: relative;
+    width: 400px;
+    margin: 0;
+    padding: 0;
+}
+
 .quiz-icon-tile img {
     width: 100%;
     height: 200px;
+}
+
+.quiz-icon-tile.large img{
+    width: 150%;
+    height: 400px;
 }
 
 .quiz-icon-tile img:hover {

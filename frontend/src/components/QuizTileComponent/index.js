@@ -5,7 +5,7 @@ import { getUser } from "../../store/users"
 import { Link } from "react-router-dom"
 import './QuizTile.css'
 
-const QuizTile = ({quiz, author}) => {
+const QuizTile = ({quiz, type}) => {
     const dispatch = useDispatch()
 
     const categoryId = quiz ? quiz.categoryId : 1
@@ -25,7 +25,7 @@ const QuizTile = ({quiz, author}) => {
     return (
         <div className="quiz-tile">
             <Link className="link-to-quiz-show" to={`/quizzes/${quiz.id}`}>
-                <div className="quiz-icon-tile">
+                <div className={`quiz-icon-tile ${type}`}>
                     {image}
                     <div className="quiz-tile-title">{quiz.title}</div>
                     <div className="second-div"></div>

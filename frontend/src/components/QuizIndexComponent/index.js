@@ -46,6 +46,7 @@ const QuizIndex = () => {
                             <div id='main-new-quiz'>
                                 <QuizTile quiz={sortedQuizzesByDate[0]} type="large"/>
                             </div>
+                            <div className='new-quizzes-line-break'></div>
                             <div id='other-new-quizzes'>
                                 <QuizTile quiz={sortedQuizzesByDate[1]}  type="small"/>
                                 <QuizTile quiz={sortedQuizzesByDate[2]}  type="small"/>

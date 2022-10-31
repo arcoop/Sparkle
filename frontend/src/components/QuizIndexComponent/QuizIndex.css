@@ -50,5 +50,10 @@
 .quiz-index-list-item {
    width: 500px;
    height: 500px;
+}
 
+#other-new-quizzes {
+    margin-top: 20px;
+    display: flex;
+    gap: 1.5rem;
 }
