@@ -1,3 +1,8 @@
+.page-wrapper {
+    width: 90%;
+    margin: auto;
+}
+
 #index-page {
     width: 100%;
 }
@@ -9,11 +14,16 @@
     padding: 5px;
 }
 
+.quiz-index-carousel {
+    margin-top: 20px;
+}
+
 .quiz-index-heading {
     font-size: 1.75rem;
-    margin-left: 240px;
     padding: 3px;
-    border-left: 3px solid #f90
+    border-left: 3px solid #f90;
+    margin-bottom: 20px;
+    font-weight: bold;
 }
 
 #index-header {
@@ -38,7 +48,9 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
+    margin-top: 10px;
 }
+
 
 #quizzes-list {
     margin: 20px;
