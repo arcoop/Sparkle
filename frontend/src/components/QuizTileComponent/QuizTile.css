@@ -7,7 +7,7 @@
 
 .quiz-icon-tile.large {
     position: relative;
-    width: 400px;
+    width: 600px;
     margin: 0;
     padding: 0;
 }
@@ -18,8 +18,8 @@
 }
 
 .quiz-icon-tile.large img{
-    width: 150%;
-    height: 400px;
+    width: 100%;
+    height: 350px;
 }
 
 .quiz-icon-tile img:hover {
@@ -36,6 +36,27 @@
     right: 0;
     display: flex;
     justify-content: center;
+}
+
+.quiz-tile-title-large { 
+    font-size: 1.3rem;
+}
+
+.large-quiz-info {
+    position: absolute;
+    bottom: 10%;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    margin-left: 20px;
+}
+
+.author-category-time-large {
+    font-size: .75rem;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 35px;
 }
 
 .second-div {
