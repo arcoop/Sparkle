@@ -11,6 +11,12 @@ class Api::UsersController < ApplicationController
     render 'api/users/show'
   end
 
+  def search
+    query = "%#{params[:s]}%"
+    @users = User.where("lower(username) LIKE ?", query.downcase)
+    render 'api/users/search'
+  end
+
   def create
     @user = User.new(user_params)
     if @user.save
@@ -23,6 +29,6 @@ class Api::UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:email, :username, :password, :created_at)
+    params.require(:user).permit(:email, :username, :password, :s, :created_at)
   end
 end
