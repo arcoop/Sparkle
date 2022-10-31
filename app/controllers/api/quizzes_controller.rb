@@ -15,11 +15,8 @@ class Api::QuizzesController < ApplicationController
     end
 
     def search
-        p "searching"
         query = "%#{params[:s]}%"
-        p query
-        @quizzes = Quiz.where("title LIKE ?", query)
-        p @quizzes
+        @quizzes = Quiz.where("lower(title) LIKE ?", query.downcase)
         # .or(Quiz.where("author.username LIKE ?", query))
         render 'api/quizzes/search'
     end

@@ -11,11 +11,18 @@ const SearchBar = () => {
         history.push(`/search/?s=${query}`)
     }
 
+    const handleKeyDown = e => {
+        if (e.key === 'Enter') {
+
+        }
+    }
+
     return (
             <div className="search-bar-page">
                 <div className="search-container">
                     <div className="search-box">
                         <input type="text"
+                            onKeyDown={handleKeyDown}
                             onClick={() => setLabelStatus("search-label floating")}
                             className="search-input"
                             value={query}
