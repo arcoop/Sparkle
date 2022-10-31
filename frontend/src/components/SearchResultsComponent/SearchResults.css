@@ -1,9 +1,14 @@
+.search-results-container {
+    margin: 0 0 25px 0;
+}
+
 .search-results {
     margin-top: 15px;
 }
 
 .results-list-item {
-    margin: 5px;
+    padding: 10px;
+    margin-bottom: 5px;
 }
 
 .result-title {
@@ -21,13 +26,15 @@
 .result-description {
     margin-top: 0.625rem;
     margin-bottom: 0.625rem;
-    font-size: 15px;
+    font-size: 14px;
+    line-height: 1.25rem;
 }
 
 .result-author-category {
     color: #666;
     font-size: .75rem;
     margin: 0;
+    line-height: 1.25rem;
 }
 
 .result-info {
