@@ -19,7 +19,7 @@ const QuizTile = ({quiz, author}) => {
     // useEffect(() => {
     //     dispatch(fetchUsers())
     // }, [quiz])
-
+    
     const user = useSelector(state => state.users[quiz.authorId]) || {username: "Loading username"}
 
     // const user = quiz.author
