@@ -32,9 +32,9 @@ export const fetchUsers = () => async dispatch => {
 }
 
 export const searchUsers = query => async dispatch => {
-    const res = await csrfFetch(`api/search/users/?s=${query}`)
+    const res = await csrfFetch(`/api/search/users/?s=${query}`)
     const data = await res.json()
-    dispatch(getUsers(data))
+    dispatch(setUsers(data))
 }
 
 export const fetchUser = userId => async dispatch => {
