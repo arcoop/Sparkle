@@ -18,7 +18,11 @@ const Header = () => {
     // 2 = search
 
     const openMenu = (menu) => {
-        if (showMenu !== menu) setShowMenu(menu)
+        if (showMenu !== menu) {
+            setShowMenu(menu)
+        } else {
+            setShowMenu(0)
+        }
     }
 
     const hamburgerMenu = (
@@ -80,7 +84,7 @@ const Header = () => {
                     <div id="extras">
                         {/* <button onClick={openMenu(1)} id="headers-extras-button"> */}
                         <button onClick={() => openMenu(1)} id="headers-extras-button">
-                            <i className="fa-solid fa-bars"></i>
+                        {showMenu === 1 ? <i className="fa-solid fa-x"></i> : <i className="fa-solid fa-bars"></i> }
                         </button>
                         {hamburgerMenu}
                     </div>
@@ -102,7 +106,7 @@ const Header = () => {
                 <div id="nav-buttons-right">
                     <button className="submit-button" id="right-nav-button">Random Quiz</button>
                     <button onClick={() => openMenu(2)} id="search-button">
-                        <i className="fa-solid fa-magnifying-glass"></i>
+                        {showMenu === 2 ? <i className="fa-solid fa-x"></i> : <i className="fa-solid fa-magnifying-glass"></i> }
                     </button>
                 </div>
                 {searchMenu}

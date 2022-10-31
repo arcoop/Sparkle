@@ -130,4 +130,9 @@
     width: 100%;
     top: 70px;
     left: -10px;
+
+}
+
+.fa-solid.fa-x {
+    color: #f90;
 }

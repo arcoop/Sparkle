@@ -2,6 +2,7 @@
     background-color: white;
     padding: 30px 20px;
     width: 100%;
+    transition: visibility 0s linear 0.15s, opacity 0.15s linear, box-shadow 0.05s linear;
 }
 
 .search-container {
@@ -48,6 +49,7 @@
     height: 28.5px;
     margin: 10px 0 10px;
     width: 100%;
+    box-sizing: border-box;
 }
 
 .magnifying-glass {
@@ -67,3 +69,4 @@
 #search-bar-mag {
     font-size: 25px;
 }
+

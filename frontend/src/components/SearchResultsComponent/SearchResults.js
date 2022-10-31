@@ -21,13 +21,15 @@ const SearchResults = () => {
     return (
         <div className="page-wrapper">
             <Navigation />
-            <ul>
-                {quizzes.map(quiz => {
-                    return (
-                        <li key={quiz.id}>{quiz.title} by {quiz.author.username}</li>
-                    )
-                })}
-            </ul>
+            <div>
+                <ul>
+                    {quizzes.map(quiz => {
+                        return (
+                            <li key={quiz.id}>{quiz.title} by {quiz.author.username}</li>
+                        )
+                    })}
+                </ul>
+            </div>
             <Footer />
         </div>
     )
