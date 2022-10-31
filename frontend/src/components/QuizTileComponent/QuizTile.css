@@ -20,10 +20,6 @@
     height: 150px;
 }
 
-.small-quiz-tile img {
-    width: 100%;
-}
-
 .quiz-icon-tile.large img{
     width: 100%;
     height: 350px;
@@ -140,4 +136,10 @@
 
 .small-quiz-tile {
     width: 200px;
+}
+
+.small-quiz-icon-tile img {
+    width: 200px;
+    height: 114px;
+    
 }

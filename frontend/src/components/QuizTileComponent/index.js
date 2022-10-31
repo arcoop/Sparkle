@@ -55,7 +55,7 @@ const QuizTile = ({quiz, type}) => {
             </div>
     
     const smallQuizTile = <div className="small-quiz-tile">
-                <Link className="link-to-quiz-show" to={`/quizzes/${quiz.id}`}>
+                <Link className="small-link-to-quiz-show" to={`/quizzes/${quiz.id}`}>
                     <div className={`small-quiz-icon-tile`}>
                         {image}
                         <div className={`small-quiz-tile-title`}>{quiz.title}</div>

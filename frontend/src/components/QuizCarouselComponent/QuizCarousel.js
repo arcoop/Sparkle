@@ -10,10 +10,10 @@ const QuizCarousel = ({quizzes}) => {
     const arrayB = quizzes.slice(6)
 
 
-    const carouselA = [arrayA, arrayB, arrayA]
+    const carouselA = [arrayA, arrayB]
     const carouselB = [arrayB, arrayA, arrayB]
 
-    const handleLeftClick = () => {
+    const handleClick = () => {
         arr === 0 ? setArr(1) : setArr(0)
     }
 
@@ -21,22 +21,13 @@ const QuizCarousel = ({quizzes}) => {
         arr === 0 ? setArr(1) : setArr(0)
     }
 
-    let carouselContent = arr === 0 ? carouselA : carouselB
-    console.log(carouselContent)
-
     return (
         <div className='carousel-container'>
-            <button onClick={handleLeftClick}>left</button>
+            <button onClick={handleClick}>left</button>
             <div className='carousel-content'>
-                {carouselContent.map(arr => {
+                {carouselB[arr].map(quiz => {
                     return (
-                        <div className="carousel-array">
-                        {arr.map(quiz => {
-                            return (
-                                <QuizTile key={quiz.id} quiz={quiz} type="small" />
-                            )
-                        })}
-                        </div>
+                        <QuizTile key={quiz.id} quiz={quiz} type="small" />
                     )
                 })}
             </div>
@@ -55,7 +46,7 @@ const QuizCarousel = ({quizzes}) => {
                 })}
             </div> */}
 
-            <button>right</button>
+            <button onClick={handleClick}>right</button>
         </div>
     )
 }
