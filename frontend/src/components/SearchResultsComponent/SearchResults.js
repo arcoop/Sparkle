@@ -12,9 +12,7 @@ const SearchResults = () => {
     const dispatch = useDispatch();
     const location = useLocation();
     const queryString = location.search
-    console.log(location)
     const params = new URLSearchParams(queryString)
-    console.log(params)
     const query = params.get("s")
 
     useEffect(() => {
