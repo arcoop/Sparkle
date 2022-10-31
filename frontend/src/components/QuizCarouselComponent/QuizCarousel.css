@@ -2,3 +2,16 @@
     display: flex;
     justify-content: space-evenly;
 }
+
+.array {
+    display: flex;
+    justify-content: space-between;
+}
+
+.array.hidden {
+    display: none;
+    animation: slide 1s forwards;
+}
+
+.array {
+}
