@@ -7,6 +7,7 @@ import Footer from '../Navigation/Footer';
 import QuizTile from '../QuizTileComponent';
 import Navigation from '../Navigation';
 import { fetchUsers } from '../../store/users';
+import QuizCarousel from '../QuizCarouselComponent/QuizCarousel';
 
 const QuizIndex = () => {
     const dispatch = useDispatch()
@@ -38,7 +39,9 @@ const QuizIndex = () => {
                 <div id="top-of-page">
                     {topDivText}
                 </div>
-                <div className='quiz-index-carousel'>Quizzes carousel</div>
+                <div className='quiz-index-carousel'>
+                    <QuizCarousel quizzes={quizzes}/>
+                </div>
                 <div id="index-content-container">
                     <div id='quiz-index-left-col'>
                         <div id='quiz-index-left-top'>

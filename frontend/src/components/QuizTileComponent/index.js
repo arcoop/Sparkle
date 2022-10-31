@@ -6,19 +6,13 @@ import { Link } from "react-router-dom"
 import './QuizTile.css'
 
 const QuizTile = ({quiz, type}) => {
-    const dispatch = useDispatch()
 
     const categoryId = quiz ? quiz.categoryId : 1
 
     let category = useSelector(state => state.categories[categoryId])
 
-    // useEffect(() => {
-    //     dispatch(fetchUsers())
-    // }, [quiz])
     quiz ||= {}
     const user = useSelector(state => state.users[quiz.authorId]) || {username: "Loading username"}
-
-    // const user = quiz.author
 
     const image = quiz.iconUrl ? <img src={quiz.iconUrl} alt="" /> : <img className="quiz-icon" src="https://cdn.writermag.com/2019/03/question-marks.jpg" alt="" />
 
