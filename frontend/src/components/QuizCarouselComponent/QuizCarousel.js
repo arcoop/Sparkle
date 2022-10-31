@@ -1,8 +1,18 @@
 import './QuizCarousel.css'
+import QuizTile from '../QuizTileComponent'
+
 const QuizCarousel = ({quizzes}) => {
 
+    const numIndeces = quizzes.length / 6
+
     return (
-        <p>Quiz Carousel</p>
+        <div className='carousel-container'>
+            {quizzes.map((quiz, idx) => {
+                return (
+                    <div >Quiz</div>
+                )
+            })}
+        </div>
     )
 }
 export default QuizCarousel;
