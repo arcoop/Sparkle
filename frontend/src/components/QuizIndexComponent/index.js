@@ -48,8 +48,11 @@ const QuizIndex = () => {
                             </div>
                             <div className='new-quizzes-line-break'></div>
                             <div id='other-new-quizzes'>
-                                <QuizTile quiz={sortedQuizzesByDate[1]}  type="medium"/>
-                                <QuizTile quiz={sortedQuizzesByDate[2]}  type="medium"/>
+                                {sortedQuizzesByDate.slice(1).map(quiz => {
+                                    return (
+                                        <QuizTile quiz={quiz} type="medium" />
+                                    )
+                                })}
                             </div>
                         </div>
                         <div id='quiz-index-left-bottom'>Other Quizzes

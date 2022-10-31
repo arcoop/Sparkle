@@ -68,4 +68,6 @@
     margin-top: 20px;
     display: flex;
     gap: 1.5rem;
+    display: grid;
+    grid-template-columns: 292.5px 292.5px;
 }
