@@ -1,3 +1,6 @@
+#index-page {
+    width: 100%;
+}
 #top-of-page {
     background-color: #f1f1f2;
     height: 35px;
@@ -31,6 +34,7 @@
 }
 
 #index-content-container {
+    width: 100%;
     display: flex;
     justify-content: center;
     flex-direction: column;

@@ -11,16 +11,22 @@ import Footer from './components/Navigation/Footer';
 import QuizByCategory from './components/QuizByCategoryIndexComponent';
 import CategoriesIndex from './components/CategoryIndexComponent';
 import {CategoryIndexPage} from './components/CategoryIndexComponent'
+import SearchResults from './components/SearchResultsComponent/SearchResults';
 
 function App() {
   return (
     <>
       <Switch>
         <Route exact path={"/"}>
-          <Navigation />
+         
           <QuizIndex />
-          <Footer />
+          
         </Route>
+
+        <Route path="/search/">
+          <SearchResults />
+        </Route>
+
         <Route exact path={"/quizzes"}>
           <Navigation/>
           <QuizIndex />
@@ -49,7 +55,7 @@ function App() {
           <Footer/>
         </Route>
 
-        <Route path="/quizzes/:quizId">
+        <Route exact path="/quizzes/:quizId">
           <Navigation />
           <QuizShow />
           <Footer />
@@ -66,6 +72,7 @@ function App() {
           <QuizByCategory />
           <Footer />
         </Route>
+
 
         <Route>
           <h1>path not found</h1>

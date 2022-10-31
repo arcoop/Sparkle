@@ -1,6 +1,7 @@
 @import url('reset.css');
 
 /* TODO Add site wide styles */
+
 body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
@@ -43,4 +44,10 @@ a {
     font-size: 2.75rem;
     font-family: inherit;
     font-weight: 700;
+}
+
+.page-wrapper {
+    min-height: 100vh;
+    min-width: 100vh;
+    margin: auto;
 }

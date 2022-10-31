@@ -4,28 +4,37 @@ import { Link, Redirect, useHistory } from "react-router-dom"
 import { fetchQuiz, fetchQuizzes, getQuizzes } from "../../store/quizzes"
 import './Header.css'
 import CategoriesIndex from "../CategoryIndexComponent"
+import SearchBar from "./SearchBar"
 
 
 const Header = () => {
     const dispatch = useDispatch();
     const history = useHistory()
-    const [showMenu, setShowMenu] = useState(false)
+    const [showMenu, setShowMenu] = useState(0)
     const [randomQuiz, setRandomQuiz] = useState(false)
     
-    const openMenu = () => {
-        if (!showMenu) setShowMenu(true)
+    // 0 = no menu
+    // 1 = hamburger
+    // 2 = search
+
+    const openMenu = (menu) => {
+        if (showMenu !== menu) setShowMenu(menu)
     }
 
-    const menu = (
-        showMenu ? <div className="categories-menu"><h2 className="categories-menu-heading">All Categories</h2><CategoriesIndex /> </div> : <></>
+    const hamburgerMenu = (
+        showMenu === 1 ? <div className="categories-menu"><h2 className="categories-menu-heading">All Categories</h2><CategoriesIndex /> </div> : <></>
+    )
+
+    const searchMenu = (
+        showMenu === 2 ? <div className="search-bar-menu"> <SearchBar /></div> : <></>
     )
 
     useEffect(() => {
         const closeMenu = () => {
-            setShowMenu(false)
+            setShowMenu(0)
         }
 
-        if (showMenu) {
+        if (showMenu === 1) {
             document.addEventListener("click", closeMenu)
         }
 
@@ -34,29 +43,27 @@ const Header = () => {
         }
     }, [showMenu])
 
-    const quizIds = useSelector(state => Object.keys(state.quizzes))
+    // const quizIds = useSelector(state => Object.keys(state.quizzes))
     
-    console.log('quizids')
-    console.log(quizIds)
-    let quizId;
-    let idx;
+    // let quizId;
+    // let idx;
     
-    const handleClick = () => {
-        setRandomQuiz(true)
-        idx = Math.floor(Math.random() * quizIds.length)
-        console.log('idx')
-        console.log(idx)
-        quizId = parseInt(quizIds[idx])
-        // console.log(quizId)
-        // console.log(quiz)
-        // console.log(quiz.id)
-        history.push(`/quizzes/${quizId}`)
-        setRandomQuiz(false)
-    }
+    // const handleClick = () => {
+    //     setRandomQuiz(true)
+    //     idx = Math.floor(Math.random() * quizIds.length)
+    //     console.log('idx')
+    //     console.log(idx)
+    //     quizId = parseInt(quizIds[idx])
+    //     // console.log(quizId)
+    //     // console.log(quiz)
+    //     // console.log(quiz.id)
+    //     history.push(`/quizzes/${quizId}`)
+    //     setRandomQuiz(false)
+    // }
     
-    useEffect(() => {
-        dispatch(fetchQuizzes())
-    }, [randomQuiz])
+    // useEffect(() => {
+    //     dispatch(fetchQuizzes())
+    // }, [randomQuiz])
     
     // useEffect(() => {
     //     dispatch(fetchQuiz(quizId))
@@ -70,10 +77,11 @@ const Header = () => {
             <div id="main-div">
                 <div id="left-nav">
                     <div id="extras">
-                        <button onClick={openMenu} id="headers-extras-button">
+                        {/* <button onClick={openMenu(1)} id="headers-extras-button"> */}
+                        <button onClick={() => openMenu(1)} id="headers-extras-button">
                             <i className="fa-solid fa-bars"></i>
                         </button>
-                        {menu}
+                        {hamburgerMenu}
                     </div>
                     <Link id="nav-home-link" to="/">
                         <div className="icon">
@@ -91,13 +99,14 @@ const Header = () => {
                     </div>
                 </div>
                 <div id="nav-buttons-right">
-                    <button className="submit-button" id="right-nav-button" onClick={handleClick}>Random Quiz</button>
-                    {/* <button id="search-button">
+                    <button className="submit-button" id="right-nav-button">Random Quiz</button>
+                    <button onClick={() => openMenu(2)} id="search-button">
                         <i className="fa-solid fa-magnifying-glass"></i>
-                    </button> */}
-                    
+                    </button>
                 </div>
+                {searchMenu}
             </div>
+
 
         </div>
     )

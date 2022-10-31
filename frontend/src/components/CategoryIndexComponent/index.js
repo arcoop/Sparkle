@@ -44,6 +44,7 @@ export const CategoryIndexPage = () => {
     useEffect(() => {
         dispatch(fetchQuizzes())
     }, [])
+    
     const quizzes = useSelector(state => Object.values(state.quizzes)) || []
 
     return (

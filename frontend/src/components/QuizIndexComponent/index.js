@@ -5,12 +5,15 @@ import { useEffect } from 'react';
 import { fetchQuizzes, getQuizzes } from '../../store/quizzes';
 import Footer from '../Navigation/Footer';
 import QuizTile from '../QuizTileComponent';
+import Navigation from '../Navigation';
+import { fetchUsers } from '../../store/users';
 
 const QuizIndex = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(fetchQuizzes())
+        dispatch(fetchUsers())
         document.title = "Sparkle!"
     }, [])
 
@@ -44,27 +47,31 @@ const QuizIndex = () => {
     }
     
     return (
-        <div id='index-page'>
-            <div id="top-of-page">
-                {topDivText}
-            </div>
-            <div id='index-header'>
-                <h1 className='quiz-index-heading'>All Quizzes</h1>
-            </div>
-            <div id="index-content-container">
-                <div id='index-center-content'>
-                    {/* <div id='quizzes-by-category'></div> */}
-                    <ul id='quizzes-list'>
-                        {quizzes.map(quiz => {
-                            return (
-                                <li key={quiz.id} className='quiz-index-list-item'>
-                                    <QuizTile quiz={quiz}/>
-                                </li>
-                            )
-                        })}
-                    </ul>
+        <div className='page-wrapper'>
+            <Navigation />
+            <div id='index-page'>
+                <div id="top-of-page">
+                    {topDivText}
+                </div>
+                <div id='index-header'>
+                    <h1 className='quiz-index-heading'>All Quizzes</h1>
+                </div>
+                <div id="index-content-container">
+                    <div id='index-center-content'>
+                        {/* <div id='quizzes-by-category'></div> */}
+                        <ul id='quizzes-list'>
+                            {quizzes.map(quiz => {
+                                return (
+                                    <li key={quiz.id} className='quiz-index-list-item'>
+                                        <QuizTile quiz={quiz} author={quiz.author}/>
+                                    </li>
+                                )
+                            })}
+                        </ul>
+                    </div>
                 </div>
             </div>
+            <Footer />
         </div>
     )
 }
