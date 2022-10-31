@@ -11,6 +11,8 @@ const QuizTile = ({quiz, type}) => {
 
     let category = useSelector(state => state.categories[categoryId])
 
+    category ||= {}
+
     quiz ||= {}
     const user = useSelector(state => state.users[quiz.authorId]) || {username: "Loading username"}
 
@@ -51,11 +53,31 @@ const QuizTile = ({quiz, type}) => {
                     </div>
                 </Link>
             </div>
+    
+    const smallQuizTile = <div className="small-quiz-tile">
+                <Link className="link-to-quiz-show" to={`/quizzes/${quiz.id}`}>
+                    <div className={`small-quiz-icon-tile`}>
+                        {image}
+                        <div className={`small-quiz-tile-title`}>{quiz.title}</div>
+                        <div className="second-div"></div>
+                        
+                    </div>
+                    <div className={`small-author-category-time`}>
+                        <div className="quiz-tile-cat">{category.name}</div>
+                        <div className="quiz-tile-time">{quiz.quizTimer}m</div>
+                        <div className="hidden-div"></div>
+                    </div>
+                </Link>
+            </div>
 
+    let tile;
+    if (type === "small") tile = smallQuizTile
+    if (type === "medium") tile = mediumQuizTile
+    if (type === "large") tile = largeQuizTile
 
     return (
         <> 
-            {type === "medium" ? mediumQuizTile : largeQuizTile} 
+            {tile} 
         </>
     ) 
 }

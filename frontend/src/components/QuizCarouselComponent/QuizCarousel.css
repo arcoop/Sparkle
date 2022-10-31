@@ -1,17 +1,23 @@
 .carousel-container {
     display: flex;
-    justify-content: space-evenly;
-}
-
-.array {
-    display: flex;
+    width: 1500px;
     justify-content: space-between;
 }
 
-.array.hidden {
-    display: none;
-    animation: slide 1s forwards;
+.carousel-content {
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    flex-wrap: nowrap;
+    overflow: hidden;
+    width: 1400px;
 }
 
-.array {
+.carousel-array {
+    display: flex;
+
+}
+
+.carousel-array:nth-of-type(2) {
+    background-color: red;
 }
