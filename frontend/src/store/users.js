@@ -1,15 +1,15 @@
 import csrfFetch from "./csrf";
 
-const GET_USERS = 'users/getUsers'
-const GET_USER = 'users/getUser'
+const SET_USERS = 'users/setUsers'
+const SET_USER = 'users/setUser'
 
 export const setUsers = users => ({
-    type: GET_USERS,
+    type: SET_USERS,
     payload: users
 })
 
 export const setUser = user => ({
-    type: GET_USER,
+    type: SET_USER,
     payload: user
 })
 
@@ -48,9 +48,9 @@ export const fetchUser = userId => async dispatch => {
 
 const usersReducer = (state = {}, action) => {
     switch(action.type) {
-        case GET_USERS:
+        case SET_USERS:
             return {...action.payload}
-        case GET_USER:
+        case SET_USER:
             return {...state, [action.payload.id]: action.payload}
         default:
             return state 

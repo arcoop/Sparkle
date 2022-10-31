@@ -28,8 +28,8 @@ const SearchResults = () => {
     const quizzes = useSelector(state => Object.values(state.quizzes))
     const users = useSelector(state => Object.values(state.users))
 
-    const numQuizzes = quizzes.length
-    let resultsText = numQuizzes === 1 ? "result" : "results"
+    let numResults = location.pathname.includes("quizzes") ? quizzes.length : users.length
+    let resultsText = numResults === 1 ? "result" : "results"
     let author;
     let category;
 
@@ -54,7 +54,12 @@ const SearchResults = () => {
         results = <ul className="search-results">
         {users.map(user => {
             return (
-                <li className="results-list-item" key={user.id}>{user.username}</li>
+                <li className="results-list-item" key={user.id}>
+                    <Link to={`/users/${user.id}`}>
+                        <i className="fa-regular fa-user"></i>
+                        {user.username}
+                    </Link>
+                </li>
             )
         })}
     </ul>
@@ -70,7 +75,7 @@ const SearchResults = () => {
                         <Link to={`/search/users/?s=${query}`}>Users</Link>
                     </div>
                     <div className="search-results-subheading"></div>
-                        <p>{numQuizzes} {resultsText} for "{query}"</p>
+                        <p>{numResults} {resultsText} for "{query}"</p>
                     <div className="search-results">
                         {results}
                         
