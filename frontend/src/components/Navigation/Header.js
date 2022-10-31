@@ -43,6 +43,7 @@ const Header = () => {
         }
     }, [showMenu])
 
+
     // const quizIds = useSelector(state => Object.keys(state.quizzes))
     
     // let quizId;

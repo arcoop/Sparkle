@@ -11,13 +11,8 @@ const LoginForm = () => {
     const [credential, setCredential] = useState("")
     const [password, setPassword] = useState("")
     const [errors, setErrors] = useState([])
-    //const [credentialPlaceholder, setCredentialPlaceholder] = useState("Email Address or Username")
     const [usernameFloat, setUsernameFloat] = useState("label has-focus")
     const [passwordFloat, setPasswordFloat] = useState("label")
-
-    //1 = username float
-
-    //const sessionUser = useSelector(state => state.session.user)
     
     let username
 

@@ -25,7 +25,9 @@
     left: 0;
     padding: 10px;
     top: 5px;
+    pointer-events: none;
 }
+
 
 .search-label.floating {
     position: absolute;
@@ -45,6 +47,7 @@
     color: black;
     height: 28.5px;
     margin: 10px 0 10px;
+    width: 100%;
 }
 
 .magnifying-glass {

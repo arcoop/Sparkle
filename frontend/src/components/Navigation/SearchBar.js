@@ -15,7 +15,7 @@ const SearchBar = () => {
             <div className="search-bar-page">
                 <div className="search-container">
                     <div className="search-box">
-                        <input type="search"
+                        <input type="text"
                             onClick={() => setLabelStatus("search-label floating")}
                             className="search-input"
                             value={query}
