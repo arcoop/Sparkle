@@ -13,7 +13,7 @@ const SearchBar = () => {
 
     const handleKeyDown = e => {
         if (e.key === 'Enter') {
-
+            searchForQuizzes()
         }
     }
 
