@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Link, Redirect, useHistory } from "react-router-dom"
+import { Link, Redirect, useHistory, useLocation } from "react-router-dom"
 import { fetchQuiz, fetchQuizzes, getQuizzes } from "../../store/quizzes"
 import './Header.css'
 import CategoriesIndex from "../CategoryIndexComponent"
@@ -8,6 +8,7 @@ import SearchBar from "./SearchBar"
 
 
 const Header = () => {
+    const location = useLocation()
     const dispatch = useDispatch();
     const history = useHistory()
     const [showMenu, setShowMenu] = useState(0)
@@ -16,6 +17,8 @@ const Header = () => {
     // 0 = no menu
     // 1 = hamburger
     // 2 = search
+    // 3
+
 
     const openMenu = (menu) => {
         if (showMenu !== menu) {

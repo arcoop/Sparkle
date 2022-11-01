@@ -4,13 +4,13 @@ import { Redirect } from 'react-router-dom'
 import { createQuiz, searchQuizzes } from '../../store/quizzes';
 import './QuizCreateForm.css'
 import Navigation from '../Navigation';
+import { Link } from 'react-router-dom';
 
 const QuizForm = () => {
 
     useEffect(() => {
         document.title = "Create a new quiz"
     })
-
     
     const dispatch = useDispatch();
     const [quizName, setQuizName] = useState("")
@@ -110,7 +110,7 @@ const QuizForm = () => {
                                     <ul>
                                         {quizName.length > 1 && quizzes.map(quiz => {
                                             return (
-                                                <li key={quiz.id}>{quiz.title}</li>
+                                                <li key={quiz.id}><Link to={`/quizzes/${quiz.id}`}>{quiz.title}</Link></li>
                                             )
                                         })}
                                     </ul>
