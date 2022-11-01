@@ -69,11 +69,12 @@ const SearchResults = () => {
                 <Navigation />
                 <div className="search-results-container">
                     <div className="search-results-heading">
-                        <Link to={`/search/quizzes/?s=${query}`}>Quizzes</Link>
-                        <Link to={`/search/users/?s=${query}`}>Users</Link>
+                        <Link className={location.pathname.includes("quizzes") ? "selected" : ""} to={`/search/quizzes/?s=${query}`}>Quizzes</Link>
+                        <Link className={location.pathname.includes("users") ? "selected" : ""} to={`/search/users/?s=${query}`}>Users</Link>
                     </div>
-                    <div className="search-results-subheading"></div>
-                        <p>{numResults} {resultsText} for "{query}"</p>
+                    <div className="search-results-subheading">
+                        <p>{numResults} {location.pathname.includes("quizzes") ? "quiz" : "user"} {resultsText} for "{query}"</p>
+                    </div>
                     <div className="search-results">
                         {results}
                         

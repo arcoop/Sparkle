@@ -46,3 +46,31 @@
     text-decoration: underline;
     color:#f90
 }
+
+.search-results-heading {
+    margin: 10px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #d8d8d8;
+}
+
+.search-results-heading a {
+    color: black;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: .75rem;
+    margin-right: 50px;
+    padding-bottom: 14px;
+}
+
+.search-results-heading a.selected {
+    border-bottom: 2px solid #f90;
+   
+}
+
+
+.search-results-subheading {
+    margin: 10px;
+    margin-left: 10px 0 20px 0;
+    font-size: .75rem;
+    color: #666;
+}
