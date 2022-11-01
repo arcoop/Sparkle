@@ -4,50 +4,28 @@ import { useState } from 'react'
 
 const QuizCarousel = ({quizzes}) => {
 
-    const [arr, setArr] = useState(0)
+    const [position, setPosition] = useState(0)
 
-    const arrayA = quizzes.slice(0,6)
-    const arrayB = quizzes.slice(6)
+    const arrayA = quizzes.slice(0,5)
+    const arrayB = quizzes.slice(5,10)
 
-
-    const carouselA = [arrayA, arrayB]
-    const carouselB = [arrayB, arrayA, arrayB]
+    const carouselArr = [arrayA, arrayB]
 
     const handleClick = () => {
-        arr === 0 ? setArr(1) : setArr(0)
-    }
-
-    const handleRightClick = () => {
-        arr === 0 ? setArr(1) : setArr(0)
+        console.log("clicked")
     }
 
     return (
         <div className='carousel-container'>
-            <button onClick={handleClick}>left</button>
-            <div className='carousel-content'>
-                {carouselB[arr].map(quiz => {
-                    return (
-                        <QuizTile key={quiz.id} quiz={quiz} type="small" />
-                    )
-                })}
-            </div>
-            {/* <div className={arr === 0 ? 'array' : 'array hidden'}>
-                {arrayA.map((quiz) => {
-                    return (
-                        <div>A-Quiz</div>
-                    )
-                })}
-            </div>
-            <div className={arr === 0 ? 'array hidden' : 'array'}>
-                {arrayB.map((quiz, idx) => {
-                    return (
-                        <div >B-Quiz</div>
-                    )
-                })}
-            </div> */}
+            <button className='arrow-button left' onClick={handleClick}>
+                <i className="fa-solid fa-chevron-left"></i>
+            </button>
 
-            <button onClick={handleClick}>right</button>
+            <button className='arrow-button right' onClick={handleClick}>
+                <i className="fa-solid fa-chevron-right"></i>
+            </button>
         </div>
+
     )
 }
 export default QuizCarousel;

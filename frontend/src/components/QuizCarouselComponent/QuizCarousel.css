@@ -2,17 +2,59 @@
     display: flex;
     width: 100%;
     justify-content: space-between;
+    align-items: center;
+    position: relative;
+    height: 100px;
 }
 
 .carousel-content {
+    position: relative;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
     flex-wrap: nowrap;
     overflow: hidden;
     width: 100%;
 }
 
-.carousel-array {
+.carousel-array-center {
+    position: absolute;
+    top: 25px;
     display: flex;
+    transition: ease-in 2s;
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.carousel-array-left {
+    position: absolute;
+    left: -1200px;
+    transition: ease-in 2s;
+}
+
+.carousel-array-right {
+    position: absolute;
+    top: 15px;
+    right: 1300px;
+    transition: ease-in 2s;
+}
+
+.arrow-button {
+    position: absolute;
+    height: 42px;
+    width: 23px;
+    border: 1px solid transparent;
+    top: 15px;
+}
+
+.arrow-button.right {
+    right: 0;
+}
+
+.arrow-button.left {
+    left: 0;
+}
+.arrow-button:hover {
+    cursor: pointer;
+    color: #f90;
+    background-color: #ffebcc;
 }
