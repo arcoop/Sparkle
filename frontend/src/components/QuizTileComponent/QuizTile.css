@@ -1,6 +1,7 @@
 .quiz-tile {
     width: 292.5px;
 }
+
 .quiz-icon-tile {
     position: relative;
     margin: 0;
@@ -92,6 +93,19 @@
     margin-top: 0;
 }
 
+.small-author-category-time {
+    position: relative;
+    background-color: #f1f1f2;
+    padding-left: 5px;
+    display: flex;
+    font-size: .75rem;
+    justify-content: space-between;
+    align-items: center;
+    height: 20px;
+    box-sizing: border-box;
+    margin-top: 0;
+}
+
 .quiz-tile-cat {
     font-weight: bold;
 }
@@ -119,3 +133,13 @@
 .quiz-tile-title {
     position: absolute;
 } */
+
+.small-quiz-tile {
+    width: 200px;
+}
+
+.small-quiz-icon-tile img {
+    width: 200px;
+    height: 114px;
+    
+}
