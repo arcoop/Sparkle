@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_20_175613) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_02_004935) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -57,6 +57,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_20_175613) do
     t.datetime "updated_at", null: false
     t.index ["commenter_id"], name: "index_comments_on_commenter_id"
     t.index ["quiz_id"], name: "index_comments_on_quiz_id"
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.bigint "liker_id"
+    t.bigint "comment_id"
+    t.boolean "like_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["comment_id"], name: "index_likes_on_comment_id"
+    t.index ["liker_id"], name: "index_likes_on_liker_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -116,6 +126,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_20_175613) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "quizzes"
   add_foreign_key "comments", "users", column: "commenter_id"
+  add_foreign_key "likes", "users", column: "comment_id"
+  add_foreign_key "likes", "users", column: "liker_id"
   add_foreign_key "questions", "quizzes"
   add_foreign_key "quiz_takes", "quizzes"
   add_foreign_key "quiz_takes", "users", column: "taker_id"

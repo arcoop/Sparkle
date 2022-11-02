@@ -1,6 +1,7 @@
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import thunk from "redux-thunk";
 import commentsReducer from "./comments";
+import likesReducer from "./likes";
 import questionsReducer from "./questions";
 import quizTakesReducer from "./quizTakes";
 import quizzesReducer from "./quizzes";
@@ -33,6 +34,7 @@ const rootReducer = combineReducers({
     questions: questionsReducer,
     comments: commentsReducer,
     quizTakes: quizTakesReducer,
+    likes: likesReducer,
     categories: (state = categories )=> state
 })
 

@@ -1,0 +1,26 @@
+class Api::LikesController < ApplicationController
+    def create
+        @like = Like.new(likes_params)
+        if !@like.save
+            render json: {errors: @like.errors.full_messages}, status: :unprocessable_entity
+        end
+    end
+
+
+    def update
+        @like = Like.find(params[:id])
+        if !@like.update
+            render json: {errors: @like.errors.full_messages}, status: :unprocessable_entity
+        end
+    end
+
+    def destroy
+         @like = Like.find(params[:id])
+         @like.destroy
+    end
+
+    private
+    def likes_params
+        params.require(:like).permit(:liker_id, :like_type, :comment_id)
+    end
+end

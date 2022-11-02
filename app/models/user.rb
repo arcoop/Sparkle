@@ -23,6 +23,8 @@ class User < ApplicationRecord
   has_many :comments_written, class_name: :Comment, foreign_key: :commenter_id, dependent: :destroy
   has_many :quiz_takes, class_name: :QuizTake, foreign_key: :taker_id
   has_many :quizzes_taken, through: :quiz_takes, source: :quiz
+  has_many :likers, class_name: :Like, foreign_key: :liker_id, dependent: :destroy
+  has_many :comments_liked, through: :likers, source: :comments
 
   has_one_attached :icon
 
