@@ -1,7 +1,9 @@
 class Api::LikesController < ApplicationController
     def create
         @like = Like.new(likes_params)
-        if !@like.save
+        if @like.save
+            render 'api/likes/show'
+        else
             render json: {errors: @like.errors.full_messages}, status: :unprocessable_entity
         end
     end
@@ -9,7 +11,9 @@ class Api::LikesController < ApplicationController
 
     def update
         @like = Like.find(params[:id])
-        if !@like.update
+        if @like.update
+            render 'api/likes/show'
+        else
             render json: {errors: @like.errors.full_messages}, status: :unprocessable_entity
         end
     end
