@@ -19,10 +19,12 @@ const QuizShow = () => {
 
     useEffect(() => {
         dispatch(fetchQuiz(quizId))
+        dispatch(fetchComments(quizId))
         dispatch(fetchQuizTakes())
         dispatch(fetchQuestions(quizId))
-        dispatch(fetchComments(quizId))
     }, [quizId])
+
+    const [numLikes, setNumLikes] = useState()
     
     const sessionUser = useSelector(state => state.session.user) || {}
     

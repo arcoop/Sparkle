@@ -22,3 +22,9 @@
         end
     end
 end
+
+# @likes.each do |like|
+#     json.set! like.id do
+#         json.extract! like, :id, :liker_id, :like_type, :comment_id
+#     end
+# end

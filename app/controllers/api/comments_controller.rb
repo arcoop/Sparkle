@@ -1,10 +1,9 @@
 class Api::CommentsController < ApplicationController
     wrap_parameters include: Comment.attribute_names + ['commenterId','quizId','points', 'updatedAt']
     def index
-        @comments = Comment.includes(:likes).where(quiz_id: params[:quiz_id])
-        if current_user 
-            @current_user = current_user
-        end
+        @likes = []
+        @comments = Comment.where(quiz_id: params[:quiz_id])
+        @comments.each { |comment| @likes.push(comment.likes) }
         render '/api/comments/index'
     end
 
