@@ -28,6 +28,12 @@ export const fetchQuizTakes = () => async dispatch => {
     dispatch(setQuizTakes(data))
 }
 
+export const fetchQuizTakesByQuiz = quizId => async dispatch => {
+    const res = await csrfFetch(`api/quizzes/${quizId}/quizTakes`)
+    const data = await res.json()
+    dispatch(setQuizTakes(data))
+}
+
 export const fetchQuizTake = quizTakeId => async dispatch => {
     const res = await csrfFetch(`/api/quiz_takes/${quizTakeId}`)
     const data = await res.json()
@@ -46,9 +52,9 @@ export const createQuizTake = quizTake => async dispatch => {
 const quizTakesReducer = (state = {}, action) => {
     switch(action.type) {
         case SET_QUIZ_TAKE:
-            return {...state, ...action.payload}
+            return {...action.payload}
         case SET_QUIZ_TAKES:
-            return {...state, ...action.payload}
+            return {...action.payload}
         default:
             return state
     }

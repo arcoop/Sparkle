@@ -6,10 +6,16 @@ const RECEIVE_QUIZ = `quizzes/receiveQuiz`
 const RECEIVE_QUIZZES = `quizzes/receiveQuizzes`
 const REMOVE_QUIZ = 'quizzes/removeQuiz'
 const SET_QUIZZES_BY_CATEGORY = 'quizzes/setQuizzesByCategory'
+const SET_QUIZ_TAKES = 'quizzes/setQuizTakes'
 
 export const setQuizzes = quizzes => ({
     type: SET_QUIZZES,
     payload: quizzes
+})
+
+export const setQuizTakes = quizTakes => ({
+    type: SET_QUIZ_TAKES,
+    payload: quizTakes
 })
 
 export const setQuiz = quiz => ({
@@ -76,6 +82,14 @@ export const fetchQuizzes = () => async dispatch => {
     }
 }
 
+// export const fetchQuizTakesByQuiz = quizId => async dispatch => {
+//     const res = await csrfFetch(`/api/quizzes/${quizId}/quizTakes`)
+//     const data = await res.json()
+//     console.log("quiz take fetch data")
+//     console.log(data)
+//     dispatch(setQuizTakes(data))
+// }
+
 export const searchQuizzes = query => async dispatch => {
     const res = await csrfFetch(`/api/search/quizzes/?s=${query}`)
     const data = await res.json()
@@ -118,6 +132,8 @@ const quizzesReducer = (state = {}, action ) => {
             const nextState = {...state}
             delete nextState[action.payload]
             return nextState
+        case SET_QUIZ_TAKES:
+            return {...state, ...action.payload}
         default:
             return state
     }

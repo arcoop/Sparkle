@@ -12,7 +12,7 @@ import ExtrasButton from "./ExtrasButton";
 import { fetchQuizTakes } from "../../store/quizTakes";
 import { fetchComments } from "../../store/comments";
 import { fetchQuestions } from "../../store/questions";
-
+import { fetchQuizTakesByQuiz } from "../../store/quizTakes";
 const QuizShow = () => {
     const dispatch = useDispatch();
     const {quizId} = useParams();
@@ -22,6 +22,7 @@ const QuizShow = () => {
         dispatch(fetchQuizTakes())
         dispatch(fetchQuestions(quizId))
         dispatch(fetchComments(quizId))
+
     }, [quizId])
     
     const sessionUser = useSelector(state => state.session.user) || {}
@@ -34,17 +35,19 @@ const QuizShow = () => {
 
     const quizComments = useSelector(state => Object.values(state.comments))
     
+    const takes = useSelector(state => Object.values(state.quizTakes)) || []
+    
     let category = useSelector(state => state.categories[categoryId]) || ""
     
     document.title = `${quiz.title}` || 'Sparkle'
     
 
-    let takes = quiz.id ? quiz.takes : []
+    //let takes = quiz.id ? quiz.takes : []
     let numTakes = takes.length;
     let plays = numTakes === 1 ? "play" : "plays"
 
     let commentsArr = quiz.id ? quiz.comments : [];
-    let numComments = commentsArr.length;
+    let numComments = quizComments.length;
     let comments = numComments === 1? "comment" : "comments"
     
     //let user = useSelector(() => getUser(quiz.authorId)) || {username:"", email:"", id: null}

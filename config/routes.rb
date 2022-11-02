@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :quizzes, except: [:new, :edit] do
       resources :questions, only: [:index, :show]
       resources :comments, only: [:index]
+      resources :quiz_takes, only: [:show, :index]
     end
     resource :session, only: [:show, :create, :destroy]
     resources :questions, only: [:create, :update, :destroy]
