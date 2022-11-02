@@ -30,7 +30,7 @@ export const createLike = like => async dispatch => {
     dispatch(addLike(data))
 }
 
-export const deleteLikes = like => async dispatch => {
+export const deleteLike = like => async dispatch => {
     const res = await csrfFetch(`/api/likes/${like.id}`, {
         method: 'DELETE'
     })
@@ -39,7 +39,7 @@ export const deleteLikes = like => async dispatch => {
 }
 
 export const updateLike = like => async dispatch => {
-    const res = await csrfFetch(`api/likes/${like.id}`, {
+    const res = await csrfFetch(`/api/likes/${like.id}`, {
         method: 'PUT',
         body: JSON.stringify(like)
     })
@@ -48,7 +48,7 @@ export const updateLike = like => async dispatch => {
 }
 
 export const fetchLikes = comment => async dispatch => {
-    const res = await csrfFetch(`api/comments/${comment.id}}/likes`)
+    const res = await csrfFetch(`/api/comments/${comment.id}}/likes`)
     const data = await res.json()
     dispatch(receiveLikes(data))
 }

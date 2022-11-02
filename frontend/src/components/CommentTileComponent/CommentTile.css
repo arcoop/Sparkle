@@ -94,25 +94,25 @@
     cursor: pointer;
 }
 
-.selected-up {
+.selected.up {
     color: #00aa08;
     background-color: transparent;
     border: 1px solid transparent;
 }
 
-.selected-up:hover {
+.selected:hover {
     cursor: pointer;
 }
 
-.selected-down {
+.selected.down {
     color: red;
     background-color: transparent;
     border: 1px solid transparent;
 }
 
-.selected-down:hover {
+/* .selected-down:hover {
     cursor: pointer;
-}
+} */
 
 /* EXTRAS BUTTON */
 

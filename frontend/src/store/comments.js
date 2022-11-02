@@ -32,10 +32,6 @@ export const fetchComments = quizId => async dispatch => {
     dispatch(setComments(data))
 }
 
-export const fetchLikes = commentID => async dispatch => {
-    // /api/quizzes/comments/
-}
-
 export const createComment = (comment) => async dispatch => {
     const res = await csrfFetch(`/api/comments`, {
         method: 'POST',

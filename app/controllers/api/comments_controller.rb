@@ -31,7 +31,6 @@ class Api::CommentsController < ApplicationController
     def destroy 
         @comment = Comment.find(params[:id])
         quizId = @comment.quiz_id
-        p quizId
         @comment.destroy
         @comments = Quiz.find(quizId).comments
         render 'api/comments/index'
