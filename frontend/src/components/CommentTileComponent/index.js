@@ -7,6 +7,7 @@ import './CommentTile.css'
 import ExtrasButton from "./ExtrasButton"
 import CommentsUpdateForm from "../CommentsUpdateFormComponent"
 import { deleteComment } from "../../store/comments"
+import { removeLike } from "../../store/likes"
 // import {moment} from moment;
 
 
@@ -28,6 +29,7 @@ const CommentTile = ({comment}) => {
     const [downVote, setDownVote] = useState("vote")
     // const [showMenu, setShowMenu] = useState(false)
     const [editing, setEditing] = useState(false)
+    const [liked, setLiked] = useState(false)
 
     // const openMenu = () => {
     //     if (!showMenu) setShowMenu(true)
@@ -118,23 +120,33 @@ const CommentTile = ({comment}) => {
 
     const handleVote = (type) => {
         if (type === "up") {
-            if (upVote === "vote") {
-                console.log('hi')
-                setNumPoints(prevPoint => prevPoint + 1)
-                setUpVote("selected-up")
-                setDownVote("vote")
+            if (!liked) {
+                const like = {likerId: userId, likeType: true, commentId: comment.id}
+                dispatch(createLike(like))
+                setLiked(true)
             } else {
-                setNumPoints(numPoints - 1)
-                setUpVote("vote")
+                dispatch(removeLike(like))
             }
-        } else if (downVote === "vote") {
-            setNumPoints(prevPoint => prevPoint - 1)
-            setDownVote("selected-down")
-            setUpVote("vote")
-        } else {
-            setNumPoints(prevPoint => prevPoint + 1)
-            setDownVote("vote")
+        } else if (type === "down") {
+            
         }
+        // if (type === "up") {
+        //     if (upVote === "vote") {
+        //         setNumPoints(prevPoint => prevPoint + 1)
+        //         setUpVote("selected-up")
+        //         setDownVote("vote")
+        //     } else {
+        //         setNumPoints(numPoints - 1)
+        //         setUpVote("vote")
+        //     }
+        // } else if (downVote === "vote") {
+        //     setNumPoints(prevPoint => prevPoint - 1)
+        //     setDownVote("selected-down")
+        //     setUpVote("vote")
+        // } else {
+        //     setNumPoints(prevPoint => prevPoint + 1)
+        //     setDownVote("vote")
+        // }
     }
 
     // const MenuReturn = () => {

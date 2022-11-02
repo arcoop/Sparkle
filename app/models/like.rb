@@ -10,6 +10,7 @@
 #  updated_at :datetime         not null
 #
 class Like < ApplicationRecord
+    validates :liker_id, uniqueness: {scope: :comment_id}
     belongs_to :liker, class_name: :User, foreign_key: :liker_id
     belongs_to :comment
 end
