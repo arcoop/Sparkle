@@ -7,29 +7,32 @@ import './CommentTile.css'
 import ExtrasButton from "./ExtrasButton"
 import CommentsUpdateForm from "../CommentsUpdateFormComponent"
 import { deleteComment } from "../../store/comments"
-import { removeLike } from "../../store/likes"
+import { createLike, fetchLikes, removeLike, updateLike } from "../../store/likes"
 // import {moment} from moment;
 
 
 const CommentTile = ({comment}) => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     
     const userId = comment.commenterId
     
     useEffect(() => {
         dispatch(fetchUser(userId))
+        dispatch(fetchLikes(comment))
     }, [])
 
+    const likes = useSelector(state => Object.values(state.likes))
+    const numLikes = likes.length;
 
-    //const sessionUser = useSelector(state => state.session.user)
+    const sessionUser = useSelector(state => state.session.user) || {}
     const commenter = useSelector(getUser(userId))
-    const [numPoints, setNumPoints] = useState(comment.points)
+    //const [numPoints, setNumPoints] = useState(comment.points)
     const commenterUsername = commenter ? commenter.username : ""
     const [upVote, setUpVote] = useState("vote")
     const [downVote, setDownVote] = useState("vote")
     // const [showMenu, setShowMenu] = useState(false)
     const [editing, setEditing] = useState(false)
-    const [liked, setLiked] = useState(false)
+    const [liked, setLiked] = useState(userLiked())
 
     // const openMenu = () => {
     //     if (!showMenu) setShowMenu(true)
@@ -63,14 +66,11 @@ const CommentTile = ({comment}) => {
 
     // const menu = sessionUser.id === comment.commenterId ? signedInMenu : signedOutMenu
 
-    let pointsText;
-    if (numPoints === 1) {
-        pointsText = 'point'
-    } else pointsText = 'points'
+    const pointsText = numLikes === 1 ? 'point' : 'points'
 
-    useEffect(() => {
-        dispatch(updateComment({...comment, points: numPoints}))
-    }, [numPoints])
+    // useEffect(() => {
+    //     dispatch(updateComment({...comment, points: numPoints}))
+    // }, [numPoints])
 
     const formatTime = date => {
      
@@ -118,17 +118,37 @@ const CommentTile = ({comment}) => {
     //     }
     // }, [showMenu])
 
+    const userLiked = () => {
+        likes.forEach(like => {
+            if (like.likerId === sessionUser.id) {
+                setLiked(true);
+                return like;
+            }
+        })
+        setLiked(false)
+    }
+
     const handleVote = (type) => {
         if (type === "up") {
-            if (!liked) {
-                const like = {likerId: userId, likeType: true, commentId: comment.id}
-                dispatch(createLike(like))
-                setLiked(true)
-            } else {
-                dispatch(removeLike(like))
-            }
+            likes.forEach(like => {
+                if (like.likerId === sessionUser.id) {
+                    if (like.likeType === true) {
+                        return dispatch(removeLike(like))
+                    }
+                }
+            })
+            const like = {likerId: userId, likeType: true, commentId: comment.id}
+            dispatch(createLike(like))
         } else if (type === "down") {
-            
+            likes.forEach(like => {
+                if (like.likerId === sessionUser.id) {
+                    if (like.likeType === false) {
+                        return dispatch(removeLike(like))
+                    }
+                }
+            })
+            const like = {likerId: userId, likeType: false, commentId: comment.id}
+            dispatch(createLike(like))
         }
         // if (type === "up") {
         //     if (upVote === "vote") {
@@ -198,7 +218,7 @@ const CommentTile = ({comment}) => {
                     <div className="comment-points">
                         <button onClick={() => handleVote("up")} className={upVote}><i className="fa-regular fa-thumbs-up"></i></button>
                         <button onClick={() => handleVote("down")} className={downVote}><i className="fa-regular fa-thumbs-down"></i></button>
-                        <p className="num-points">{numPoints} {pointsText}</p>
+                        <p className="num-points">{numLikes} {pointsText}</p>
                     </div>
                 </div>
             </div>

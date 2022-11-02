@@ -47,6 +47,12 @@ export const updateLike = like => async dispatch => {
     dispatch(addLike(data))
 }
 
+export const fetchLikes = comment => async dispatch => {
+    const res = await csrfFetch(`api/comments/${comment.id}}/likes`)
+    const data = await res.json()
+    dispatch(receiveLikes(data))
+}
+
 const likesReducer = (state = {}, action) => {
     switch(action.type) {
         case ADD_LIKE:
@@ -55,6 +61,8 @@ const likesReducer = (state = {}, action) => {
             const nextState = {...state}
             delete nextState[action.payload]
             return nextState
+        case RECEIVE_LIKES: 
+            return {...action.payload}
         default:
             return state
     }

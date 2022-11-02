@@ -11,11 +11,13 @@ Rails.application.routes.draw do
     end
     resources :quizzes, except: [:new, :edit] do
       resources :questions, only: [:index, :show]
-      resources :comments, only: [:index] 
+      resources :comments, only: [:index]
     end
     resource :session, only: [:show, :create, :destroy]
     resources :questions, only: [:create, :update, :destroy]
-    resources :comments, only: [:update, :destroy, :create]
+    resources :comments, only: [:update, :destroy, :create] do
+      resources :likes, only: [:index] 
+    end
     resources :quiz_takes, only: [:create, :show, :index]
     resources :likes, only: [:create, :update, :destroy]
     get '/search/quizzes', to: "quizzes#search"

@@ -1,4 +1,10 @@
 class Api::LikesController < ApplicationController
+    wrap_parameters include: Like.attribute_names + ['likerId', 'likeType', 'commentId']
+    def index
+        @likes = Like.where(comment_id: params[:comment_id] )
+        render 'api/likes/index'
+    end
+
     def create
         @like = Like.new(likes_params)
         if @like.save
