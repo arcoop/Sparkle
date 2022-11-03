@@ -9,33 +9,27 @@ import CommentsUpdateForm from "../CommentsUpdateFormComponent"
 import { deleteComment } from "../../store/comments"
 import { createLike, deleteLike, fetchLikes, removeLike, updateLike } from "../../store/likes"
 
-const CommentTile = ({comment, setNumLikes}) => {
+const CommentTile = ({comment}) => {
     const dispatch = useDispatch();
     
     const userId = comment.commenterId
     
     useEffect(() => {
         dispatch(fetchUser(userId))
+        //dispatch(fetchLikes(comment))
     }, [])
   
+    const commenter = useSelector(state => state.users[userId])
     const sessionUser = useSelector(state => state.session.user) || {}
-    const commenter = useSelector(getUser(userId))
+    
+    const commentLikes = useSelector(state => Object.values(state.likes))
+    
     //const [numPoints, setNumPoints] = useState(comment.points)
     const commenterUsername = commenter ? commenter.username : ""
-    const [upVote, setUpVote] = useState("vote")
-    const [downVote, setDownVote] = useState("vote")
     // const [showMenu, setShowMenu] = useState(false)
     const [editing, setEditing] = useState(false)
-    const [likedByUser, setLikedByUser] = useState(0)
-    const [commentNumLikes, setCommentNumLikes] = useState(comment.numLikes)
+    const [numLikes, setNumLikes] = useState(commentLikes.length)
 
-    // likes.forEach(like => {
-    //     if (like.likerId === sessionUser.id) {
-    //         setLikedByUser(like.type === true ? 1 : -1)
-    //     } else {
-    //         setLikedByUser(0)
-    //     }
-    // })
 
     // const openMenu = () => {
     //     if (!showMenu) setShowMenu(true)
@@ -69,7 +63,7 @@ const CommentTile = ({comment, setNumLikes}) => {
 
     // const menu = sessionUser.id === comment.commenterId ? signedInMenu : signedOutMenu
 
-    const pointsText = comment.numLikes === 1 ? 'point' : 'points'
+    const pointsText = numLikes === 1 ? 'point' : 'points'
 
     // useEffect(() => {
     //     dispatch(updateComment({...comment, points: numPoints}))
@@ -131,32 +125,54 @@ const CommentTile = ({comment, setNumLikes}) => {
     //     setLikedComment(false)
     // }
 
-    const handleVote = (type) => {
-        if (type === 1) {
-            if (comment.userLiked && comment.userLiked.like_type === true) {
-                dispatch(deleteLike(comment.userLiked)).then(() => setNumLikes(true))
-            } else if (comment.userLiked && comment.userLiked.like_type === false) {
-                comment.userLiked.like_type = true;
-                dispatch(updateLike(comment.userLiked)).then(() => setNumLikes(true))
-                //setNumLikes(true)
-            } else {
-                const like = {liker_id: userId, like_type: true, comment_id: comment.id}
-                dispatch(createLike(like)).then(() => setNumLikes(true));
-                // setNumLikes(true)
-            }
-        } else if (type === -1) {
-            if (comment.userLiked && comment.userLiked.like_type === false) {
-                dispatch(deleteLike(comment.userLiked)).then(() => setNumLikes(true))
-            } else if (comment.userLiked && comment.userLiked.like_type) {
-                comment.userLiked.like_type = false;
-                dispatch(updateLike(comment.userLiked)).then(() => setNumLikes(true))
-            } else {
-                const like = {liker_id: userId, like_type: false, comment_id: comment.id}
-                dispatch(createLike(like))
-                setNumLikes(true)
-            }
+    let commentLike;
+    const userLiked = () => {
+        let commentLike = commentLikes.filter(like => like.likerId === sessionUser.id)
+        console.log(commentLike[0])
+        return commentLike[0]
+    }
+
+    const handleVote = type => {
+        if (!userLiked()) {
+            console.log("not user liked")
+            const like = {likerId: sessionUser.id, likeType: type, commentId: comment.id}
+            dispatch(createLike(like)).then(() => setNumLikes(numLikes + 1))
+        } else if (userLiked() && userLiked().likeType !== type) {
+            console.log("user already liked but different type")
+            userLiked().likeType = type;
+            dispatch(updateLike(userLiked())).then(() => setNumLikes(type ? numLikes + 1 : numLikes - 1))
+        } else if (userLiked() && userLiked().likeType === type) {
+            console.log("user liked same type")
+            dispatch(deleteLike(userLiked())).then(() => setNumLikes(numLikes - 1))
         }
     }
+
+    // const handleVote = (type) => {
+    //     if (type === 1) {
+    //         if (userLiked() && userLiked().likeType) {
+    //             console.log("user liked in handle vote")
+    //             console.log(userLiked())
+    //             dispatch(deleteLike(userLiked()))
+    //         } else if (userLiked() && !userLiked().likeType) {
+    //             userLiked().like_type = true;
+    //             dispatch(updateLike(userLiked()))
+    //         } else {
+    //             const like = {liker_id: userId, like_type: true, comment_id: comment.id}
+    //             dispatch(createLike(like))
+    //             // setNumLikes(true)
+    //         }
+    //     } else if (type === -1) {
+    //         if (userLiked() && userLiked().like_type === false) {
+    //             dispatch(deleteLike(userLiked()))
+    //         } else if (userLiked() && userLiked().likeType) {
+    //             userLiked().likeType = false;
+    //             dispatch(updateLike(userLiked()))
+    //         } else {
+    //             const like = {liker_id: userId, like_type: false, comment_id: comment.id}
+    //             dispatch(createLike(like))
+    //         }
+    //     }
+    // }
 
     // const MenuReturn = () => {
     //     if (showMenu) {
@@ -185,8 +201,8 @@ const CommentTile = ({comment, setNumLikes}) => {
         )
     }
 
-    let upButtonClass = comment.userLiked.likeType ? "selected up" : "vote"
-    let downButtonClass = comment.userLiked.likeType === false ? "selected down" : "vote"
+   // let upButtonClass = comment.userLiked.likeType ? "selected up" : "vote"
+   // let downButtonClass = comment.userLiked.likeType === false ? "selected down" : "vote"
 
     return (
         <div className="comment-tile">
@@ -208,9 +224,9 @@ const CommentTile = ({comment, setNumLikes}) => {
                     </div>
                     <div className="comment-body">{commentBody}</div>
                     <div className="comment-points">
-                        <button onClick={() => handleVote(1)} className={upButtonClass}><i className="fa-regular fa-thumbs-up"></i></button>
-                        <button onClick={() => handleVote(-1)} className={downButtonClass}><i className="fa-regular fa-thumbs-down"></i></button>
-                        <p className="num-points">{comment.numLikes} {pointsText}</p>
+                        <button onClick={() => handleVote(true)} className={"vote"}><i className="fa-regular fa-thumbs-up"></i></button>
+                        <button onClick={() => handleVote(false)} className={"vote"}><i className="fa-regular fa-thumbs-down"></i></button>
+                        <p className="num-points">{numLikes} {pointsText}</p>
                     </div>
                 </div>
             </div>

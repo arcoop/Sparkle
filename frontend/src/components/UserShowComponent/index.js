@@ -6,7 +6,7 @@ import './UserShow.css'
 import { Link } from 'react-router-dom';
 import Navigation from '../Navigation';
 import Footer from '../Navigation/Footer';
-import { fetchQuizTakes, getQuizTakes } from '../../store/quizTakes';
+import { fetchQuizTakesbyUser, getQuizTakes } from '../../store/quizTakes';
 import { fetchQuizzes, getQuizzes } from '../../store/quizzes';
 import { useState } from 'react';
 
@@ -18,31 +18,26 @@ const UserShow = () => {
     
     useEffect(() => {
         dispatch(fetchUsers(id))
-        dispatch(fetchQuizTakes())
+        dispatch(fetchQuizTakesbyUser(id))
     },[id])
 
     let user = useSelector(getUser(id)) || {username: "username...", email: "email..."}
-    console.log(user)
-    console.log(user.quizzesAuthored)
 
-    const quizTakes = useSelector(getQuizTakes)
+    const quizTakes = useSelector(state => Object.values(state.quizTakes))
 
-    let userQuizTakes = []
-    quizTakes.forEach(take => {
-        if (take['takerId'] == id) {
-            userQuizTakes.push(take)
-        }
-    })
+    // let userQuizTakes = []
+    // quizTakes.forEach(take => {
+    //     if (take['takerId'] == id) {
+    //         userQuizTakes.push(take)
+    //     }
+    // })
 
     useEffect(() => {
         dispatch(fetchQuizzes())
+        document.title = `${user.username}'s Sparkle Profile`
     }, [user])
 
     const quizzes = useSelector(getQuizzes)
-    
-    useEffect(() => {
-        document.title = `${user.username}'s Sparkle Profile`
-    }, [user])
     
     const formatDate = date => {
         const months = {
@@ -72,21 +67,20 @@ const UserShow = () => {
       
         const now = new Date()
 
+        let timeText; 
         let finalTimeDiff;
         let elapsedTime = now - start
         elapsedTime /= 1000
-        if (Math.round(elapsedTime / 3600) >= 1){
+        if (Math.round(elapsedTime / 86400) >= 1) {
+            finalTimeDiff = Math.round(elapsedTime /= 86400)
+            timeText = finalTimeDiff === 1 ? "day" : "days"
+        } else if (Math.round(elapsedTime / 3600) >= 1){
             finalTimeDiff = Math.round(elapsedTime /= 3600)
+            timeText = finalTimeDiff === 1 ? "hour" : "hours"
         } else {
             finalTimeDiff = Math.round(elapsedTime / 60)
+            timeText = finalTimeDiff === 1 ? "minute" : "minutes"
         }
-  
-        let timeText; 
-        if (finalTimeDiff === 1) {
-            timeText = "hour"
-        } else if (finalTimeDiff > 1) {
-            timeText = "hours"
-        } else timeText = "minutes"
     
         return `${finalTimeDiff} ${timeText} ago`
     }

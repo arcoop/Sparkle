@@ -53,7 +53,7 @@ const QuizIndex = () => {
                             <div id='other-new-quizzes'>
                                 {sortedQuizzesByDate.slice(1).map(quiz => {
                                     return (
-                                        <QuizTile quiz={quiz} type="medium" />
+                                        <QuizTile key={quiz.id} quiz={quiz} type="medium" />
                                     )
                                 })}
                             </div>

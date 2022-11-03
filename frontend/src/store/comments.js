@@ -1,8 +1,8 @@
 import csrfFetch from "./csrf"
 
-const SET_COMMENTS = 'comments/setComments'
-const SET_COMMENT = 'comments/setComment'
-const REMOVE_COMMENT = 'comments/removeComment'
+export const SET_COMMENTS = 'comments/setComments'
+export const SET_COMMENT = 'comments/setComment'
+export const REMOVE_COMMENT = 'comments/removeComment'
 
 export const setComments = comments => ({
     type: SET_COMMENTS,
@@ -25,6 +25,7 @@ export const getComments = state => {
 
 export const fetchComments = quizId => async dispatch => {
     const res = await csrfFetch(`/api/quizzes/${quizId}/comments`)
+    console.log(res)
     const data = await res.json()
     console.log("fetch comments data")
     console.log(data)

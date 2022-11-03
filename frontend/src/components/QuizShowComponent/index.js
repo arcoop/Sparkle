@@ -9,7 +9,7 @@ import QuestionIndex from "../QuestionIndexComponent";
 import { Link } from "react-router-dom";
 import CommentsIndex from "../CommentsIndexComponent";
 import ExtrasButton from "./ExtrasButton";
-import { fetchQuizTakes } from "../../store/quizTakes";
+import { fetchQuizTakesbyQuiz } from "../../store/quizTakes";
 import { fetchComments } from "../../store/comments";
 import { fetchQuestions } from "../../store/questions";
 
@@ -20,11 +20,9 @@ const QuizShow = () => {
     useEffect(() => {
         dispatch(fetchQuiz(quizId))
         dispatch(fetchComments(quizId))
-        dispatch(fetchQuizTakes())
+        dispatch(fetchQuizTakesbyQuiz(quizId))
         dispatch(fetchQuestions(quizId))
     }, [quizId])
-
-    const [numLikes, setNumLikes] = useState()
     
     const sessionUser = useSelector(state => state.session.user) || {}
     
@@ -39,7 +37,6 @@ const QuizShow = () => {
     let category = useSelector(state => state.categories[categoryId]) || ""
     
     document.title = `${quiz.title}` || 'Sparkle'
-    
 
     let takes = quiz.id ? quiz.takes : []
     let numTakes = takes.length;

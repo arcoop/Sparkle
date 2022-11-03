@@ -94,7 +94,7 @@
     cursor: pointer;
 }
 
-.selected.up {
+.vote.up {
     color: #00aa08;
     background-color: transparent;
     border: 1px solid transparent;
@@ -104,7 +104,7 @@
     cursor: pointer;
 }
 
-.selected.down {
+.vote.down {
     color: red;
     background-color: transparent;
     border: 1px solid transparent;

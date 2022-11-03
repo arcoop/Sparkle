@@ -1,3 +1,4 @@
+import { SET_COMMENTS } from "./comments";
 import csrfFetch from "./csrf";
 
 const ADD_LIKE = 'likes/addLikes'
@@ -48,7 +49,7 @@ export const updateLike = like => async dispatch => {
 }
 
 export const fetchLikes = comment => async dispatch => {
-    const res = await csrfFetch(`/api/comments/${comment.id}}/likes`)
+    const res = await csrfFetch(`/api/comments/${comment.id}/likes`)
     const data = await res.json()
     dispatch(receiveLikes(data))
 }
@@ -63,6 +64,8 @@ const likesReducer = (state = {}, action) => {
             return nextState
         case RECEIVE_LIKES: 
             return {...action.payload}
+        case SET_COMMENTS:
+            return {...action.payload.likes}
         default:
             return state
     }
