@@ -42,7 +42,7 @@ export const deleteLike = like => async dispatch => {
 export const updateLike = like => async dispatch => {
     const res = await csrfFetch(`/api/likes/${like.id}`, {
         method: 'PUT',
-        body: JSON.stringify(like)
+        body: JSON.stringify({likeType: like.likeType})
     })
     const data = await res.json()
     dispatch(addLike(data))
@@ -57,10 +57,10 @@ export const fetchLikes = comment => async dispatch => {
 const likesReducer = (state = {}, action) => {
     switch(action.type) {
         case ADD_LIKE:
-            return {...action.payload}
+            return {...state, ...action.payload}
         case REMOVE_LIKE:
             const nextState = {...state}
-            delete nextState[action.payload]
+            delete nextState[action.payload.id]
             return nextState
         case RECEIVE_LIKES: 
             return {...action.payload}
