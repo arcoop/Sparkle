@@ -42,8 +42,6 @@ const LoginForm = () => {
                 if (demoCredential.length > 0) {
                     setUsernameFloat("label floating")
                     tempCredential += demoCredential.shift()
-                    console.log("tempCredential")
-                    console.log(tempCredential)
                     setCredential(tempCredential)
                 } else if (demoPassword.length > 0) {
                     setPasswordFloat("label floating")

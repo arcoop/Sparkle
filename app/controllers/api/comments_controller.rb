@@ -1,7 +1,9 @@
 class Api::CommentsController < ApplicationController
     wrap_parameters include: Comment.attribute_names + ['commenterId','quizId','points', 'updatedAt']
     def index
-        @comments = Quiz.find(params[:quiz_id]).comments
+        # @likes = []
+        @comments = Comment.where(quiz_id: params[:quiz_id])
+        # @comments.each { |comment| @likes.push(comment.likes) }
         render '/api/comments/index'
     end
 
@@ -28,7 +30,6 @@ class Api::CommentsController < ApplicationController
     def destroy 
         @comment = Comment.find(params[:id])
         quizId = @comment.quiz_id
-        p quizId
         @comment.destroy
         @comments = Quiz.find(quizId).comments
         render 'api/comments/index'

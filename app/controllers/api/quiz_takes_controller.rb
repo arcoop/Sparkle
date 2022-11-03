@@ -2,7 +2,11 @@ class Api::QuizTakesController < ApplicationController
     wrap_parameters include: QuizTake.attribute_names + ['takerId', 'quizId', 'quizTake', 'createdAt']
 
     def index 
-        @quiz_takes = QuizTake.all
+        if params[:quiz_id]
+            @quiz_takes = QuizTake.where(quiz_id: params[:quiz_id])
+        elsif params[:user_id] 
+            @quiz_takes = QuizTake.where(taker_id: params[:user_id])
+        end
         render '/api/quiz_takes/index'
     end
 
