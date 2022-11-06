@@ -20,7 +20,13 @@ const QuizCarousel = ({quizzes}) => {
             <button className='arrow-button left' onClick={handleClick}>
                 <i className="fa-solid fa-chevron-left"></i>
             </button>
-
+            <div></div>
+            {arrayA.map(quiz => {
+                return (
+                    <QuizTile quiz={quiz} type="small"/>
+                )
+            })}
+            <div></div>
             <button className='arrow-button right' onClick={handleClick}>
                 <i className="fa-solid fa-chevron-right"></i>
             </button>
