@@ -41,6 +41,15 @@
     justify-content: center;
 }
 
+.small-quiz-tile-title {
+    position: absolute;
+    left: 8px;
+    top: 80px;
+    font-size: .9375rem;
+    color: white;
+    font-weight: bold;
+}
+
 .quiz-tile-title-large { 
     font-size: 1.3rem;
 }
@@ -136,6 +145,15 @@
 
 .small-quiz-tile {
     width: 200px;
+}
+
+.small-quiz-icon-tile {
+    position: relative;
+}
+
+.small-quiz-icon-tile:hover .small-quiz-tile-title {
+    color: #f90;
+    text-decoration: underline;
 }
 
 .small-quiz-icon-tile img {
