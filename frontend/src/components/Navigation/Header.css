@@ -9,11 +9,10 @@
 
 #left-nav {
     display: flex;
-    justify-content: space-between;
-    width: 440px;
+    justify-content: space-evenly;
     margin-left: 15px;
     white-space: nowrap;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 #headers-extras-button {

@@ -84,7 +84,7 @@ const LoginForm = () => {
                     })}
             </ul>
             <h2 id="login-text">Log In</h2>
-            <p id="subtitle">By continuing you agree to <a id="subtitle-link" href="https://www.linkedin.com/in/adina-cooper/">view my LinkedIn</a>.</p>
+            <p id="subtitle">By continuing you agree to <a id="subtitle-link" target="_blank" href="https://www.linkedin.com/in/adina-cooper/">view my LinkedIn</a>.</p>
             <div className="non-form-items">
                 <button className="demo-user" onClick={handleDemoLogin}>LOG IN AS DEMO USER</button>
                 {/* <hr className="hr" />  */}
