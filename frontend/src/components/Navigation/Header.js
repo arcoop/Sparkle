@@ -103,7 +103,7 @@ const Header = () => {
                         {/* <Link className="left-nav-link" to='/'>Playlists</Link> */}
                         {/* <Link className="left-nav-link" to='/'>Events</Link> */}
                         <Link className="left-nav-link" to='/create'>Create</Link>
-                        <a target="_blank" className="left-nav-link" href="https://cubberd.herokuapp.com/about">Adina Cooper</a>
+                        <a target="_blank" className="left-nav-link" href="https://adina-cooper.com/">Adina Cooper</a>
                         {/* <Link className="left-nav-link" to='/'>Quiz Lab</Link> */}
                     </div>
                 </div>
