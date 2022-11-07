@@ -16,7 +16,7 @@ export const Footer = () => {
                     <div id="num-quizzes-played"></div>
                 </div>
 
-                <div id="footer-middle-nav"></div>
+                <div id=""></div>
 
                 <div id="footer-right-nav">
                     <div className="footer-links-section">
@@ -31,22 +31,22 @@ export const Footer = () => {
                     </div>
                     <div className="footer-links-section">
                         <div className="line-separator"></div>
-                        <div>
+                        <div className="footer-links">
                             <p className="footer-header">Reach Me</p>
-                            <p className="footer-item">About Me</p>
-                            <p className="footer-item">LinkedIn</p>
-                            <p className="footer-item">AngelList</p>
-                            <p className="footer-item">GitHub</p>
-                            <p className="footer-item">Email</p>
+                            <a target="_blank" href="https://adina-cooper.com/" className="footer-item-link">About Me</a>
+                            <a target="_blank" href="https://www.linkedin.com/in/adina-cooper/" className="footer-item-link">LinkedIn</a>
+                            <a target="_blank" href="https://angel.co/u/adina-cooper-1" className="footer-item-link">AngelList</a>
+                            <a target="_blank" href="https://github.com/arcoop" className="footer-item-link">GitHub</a>
+                            <a target="_blank" href="mailto:cooperadina@gmail.com?subject='Love your work!'&body='Really enjoyed looking at your work. Would love to set up a time to talk.'" className="footer-item-link">Email</a>
                         </div>
                     </div>
                     <div id="last-footer-links-section" className="footer-links-section">
                         <div className="line-separator"></div>
-                        <div>
+                        <div className="footer-links">
                             <p className="footer-header">Other Projects</p>
-                            <p className="footer-item">Bang!</p>
-                            <p className="footer-item">Cubberd</p>
-                            <p className="footer-item">Resume</p>
+                            <a target="_blank" href="https://arcoop.github.io/Bang/" className="footer-item">Bang!</a>
+                            <a target="_blank" href="https://cubberd.herokuapp.com/about" className="footer-item">Cubberd</a>
+                            <a target="_blank" href="" className="footer-item">Resume</a>
                         </div>
 
                     </div>

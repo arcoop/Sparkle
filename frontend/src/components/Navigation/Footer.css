@@ -76,3 +76,23 @@
     color: #666;
 }
 
+.footer-item-link {
+    padding: 8px;
+    color: #666;
+}
+
+.footer-links a{
+    color: #666;
+}
+
+.footer-links a:hover {
+    color: #f90;
+    text-decoration: underline;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+}
+
+
