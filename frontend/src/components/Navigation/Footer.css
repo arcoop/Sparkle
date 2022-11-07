@@ -1,30 +1,78 @@
 #footer-container {
     border-top: 1px solid #d8d8d8;
     border-bottom: 1px solid #d8d8d8;
-    height: 100px;
+    height: 150px;
     padding: 30px;
     margin-bottom: 30px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
 }
 
+/* #footer-middle-nav {
+    width: 200px;
+} */
+
+#footer-right-nav {
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+}
 
 #footer-line-break {
     position: relative;
-    width: 123px;
-    height: 1px;
-    /* border-bottom: 1px solid #666; */
-    filter: brightness(.85);
-    margin: 0 1px;
+    width: 100%;
+    margin: .625rem 0 .625rem;
     padding-top: 8px;
-    /* border: 000em solid #f90; */
+    padding: 0;
 }
 
 #est-text {
     position: absolute;
     padding: 0 8px;
     font-size: small;
-    top: 1.8px;
-    left: 23px;
-    z-index: 200;
+    top: -5px;
+    left: 40px;
+    background-color: white;
+    z-index: 100;
 }
+
+#sub-footer-line-break {
+    border-bottom: 1px solid #666;
+    position: absolute;
+    width: 120px;
+    left: 15px;
+    top: 4p3;
+}
+
+.footer-subtext {
+    font-size: 12px;
+    margin-top: 7px;
+}
+
+#sparkle-logo-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-links-section {
+    font-size: 12px;
+    display: flex;
+}
+
+.line-separator {
+    height: 150px;
+    border-right: 1px solid #d8d8d8;
+    margin-right: 40px;
+}
+.footer-header {
+    padding: 8px;
+    font-weight: bold;
+
+}
+.footer-item {
+    padding: 8px;
+    color: #666;
+}
+
