@@ -7,11 +7,35 @@
 
     100% {
         transform: translateY(0);
-    }
-    
+    }   
 }
 
 @keyframes slideInFromRight {
+    0% {
+        transform: translateX(200%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOffFromCenter {
+    0% {
+        transform: translateX(0);
+    }
+    90% {
+        transform: translateX(200%);
+    }
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
+
+@keyframes hideMe {
+    to {
+        visibility: hidden;
+    }
     
 }
 

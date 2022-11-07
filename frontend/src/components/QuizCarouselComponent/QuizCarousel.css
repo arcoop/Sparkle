@@ -7,11 +7,6 @@
     height: 100px;
 }
 
-.carousel {
-    display: flex;
-    gap: 20px;
-}
-
 .carousel-content {
     position: relative;
     display: flex;
@@ -62,4 +57,54 @@
     cursor: pointer;
     color: #f90;
     background-color: #ffebcc;
+}
+
+.leave-right {
+    
+}
+
+.enter-right {
+}
+
+.carousel-array-container {
+    /* overflow: hidden; */
+    width: 98%;
+    margin: 4%;
+    position: relative;
+}
+
+.carousel {
+    display: flex;
+    gap: 20px;
+    position: absolute;
+    top: -60px;
+    width: 1440px;
+    overflow: hidden;
+}
+
+.carousel.center {
+    right: -45px;
+    transition: left 1s linear;
+    /* animation: 1s ease-in 0s slideInFromLeft; */
+    /* transition: 1s ease-in; */
+}
+
+.carousel.left {
+    right: -2000px;
+    transition: right 1s linear;
+    
+}
+
+.carousel .hidden-arr {
+    display: none;
+    animation: 1s ease-in;
+}
+
+.carousel.right {
+    /* animation: 1s ease-in 0s 1 slideOffFromCenter; */
+    right: -1530px;
+    transition: right 1s linear;
+    /* overflow: hidden; */
+    /* transition: 1s ease-in; */
+
 }

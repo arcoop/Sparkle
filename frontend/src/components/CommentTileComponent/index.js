@@ -95,7 +95,6 @@ const CommentTile = ({comment}) => {
             })
         } else if (userLiked() && userLiked().likeType === type) { // has interacted, trying to undo
             const like = userLiked();
-            console.log(like);
             dispatch(deleteLike(like)).then(() => {
                 type === true ? setNumLikes(c => c - 1) : setNumLikes(c => c + 1)
                 type ? setUpButtonClass("vote") : setDownButtonClass ("vote")
