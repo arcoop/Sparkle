@@ -1,168 +1,125 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { updateComment } from "../../store/comments"
+import { fetchComments, updateComment } from "../../store/comments"
 import { Link } from "react-router-dom"
 import { fetchUser, getUser } from "../../store/users"
 import './CommentTile.css'
 import ExtrasButton from "./ExtrasButton"
 import CommentsUpdateForm from "../CommentsUpdateFormComponent"
 import { deleteComment } from "../../store/comments"
-// import {moment} from moment;
-
+import { createLike, deleteLike, fetchLikes, removeLike, updateLike } from "../../store/likes"
 
 const CommentTile = ({comment}) => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     
     const userId = comment.commenterId
     
     useEffect(() => {
         dispatch(fetchUser(userId))
+        //dispatch(fetchLikes(comment))
     }, [])
-
-
-    //const sessionUser = useSelector(state => state.session.user)
-    const commenter = useSelector(getUser(userId))
-    const [numPoints, setNumPoints] = useState(comment.points)
+    
+    const commenter = useSelector(state => state.users[userId])
+    const sessionUser = useSelector(state => state.session.user) || {}
+    
+    const commentLikes = useSelector(state => Object.values(state.likes))
+    const numUpvotes = commentLikes.filter(like => like.commentId === comment.id && like.likeType === true).length
+    const numDownvotes = commentLikes.filter(like => like.commentId === comment.id && like.likeType === false).length
+    const [numLikes, setNumLikes] = useState(numUpvotes - numDownvotes);
+    const [upButtonClass, setUpButtonClass] = useState("vote")
+    const [downButtonClass, setDownButtonClass] = useState("vote")
+    
+    //const [numPoints, setNumPoints] = useState(comment.points)
     const commenterUsername = commenter ? commenter.username : ""
-    const [upVote, setUpVote] = useState("vote")
-    const [downVote, setDownVote] = useState("vote")
     // const [showMenu, setShowMenu] = useState(false)
     const [editing, setEditing] = useState(false)
-
-    // const openMenu = () => {
-    //     if (!showMenu) setShowMenu(true)
-    // }
-
-    // const signedInMenu = (
-    //     <ul className="comment-menu">
-    //         <li className="comment-menu-list-item">
-    //             <button id="comment-edit-button" className="comment-menu-button">
-    //                 <i class="fa-regular fa-pen-to-square"></i>
-    //                 <p>Edit</p>
-    //             </button>
-    //         </li>
-    //         <li className="comment-menu-list-item">
-    //             <button onClick={() => dispatch(deleteComment(comment.id))} className="comment-menu-button" id="delete-button">
-    //                 <i class="fa-regular fa-trash-can"></i>
-    //                 <p>Delete</p>
-    //             </button>
-    //         </li>
-    //         <li className="comment-menu-list-item"> <button className="comment-menu-button" id="hide-button">Hide</button></li>
-    //     </ul>
-    // )
-
-    // const signedOutMenu = (
-    //     <ul className="comment-menu">
-    //         <li className="comment-menu-list-item">
-    //             <button className="comment-menu-button" id="hide-button">Hide</button>
-    //         </li>
-    //     </ul>
-    // )
-
-    // const menu = sessionUser.id === comment.commenterId ? signedInMenu : signedOutMenu
-
-    let pointsText;
-    if (numPoints === 1) {
-        pointsText = 'point'
-    } else pointsText = 'points'
-
-    useEffect(() => {
-        dispatch(updateComment({...comment, points: numPoints}))
-    }, [numPoints])
-
-    const formatTime = date => {
-     
-        const start = new Date(date)
-      
-        const now = new Date()
-
-        let timeText; 
-        let finalTimeDiff;
-        let elapsedTime = now - start
-        elapsedTime /= 1000
-        if (Math.round(elapsedTime / 86400) >= 1) {
-            finalTimeDiff = Math.round(elapsedTime /= 86400)
-            timeText = finalTimeDiff === 1 ? "day" : "days"
-        } else if (Math.round(elapsedTime / 3600) >= 1){
-            finalTimeDiff = Math.round(elapsedTime /= 3600)
-            timeText = finalTimeDiff === 1 ? "hour" : "hours"
-        } else {
-            finalTimeDiff = Math.round(elapsedTime / 60)
-            timeText = finalTimeDiff === 1 ? "minute" : "minutes"
-        }
-        // if (elapsedTime < 1) {
-        //     elapsedTime /
-        // } 
-    
+    //const [numLikes, setNumLikes] = useState(commentLikes.length)
+  
         
-        // const day = fullDate.getDate();
-        // const year = fullDate.getFullYear();
-        return `${finalTimeDiff} ${timeText} ago`
-    }
-
-    // const formatPostTime = () => {
-    //     new Date(comment.updatedAt) 
-    // }
-
-    // useEffect(() => {
-    //     const closeMenu = () => {
-    //         setShowMenu(false)
-    //     }
-    //     if (showMenu) {
-    //         document.addEventListener("click", closeMenu)
-    //     }
-    //     return () => {
-    //         document.removeEventListener("click", closeMenu)
-    //     }
-    // }, [showMenu])
-
-    const handleVote = (type) => {
-        if (type === "up") {
-            if (upVote === "vote") {
-                console.log('hi')
-                setNumPoints(prevPoint => prevPoint + 1)
-                setUpVote("selected-up")
-                setDownVote("vote")
+        const formatTime = date => {
+            
+            const start = new Date(date)
+            
+            const now = new Date()
+            
+            let timeText; 
+            let finalTimeDiff;
+            let elapsedTime = now - start
+            elapsedTime /= 1000
+            if (Math.round(elapsedTime / 86400) >= 1) {
+                finalTimeDiff = Math.round(elapsedTime /= 86400)
+                timeText = finalTimeDiff === 1 ? "day" : "days"
+            } else if (Math.round(elapsedTime / 3600) >= 1){
+                finalTimeDiff = Math.round(elapsedTime /= 3600)
+                timeText = finalTimeDiff === 1 ? "hour" : "hours"
             } else {
-                setNumPoints(numPoints - 1)
-                setUpVote("vote")
+                finalTimeDiff = Math.round(elapsedTime / 60)
+                timeText = finalTimeDiff === 1 ? "minute" : "minutes"
             }
-        } else if (downVote === "vote") {
-            setNumPoints(prevPoint => prevPoint - 1)
-            setDownVote("selected-down")
-            setUpVote("vote")
-        } else {
-            setNumPoints(prevPoint => prevPoint + 1)
-            setDownVote("vote")
+                return `${finalTimeDiff} ${timeText} ago`
+            }
+                                            
+    let commentLike;
+
+
+    // let count = 0;
+    // commentLikes.forEach(like => {
+    // if (like.commentId === comment.id) count += 1
+
+    // })
+
+    const userLiked = () => {
+        let commentLike = commentLikes.filter(like => like.likerId === sessionUser.id && like.commentId === comment.id)
+        return commentLike[0]
+    }
+    
+    const handleVote = type => {
+        if (!userLiked()) { // hasn't interacted
+            const like = {likerId: sessionUser.id, likeType: type, commentId: comment.id}
+            dispatch(createLike(like)).then(() => {
+                type ? setNumLikes(c => c + 1) : setNumLikes(c => c - 1)
+                type ? setUpButtonClass("vote up") : setDownButtonClass("vote down")
+            })
+        } else if (userLiked() && userLiked().likeType !== type) { // has interacted, trying to interact opposite
+            const like = userLiked();
+            like.likeType = type;
+            dispatch(updateLike(like)).then(() => {
+                type ? setNumLikes(c => c + 2) : setNumLikes(c => c - 2)
+                if (type) {
+                    setUpButtonClass("vote up")
+                    setDownButtonClass("vote")
+                } else if (!type) {
+                    setDownButtonClass("vote down")
+                    setUpButtonClass("vote")
+                }
+            })
+        } else if (userLiked() && userLiked().likeType === type) { // has interacted, trying to undo
+            const like = userLiked();
+            console.log(like);
+            dispatch(deleteLike(like)).then(() => {
+                type === true ? setNumLikes(c => c - 1) : setNumLikes(c => c + 1)
+                type ? setUpButtonClass("vote") : setDownButtonClass ("vote")
+            })
         }
     }
-
-    // const MenuReturn = () => {
-    //     if (showMenu) {
-    //         return (
-    //             <div id="comment-menu">
-    //                 <button className="comment-extras-button"><i className="fa-solid fa-ellipsis"></i></button>
-    //                 {menu}
-    //             </div>
-    //         )
-    //     } else {
-    //         return (
-    //             <div id="comment-menu">
-    //                 <button onClick={openMenu} className="comment-extras-button"><i className="fa-solid fa-ellipsis"></i></button>
-    //             </div>
-    //         )
-    //     }
-    // }
+                                            
     let commentBody;
     if (editing) {
         commentBody = (
             <CommentsUpdateForm comment={comment}/>
-        ) 
-    } else {
-        commentBody = (
+            ) 
+        } else {
+            commentBody = (
+            
             comment.body
         )
     }
+  
+    const pointsText = numLikes === 1 ? 'point' : 'points'
+
+
+   // let upButtonClass = comment.userLiked.likeType ? "selected up" : "vote"
+   // let downButtonClass = comment.userLiked.likeType === false ? "selected down" : "vote"
 
     return (
         <div className="comment-tile">
@@ -184,9 +141,9 @@ const CommentTile = ({comment}) => {
                     </div>
                     <div className="comment-body">{commentBody}</div>
                     <div className="comment-points">
-                        <button onClick={() => handleVote("up")} className={upVote}><i className="fa-regular fa-thumbs-up"></i></button>
-                        <button onClick={() => handleVote("down")} className={downVote}><i className="fa-regular fa-thumbs-down"></i></button>
-                        <p className="num-points">{numPoints} {pointsText}</p>
+                        <button onClick={() => handleVote(true)} className={upButtonClass}><i className="fa-regular fa-thumbs-up"></i></button>
+                        <button onClick={() => handleVote(false)} className={downButtonClass}><i className="fa-regular fa-thumbs-down"></i></button>
+                        <p className="num-points">{numLikes} {pointsText}</p>
                     </div>
                 </div>
             </div>

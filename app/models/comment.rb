@@ -15,4 +15,6 @@ class Comment < ApplicationRecord
 
     belongs_to :quiz
     belongs_to :commenter, class_name: :User, foreign_key: :commenter_id
+    has_many :likes
+    has_many :likers, through: :likes, source: :liker
 end

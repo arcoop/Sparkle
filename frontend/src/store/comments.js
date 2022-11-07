@@ -1,12 +1,13 @@
 import csrfFetch from "./csrf"
+import { receiveLikes } from "./likes"
 
-const SET_COMMENTS = 'comments/setComments'
-const SET_COMMENT = 'comments/setComment'
-const REMOVE_COMMENT = 'comments/removeComment'
+export const SET_COMMENTS = 'comments/setComments'
+export const SET_COMMENT = 'comments/setComment'
+export const REMOVE_COMMENT = 'comments/removeComment'
 
-export const setComments = comments => ({
+export const setComments = (payload) => ({
     type: SET_COMMENTS,
-    payload: comments
+    payload
 })
 
 export const setComment = comment => ({
@@ -25,10 +26,16 @@ export const getComments = state => {
 
 export const fetchComments = quizId => async dispatch => {
     const res = await csrfFetch(`/api/quizzes/${quizId}/comments`)
+    console.log(res)
     const data = await res.json()
     console.log("fetch comments data")
     console.log(data)
-    console.log("end data")
+    console.log(data.likes)
+    // dispatch(receiveLikes(data.likes))
+    const newData = {...data}
+    console.log(newData)
+    delete newData[data.likes]
+    console.log(newData)
     dispatch(setComments(data))
 }
 
@@ -62,7 +69,7 @@ export const deleteComment = commentId => async dispatch => {
 const commentsReducer = (state = {}, action) => {
     switch(action.type) {
         case SET_COMMENTS:
-            return {...action.payload}
+            return {...action.payload.comments}
         case SET_COMMENT:
             return {...action.payload}
         case REMOVE_COMMENT:
