@@ -59,37 +59,61 @@
     background-color: #ffebcc;
 }
 
-.leave-right {
-    
-}
+@keyframes switchToNext {
+    75% {
+      left: 0;
+    }
+    95% {
+      left: 100%;
+    }
+    98% {
+      left: 100%;
+    }
+    99% {
+      left: 0;
+    }
+  }
 
-.enter-right {
-}
-
+  @keyframes goToStart {
+    75% {
+      left: 0;
+    }
+    95% {
+      left: -300%;
+    }
+    98% {
+      left: -300%;
+    }
+    99% {
+      left: 0;
+    }
+  }
+  
 .carousel-array-container {
     /* overflow: hidden; */
     width: 98%;
     margin: 4%;
-    position: relative;
 }
 
 .carousel {
-    display: flex;
     gap: 20px;
-    position: absolute;
     top: -60px;
     width: 1440px;
     overflow: hidden;
+    display: flex;
 }
 
-.carousel.center {
-    right: -45px;
-    transition: left 1s linear;
+
+
+
+/* .carousel.center { */
+    /* right: -45px; */
+    /* transition: left 1s linear; */
     /* animation: 1s ease-in 0s slideInFromLeft; */
     /* transition: 1s ease-in; */
-}
+/* }
 
-.carousel.left {
+/* .carousel.left {
     right: -2000px;
     transition: right 1s linear;
     
@@ -102,9 +126,9 @@
 
 .carousel.right {
     /* animation: 1s ease-in 0s 1 slideOffFromCenter; */
-    right: -1530px;
-    transition: right 1s linear;
+    /* right: -1530px;
+    transition: right 1s linear; */
     /* overflow: hidden; */
     /* transition: 1s ease-in; */
 
-}
+/* } */ 

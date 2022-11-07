@@ -32,20 +32,20 @@ const QuizCarousel = ({quizzes}) => {
 
     console.log(carouselIndex)
 
-    let leftArr;
-    if (carouselIndex === 0) leftArr = 'carousel left'
-    if (carouselIndex === 1) leftArr = 'carousel center'
-    if (carouselIndex === 2) leftArr = 'carousel right'
+    // let leftArr;
+    // if (carouselIndex === 0) leftArr = 'carousel left'
+    // if (carouselIndex === 1) leftArr = 'carousel center'
+    // if (carouselIndex === 2) leftArr = 'carousel right'
 
-    let centerArr;
-    if (carouselIndex === 0) centerArr = 'carousel center'
-    if (carouselIndex === 1) centerArr = 'carousel right'
-    if (carouselIndex === 2) centerArr = 'carousel left'
+    // let centerArr;
+    // if (carouselIndex === 0) centerArr = 'carousel center'
+    // if (carouselIndex === 1) centerArr = 'carousel right'
+    // if (carouselIndex === 2) centerArr = 'carousel left'
 
-    let rightArr;
-    if (carouselIndex === 0) rightArr = 'carousel right'
-    if (carouselIndex === 1) rightArr = 'carousel left'
-    if (carouselIndex === 2) rightArr = 'carousel center'
+    // let rightArr;
+    // if (carouselIndex === 0) rightArr = 'carousel right'
+    // if (carouselIndex === 1) rightArr = 'carousel left'
+    // if (carouselIndex === 2) rightArr = 'carousel center'
 
     return (
         <div className='carousel-container'>
@@ -53,27 +53,14 @@ const QuizCarousel = ({quizzes}) => {
                 <i className="fa-solid fa-chevron-left"></i>
             </button>
             <div className="carousel-array-container" >
-                <div className={leftArr}>
-                    {arrayB.map(quiz => {
-                        return (
-                            <QuizTile key={quiz.id} quiz={quiz} type="small" />
-                        )
-                    })}
-                </div>
-                <div className={centerArr}>
+                <div id='carousel-slide2' className="carousel">
                     {arrayA.map(quiz => {
                         return (
                             <QuizTile key={quiz.id} quiz={quiz} type="small" />
                         )
                     })}
                 </div>
-                <div className={rightArr}>
-                    {arrayB.map(quiz => {
-                        return (
-                            <QuizTile key={quiz.id} quiz={quiz} type="small"/>
-                        )
-                    })}
-                </div>
+
             </div>
             <button className='arrow-button right' onClick={handleRightClick}>
                 <i className="fa-solid fa-chevron-right"></i>
