@@ -165,6 +165,7 @@
     border-radius: 3px;
     border: 1px solid lightgray;
     width: 200px;
+    z-index: 2;
 }
 
 #home-break {
