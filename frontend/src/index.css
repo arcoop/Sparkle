@@ -1,5 +1,20 @@
 @import url('reset.css');
 
+@keyframes slideInFromLeft {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+    
+}
+
+@keyframes slideInFromRight {
+    
+}
+
 /* TODO Add site wide styles */
 
 body {

@@ -44,7 +44,7 @@
 .small-quiz-tile-title {
     position: absolute;
     left: 8px;
-    top: 80px;
+    top: 60px;
     font-size: .9375rem;
     color: white;
     font-weight: bold;
@@ -144,7 +144,7 @@
 } */
 
 .small-quiz-tile {
-    width: 200px;
+    width: 220.5px;
 }
 
 .small-quiz-icon-tile {
@@ -157,7 +157,13 @@
 }
 
 .small-quiz-icon-tile img {
-    width: 200px;
-    height: 114px;
+    width: 220.5px;
+    height: 110.25px;
+    
+}
+
+
+.small-quiz-icon-tile img:hover {
+    opacity: .7;
     
 }

@@ -7,6 +7,11 @@
     height: 100px;
 }
 
+.carousel {
+    display: flex;
+    gap: 20px;
+}
+
 .carousel-content {
     position: relative;
     display: flex;
