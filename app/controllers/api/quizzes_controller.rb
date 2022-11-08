@@ -14,6 +14,10 @@ class Api::QuizzesController < ApplicationController
         render 'api/quizzes/quizzes_by_category'
     end
 
+    def random 
+        
+    end
+
     def search
         query = "%#{params[:s]}%"
         @quizzes = Quiz.where("lower(title) LIKE ?", query.downcase)
