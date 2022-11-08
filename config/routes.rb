@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     resources :likes, only: [:create, :update, :destroy]
     get '/search/quizzes', to: "quizzes#search"
     get '/search/users', to: "users#search"
-    get '/random/users', to: "quizzes#random#"
+    get '/random/quizzes', to: "quizzes#random"
   end
 
 

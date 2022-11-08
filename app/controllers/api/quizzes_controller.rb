@@ -16,6 +16,7 @@ class Api::QuizzesController < ApplicationController
 
     def random 
         quizzes = Quiz.all
+        p quizzes
         idx = rand(0...quizzes.length)
         @random_quiz = quizzes[idx]
         render 'api/quizzes/random'

@@ -4,7 +4,7 @@
 # end
 
 json.randomQuiz do
-    json. @random_quiz.id
+    json @random_quiz.id
 end
 
 # json.set! @random_quiz.id do
