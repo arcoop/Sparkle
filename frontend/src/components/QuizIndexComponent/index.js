@@ -18,7 +18,7 @@ const QuizIndex = () => {
         document.title = "Sparkle!"
     }, [])
 
-    const quizzes = useSelector(state => Object.values(state.quizzes.quizzes)) || []
+    const quizzes = useSelector(state => Object.values(state.quizzes)) || []
 
     const sortedQuizzesByDate = quizzes.slice().sort((a,b) => a.createdAt < b.createdAt ? 1 : -1)
 

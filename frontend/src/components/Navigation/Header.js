@@ -12,7 +12,7 @@ const Header = () => {
     const dispatch = useDispatch();
     const history = useHistory()
     const [showMenu, setShowMenu] = useState(0)
-    const [randomQuiz, setRandomQuiz] = useState(false)
+    // const [randomQuiz, setRandomQuiz] = useState(false)
     
     // 0 = no menu
     // 1 = hamburger
@@ -53,7 +53,12 @@ const Header = () => {
 
     // const quizIds = useSelector(state => Object.keys(state.quizzes))
     
-    const quiz = useSelector(state => Object.values(state.quizzes))
+    // const randomQuiz = useSelector(state => state.quizzes.randomQuiz ? Object.values(state.quizzes.randomQuiz)[0] : []) || []
+    // console.log(randomQuiz)
+
+    // const handleClick = () => {
+    //     history.push(`/quizzes/${randomQuiz.id}`)
+    // }
 
     // const handleClick = () => {
     //     setRandomQuiz(true)
@@ -107,7 +112,7 @@ const Header = () => {
                     </div>
                 </div>
                 <div id="nav-buttons-right">
-                    <button onClick={() => setRandomQuiz(true)} className="submit-button" id="right-nav-button">Random Quiz</button>
+                    {/* <button onClick={handleClick} className="submit-button" id="right-nav-button">Random Quiz</button> */}
                     <button onClick={() => openMenu(2)} id="search-button">
                         {showMenu === 2 ? <i className="fa-solid fa-x"></i> : <i className="fa-solid fa-magnifying-glass"></i> }
                     </button>

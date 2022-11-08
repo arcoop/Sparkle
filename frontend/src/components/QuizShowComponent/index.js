@@ -39,11 +39,11 @@ const QuizShow = () => {
     document.title = `${quiz.title}` || 'Sparkle'
 
     let takes = quiz.id ? quiz.takes : []
-    let numTakes = takes.length;
+    let numTakes = takes ? takes.length : 0
     let plays = numTakes === 1 ? "play" : "plays"
 
     let commentsArr = quiz.id ? quiz.comments : [];
-    let numComments = commentsArr.length;
+    let numComments = commentsArr ? commentsArr.length : 0;
     let comments = numComments === 1? "comment" : "comments"
     
     //let user = useSelector(() => getUser(quiz.authorId)) || {username:"", email:"", id: null}

@@ -83,7 +83,7 @@ export const searchQuizzes = query => async dispatch => {
 }
 
 export const fetchRandomQuiz = () => async dispatch => {
-    const res = await csrfFetch(`/api/random/quizzes`)
+    const res = await csrfFetch(`/api/searc/quizzes`)
     const data = await res.json()
     dispatch(receiveQuiz(data))
 }
@@ -114,7 +114,7 @@ const quizzesReducer = (state = {}, action ) => {
         case SET_QUIZ:
             return {...state, ...action.payload}
         case RECEIVE_QUIZ:
-            return {...action.payload}
+            return {...action.payload.quizzes}
         case RECEIVE_QUIZZES:
             return {...action.payload}
         case SET_QUIZZES_BY_CATEGORY:
