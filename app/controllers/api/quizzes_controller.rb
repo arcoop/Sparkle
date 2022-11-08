@@ -4,8 +4,8 @@ class Api::QuizzesController < ApplicationController
 
     def index
         @quizzes = Quiz.all
-        idx = rand(0...@quizzes.length)
-        @random_quiz = @quizzes[idx]
+        # idx = rand(0...@quizzes.length)
+        # @random_quiz = @quizzes[idx]
         
         render 'api/quizzes/index'
     end
@@ -16,12 +16,12 @@ class Api::QuizzesController < ApplicationController
         render 'api/quizzes/quizzes_by_category'
     end
 
-    # def random 
-    #     quizzes = Quiz.all
-    #     idx = rand(0...quizzes.length)
-    #     @random_quiz = quizzes[idx]
-    #     render 'api/quizzes/show'
-    # end
+    def random 
+        quizzes = Quiz.all
+        idx = rand(0...quizzes.length)
+        @random_quiz = quizzes[idx]
+        render 'api/quizzes/random'
+    end
 
     def search
         query = "%#{params[:s]}%"
