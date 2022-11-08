@@ -18,7 +18,6 @@ export const getUsers = state => {
 }
 
 export const getUser = userId => state => {
-    // console.log(Object.values(state.users))
     return state.users[userId] ? state.users[userId] : null
 }
 
@@ -41,7 +40,6 @@ export const fetchUser = userId => async dispatch => {
     const res = await csrfFetch(`/api/users/${userId}`)
     if (res.ok) {
         const data = await res.json()
-        console.log(data)
         dispatch(setUser(data.user))
         return data.user
     }

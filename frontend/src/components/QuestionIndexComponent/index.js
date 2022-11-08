@@ -25,7 +25,6 @@ const QuestionIndex = ({quiz}) => {
     useEffect(() => {
         if (score === quiz.maxScore || time === 0) {
             const quizTake = {takerId: sessionUser ? sessionUser.id : null, quizId: quizId, score: score, time: time }
-            console.log("creating quiz take")
             dispatch(createQuizTake(quizTake))
         }
     }, [score])

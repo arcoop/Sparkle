@@ -9,7 +9,6 @@ const CommentsUpdateForm = ({comment}) => {
 
     const handleSubmit = e => {
         comment.body = commentBody
-        console.log(comment)
         dispatch(updateComment({...comment, body: commentBody}))
     }
     

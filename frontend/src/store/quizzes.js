@@ -85,8 +85,9 @@ export const searchQuizzes = query => async dispatch => {
 export const fetchRandomQuizID = () => async dispatch => {
     const res = await csrfFetch(`/api/random/quizzes`)
     const data = await res.json()
+    console.log("data")
+    console.log(data)
     return data.randomQuiz.id
-    
 }
 
 // export const fetchRandomQuiz = () => async dispatch => {

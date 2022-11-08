@@ -56,36 +56,13 @@ const Header = () => {
     // let quizId;
     // let idx;
 
-    const handleClick = async () => {
-        const randomQuizId = await dispatch(fetchRandomQuizID())
-        console.log(randomQuizId)
-        history.push(`/quizzes/${randomQuizId}`)
+    const handleClick =  async () => {
+        const randomQuizId = await dispatch(fetchRandomQuizID()).then(() => {
+            console.log(randomQuizId)
+            history.push(`/quizzes/${randomQuizId}`)
+        })
     }
 
-    
-    // const handleClick = () => {
-    //     setRandomQuiz(true)
-    //     idx = Math.floor(Math.random() * quizIds.length)
-    //     console.log('idx')
-    //     console.log(idx)
-    //     quizId = parseInt(quizIds[idx])
-    //     // console.log(quizId)
-    //     // console.log(quiz)
-    //     // console.log(quiz.id)
-    //     history.push(`/quizzes/${quizId}`)
-    //     setRandomQuiz(false)
-    // }
-    
-    // useEffect(() => {
-    //     dispatch(fetchQuizzes())
-    // }, [randomQuiz])
-    
-    // useEffect(() => {
-    //     dispatch(fetchQuiz(quizId))
-    //     // console.log("dispatching")
-    //     // dispatch(fetchQuizzes())
-    //     // console.log("done dispatching")
-    // }, [quizId])
 
    return (
         <div>
