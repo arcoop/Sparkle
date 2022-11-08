@@ -5,7 +5,6 @@ import { fetchQuizzes, fetchQuizzesByCat, getQuizzes } from "../../store/quizzes
 import QuizTile from "../QuizTileComponent"
 
 const QuizByCategoryWithProps = ({category}) => {
-    console.log(category)
 
     const categoryId = category.id
     

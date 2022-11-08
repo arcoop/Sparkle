@@ -30,8 +30,6 @@ const QuizCarousel = ({quizzes}) => {
        
     }
 
-    console.log(carouselIndex)
-
     // let leftArr;
     // if (carouselIndex === 0) leftArr = 'carousel left'
     // if (carouselIndex === 1) leftArr = 'carousel center'

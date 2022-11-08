@@ -46,9 +46,7 @@ const QuizShow = () => {
     let numComments = commentsArr.length;
     let comments = numComments === 1? "comment" : "comments"
     
-    //let user = useSelector(() => getUser(quiz.authorId)) || {username:"", email:"", id: null}
     let user = useSelector(state => state.users[quiz.authorId]) || {username:"", email:""}
-    // console.log(user)
 
     const extrasbutton = sessionUser.id === quiz.authorId ? <ExtrasButton author={user} quiz={quiz} /> : ""
 

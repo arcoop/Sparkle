@@ -74,7 +74,6 @@ const QuizEditForm = () => {
         const file = e.currentTarget.files[0];
         if (file) {
             const fileReader = new FileReader();
-            console.log(fileReader.result)
             fileReader.readAsDataURL(file);
             fileReader.onload = () => {
                 setQuizIcon(file)
@@ -86,8 +85,6 @@ const QuizEditForm = () => {
     
     const handleSubmit = e => {
         e.preventDefault()
-        console.log("category")
-        console.log(category)
         setErrors([])
         const formData = new FormData();
         formData.append('quiz[title]', quizName)
@@ -103,7 +100,6 @@ const QuizEditForm = () => {
                     const data = await res.json();
                     if (data && data.errors) {
                         setErrors(data.errors)
-                        console.log(errors)
                     }
                 })
                 .then(async data => {

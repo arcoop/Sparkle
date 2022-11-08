@@ -26,16 +26,9 @@ export const getComments = state => {
 
 export const fetchComments = quizId => async dispatch => {
     const res = await csrfFetch(`/api/quizzes/${quizId}/comments`)
-    console.log(res)
     const data = await res.json()
-    console.log("fetch comments data")
-    console.log(data)
-    console.log(data.likes)
-    // dispatch(receiveLikes(data.likes))
     const newData = {...data}
-    console.log(newData)
     delete newData[data.likes]
-    console.log(newData)
     dispatch(setComments(data))
 }
 

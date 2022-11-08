@@ -8,12 +8,7 @@ const CommentsIndex = ({quizComments, quizId}) => {
     const [dummy, setDummy] = useState(false)
 
     const [numLikes, setNumLikes] = useState(false)
-    // console.log(quizId)
-    // useEffect(() => {
-    //     dispatch(fetchComments(quizId))
-    // }, [dispatch, quizId])
-    
-    // let comments = useSelector(getComments) || []    
+
 
     useEffect(() => {
        if (numLikes){

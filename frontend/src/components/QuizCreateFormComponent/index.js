@@ -29,22 +29,6 @@ const QuizForm = () => {
 
     const quizzes = useSelector(state => Object.values(state.quizzes))
 
-    // const [quizIcon, setQuizIcon] = useState(null);
-    // const [quizIconUrl, setQuizIconUrl] = useState(null)
-    // const fileRef = useRef(null);
-
-    // const handleFile = e => {
-    //     const file = e.currentTarget.files[0];
-    //     if (file) {
-    //         const fileReader = new FileReader();
-    //         console.log(fileReader.result)
-    //         fileReader.readAsDataURL(file);
-    //         fileReader.onload = () => {
-    //             setQuizIcon(file)
-    //             setQuizIconUrl(fileReader.result);
-    //         };
-    //     }
-    // }
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -54,9 +38,6 @@ const QuizForm = () => {
         formData.append('quiz[quiz_type]', quizType);
         formData.append('quiz[description]', quizDescription)
         formData.append('quiz[category_id]', 1);
-        // if (quizIcon) {
-        //     formData.append('quiz[icon]', quizIcon)
-        // }
 
         dispatch(createQuiz(formData))
             .catch(async res => {
