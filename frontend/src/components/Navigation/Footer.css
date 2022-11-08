@@ -78,15 +78,15 @@
 
 .footer-item-link {
     padding: 8px;
-    color: #666;
+    color: #666 !important;
 }
 
-.footer-links a{
+/* .footer-links a{
     color: #666;
-}
+} */
 
 .footer-links a:hover {
-    color: #f90;
+    color: #f90 !important;
     text-decoration: underline;
 }
 

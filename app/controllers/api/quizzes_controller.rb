@@ -4,6 +4,8 @@ class Api::QuizzesController < ApplicationController
 
     def index
         @quizzes = Quiz.all
+        idx = rand(0...@quizzes.length)
+        @random_quiz = @quizzes[idx]
         
         render 'api/quizzes/index'
     end
@@ -14,6 +16,13 @@ class Api::QuizzesController < ApplicationController
         render 'api/quizzes/quizzes_by_category'
     end
 
+    # def random 
+    #     quizzes = Quiz.all
+    #     idx = rand(0...quizzes.length)
+    #     @random_quiz = quizzes[idx]
+    #     render 'api/quizzes/show'
+    # end
+
     def search
         query = "%#{params[:s]}%"
         @quizzes = Quiz.where("lower(title) LIKE ?", query.downcase)
@@ -22,6 +31,9 @@ class Api::QuizzesController < ApplicationController
     end
 
     def show
+        quizzes = Quiz.all
+        idx = rand(0...quizzes.length)
+        @random_quiz = quizzes[idx]
         render 'api/quizzes/show'
     end
     

@@ -44,9 +44,9 @@ export const Footer = () => {
                         <div className="line-separator"></div>
                         <div className="footer-links">
                             <p className="footer-header">Other Projects</p>
-                            <a target="_blank" href="https://arcoop.github.io/Bang/" className="footer-item">Bang!</a>
-                            <a target="_blank" href="https://cubberd.herokuapp.com/about" className="footer-item">Cubberd</a>
-                            <a target="_blank" href="" className="footer-item">Resume</a>
+                            <a target="_blank" href="https://arcoop.github.io/Bang/" className="footer-item-link">Bang!</a>
+                            <a target="_blank" href="https://cubberd.herokuapp.com/about" className="footer-item-link">Cubberd</a>
+                            <a target="_blank" href="" className="footer-item-link">Resume</a>
                         </div>
 
                     </div>

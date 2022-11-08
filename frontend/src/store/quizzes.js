@@ -71,7 +71,7 @@ export const fetchQuizzes = () => async dispatch => {
     const res = await csrfFetch('/api/quizzes')
     if (res.ok) {
         const data = await res.json()
-        dispatch(setQuizzes(data))
+        dispatch(receiveQuizzes(data))
         return data
     }
 }
@@ -82,6 +82,11 @@ export const searchQuizzes = query => async dispatch => {
     dispatch(receiveQuizzes(data))
 }
 
+export const fetchRandomQuiz = () => async dispatch => {
+    const res = await csrfFetch(`/api/random/quizzes`)
+    const data = await res.json()
+    dispatch(receiveQuiz(data))
+}
 
 export const fetchQuiz = quizId => async dispatch => {
     const res = await csrfFetch(`/api/quizzes/${quizId}`)
