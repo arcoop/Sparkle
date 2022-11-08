@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
     resources :users, only: [:create, :show, :index] do
       resources :quiz_takes, only: [:index]
+      get 'total/quiz_takes', to: "quiz_takes#total"
     end
     resources :categories, only: [] do
       get "/quizzes", to: "quizzes#quizzes_by_category"
@@ -15,6 +16,7 @@ Rails.application.routes.draw do
       resources :questions, only: [:index, :show]
       resources :comments, only: [:index]
       resources :quiz_takes, only: [:index]
+      get 'total/quiz_takes', to: "quiz_takes#total"
     end
     resource :session, only: [:show, :create, :destroy]
     resources :questions, only: [:create, :update, :destroy]
@@ -26,6 +28,7 @@ Rails.application.routes.draw do
     get '/search/quizzes', to: "quizzes#search"
     get '/search/users', to: "users#search"
     get '/random/quizzes', to: "quizzes#random"
+    get 'total/quiz_takes', to: "quiz_takes#total"
   end
 
 

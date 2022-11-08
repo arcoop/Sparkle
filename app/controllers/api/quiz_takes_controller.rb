@@ -10,6 +10,17 @@ class Api::QuizTakesController < ApplicationController
         render '/api/quiz_takes/index'
     end
 
+    def total
+        if params[:quiz_id]
+            @quiz_takes = QuizTake.where(quiz_id: params[:quiz_id])
+        elsif params[:user_id] 
+            @quiz_takes = QuizTake.where(taker_id: params[:user_id])
+        else
+            @quiz_takes = QuizTake.all
+        end
+        render '/api/quiz_takes/total'
+    end
+
     def create
         @quiz_take = QuizTake.new(quiz_takes_params)
         if @quiz_take.save

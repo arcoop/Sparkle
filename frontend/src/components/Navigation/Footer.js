@@ -1,8 +1,44 @@
+import { useState } from "react";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { fetchNumberofQuizTakes } from "../../store/quizTakes";
 import './Footer.css'
 
 export const Footer = () => {
+
+    const [numQuizTakes, setNumQuizTakes] = useState("")
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        const getNumQuizTakes = async () => {
+            setNumQuizTakes(await dispatch(fetchNumberofQuizTakes()))
+        }
+        getNumQuizTakes()
+    }, [])
+
     
+    
+    // useEffect(() => {
+    //     const getNumQuizTakes = async () => {
+    //         numQuizTakes = await dispatch(fetchNumberofQuizTakes())
+    //     }
+    //     numQuizTakes = getNumQuizTakes()
+    // }, [numQuizTakes])
+    
+    // console.log(numQuizTakes)
+
+
+    // let totalQuizTakes;
+
+    // const getTotalQuizTakes = async () => {
+    //     totalQuizTakes = await dispatch(fetchNumberofQuizTakes())
+    //     return totalQuizTakes
+    // } 
+    
+
+
     return (
         <div id="footer-container">
                 <div id="footer-top-nav">
@@ -15,7 +51,9 @@ export const Footer = () => {
                             </div>
                             <p className="footer-subtext">mentally stimulating diversions</p>
                         </Link>
-                        <div id="num-quizzes-played"></div>
+                        <div id="num-quizzes-played">
+                            {numQuizTakes} quizzes played
+                        </div>
                     </div>
                     <div id=""></div>
                     <div id="footer-right-nav">
