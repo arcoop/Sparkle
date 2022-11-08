@@ -14,9 +14,15 @@ const QuestionIndex = ({quiz}) => {
 
     const {quizId} = useParams()
     const [score, setScore] = useState(0)
-    const [time, setTime] = useState(quiz.time)
+    const [min, setMin] = useState(quiz.quizTimer || [])
+    const [seconds, setSeconds] = useState(0)
     const [inputVal, setInputVal] = useState("")
     const [usedAnswers, setUsedAnswers] = useState([])
+    const [time, setTime] = useState(quiz.quizTimer || "")
+    const [timerOn, setTimerOn] = useState(true)
+    const [answerBoxClassName, setAnswerBoxClassName] = useState("hidden")
+
+    // console.log(quiz.quizTimer)
 
     useEffect(() => {
         dispatch(fetchQuestions(quizId))
@@ -27,7 +33,8 @@ const QuestionIndex = ({quiz}) => {
             const quizTake = {takerId: sessionUser ? sessionUser.id : null, quizId: quizId, score: score, time: time }
             dispatch(createQuizTake(quizTake))
         }
-    }, [score])
+    }, [score, time])
+
 
     useEffect(() => {
         questions.forEach(q => {
@@ -40,11 +47,61 @@ const QuestionIndex = ({quiz}) => {
             }
         })
     }, [inputVal])
+
+    // setInterval(() => {
+    //     if (seconds === 0) {
+    //         setSeconds(59)
+    //         setMin(min - 1)
+    //     } else {
+    //         setSeconds(seconds - 1)
+    //     }
+    // }, 1000)
+
+    // const timer = () => {
+    //     const interval = setInterval(() => {
+    //         if (seconds === 0) {
+    //             setSeconds(59)
+    //             setMin(min - 1)
+    //         } else {
+    //             setSeconds(seconds - 1)
+    //         }
+    //     }, 1000)
+    // }
+
+    // useEffect(() => {
+
+    // }, [time, seconds])
+
+
    
     const playQuiz = (e) => {
         e.currentTarget.className = "hidden"
-        let answerBox = document.getElementById("answer-box")
-        answerBox.className = "answer-box"
+        setAnswerBoxClassName("answer-box")
+
+        setMin(prevMin => prevMin - 1)
+        setSeconds(59)
+        const timer = () => {
+            const SecondsInterval = setInterval(() => {
+                if (min > 0 && timerOn) {
+                    setSeconds(prevSecs => prevSecs === 0 ? 59 : prevSecs - 1)
+                } else {
+                    clearInterval(SecondsInterval)
+                    setTimerOn(false)
+                }
+                
+            }, 1000)
+
+            const minuteInterval = setInterval(() => {
+                if (min > 0 && timerOn) {
+                    setMin(prevMin => prevMin - 1)
+                } else {
+                    clearInterval(minuteInterval)
+                    setTimerOn(false)
+                }
+            }, 60000)
+        };
+
+        timer()
     }
 
     return (
@@ -57,7 +114,7 @@ const QuestionIndex = ({quiz}) => {
                         className="submit-button">
                         <p>Play Quiz</p>
                     </button>
-                    <div id="answer-box" className="hidden">
+                    <div id="answer-box" className={answerBoxClassName}>
                         <h3 id="enter-an-answer" className="answer-input-text">Enter answer:</h3>
                         <input
                             id="answer-input" 
@@ -69,7 +126,8 @@ const QuestionIndex = ({quiz}) => {
                     </div>
                     <div id="right-side-quiz-header">
                         <h3 id="score">Score: {score} </h3>
-                        {/* <h3 id="timer">Time: {quiz.quizTimer}:00</h3> */}
+                        <h3 id="timer">Time: {min < 10 ? `0${min}` : min}:{seconds < 10 ? `0${seconds}` : seconds}</h3>
+                        {/* <h3 id="timer">Time:{min}:{seconds}</h3> */}
                     </div>
                 </div>
 
