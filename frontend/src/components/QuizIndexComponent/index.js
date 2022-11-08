@@ -58,7 +58,7 @@ const QuizIndex = () => {
                                 })}
                             </div>
                         </div>
-                        <div id='quiz-index-left-bottom'>Other Quizzes
+                        <div id='quiz-index-left-bottom'>
                             {/* <ul id='quizzes-list'>
                                 {quizzes.map(quiz => {
                                     return (
