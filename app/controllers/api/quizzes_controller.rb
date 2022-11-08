@@ -15,7 +15,10 @@ class Api::QuizzesController < ApplicationController
     end
 
     def random 
-        
+        quizzes = Quiz.all
+        idx = rand(0...quizzes.length)
+        @quiz = quizzes[idx]
+        render 'api/quizzes/search'
     end
 
     def search
