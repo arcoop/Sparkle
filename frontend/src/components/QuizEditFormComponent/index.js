@@ -214,7 +214,7 @@ const QuizEditForm = () => {
                                             <select className='quiz-edit-input' name="dropdown" id="timer-select-options" onChange={e => setTimer(e.target.value)}>
                                                 {times.map(time => {
                                                     return (
-                                                        <option key={time} value={time}>{`${time}:00`}</option>
+                                                        <option selected={time === quiz.quizTimer ? true : false} key={time} value={time}>{`${time}:00`}</option>
                                                     )
                                                 })}
                                             </select>
