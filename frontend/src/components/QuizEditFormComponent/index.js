@@ -33,7 +33,7 @@ const QuizEditForm = () => {
     const [description, setDescription] = useState(quizDescript)
     const [timer, setTimer] = useState("10:00")
     const times = []
-    for (let i = 10; i < 26; i++) {
+    for (let i = 0; i < 30; i++) {
         times.push(i)
     }
     const [answerType, setAnswerType] = useState("answer")
@@ -209,7 +209,7 @@ const QuizEditForm = () => {
                                         </td>
                                     </tr>
 
-                                    {/* <tr className='table-row'> <td className="row-heading">Quiz Timer</td>
+                                    <tr className='table-row'> <td className="row-heading">Quiz Timer</td>
                                         <td className='row-info'>
                                             <select className='quiz-edit-input' name="dropdown" id="timer-select-options" onChange={e => setTimer(e.target.value)}>
                                                 {times.map(time => {
@@ -219,7 +219,7 @@ const QuizEditForm = () => {
                                                 })}
                                             </select>
                                         </td>
-                                    </tr> */}
+                                    </tr>
                                     {/* <tr className='table-row'> <td className="table-heading">Answer type</td>
                                         <td>
                                             <input type="text"
