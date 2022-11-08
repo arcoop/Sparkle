@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, Redirect, useHistory, useLocation } from "react-router-dom"
-import { fetchQuiz, fetchQuizzes, getQuizzes } from "../../store/quizzes"
+import { fetchQuiz, fetchQuizzes, fetchRandomQuizID, getQuizzes } from "../../store/quizzes"
 import './Header.css'
 import CategoriesIndex from "../CategoryIndexComponent"
 import SearchBar from "./SearchBar"
@@ -55,6 +55,10 @@ const Header = () => {
     
     // let quizId;
     // let idx;
+
+    const handleClick = () => {
+        const randomQuizId = dispatch(fetchRandomQuizID())
+    }
     
     // const handleClick = () => {
     //     setRandomQuiz(true)
@@ -108,7 +112,7 @@ const Header = () => {
                     </div>
                 </div>
                 <div id="nav-buttons-right">
-                    {/* <button className="submit-button" id="right-nav-button">Random Quiz</button> */}
+                    <button className="submit-button" id="right-nav-button">Random Quiz</button>
                     <button onClick={() => openMenu(2)} id="search-button">
                         {showMenu === 2 ? <i className="fa-solid fa-x"></i> : <i className="fa-solid fa-magnifying-glass"></i> }
                     </button>
