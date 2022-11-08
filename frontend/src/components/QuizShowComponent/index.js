@@ -50,7 +50,7 @@ const QuizShow = () => {
 
     const extrasbutton = sessionUser.id === quiz.authorId ? <ExtrasButton author={user} quiz={quiz} /> : ""
 
-    return (
+    return ( quizId &&
         <div id="quiz-show-page-container">
             <div id="quiz-show-page">
                 <div id="left-side">

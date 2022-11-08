@@ -29,8 +29,8 @@ const QuizForm = () => {
 
     const quizzes = useSelector(state => Object.values(state.quizzes))
 
-
     const handleSubmit = (e) => {
+        console.log("submitted")
         e.preventDefault()
         const formData = new FormData();
         
