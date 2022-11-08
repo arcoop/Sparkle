@@ -33,7 +33,7 @@ const QuizEditForm = () => {
     const [description, setDescription] = useState(quizDescript)
     const [timer, setTimer] = useState("10:00")
     const times = []
-    for (let i = 0; i < 30; i++) {
+    for (let i = 1; i < 30; i++) {
         times.push(i)
     }
     const [answerType, setAnswerType] = useState("answer")
@@ -256,9 +256,9 @@ const QuizEditForm = () => {
                                     <tr className='table-row'> <td className="row-heading">Category</td>
                                         <td className='row-info'>
                                             <select className='quiz-edit-input' name="dropdown" id="category-select-options" onChange={e => setCategory(e.target.value)}>
-                                                {categories.map(cat => {
+                                                {categories.map(cat => { 
                                                     return (
-                                                        <option key={cat} value={cat}>{cat[1]}</option>
+                                                        <option selected={cat[0] === quiz.categoryId ? true : false} key={cat} value={cat}>{cat[1]}</option>
                                                     )
                                                 })}
                                             </select>
