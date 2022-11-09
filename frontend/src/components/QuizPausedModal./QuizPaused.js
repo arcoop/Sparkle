@@ -2,12 +2,12 @@ import { useState } from 'react';
 import './QuizPaused.css'
 import { Modal } from '../../context/Modal';
 
-const QuizPausedModal = ({playQuiz, quiz, tempMin, tempSeconds}) => {
+const QuizPausedModal = ({resumeQuiz, quiz, tempMin, tempSeconds}) => {
     const [showModal, setShowModal] = useState(false)
 
     const handleResume = () =>{
         setShowModal(false)
-        playQuiz(tempMin, tempSeconds)
+        resumeQuiz(tempMin, tempSeconds)
     }
 
     return (
