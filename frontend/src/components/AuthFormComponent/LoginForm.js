@@ -14,7 +14,7 @@ const LoginForm = () => {
     const [usernameFloat, setUsernameFloat] = useState("label has-focus")
     const [passwordFloat, setPasswordFloat] = useState("label")
     
-    let username
+    let username;
 
     const handleSubmit = e => {
         e.preventDefault();

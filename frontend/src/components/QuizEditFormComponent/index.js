@@ -30,10 +30,10 @@ const QuizEditForm = () => {
 
     const [quizType, setQuizType] = useState(quiz.quizType)
     const quizTypes = ["Classic", "Clickable", "Grid", "Map", "Picture Box", "Picture Click", "Slideshow"]
-    const [description, setDescription] = useState(quizDescript)
-    const [timer, setTimer] = useState("10:00")
+    const [description, setDescription] = useState(quiz.description)
+    const [timer, setTimer] = useState(quiz.quizTimer)
     const times = []
-    for (let i = 10; i < 26; i++) {
+    for (let i = 1; i < 30; i++) {
         times.push(i)
     }
     const [answerType, setAnswerType] = useState("answer")
@@ -41,7 +41,7 @@ const QuizEditForm = () => {
     const [answerHeading, setAnswerHeading] = useState("Answer")
     const [extraHeading, setExtraHeading] = useState("")
     // const [category, setCategory] = useState(quiz.category)
-    const [category, setCategory] = useState(quiz.category)
+    const [categoryId, setCategoryId] = useState(quiz.categoryId)
     const [redirect, setRedirect] = useState(false)
     const [succesMessage, setSuccessMessage] = useState([])
     
@@ -89,7 +89,7 @@ const QuizEditForm = () => {
         const formData = new FormData();
         formData.append('quiz[title]', quizName)
         formData.append('quiz[quiz_type]', quizType);
-        formData.append('quiz[category_id]', category[0]);
+        formData.append('quiz[category_id]', categoryId);
         formData.append('quiz[description]', description);
         formData.append('quiz[quiz_timer]', timer);
         if (quizIcon) formData.append('quiz[icon]', quizIcon)
@@ -146,7 +146,7 @@ const QuizEditForm = () => {
 
     if (redirect) return <Redirect to={`/quizzes/${quizId}`} />
 
-    return (
+    return ( quizId &&
 
         <div id='edit-form-container'>
             <ul className="sucess">
@@ -209,17 +209,17 @@ const QuizEditForm = () => {
                                         </td>
                                     </tr>
 
-                                    {/* <tr className='table-row'> <td className="row-heading">Quiz Timer</td>
+                                    <tr className='table-row'> <td className="row-heading">Quiz Timer</td>
                                         <td className='row-info'>
                                             <select className='quiz-edit-input' name="dropdown" id="timer-select-options" onChange={e => setTimer(e.target.value)}>
                                                 {times.map(time => {
                                                     return (
-                                                        <option key={time} value={time}>{`${time}:00`}</option>
+                                                        <option selected={time === quiz.quizTimer ? true : false} key={time} value={time}>{`${time}:00`}</option>
                                                     )
                                                 })}
                                             </select>
                                         </td>
-                                    </tr> */}
+                                    </tr>
                                     {/* <tr className='table-row'> <td className="table-heading">Answer type</td>
                                         <td>
                                             <input type="text"
@@ -255,10 +255,10 @@ const QuizEditForm = () => {
                                     </tr> */}
                                     <tr className='table-row'> <td className="row-heading">Category</td>
                                         <td className='row-info'>
-                                            <select className='quiz-edit-input' name="dropdown" id="category-select-options" onChange={e => setCategory(e.target.value)}>
-                                                {categories.map(cat => {
+                                            <select className='quiz-edit-input' name="dropdown" id="category-select-options" onChange={e => setCategoryId(e.target.value)}>
+                                                {categories.map(cat => { 
                                                     return (
-                                                        <option key={cat} value={cat}>{cat[1]}</option>
+                                                        <option selected={cat[0] === quiz.categoryId ? true : false} key={cat[0]} value={cat[0]}>{cat[1]}</option>
                                                     )
                                                 })}
                                             </select>

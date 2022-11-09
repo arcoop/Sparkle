@@ -125,23 +125,6 @@
 }
 
 
-#quiz-header {
-    display: flex;
-    padding: 16px;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    margin: 0 50px;
-    /* dis */
-    /* margin: auto; */
-}
-
-#right-side-quiz-header {
-    display: flex;
-    justify-content: space-evenly;
-    width: 20%;
-}
-
 /* #play-quiz {
     font-size: 1.25rem;
     line-height: 1rem;
