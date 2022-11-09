@@ -22,7 +22,8 @@ const QuestionIndex = ({quiz}) => {
     const [timerOn, setTimerOn] = useState(true)
     const [answerBoxClassName, setAnswerBoxClassName] = useState("hidden")
     const [playButtonClassName, setPlayButtonClassName] = useState("submit-button")
-    const [pauseButton, setPauseButton] = useState("")
+    const [pauseButton, setPauseButton] = useState(<div className="quiz-score-time pause-hidden"><i id="quiz-pause-hidden" className="fa-solid fa-pause"></i></div>)
+    const [playOrAnswer, setPlayOrAnswer] = useState("play")
 
     useEffect(() => {
         dispatch(fetchQuestions(quizId))
@@ -52,8 +53,9 @@ const QuestionIndex = ({quiz}) => {
     let minuteInterval;
     
     const playQuiz = (e) => {
-        setPlayButtonClassName("hidden")
-        setAnswerBoxClassName("answer-box")
+        // setPlayButtonClassName("hidden")
+        // setAnswerBoxClassName("answer-box")
+        setPlayOrAnswer("answer")
         setMin(prevMin => prevMin - 1)
         setSeconds(59)
         let tempSeconds = 59;
@@ -64,7 +66,7 @@ const QuestionIndex = ({quiz}) => {
                 clearInterval(secondsInterval)
                 clearInterval(minuteInterval)
             }
-            setPauseButton(<p onClick={handlePause} className="pause">Pause</p>)
+            setPauseButton(<div onClick={handlePause} className="quiz-score-time pause"><i id="quiz-pause" className="fa-solid fa-pause"></i></div>)
             const secondsInterval = setInterval(() => {
                 if (tempMin === 0) tempSeconds -= 1
                 setSeconds(prevSecs => prevSecs === 0 ? 59 : prevSecs - 1)
@@ -83,11 +85,37 @@ const QuestionIndex = ({quiz}) => {
         timer()
     }
 
+    const playButton = <div>
+        {/* <h3 id="enter-an-answer" className="answer-input-text-hidden">Enter answer:</h3> */}
+        <button
+                onClick={playQuiz}
+                id="play-quiz"
+                className={"submit-button"}>
+                <p>Play Quiz</p>
+            </button>
+    </div>
+
+    const answerBox = <div id="answer-box" className={"answer-box"}>
+        <input
+            id="answer-input" 
+            className="answer-input"
+            type="text" 
+            value={inputVal}
+            onChange={e => setInputVal(e.target.value)}
+        />
+    </div>
+
     return (
         <div id="quiz-questions-index">
                 <div id="quiz-header">
-                    <h3 className="answer-input-text"></h3>
-                    <button 
+                    <div id="left-side-quiz-header">
+                        <h3 id="enter-an-answer" className={playOrAnswer === "play" ? "answer-input-text-hidden" : "answer-input-text"}>Enter answer:</h3>
+                        {/* <h3 className="answer-input-text"></h3> */}
+                        <div className="play-or-answer">
+                            {playOrAnswer === "play" ? playButton : answerBox}
+                        </div>
+                    </div>
+                    {/* <button 
                         onClick={playQuiz}
                         id="play-quiz" 
                         className={playButtonClassName}>
@@ -102,12 +130,17 @@ const QuestionIndex = ({quiz}) => {
                             value={inputVal}
                             onChange={e => setInputVal(e.target.value)}
                         />
-                    </div>
+                    </div> */}
                     <div id="right-side-quiz-header">
-                        <h3 id="score">Score: {score} </h3>
+                        <div className="quiz-score-time" id="score">
+                            <p id="score-heading">Score:</p>
+                            <h3 className="score-time-info">{score}/{quiz.maxScore}</h3>
+                        </div>
                         {pauseButton}
-                        {/* <div onClick={handlePause} id="pause-button" className={pauseButtonClassName}>Pause</div> */}
-                        <h3 id="timer">Time: {min < 10 ? `0${min}` : min}:{seconds < 10 ? `0${seconds}` : seconds}</h3>
+                        <div className="quiz-score-time" id="timer">
+                            <p id="timer-heading">Timer:</p> 
+                            <h3 className="score-time-info">{min < 10 ? `0${min}` : min}:{seconds < 10 ? `0${seconds}` : seconds}</h3>
+                        </div>
                         {/* <h3 id="timer">Time:{min}:{seconds}</h3> */}
                     </div>
                 </div>

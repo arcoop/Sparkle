@@ -84,9 +84,9 @@ const QuizShow = () => {
                             <p>{quiz.quizType}</p>
                         </div>
                     </div>
-                    <div id="quiz-div">
+                    {/* <div id="quiz-div"> */}
 
-                        <div id="quiz-content-container">
+                        {/* <div id="quiz-content-container"> */}
                             {/* <div id="quiz-header">
                                 <button id="play-quiz" className="submit-button">Play Quiz</button>
                                 <div id="right-side-quiz-header">
@@ -95,12 +95,12 @@ const QuizShow = () => {
                                 </div>
                             </div> */}
                             
-                            <div id="quiz-content">
-                                    <QuestionIndex quiz={quiz}/>
-                            </div>
-                        </div>
+                            {/* <div id="quiz-content"> */}
+                                <QuestionIndex quiz={quiz}/>
+                            {/* </div> */}
+                        {/* </div> */}
                     
-                    </div>
+                    {/* </div> */}
 
                     <div id="#comments">
                         <CommentsIndex quizComments={quizComments} quizId={quizId}/>
