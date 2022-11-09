@@ -57,16 +57,20 @@ const QuestionIndex = ({quiz}) => {
     }, [inputVal])
 
 
-    const playQuiz = (tempMin, tempSeconds) => {
+    const playQuiz = (tempMin, tempSeconds, resume = false) => {
         setPlayOrAnswer("answer")
-        setMin( prevMin => tempMin === 0 ? 0 : prevMin - 1)
+        if (resume) {
+            setMin(prevMin => tempMin === 0 ? 0 : prevMin)
+        } else {
+            setMin(prevMin => tempMin === 0 ? 0 : prevMin - 1)
+        }
         setSeconds(prevSecs => prevSecs === 0 ? 59 : prevSecs)  
          
         const timer = () => {
 
             const handleResume = () =>{
                 setShowModal(false)
-                playQuiz(tempMin, tempSeconds)
+                playQuiz(tempMin, tempSeconds, true)
             }
             const handlePause = () => {
 
