@@ -96,6 +96,7 @@
 #right-side-quiz-header {
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
     /* width: 20%; */
     white-space: nowrap;
 }
@@ -159,4 +160,12 @@
 #left-side-quiz-header {
     display: flex;
     flex-direction: column;
+}
+
+.score-time-heading {
+    font-size: .625rem;
+    color: #666;
+    font-weight: normal;
+    line-height: .75rem;
+    text-transform: uppercase;
 }

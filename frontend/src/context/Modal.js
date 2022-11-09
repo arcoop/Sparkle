@@ -29,13 +29,29 @@ export const Modal = ({onClose, type, children}) => {
     //(type === "signup" ? "modal-content-signup" : "modal-content-login")
 
     let divId;
-    if (type === "signup") divId = "modal-content-signup"
-    if (type === "login") divId = "modal-content-login"
-    if (type === "interimSignup") divId = "modal-content-interim"
+    let backgroundId;
+    if (type === "signup") {
+        divId = "modal-content-signup"
+        backgroundId = "modal-background"
+    }
+    if (type === "login") {
+        divId = "modal-content-login" 
+        backgroundId = "modal-background"
+    }
+    if (type === "interimSignup") {
+
+        divId = "modal-content-interim"
+        backgroundId = "modal-background"
+    }
+
+    if (type === "quizPaused") {
+        divId = "modal-paused"
+        backgroundId = "modal-paused-background"
+    }
 
     return ReactDOM.createPortal(
         <div id="modal">
-            <div id="modal-background"
+            <div id={backgroundId}
                 onClick={onClose}>
             </div>
 
