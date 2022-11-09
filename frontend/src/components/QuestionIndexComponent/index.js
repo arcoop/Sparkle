@@ -3,35 +3,28 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchQuestions, getQuestions } from "../../store/questions";
 import { createQuizTake } from "../../store/quizTakes";
-import QuestionTile from "../QuestionTileComponent/index";
 import './QuestionIndex.css'
-import QuizPausedModal from "../QuizPausedModal./QuizPaused";
 import { Modal } from "../../context/Modal";
 
 const QuestionIndex = ({quiz}) => {
     const dispatch = useDispatch()
-    const questions = useSelector(getQuestions)
-    const [showModal, setShowModal] = useState(false)
-
+    
     const sessionUser = useSelector(state => state.session.user) || {}
+    
+    const questions = useSelector(getQuestions)
 
     const {quizId} = useParams()
+    
     const [score, setScore] = useState(0)
     const [min, setMin] = useState(quiz.quizTimer || [])
     const [seconds, setSeconds] = useState(0)
     const [inputVal, setInputVal] = useState("")
     const [usedAnswers, setUsedAnswers] = useState([])
-    const [time, setTime] = useState(quiz.quizTimer || "")
-    const [timerOn, setTimerOn] = useState(false)
-    const [answerBoxClassName, setAnswerBoxClassName] = useState("hidden")
-    const [playButtonClassName, setPlayButtonClassName] = useState("submit-button")
     const [pauseButton, setPauseButton] = useState(<div className="quiz-score-time pause-hidden"><i id="quiz-pause-hidden" className="fa-solid fa-pause"></i></div>)
     const [playOrAnswer, setPlayOrAnswer] = useState("play")
-    const [pausedSecs, setPausedSecs] = useState(0)
     const [modal, setModal] = useState(<></>)
+    const [showModal, setShowModal] = useState(false)
     
-
-
     useEffect(() => {
         dispatch(fetchQuestions(quizId))
     }, [quizId])
@@ -120,7 +113,6 @@ const QuestionIndex = ({quiz}) => {
     
 
     const playButton = <div>
-        {/* <h3 id="enter-an-answer" className="answer-input-text-hidden">Enter answer:</h3> */}
         <button
                 onClick={() => playQuiz(min - 1, 59)}
                 id="play-quiz"
