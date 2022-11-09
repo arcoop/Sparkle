@@ -8,6 +8,7 @@ import QuizTile from '../QuizTileComponent';
 import Navigation from '../Navigation';
 import { fetchUsers } from '../../store/users';
 import QuizCarousel from '../QuizCarouselComponent/QuizCarousel';
+import { fetchSortedQuizTakes } from '../../store/quizTakes';
 
 const QuizIndex = () => {
     const dispatch = useDispatch()
@@ -29,6 +30,14 @@ const QuizIndex = () => {
     const users = useSelector(state => (state.users))
 
     const categories = useSelector(state => state.categories)
+
+    const getQuizTakes = async () => {
+        return await dispatch(fetchSortedQuizTakes())
+    } 
+
+    const sortedQuizTakes = getQuizTakes()
+    console.log("sorted quiz takes")
+    console.log(sortedQuizTakes)
 
     let topDivText;
 
@@ -63,7 +72,7 @@ const QuizIndex = () => {
                                 })}
                             </div>
                     </div>
-                    <div className='quiz-index-col' id='quiz-index-right-col'>
+                    <div className='quiz-index-col' id='quiz-index-center-col'>
                         {quizzesSortedByName.map(quiz => {
                             return (
                                 <Link to={`/quizzes/${quiz.id}`} className='index-page-small-div'>
@@ -83,7 +92,8 @@ const QuizIndex = () => {
                             )
                         })}
                     </div>
-                    <div id='index-center-content'>                        
+                    <div className='quiz-index-col' id='index-right-content'>
+                        {sortedQuizTakes}    
                     </div>
                 </div>
             </div>

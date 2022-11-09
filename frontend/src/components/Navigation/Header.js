@@ -59,7 +59,7 @@ const Header = () => {
     const handleClick =  async () => {
         const randomQuizId = await dispatch(fetchRandomQuizID())
         history.push(`/quizzes/${randomQuizId}`)
-}
+    }
 
 
    return (

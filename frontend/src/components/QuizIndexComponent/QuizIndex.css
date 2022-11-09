@@ -75,7 +75,7 @@
     padding-right: 30px;
 }
 
-#quiz-index-right-col {
+#quiz-index-center-col {
     border-right: .0075rem solid #d8d8d8;
     margin-top: 50px;
     width: 321px;
@@ -134,3 +134,4 @@
     width: 70px;
     height: 70px;
 }
+

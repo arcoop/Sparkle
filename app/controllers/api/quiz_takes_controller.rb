@@ -21,6 +21,14 @@ class Api::QuizTakesController < ApplicationController
         render '/api/quiz_takes/total'
     end
 
+    def sorted
+        quiz_takes = QuizTake.group(:quiz_id).order(count: :desc).count
+        p quiz_takes
+        @sorted_quiz_takes = quiz_takes.keys
+        p @sorted_quiz_takes
+        render 'api/quiz_takes/sorted'
+    end
+
     def create
         @quiz_take = QuizTake.new(quiz_takes_params)
         if @quiz_take.save

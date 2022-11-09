@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     get '/search/users', to: "users#search"
     get '/random/quizzes', to: "quizzes#random"
     get 'total/quiz_takes', to: "quiz_takes#total"
+    get 'sorted/quiz_takes', to: "quiz_takes#sorted"
   end
 
 
