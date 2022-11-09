@@ -21,6 +21,7 @@ const QuestionIndex = ({quiz}) => {
     const [time, setTime] = useState(quiz.quizTimer || "")
     const [timerOn, setTimerOn] = useState(true)
     const [answerBoxClassName, setAnswerBoxClassName] = useState("hidden")
+    const [playButtonClassName, setPlayButtonClassName] = useState("submit-button")
 
     // console.log(quiz.quizTimer)
 
@@ -72,32 +73,29 @@ const QuestionIndex = ({quiz}) => {
 
     // }, [time, seconds])
 
-
-   
-    const playQuiz = (e) => {
-        e.currentTarget.className = "hidden"
+    // console.log(seconds)
+    
+    
+    const playQuiz = () => {
+        setPlayButtonClassName("hidden")
         setAnswerBoxClassName("answer-box")
-
+        
         setMin(prevMin => prevMin - 1)
         setSeconds(59)
+        let tempSeconds = 59;
+        let tempMin = quiz.quizTimer - 1;
+
         const timer = () => {
-            const SecondsInterval = setInterval(() => {
-                if (min > 0 && timerOn) {
-                    setSeconds(prevSecs => prevSecs === 0 ? 59 : prevSecs - 1)
-                } else {
-                    clearInterval(SecondsInterval)
-                    setTimerOn(false)
-                }
-                
+            const secondsInterval = setInterval(() => {
+                if (tempMin === 0) tempSeconds -= 1
+                setSeconds(prevSecs => prevSecs === 0 ? 59 : prevSecs - 1)
+                if (tempSeconds === 0) clearInterval(secondsInterval)
             }, 1000)
 
             const minuteInterval = setInterval(() => {
-                if (min > 0 && timerOn) {
-                    setMin(prevMin => prevMin - 1)
-                } else {
-                    clearInterval(minuteInterval)
-                    setTimerOn(false)
-                }
+                tempMin -= 1;
+                setMin(prevMin => prevMin - 1)
+                if (tempMin === 0) clearInterval(minuteInterval)
             }, 60000)
         };
 
@@ -111,7 +109,7 @@ const QuestionIndex = ({quiz}) => {
                     <button 
                         onClick={playQuiz}
                         id="play-quiz" 
-                        className="submit-button">
+                        className={playButtonClassName}>
                         <p>Play Quiz</p>
                     </button>
                     <div id="answer-box" className={answerBoxClassName}>
