@@ -22,7 +22,7 @@ const QuestionIndex = ({quiz}) => {
     const [timerOn, setTimerOn] = useState(true)
     const [answerBoxClassName, setAnswerBoxClassName] = useState("hidden")
     const [playButtonClassName, setPlayButtonClassName] = useState("submit-button")
-    const [pauseButtonClassName, setPauseButtonClassName] = useState("hidden")
+    const [pauseButton, setPauseButton] = useState("")
 
     useEffect(() => {
         dispatch(fetchQuestions(quizId))
@@ -47,17 +47,24 @@ const QuestionIndex = ({quiz}) => {
             }
         })
     }, [inputVal])
+
+    let secondsInterval;
+    let minuteInterval;
     
     const playQuiz = (e) => {
         setPlayButtonClassName("hidden")
         setAnswerBoxClassName("answer-box")
-        setPauseButtonClassName("pause")
         setMin(prevMin => prevMin - 1)
         setSeconds(59)
         let tempSeconds = 59;
         let tempMin = quiz.quizTimer - 1;
-
+        
         const timer = () => {
+            const handlePause = () => {
+                clearInterval(secondsInterval)
+                clearInterval(minuteInterval)
+            }
+            setPauseButton(<p onClick={handlePause} className="pause">Pause</p>)
             const secondsInterval = setInterval(() => {
                 if (tempMin === 0) tempSeconds -= 1
                 setSeconds(prevSecs => prevSecs === 0 ? 59 : prevSecs - 1)
@@ -98,6 +105,7 @@ const QuestionIndex = ({quiz}) => {
                     </div>
                     <div id="right-side-quiz-header">
                         <h3 id="score">Score: {score} </h3>
+                        {pauseButton}
                         {/* <div onClick={handlePause} id="pause-button" className={pauseButtonClassName}>Pause</div> */}
                         <h3 id="timer">Time: {min < 10 ? `0${min}` : min}:{seconds < 10 ? `0${seconds}` : seconds}</h3>
                         {/* <h3 id="timer">Time:{min}:{seconds}</h3> */}
