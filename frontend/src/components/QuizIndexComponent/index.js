@@ -18,11 +18,17 @@ const QuizIndex = () => {
         document.title = "Sparkle!"
     }, [])
 
-    const quizzes = useSelector(state => Object.values(state.quizzes)) || []
+    const quizzes = useSelector(state => Object.values(state.quizzes))
 
     const sortedQuizzesByDate = quizzes.slice().sort((a,b) => a.createdAt < b.createdAt ? 1 : -1)
 
+    const quizzesSortedByName = quizzes.slice().sort((a, b) => a.title < b.title ? -1 : 1)
+
     const sessionUser = useSelector(state => state.session.user) || {}
+
+    const users = useSelector(state => (state.users))
+
+    const categories = useSelector(state => state.categories)
 
     let topDivText;
 
@@ -32,7 +38,7 @@ const QuizIndex = () => {
         topDivText = <div>Welcome to the world’s largest quiz community. Play a quiz or create your own. A sparkle shines in everyone!</div>
     }
     
-    return (
+    return ( quizzes &&
         <div className='page-wrapper'>
             <Navigation />
             <div id='index-page'>
@@ -43,8 +49,7 @@ const QuizIndex = () => {
                     <QuizCarousel quizzes={quizzes}/>
                 </div>
                 <div id="index-content-container">
-                    <div id='quiz-index-left-col'>
-                        <div id='quiz-index-left-top'>
+                    <div className='quiz-index-col' id='quiz-index-left-col'>
                             <h1 className='quiz-index-heading'>New Published Quizzes</h1>
                             <div id='main-new-quiz'>
                                 <QuizTile quiz={sortedQuizzesByDate[0]} type="large"/>
@@ -57,26 +62,28 @@ const QuizIndex = () => {
                                     )
                                 })}
                             </div>
-                        </div>
-                        <div id='quiz-index-left-bottom'>
-                            {/* <ul id='quizzes-list'>
-                                {quizzes.map(quiz => {
-                                    return (
-                                        <li key={quiz.id} className='quiz-index-list-item'>
-                                            <QuizTile quiz={quiz} author={quiz.authorId} type="medium"/>
-                                        </li>
-                                    )
-                                })}
-                            </ul> */}
-                        </div>
-
                     </div>
-                    <div id='quiz-index-right-col'>
-
+                    <div className='quiz-index-col' id='quiz-index-right-col'>
+                        {quizzesSortedByName.map(quiz => {
+                            return (
+                                <Link to={`/quizzes/${quiz.id}`} className='index-page-small-div'>
+                                    <div className='small-div-left'>
+                                        <div className='small-div-quiz-title'>{quiz.title}</div>
+                                        <div className='small-div-author'>by {users[quiz.authorId].username}</div>
+                                        <div className='small-div-cat-time'>
+                                            <div className='small-div-cat'>{categories[quiz.categoryId].name}</div>
+                                            <div className='small-div-time'>{quiz.quizTimer}m</div>
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                    <div className='small-div-image'>
+                                        {quiz.iconUrl ? <img className='small-div-quiz-icon' src={quiz.iconUrl} alt="" /> : <img className="small-div-quiz-icon" src="https://cdn.writermag.com/2019/03/question-marks.jpg" alt="" />}
+                                    </div>
+                                </Link>
+                            )
+                        })}
                     </div>
-                    <div id='index-center-content'>
-                        {/* <div id='quizzes-by-category'></div> */}
-                        
+                    <div id='index-center-content'>                        
                     </div>
                 </div>
             </div>
