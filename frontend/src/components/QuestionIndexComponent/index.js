@@ -24,18 +24,20 @@ const QuestionIndex = ({quiz}) => {
     const [playOrAnswer, setPlayOrAnswer] = useState("play")
     const [modal, setModal] = useState(<></>)
     const [showModal, setShowModal] = useState(false)
+    const [quizTakeCreated, setQuizTakeCreated] = useState(false)
     
     useEffect(() => {
         dispatch(fetchQuestions(quizId))
     }, [quizId])
 
     useEffect(() => {
-        if (score === quiz.maxScore || (min === 0 && seconds === 0)) {
+        if (!quizTakeCreated && (score === quiz.maxScore || (min === 0 && seconds === 0))) {
             const quizTake = {takerId: sessionUser ? sessionUser.id : null, quizId: quizId, score: score, time: `${min}:${seconds}` }
+            clearInterval()
+            setQuizTakeCreated(true)
             dispatch(createQuizTake(quizTake))
         }
     }, [score, min, seconds])
-
 
     useEffect(() => {
         questions.forEach(q => {
@@ -66,7 +68,6 @@ const QuestionIndex = ({quiz}) => {
                 playQuiz(tempMin, tempSeconds, true)
             }
             const handlePause = () => {
-
 
                 setModal(  <Modal onClose = {() => setShowModal(false)} type={"quizPaused"}>
                     <div className='quiz-paused-modal-content'>
@@ -114,7 +115,7 @@ const QuestionIndex = ({quiz}) => {
 
     const playButton = <div>
         <button
-                onClick={() => playQuiz(min - 1, 59)}
+                onClick={() => playQuiz(0, min - 1, 59)}
                 id="play-quiz"
                 className={"submit-button"}>
                 <p>Play Quiz</p>
