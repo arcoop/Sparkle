@@ -76,7 +76,6 @@ export const fetchNumQuizTakesByUser = userdId => async () => {
 export const fetchSortedQuizTakes = () => async () => {
     const res = await csrfFetch('/api/sorted/quiz_takes')
     const data = await res.json()
-    console.log(data.slice(0,2))
     return data.slice(0,5)
 }
 

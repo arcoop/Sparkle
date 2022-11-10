@@ -78,6 +78,25 @@ const QuizIndex = () => {
     } else {
         topDivText = <div>Welcome to the world’s largest quiz community. Play a quiz or create your own. A sparkle shines in everyone!</div>
     }
+
+    let recentQuizTakesDiv;
+    if (recentQuizTakes && recentQuizTakes.length >= 1 ) recentQuizTakesDiv = <> 
+        <div className='right-div-quizzes-list-heading'>Quizzes</div>
+        {recentQuizTakes.map((quizTake, idx) => {
+        return (quizzes &&
+            <Link key={idx} className='popular-quiz-list-item-link' to={`/quizzes/${quizTake.quizId}`}>
+                {/* <div className='popular-quiz-list-item num'>{quizzes[quizTake.quizId].category}</div> */}
+                <div className='popular-quiz-list-item separator'></div>
+                <div className='popular-quiz-list-item title'>{quizzes[quizTake.quizId].title}</div>
+            </Link>
+        )
+        })}
+    </>
+    if (recentQuizTakes && recentQuizTakes.length < 1) recentQuizTakesDiv = <>
+        No recently played quizzes!
+        <br></br>
+        Try one now!
+    </>
     
     return (quizzes && quizzesArr && sortedQuizTakes && recentQuizTakes &&
         <div className='page-wrapper'>
@@ -144,16 +163,7 @@ const QuizIndex = () => {
                             <div id='recently-played-quizzes' className='index-page-div'>
                                 <h3 className='right-div-quizzes-heading'>{sessionUser.id ? "Your Recently Played Quizzes" : "Recently Played Quizzes"}</h3>
                                 <div className='right-div-quizzes-list'>
-                                    <div className='right-div-quizzes-list-heading'>Quizzes</div>
-                                    {recentQuizTakes.map((quizTake, idx) => {
-                                        return (quizzes &&
-                                            <Link key={idx} className='popular-quiz-list-item-link' to={`/quizzes/${quizTake.quizId}`}>
-                                                {/* <div className='popular-quiz-list-item num'>{quizzes[quizTake.quizId].category}</div> */}
-                                                <div className='popular-quiz-list-item separator'></div>
-                                                <div className='popular-quiz-list-item title'>{quizzes[quizTake.quizId].title}</div>
-                                            </Link>
-                                        )
-                                    })}
+                                   {recentQuizTakesDiv}
 
                                 </div>
                             </div>
