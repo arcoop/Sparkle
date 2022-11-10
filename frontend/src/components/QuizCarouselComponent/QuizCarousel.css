@@ -25,6 +25,7 @@
     width: 100%;
 }
 
+
 .carousel-array-left {
     position: absolute;
     left: -1200px;
@@ -93,42 +94,46 @@
     /* overflow: hidden; */
     width: 98%;
     margin: 4%;
+    position: relative;
 }
 
 .carousel {
+    position: absolute;
     gap: 20px;
     top: -60px;
     width: 1440px;
     overflow: hidden;
     display: flex;
+    left: -38px;
 }
 
-
-
-
-/* .carousel.center { */
-    /* right: -45px; */
-    /* transition: left 1s linear; */
-    /* animation: 1s ease-in 0s slideInFromLeft; */
-    /* transition: 1s ease-in; */
-/* }
-
-/* .carousel.left {
-    right: -2000px;
-    transition: right 1s linear;
-    
-}
-
-.carousel .hidden-arr {
-    display: none;
-    animation: 1s ease-in;
+.carousel.hidden{
+  left: -110%
 }
 
 .carousel.right {
-    /* animation: 1s ease-in 0s 1 slideOffFromCenter; */
-    /* right: -1530px;
-    transition: right 1s linear; */
-    /* overflow: hidden; */
-    /* transition: 1s ease-in; */
+  animation: .5s ease-in 0s 1 slideRightFromCenter;
+}
 
-/* } */ 
+.carousel.right-again {
+  animation: .5s ease-in 0s 1 slideInFromLeftFromRight;
+}
+
+.carousel.from-right {
+  animation: .5s ease-in 0s slideInFromRight;
+}
+
+
+.carousel.from-left {
+    animation: .5s ease-in 0s slideInFromLeft;
+ }
+
+ .carousel.from-left-again {
+    animation: .5s ease-in 0s slideInFromLeftFromRight;
+}
+
+.carousel.left {
+    animation: .5s ease-in 0s slideLeftFromCenter;
+    
+}
+

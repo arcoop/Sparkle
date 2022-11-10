@@ -3,47 +3,58 @@ import QuizTile from '../QuizTileComponent'
 import { useEffect, useState } from 'react'
 
 const QuizCarousel = ({quizzes}) => {
-    const arrayA = quizzes.slice(0,6)
-    const arrayB = quizzes.slice(6,11)
+    const carouselA = quizzes.slice(0,6)
+    const carouselB = quizzes.slice(6, 13)
 
     const [currentCarouselClass, setCurrentCarouselClass] = useState('carousel')
     const [hiddenCarouselClass, setHiddenCarouselClass] = useState('hidden')
     const [carouselIndex, setCarouselIndex] = useState(0)
-
-    const carouselArr = [arrayA, arrayB]
-    const wholeCarousel = quizzes.slice(0,11)
-
-    let tempCarousel;
+    const [showingCarousel, setShowingCarousel] = useState(carouselA)
+    const [otherCarousel, setOtherCarousel] = useState(carouselB)
+    const [carouselPosition, setCarouselPosition] = useState(0)
+    const [carouselBClass, setCarouselBClass] = useState("carousel hidden")
+    const [carouselAClass, setCarouselAClass] = useState("carousel")
     
-    let currentCarousel = carouselArr[carouselIndex]
-
-    let hiddenCarousel = carouselIndex === 0 ? carouselArr[1] : carouselArr[0]
-
     
     const handleLeftClick = () => {
+        if (carouselAClass === "carousel right" || carouselAClass === "carousel left" || carouselAClass === "carousel hidden") {
+            setCarouselAClass("carousel from-right")
+            setShowingCarousel(carouselA)
+            setOtherCarousel(carouselB)
+        } else setCarouselAClass("carousel left")
+        if (carouselBClass === "carousel from-right") {
+            setCarouselBClass("carousel left")
+            setShowingCarousel(carouselA)
+            setOtherCarousel(carouselB)
+        } else {
+            setCarouselBClass("carousel from-right")
+            setShowingCarousel(carouselB)
+            setOtherCarousel(carouselA)
+        }
 
     }
+    
 
-    const handleRightClick = () => {
-
-        setCarouselIndex(carouselIndex === 2 ? 0 : carouselIndex + 1)
-       
+    const handleRightClick = async () => {
+        if (carouselAClass === "carousel right" || carouselAClass === "carousel left" || carouselAClass === "carousel hidden") {
+            setCarouselAClass("carousel from-left")
+            setShowingCarousel(carouselA)
+            setOtherCarousel(carouselB)
+        } else setCarouselAClass("carousel right")
+        if (carouselBClass === "carousel from-left") {
+            setCarouselBClass("carousel right")
+            setShowingCarousel(carouselA)
+            setOtherCarousel(carouselB)
+        } else {
+            setCarouselBClass("carousel from-left")
+            setShowingCarousel(carouselB)
+            setOtherCarousel(carouselA)
+        }
     }
 
-    // let leftArr;
-    // if (carouselIndex === 0) leftArr = 'carousel left'
-    // if (carouselIndex === 1) leftArr = 'carousel center'
-    // if (carouselIndex === 2) leftArr = 'carousel right'
-
-    // let centerArr;
-    // if (carouselIndex === 0) centerArr = 'carousel center'
-    // if (carouselIndex === 1) centerArr = 'carousel right'
-    // if (carouselIndex === 2) centerArr = 'carousel left'
-
-    // let rightArr;
-    // if (carouselIndex === 0) rightArr = 'carousel right'
-    // if (carouselIndex === 1) rightArr = 'carousel left'
-    // if (carouselIndex === 2) rightArr = 'carousel center'
+    // carousel A: carousel, b: hidden
+    // carousel A: right, b: from-left
+    // carousel A:
 
     return (
         <div className='carousel-container'>
@@ -51,12 +62,30 @@ const QuizCarousel = ({quizzes}) => {
                 <i className="fa-solid fa-chevron-left"></i>
             </button>
             <div className="carousel-array-container" >
-                <div id='carousel-slide2' className="carousel">
-                    {arrayA.map(quiz => {
+                <div id='carousel-slide2' className={carouselAClass}>
+                    {showingCarousel.map(quiz => {
                         return (
                             <QuizTile key={quiz.id} quiz={quiz} type="small" />
                         )
                     })}
+                    {/* {carouselPosition === 1 && carouselB.map(quiz => {
+                        return (
+                            <QuizTile key={quiz.id} quiz={quiz} type="small" />
+                        )
+                    })} */}
+                    
+                </div>
+                <div id='carousel-slide2' className={carouselBClass}>
+                    {otherCarousel.map(quiz => {
+                        return (
+                            <QuizTile key={quiz.id} quiz={quiz} type="small" />
+                        )
+                    })}
+                    {/* {carouselPosition === 1 && carouselA.map(quiz => {
+                        return (
+                            <QuizTile key={quiz.id} quiz={quiz} type="small" />
+                        )
+                    })} */}
                 </div>
 
             </div>
