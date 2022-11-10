@@ -20,7 +20,6 @@ const QuizCarousel = ({quizzes}) => {
         if (carouselAClass === "carousel right" || carouselAClass === "carousel left" || carouselAClass === "carousel hidden") {
             setCarouselAClass("carousel from-right")
             setShowingCarousel(carouselA)
-            setOtherCarousel(carouselB)
         } else setCarouselAClass("carousel left")
         if (carouselBClass === "carousel from-right") {
             setCarouselBClass("carousel left")
@@ -51,10 +50,6 @@ const QuizCarousel = ({quizzes}) => {
             setOtherCarousel(carouselA)
         }
     }
-
-    // carousel A: carousel, b: hidden
-    // carousel A: right, b: from-left
-    // carousel A:
 
     return (
         <div className='carousel-container'>

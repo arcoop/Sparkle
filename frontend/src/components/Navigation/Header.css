@@ -66,6 +66,7 @@
     font-weight: 600;
     font-size: 14px;
     transition: .2s;
+    color: black;
 }
 
 .left-nav-link:hover {

@@ -45,53 +45,23 @@
     width: 23px;
     border: 1px solid transparent;
     top: 15px;
+    z-index: 1;
 }
 
 .arrow-button.right {
-    right: 0;
+    right: 3px;
 }
 
 .arrow-button.left {
-    left: 0;
+    left: 3px;
 }
 .arrow-button:hover {
     cursor: pointer;
     color: #f90;
     background-color: #ffebcc;
 }
-
-@keyframes switchToNext {
-    75% {
-      left: 0;
-    }
-    95% {
-      left: 100%;
-    }
-    98% {
-      left: 100%;
-    }
-    99% {
-      left: 0;
-    }
-  }
-
-  @keyframes goToStart {
-    75% {
-      left: 0;
-    }
-    95% {
-      left: -300%;
-    }
-    98% {
-      left: -300%;
-    }
-    99% {
-      left: 0;
-    }
-  }
   
 .carousel-array-container {
-    /* overflow: hidden; */
     width: 98%;
     margin: 4%;
     position: relative;
@@ -115,10 +85,6 @@
   animation: .5s ease-in 0s 1 slideRightFromCenter;
 }
 
-.carousel.right-again {
-  animation: .5s ease-in 0s 1 slideInFromLeftFromRight;
-}
-
 .carousel.from-right {
   animation: .5s ease-in 0s slideInFromRight;
 }
@@ -128,9 +94,6 @@
     animation: .5s ease-in 0s slideInFromLeft;
  }
 
- .carousel.from-left-again {
-    animation: .5s ease-in 0s slideInFromLeftFromRight;
-}
 
 .carousel.left {
     animation: .5s ease-in 0s slideLeftFromCenter;

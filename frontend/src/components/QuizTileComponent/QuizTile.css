@@ -118,10 +118,12 @@
     height: 20px;
     box-sizing: border-box;
     margin-top: 0;
+    color: black;
 }
 
 .quiz-tile-cat {
     font-weight: bold;
+    color: black;
 }
 
 .quiz-tile-description {
