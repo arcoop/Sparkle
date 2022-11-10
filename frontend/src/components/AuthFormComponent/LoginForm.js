@@ -95,21 +95,23 @@ const LoginForm = () => {
             </div>
                 <form id="loginform" onSubmit={handleSubmit}>
                         <div className="cred-div">
-                            <label onClick={handleUsernameClick} className={usernameFloat}>Email Address or Username</label>
+                            <label onFocus={handleUsernameClick} onClick={handleUsernameClick} className={usernameFloat}>Email Address or Username</label>
                             <input className={usernameFloat === "label has-focus" ? "credentials has-focus" : "credentials"}
                                 type="text"
                                 value={credential}
                                 onClick={handleUsernameClick}
+                                onFocus={handleUsernameClick}
                                 onChange={e => setCredential(e.target.value)}
                                 />
                         </div>
                     <br></br>
                     <div className="cred-div">
-                        <label onClick={handlePasswordClick} className={passwordFloat}>Password</label>
+                        <label onFocus={handlePasswordClick} onClick={handlePasswordClick} className={passwordFloat}>Password</label>
                         <input type="password"
                             className="credentials"
                             value={password}
                             onClick={handlePasswordClick}
+                            onFocus={handlePasswordClick}
                             onChange={e => setPassword(e.target.value)}
                             />
                     </div>

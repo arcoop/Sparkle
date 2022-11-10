@@ -100,11 +100,13 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 30px;
+    transition: .1s;
 }
 
 .index-page-small-div:hover .small-div-quiz-title {
     color: #f90;
     text-decoration: underline;
+    transition: .1s;
 }
 
 .small-div-quiz-title {
@@ -150,9 +152,13 @@
 #quiz-index-right-col {
     margin-top: 50px;
     padding-left: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    align-items: center;
 }
 
-#popular-quizzes {
+.index-page-div {
     display: flex;
     flex-direction: column;
     border: 1px solid #d8d8d8;
@@ -160,7 +166,8 @@
     width: 298px;
 }
 
-.popular-quizzes-heading {
+
+.right-div-quizzes-heading {
     border-bottom: 4px solid #f90;
     width: 100%;
     text-align: center;
@@ -170,11 +177,11 @@
     font-weight: 700;
 }
 
-.popular-quizzes-list {
+.right-div-quizzes-list {
     padding: 30px;
 }
 
-.popular-quizzes-list-heading {
+.right-div-quizzes-list-heading {
     text-transform: uppercase;
     font-size: .75rem;
     line-height: .875rem;
@@ -192,6 +199,13 @@
     font-size: .9375rem;
     font-weight: bold;
     padding: 12px 0 8px 0;
+    transition: .1s;
+}
+
+.popular-quiz-list-item-link:hover .popular-quiz-list-item.title {
+    color: #f90;
+    text-decoration: underline;
+    transition: .1s;
 }
 
 .popular-quiz-list-item {

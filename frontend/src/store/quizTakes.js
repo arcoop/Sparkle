@@ -34,6 +34,18 @@ export const fetchQuizTakesbyUser = userId => async dispatch => {
     dispatch(setQuizTakes(data))
 }
 
+export const fetchQuizTakes = () => async () => {
+    const res = await csrfFetch('/api/quiz_takes')
+    const data = await res.json()
+    return (Object.values(data));
+}
+
+export const getUsersQuizTakes = userId => async dispatch => {
+    const res = await csrfFetch(`/api/users/${userId}/user_takes/quiz_takes`)
+    const data = await res.json()
+    return (Object.values(data));
+}
+
 export const fetchQuizTake = quizTakeId => async dispatch => {
     const res = await csrfFetch(`/api/quiz_takes/${quizTakeId}`)
     const data = await res.json()
@@ -64,8 +76,7 @@ export const fetchNumQuizTakesByUser = userdId => async () => {
 export const fetchSortedQuizTakes = () => async () => {
     const res = await csrfFetch('/api/sorted/quiz_takes')
     const data = await res.json()
-    console.log('data')
-    console.log(data)
+
     return data
 }
 

@@ -6,8 +6,14 @@ class Api::QuizTakesController < ApplicationController
             @quiz_takes = QuizTake.where(quiz_id: params[:quiz_id])
         elsif params[:user_id] 
             @quiz_takes = QuizTake.where(taker_id: params[:user_id])
+        else
+            @quiz_takes = QuizTake.all.order(created_at: :desc).limit(5)
         end
         render '/api/quiz_takes/index'
+    end
+    
+    def userTakes
+        @quiz_takes = QuizTake.group(:quiz).where(taker_id: params[:user_id]).order(created_at: :desc).limit(5)
     end
 
     def total
@@ -23,9 +29,7 @@ class Api::QuizTakesController < ApplicationController
 
     def sorted
         quiz_takes = QuizTake.group(:quiz).order(count: :desc).count
-        p quiz_takes
         @sorted_quiz_takes = quiz_takes.keys
-        p @sorted_quiz_takes
         render 'api/quiz_takes/sorted'
     end
 

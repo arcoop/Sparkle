@@ -8,39 +8,70 @@ import QuizTile from '../QuizTileComponent';
 import Navigation from '../Navigation';
 import { fetchUsers } from '../../store/users';
 import QuizCarousel from '../QuizCarouselComponent/QuizCarousel';
-import { fetchSortedQuizTakes } from '../../store/quizTakes';
+import { fetchQuizTakes, fetchSortedQuizTakes, getUsersQuizTakes } from '../../store/quizTakes';
 
 const QuizIndex = () => {
     const dispatch = useDispatch();
     const [sortedQuizTakes, setSortedQuizTakes] = useState()
+    // const [currentUserQuizTakes, setCurrentUserQuizTakes] = useState()
+    const [recentQuizTakes, setRecentQuizTakes] = useState()
+    
+    const sessionUser = useSelector(state => state.session.user) || {}
 
     useEffect(() => {
         const getQuizTakes = async () => {
-            console.log("fetching quiztakes")
             setSortedQuizTakes(await dispatch(fetchSortedQuizTakes()))
         } 
-        console.log("fetching quizzes")
+        const getCurrentUserQuizTakes = async () => {
+            if (sessionUser.id) setRecentQuizTakes(await dispatch(getUsersQuizTakes(sessionUser.id)))
+        }
+
+        const getRecentQuizTakes = async () => {
+            setRecentQuizTakes(await dispatch(fetchQuizTakes()))
+        }
+
         dispatch(fetchQuizzes()).then(() => getQuizTakes())
+        dispatch(fetchQuizzes()).then(() => {
+            getQuizTakes()
+            if (sessionUser.id) {
+                getCurrentUserQuizTakes()
+            } else getRecentQuizTakes()
+        })
         dispatch(fetchUsers())
         document.title = "Sparkle!"
-        getQuizTakes()
+       
     }, [])
 
-    console.log("sorted quiz takes")
-    console.log(sortedQuizTakes ? sortedQuizTakes : [])
+    const quizzes = useSelector(state => state.quizzes) 
 
-    const quizzes = useSelector(state => Object.values(state.quizzes))
+    const quizzesArr = Object.values(quizzes)
 
-    const sortedQuizzesByDate = quizzes.slice().sort((a,b) => a.createdAt < b.createdAt ? 1 : -1)
+    const sortedQuizzesByDate = quizzesArr.slice().sort((a,b) => a.createdAt < b.createdAt ? 1 : -1)
 
-    const quizzesSortedByName = quizzes.slice().sort((a, b) => a.title < b.title ? -1 : 1)
-
-    const sessionUser = useSelector(state => state.session.user) || {}
+    const quizzesSortedByName = quizzesArr.slice().sort((a, b) => a.title < b.title ? -1 : 1)
 
     const users = useSelector(state => (state.users))
 
-    const categories = useSelector(state => state.categories)
+    // const categories = useSelector(state => state.categories)
 
+    const categories = [
+        [0,"no category chosen"],
+        [1, "Entertainment"],
+        [2, "Gaming"], 
+        [3, "Geography"],
+        [4, "History"],
+        [5, "Holiday"],
+        [6, "Just For Fun"],
+        [7, "Language"],
+        [8, "Literature"],
+        [9, "Miscellaneous"],
+        [10, "Movies"],
+        [11, "Music"],
+        [12, "Religion"],
+        [13, "Science"],
+        [14, "Sports"],
+        [15,"Television"]
+    ]
 
     let topDivText;
 
@@ -50,7 +81,7 @@ const QuizIndex = () => {
         topDivText = <div>Welcome to the world’s largest quiz community. Play a quiz or create your own. A sparkle shines in everyone!</div>
     }
     
-    return ( quizzes && sortedQuizTakes &&
+    return (quizzes && quizzesArr && sortedQuizTakes && recentQuizTakes &&
         <div className='page-wrapper'>
             <Navigation />
             <div id='index-page'>
@@ -59,7 +90,7 @@ const QuizIndex = () => {
                 </div>
                 <div className='carousel-and-index'>
                     <div className='quiz-index-carousel'>
-                        <QuizCarousel quizzes={quizzes}/>
+                        <QuizCarousel quizzes={quizzesArr}/>
                     </div>
                     <div id="index-content-container">
                         <div className='quiz-index-col' id='quiz-index-left-col'>
@@ -84,7 +115,7 @@ const QuizIndex = () => {
                                             <div className='small-div-quiz-title'>{quiz.title}</div>
                                             <div className='small-div-author'>by {users[quiz.authorId].username}</div>
                                             <div className='small-div-cat-time'>
-                                                <div className='small-div-cat'>{categories[quiz.categoryId].name}</div>
+                                                <div className='small-div-cat'>{categories[quiz.categoryId][1]}</div>
                                                 <div className='small-div-time'>{quiz.quizTimer}m</div>
                                                 <div></div>
                                             </div>
@@ -98,9 +129,9 @@ const QuizIndex = () => {
                         </div>
                         <div className='quiz-index-col' id='quiz-index-right-col'>
                             <div id='popular-quizzes' className='index-page-div'>
-                                <h3 className='popular-quizzes-heading'>Most Popular</h3>
-                                <div className='popular-quizzes-list'>
-                                    <div className='popular-quizzes-list-heading'>Quizzes</div>
+                                <h3 className='right-div-quizzes-heading'>Most Popular</h3>
+                                <div className='right-div-quizzes-list'>
+                                    <div className='right-div-quizzes-list-heading'>Quizzes</div>
                                     {sortedQuizTakes.map((quizTake, idx) => {
                                         return (
                                             <Link className='popular-quiz-list-item-link' to={`/quizzes/${quizTake.id}`}>
@@ -108,9 +139,25 @@ const QuizIndex = () => {
                                                 <div id='popular-quiz-list-separator' className='popular-quiz-list-item separator'></div>
                                                 <div className='popular-quiz-list-item title'>{quizTake.title}</div>
                                             </Link>
-                    
                                         )
                                     })}
+                                </div>
+                            </div>
+                            <div id='recently-played-quizzes' className='index-page-div'>
+                                <h3 className='right-div-quizzes-heading'>{sessionUser.id ? "Your Recently Played Quizzes" : "Recently Played Quizzes"}</h3>
+                                <div className='right-div-quizzes-list'>
+                                    <div className='right-div-quizzes-list-heading'>Quizzes</div>
+                                    {recentQuizTakes.map((quizTake) => {
+                                        console.log(quizTake)
+                                        return (quizzes &&
+                                            <Link className='popular-quiz-list-item-link' to={`/quizzes/${quizTake.quizId}`}>
+                                                {/* <div className='popular-quiz-list-item num'>{quizzes[quizTake.quizId].category}</div> */}
+                                                <div className='popular-quiz-list-item separator'></div>
+                                                <div className='popular-quiz-list-item title'>{quizzes[quizTake.quizId].title}</div>
+                                            </Link>
+                                        )
+                                    })}
+
                                 </div>
                             </div>
                         </div>
