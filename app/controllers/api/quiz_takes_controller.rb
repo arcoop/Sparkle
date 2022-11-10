@@ -16,7 +16,7 @@ class Api::QuizTakesController < ApplicationController
         if params[:quiz_id]
             @quiz_takes = QuizTake.where(quiz_id: params[:quiz_id]).limit(5)
         elsif params[:user_id] 
-            @quiz_takes = QuizTake.where(taker_id: params[:user_id]).limit(5)
+            @quiz_takes = QuizTake.where(taker_id: params[:user_id]).order(created_at: :desc).limit(5)
         else
             @quiz_takes = QuizTake.all.order(created_at: :desc).limit(5)
         end
