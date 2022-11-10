@@ -46,7 +46,7 @@ const QuizIndex = () => {
 
     const sortedQuizzesByDate = quizzesArr.slice().sort((a,b) => a.createdAt < b.createdAt ? 1 : -1)
 
-    const quizzesSortedByName = quizzesArr.slice().sort((a, b) => a.title < b.title ? -1 : 1)
+    const quizzesSortedByName = quizzesArr.slice().sort((a, b) => a.title.toLowerCase() < b.title.toLowerCase() ? -1 : 1)
 
     // const users = useSelector(state => state.users)
 
