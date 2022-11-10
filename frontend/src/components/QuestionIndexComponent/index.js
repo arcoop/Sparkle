@@ -115,7 +115,7 @@ const QuestionIndex = ({quiz}) => {
 
     const playButton = <div>
         <button
-                onClick={() => playQuiz(0, min - 1, 59)}
+                onClick={() => playQuiz(min - 1, 59)}
                 id="play-quiz"
                 className={"submit-button"}>
                 <p>Play Quiz</p>

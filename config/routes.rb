@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :users, only: [:create, :show, :index] do
       resources :quiz_takes, only: [:index]
       get 'total/quiz_takes', to: "quiz_takes#total"
-      get 'user_takes/quiz_takes', to: "quiz_takes#user_takes"
+      get 'recent_takes/quiz_takes', to: "quiz_takes#recent_takes"
     end
     resources :categories, only: [] do
       get "/quizzes", to: "quizzes#quizzes_by_category"

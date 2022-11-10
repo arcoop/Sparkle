@@ -12,8 +12,15 @@ class Api::QuizTakesController < ApplicationController
         render '/api/quiz_takes/index'
     end
     
-    def userTakes
-        @quiz_takes = QuizTake.group(:quiz).where(taker_id: params[:user_id]).order(created_at: :desc).limit(5)
+    def recent_takes
+        if params[:quiz_id]
+            @quiz_takes = QuizTake.where(quiz_id: params[:quiz_id]).limit(5)
+        elsif params[:user_id] 
+            @quiz_takes = QuizTake.where(taker_id: params[:user_id]).limit(5)
+        else
+            @quiz_takes = QuizTake.all.order(created_at: :desc).limit(5)
+        end
+        render '/api/quiz_takes/recent_takes'
     end
 
     def total

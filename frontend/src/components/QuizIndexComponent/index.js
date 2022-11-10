@@ -13,7 +13,6 @@ import { fetchQuizTakes, fetchSortedQuizTakes, getUsersQuizTakes } from '../../s
 const QuizIndex = () => {
     const dispatch = useDispatch();
     const [sortedQuizTakes, setSortedQuizTakes] = useState()
-    // const [currentUserQuizTakes, setCurrentUserQuizTakes] = useState()
     const [recentQuizTakes, setRecentQuizTakes] = useState()
     
     const sessionUser = useSelector(state => state.session.user) || {}
@@ -30,7 +29,6 @@ const QuizIndex = () => {
             setRecentQuizTakes(await dispatch(fetchQuizTakes()))
         }
 
-        dispatch(fetchQuizzes()).then(() => getQuizTakes())
         dispatch(fetchQuizzes()).then(() => {
             getQuizTakes()
             if (sessionUser.id) {
@@ -50,7 +48,7 @@ const QuizIndex = () => {
 
     const quizzesSortedByName = quizzesArr.slice().sort((a, b) => a.title < b.title ? -1 : 1)
 
-    const users = useSelector(state => (state.users))
+    // const users = useSelector(state => state.users)
 
     // const categories = useSelector(state => state.categories)
 
@@ -110,10 +108,10 @@ const QuizIndex = () => {
                         <div className='quiz-index-col' id='quiz-index-center-col'>
                             {quizzesSortedByName.map(quiz => {
                                 return (
-                                    <Link to={`/quizzes/${quiz.id}`} className='index-page-small-div'>
+                                    <Link key={quiz.id} to={`/quizzes/${quiz.id}`} className='index-page-small-div'>
                                         <div className='small-div-left'>
                                             <div className='small-div-quiz-title'>{quiz.title}</div>
-                                            <div className='small-div-author'>by {users[quiz.authorId].username}</div>
+                                            <div className='small-div-author'>by {quiz.author}</div>
                                             <div className='small-div-cat-time'>
                                                 <div className='small-div-cat'>{categories[quiz.categoryId][1]}</div>
                                                 <div className='small-div-time'>{quiz.quizTimer}m</div>
@@ -134,7 +132,7 @@ const QuizIndex = () => {
                                     <div className='right-div-quizzes-list-heading'>Quizzes</div>
                                     {sortedQuizTakes.map((quizTake, idx) => {
                                         return (
-                                            <Link className='popular-quiz-list-item-link' to={`/quizzes/${quizTake.id}`}>
+                                            <Link key={quizTake.id} className='popular-quiz-list-item-link' to={`/quizzes/${quizTake.id}`}>
                                                 <div className='popular-quiz-list-item num'>{idx + 1}</div>
                                                 <div id='popular-quiz-list-separator' className='popular-quiz-list-item separator'></div>
                                                 <div className='popular-quiz-list-item title'>{quizTake.title}</div>
@@ -147,10 +145,9 @@ const QuizIndex = () => {
                                 <h3 className='right-div-quizzes-heading'>{sessionUser.id ? "Your Recently Played Quizzes" : "Recently Played Quizzes"}</h3>
                                 <div className='right-div-quizzes-list'>
                                     <div className='right-div-quizzes-list-heading'>Quizzes</div>
-                                    {recentQuizTakes.map((quizTake) => {
-                                        console.log(quizTake)
+                                    {recentQuizTakes.map((quizTake, idx) => {
                                         return (quizzes &&
-                                            <Link className='popular-quiz-list-item-link' to={`/quizzes/${quizTake.quizId}`}>
+                                            <Link key={idx} className='popular-quiz-list-item-link' to={`/quizzes/${quizTake.quizId}`}>
                                                 {/* <div className='popular-quiz-list-item num'>{quizzes[quizTake.quizId].category}</div> */}
                                                 <div className='popular-quiz-list-item separator'></div>
                                                 <div className='popular-quiz-list-item title'>{quizzes[quizTake.quizId].title}</div>

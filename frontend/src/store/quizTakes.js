@@ -41,7 +41,7 @@ export const fetchQuizTakes = () => async () => {
 }
 
 export const getUsersQuizTakes = userId => async dispatch => {
-    const res = await csrfFetch(`/api/users/${userId}/user_takes/quiz_takes`)
+    const res = await csrfFetch(`/api/users/${userId}/recent_takes/quiz_takes`)
     const data = await res.json()
     return (Object.values(data));
 }
