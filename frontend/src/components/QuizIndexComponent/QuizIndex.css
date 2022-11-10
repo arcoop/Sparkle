@@ -1,6 +1,17 @@
 .page-wrapper {
-    width: 100%;
+    /* margin: auto; */
+}
+
+.carousel-and-index {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    /* justify-content: center; */
     margin: auto;
+}
+
+#quiz-index-left-col {
+    width: 750px;
 }
 
 #index-page {
@@ -45,9 +56,9 @@
 }
 
 #index-content-container {
-    width: 100%;
     display: flex;
     margin-top: 10px;
+    justify-content: center;
 }
 
 
@@ -66,20 +77,21 @@
 #other-new-quizzes {
     margin-top: 20px;
     display: flex;
-    gap: 1.5rem;
+    gap: 4.8rem;
     display: grid;
     grid-template-columns: 292.5px 292.5px;
 }
 
 .quiz-index-col {
-    padding-right: 30px;
+    /* padding-right: 30px; */
 }
 
 #quiz-index-center-col {
-    border-right: .0075rem solid #d8d8d8;
+    border-right: 1px solid #d8d8d8;
     margin-top: 50px;
+    border-left: 1px solid #d8d8d8;
+    padding-right: 30px;
     width: 321px;
-    border-left: .0075rem solid #d8d8d8;
 }
 
 .index-page-small-div {
@@ -135,3 +147,70 @@
     height: 70px;
 }
 
+#quiz-index-right-col {
+    margin-top: 50px;
+    padding-left: 30px;
+}
+
+#popular-quizzes {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #d8d8d8;
+    border-radius: .25rem;
+    width: 298px;
+}
+
+.popular-quizzes-heading {
+    border-bottom: 4px solid #f90;
+    width: 100%;
+    text-align: center;
+    padding: 16px 0 12px 0;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    font-weight: 700;
+}
+
+.popular-quizzes-list {
+    padding: 30px;
+}
+
+.popular-quizzes-list-heading {
+    text-transform: uppercase;
+    font-size: .75rem;
+    line-height: .875rem;
+    font-weight: bold;
+    padding: 7px;
+    width: 48.352px;
+    border-bottom: 2px solid #f90;
+}
+
+.popular-quiz-list-item-link {
+    display: flex;
+    align-items: center;
+    height: 2.625rem;
+    line-height: 1.3125rem;
+    font-size: .9375rem;
+    font-weight: bold;
+    padding: 12px 0 8px 0;
+}
+
+.popular-quiz-list-item {
+    margin: 5px;
+}
+
+#popular-quiz-list-separator {
+    height: 23px;
+    border: 1px solid #d8d8d8;
+    background-color: #d8d8d8;
+    width: 0;
+}
+
+.popular-quiz-list-item.title {
+    word-break: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.popular-quiz-list-item.num {
+    color: #f90;
+}

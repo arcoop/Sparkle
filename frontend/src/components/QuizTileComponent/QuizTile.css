@@ -1,5 +1,5 @@
 .quiz-tile {
-    width: 292.5px;
+    width: 349.5px;
 }
 
 .quiz-icon-tile {
@@ -8,12 +8,17 @@
     padding: 0;
 }
 
+.link-to-quiz-show {
+}
+
 .quiz-icon-tile.large {
     position: relative;
-    width: 610px;
+    width: 100%;
     margin: 0;
+    width: 719px;
     padding: 0;
 }
+
 
 .quiz-icon-tile img {
     width: 100%;

@@ -22,7 +22,7 @@ class Api::QuizTakesController < ApplicationController
     end
 
     def sorted
-        quiz_takes = QuizTake.group(:quiz_id).order(count: :desc).count
+        quiz_takes = QuizTake.group(:quiz).order(count: :desc).count
         p quiz_takes
         @sorted_quiz_takes = quiz_takes.keys
         p @sorted_quiz_takes
@@ -46,7 +46,7 @@ class Api::QuizTakesController < ApplicationController
 
     private
     def quiz_takes_params 
-        params.require(:quiz_take).permit(:taker_id, :quiz_id, :score, :time, :created_at)
+        params.require(:quiz_take).permit(:taker_id, :quiz_id, :quiz, :score, :time, :created_at)
     end
 
 end

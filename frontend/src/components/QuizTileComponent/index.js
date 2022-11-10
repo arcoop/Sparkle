@@ -20,7 +20,7 @@ const QuizTile = ({quiz, type}) => {
 
     const mediumQuizTile = <div className="quiz-tile">
                 <Link className="link-to-quiz-show" to={`/quizzes/${quiz.id}`}>
-                    <div className={`quiz-icon-tile`}>
+                    <div className={`quiz-icon-tile medium`}>
                         {image}
                         <div className={`quiz-tile-title`}>{quiz.title}</div>
                         <div className="second-div"></div>
@@ -63,7 +63,7 @@ const QuizTile = ({quiz, type}) => {
                         
                     </div>
                     <div className={`small-author-category-time`}>
-                        <div className="small-quiz-tile-cat">{category.name}</div>
+                        <div className="quiz-tile-cat">{category.name}</div>
                         <div className="quiz-tile-time">{quiz.quizTimer}m</div>
                         <div className="hidden-div"></div>
                     </div>

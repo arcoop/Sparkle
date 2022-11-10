@@ -1,5 +1,4 @@
-json.sortedQuizTakes do
-    json.array! @sorted_quiz_takes.each do |quiz_id|
-        json.id quiz_id
-    end
+json.array! @sorted_quiz_takes.each do |quiz|
+    json.id quiz.id
+    json.title quiz.title
 end

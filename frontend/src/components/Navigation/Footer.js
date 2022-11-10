@@ -7,7 +7,7 @@ import './Footer.css'
 
 export const Footer = () => {
 
-    const [numQuizTakes, setNumQuizTakes] = useState("")
+    const [numQuizTakes, setNumQuizTakes] = useState()
 
     const dispatch = useDispatch();
 
@@ -18,28 +18,7 @@ export const Footer = () => {
         getNumQuizTakes()
     }, [])
 
-    
-    
-    // useEffect(() => {
-    //     const getNumQuizTakes = async () => {
-    //         numQuizTakes = await dispatch(fetchNumberofQuizTakes())
-    //     }
-    //     numQuizTakes = getNumQuizTakes()
-    // }, [numQuizTakes])
-    
-    // console.log(numQuizTakes)
-
-
-    // let totalQuizTakes;
-
-    // const getTotalQuizTakes = async () => {
-    //     totalQuizTakes = await dispatch(fetchNumberofQuizTakes())
-    //     return totalQuizTakes
-    // } 
-    
-
-
-    return (
+    return (numQuizTakes &&
         <div id="footer-container">
                 <div id="footer-top-nav">
                     <div id="footer-left-nav">

@@ -42,6 +42,9 @@
 /* TODO Add site wide styles */
 
 body {
+    margin: auto;
+    min-width: 100vh;
+    min-height: 100vh;
     margin: 0;
     font-family: 'Roboto', sans-serif;
 }
@@ -86,7 +89,8 @@ a {
 }
 
 .page-wrapper {
-    height: 100vh;
-    min-width: 100vh;
+    /* height: 100vh;
+    min-width: 100vh; */
     margin: auto;
+    overflow-x: hidden;
 }
