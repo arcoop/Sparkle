@@ -7,14 +7,17 @@ import './QuizTile.css'
 
 const QuizTile = ({quiz, type}) => {
 
-    const categoryId = quiz ? quiz.categoryId : 1
+    let categoryId = quiz ? quiz.category.categoryId : 1
+
+    let categoryName = quiz ? quiz.category.categoryName : ""
 
     let category = useSelector(state => state.categories[categoryId])
 
     category ||= {}
 
     quiz ||= {}
-    const user = useSelector(state => state.users[quiz.authorId]) || {username: "Loading username"}
+    let username = quiz ? quiz.author.authorUsername : "Loading username"
+    let userId = quiz ? quiz.author.authorId : 1
 
     const image = quiz.iconUrl ? <img src={quiz.iconUrl} alt="" /> : <img className="quiz-icon" src="https://cdn.writermag.com/2019/03/question-marks.jpg" alt="" />
 
@@ -27,8 +30,8 @@ const QuizTile = ({quiz, type}) => {
                         
                     </div>
                     <div className={`author-category-time`}>
-                        <div className="quiz-tile-author">by {user.username}</div>
-                        <div className="quiz-tile-cat">{category.name}</div>
+                        <div className="quiz-tile-author">by {username}</div>
+                        <div className="quiz-tile-cat">{categoryName}</div>
                         <div className="quiz-tile-time">{quiz.quizTimer}m</div>
                         <div className="hidden-div"></div>
                     </div>
@@ -43,8 +46,8 @@ const QuizTile = ({quiz, type}) => {
                         <div className="large-quiz-info">
                             <div className={`quiz-tile-title-large`}>{quiz.title}</div>
                             <div className={`author-category-time-large`}>
-                                <div className="quiz-tile-author">by {user.username}</div>
-                                <div className="quiz-tile-cat">{category.name}</div>
+                                <div className="quiz-tile-author">by {username}</div>
+                                <div className="quiz-tile-cat">{categoryName}</div>
                                 <div className="quiz-tile-time">{quiz.quizTimer}m</div>
                                 <div className="hidden-div"></div>
                             </div>
@@ -63,7 +66,7 @@ const QuizTile = ({quiz, type}) => {
                         
                     </div>
                     <div className={`small-author-category-time`}>
-                        <div className="quiz-tile-cat">{category.name}</div>
+                        <div className="quiz-tile-cat">{categoryName}</div>
                         <div className="quiz-tile-time">{quiz.quizTimer}m</div>
                         <div className="hidden-div"></div>
                     </div>

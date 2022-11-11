@@ -34,11 +34,12 @@ const QuizShow = () => {
     
     const image = quiz.iconUrl ? <img className="quiz-icon" src={quiz.iconUrl} alt="" /> : <img className="quiz-icon" src="https://cdn.writermag.com/2019/03/question-marks.jpg" alt="" />
     
-    const categoryId = quiz ? quiz.categoryId : 1
+    let categoryId = quiz.id ? quiz.category.categoryId : 1
+    let categoryName = quiz.id ? quiz.category.categoryName : ""
 
     const quizComments = useSelector(state => Object.values(state.comments))
     
-    let category = useSelector(state => state.categories[categoryId]) || ""
+    // let category = useSelector(state => state.categories[categoryId]) || ""
     
     document.title = `${quiz.title}` || 'Sparkle'
 
@@ -50,17 +51,10 @@ const QuizShow = () => {
     let numComments = commentsArr.length;
     let comments = numComments === 1? "comment" : "comments"
 
-    // let user = useSelector(state => state.users[quiz.authorId]) || {username:"", email:""}
 
-    let username = quiz.author || "loading"
-    let userId = quiz.authorId || []
+    let username = quiz.id ? quiz.author.authorUsername : "loading"
+    let userId = quiz.id ? quiz.author.authorId : []
 
-    // useEffect(() => {
-    //     const getNumUserQuizTakes = async () => {
-    //         setNumUserQuizTakes(await dispatch(fetchNumQuizTakesByUser(userId)))
-    //     }
-    //     getNumUserQuizTakes()
-    // ,)
 
     useEffect(() => {
         const getNumUserQuizTakes = async () => {
@@ -82,7 +76,7 @@ const QuizShow = () => {
                 <div id="quiz-show-page">
                     <div id="left-side">
                         <div id="top-row">
-                            <p className="quiz-category"><Link to={`/categories/${category.id}`}>{category.name}</Link></p>
+                            <p className="quiz-category"><Link to={`/categories/${categoryId}`}>{categoryName}</Link></p>
                         </div>
                         <div id="top-level-info">
                             {image}

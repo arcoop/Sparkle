@@ -35,7 +35,6 @@ function App() {
 
         <Route path={"/users/:id"}>
           <UserShow />
-          {/* <Footer /> */}
         </Route>
 
         <Route exact path={"/create"}>

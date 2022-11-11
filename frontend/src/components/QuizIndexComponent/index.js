@@ -130,9 +130,9 @@ const QuizIndex = () => {
                                     <Link key={quiz.id} to={`/quizzes/${quiz.id}`} className='index-page-small-div'>
                                         <div className='small-div-left'>
                                             <div className='small-div-quiz-title'>{quiz.title}</div>
-                                            <div className='small-div-author'>by {quiz.author}</div>
+                                            <div className='small-div-author'>by {quiz.author.authorUsername}</div>
                                             <div className='small-div-cat-time'>
-                                                <div className='small-div-cat'>{categories[quiz.categoryId][1]}</div>
+                                                <div className='small-div-cat'>{categories[quiz.category.categoryId][1]}</div>
                                                 <div className='small-div-time'>{quiz.quizTimer}m</div>
                                                 <div></div>
                                             </div>
@@ -164,7 +164,6 @@ const QuizIndex = () => {
                                 <h3 className='right-div-quizzes-heading'>{sessionUser.id ? "Your Recently Played Quizzes" : "Recently Played Quizzes"}</h3>
                                 <div className='right-div-quizzes-list'>
                                    {recentQuizTakesDiv}
-
                                 </div>
                             </div>
                         </div>

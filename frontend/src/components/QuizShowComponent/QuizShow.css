@@ -221,6 +221,12 @@
 .creator-spotlight-username {
     font-size: .9375rem;
     font-weight: bold;
+    color: black;
+}
+
+.creator-spotlight-username:hover {
+    color: #f90;
+    text-decoration: underline;
 }
 
 .mid-div-heading-text {
