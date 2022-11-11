@@ -1,6 +1,6 @@
+import './QuizPaused.css'
 import { useState } from 'react';
 import { Modal } from '../../context/Modal';
-import './QuizPaused.css'
 
 const QuizPausedModal = ({resumeQuiz, quiz, tempMin, tempSeconds}) => {
     const [showModal, setShowModal] = useState(false)

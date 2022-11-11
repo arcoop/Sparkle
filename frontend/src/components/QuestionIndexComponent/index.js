@@ -5,6 +5,8 @@ import { fetchQuestions, getQuestions } from "../../store/questions";
 import { createQuizTake } from "../../store/quizTakes";
 import './QuestionIndex.css'
 import { Modal } from "../../context/Modal";
+import './QuizPaused.css'
+
 
 const QuestionIndex = ({quiz}) => {
     const dispatch = useDispatch()
