@@ -21,7 +21,8 @@ const UserShow = () => {
         dispatch(fetchQuizTakesbyUser(id))
     },[id])
 
-    let user = useSelector(getUser(id)) || {username: "username...", email: "email..."}
+    // let user = useSelector(getUser(id)) || {username: "username...", email: "email..."}
+    let user = useSelector(state => state.users[id]) || {username: "username...", email: "email..."}
 
     const quizTakes = useSelector(state => Object.values(state.quizTakes))
 
@@ -35,7 +36,7 @@ const UserShow = () => {
     useEffect(() => {
         dispatch(fetchQuizzes())
         document.title = `${user.username}'s Sparkle Profile`
-    }, [user])
+    }, [id])
 
     const quizzes = useSelector(getQuizzes)
     
@@ -129,7 +130,7 @@ const UserShow = () => {
         }
     } 
 
-    return (
+    return (user &&
         <div className='page-wrapper'>
             <Navigation />
             <div id="users-show-page">
