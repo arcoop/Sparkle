@@ -118,8 +118,6 @@ export const fetchQuizzesByCat = categoryId => async dispatch => {
 export const fetchNumQuizzesAuthored = userId => async () => {
     const res = await csrfFetch(`/api/users/${userId}/num_authored/quizzes`)
     const data = await res.json()
-    console.log("data num authored")
-    console.log(data.numAuthored)
     return data.numAuthored
 }
 
