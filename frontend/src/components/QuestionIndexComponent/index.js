@@ -181,8 +181,6 @@ const QuestionIndex = ({quiz}) => {
                     })}
                 </tbody>
             </table>
-
-
         </div>
     )
 

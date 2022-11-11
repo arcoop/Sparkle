@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { deleteQuiz } from "../../store/quizzes";
 
-const ExtrasButton = ({author, quiz}) => {
+const ExtrasButton = ({quiz}) => {
     const [showMenu, setShowMenu] = useState(false)
     const history = useHistory()
 

@@ -16,7 +16,6 @@ class Api::QuizzesController < ApplicationController
 
     def random 
         quizzes = Quiz.all
-        p quizzes
         idx = rand(0...quizzes.length)
         @random_quiz = quizzes[idx]
         render 'api/quizzes/random'
@@ -25,12 +24,15 @@ class Api::QuizzesController < ApplicationController
     def search
         query = "%#{params[:s]}%"
         @quizzes = Quiz.where("lower(title) LIKE ?", query.downcase)
-        # .or(Quiz.where("author.username LIKE ?", query))
         render 'api/quizzes/search'
     end
 
     def show
         render 'api/quizzes/show'
+    end
+
+    def num_authored
+        @quizzes_authored = Quiz.where(author_id: params[:user_id])
     end
     
     def create

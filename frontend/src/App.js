@@ -56,9 +56,7 @@ function App() {
         </Route>
 
         <Route exact path="/quizzes/:quizId">
-          <Navigation />
           <QuizShow />
-          <Footer />
         </Route>
 
         <Route exact path='/categories'>

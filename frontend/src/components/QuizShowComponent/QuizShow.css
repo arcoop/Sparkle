@@ -10,6 +10,8 @@
 
 #left-side {
     width: 80%;
+    border-right: 1px solid #d8d8d8;
+    padding-right: 10px;
 }
 
 #top-row {
@@ -46,7 +48,6 @@
 }
 
 #mid-level-info {
-    border-bottom: 1px solid #d8d8d8;
     display: flex;
     align-items: center;
     margin: 10px;
@@ -98,13 +99,14 @@
     display: flex;
     align-items: center;
     border-bottom: 1px solid #d8d8d8;
+    border-top: 1px solid #d8d8d8;
+    padding: 15px 0;
 }
 
 #more-info-header {
     text-transform: uppercase;
     font-size: .75rem;
     font-weight: bold;
-    border-bottom: 1px solid #d8d8d8;
 }
 
 #quiz-type {
@@ -151,6 +153,7 @@
 #right-side {
     /* border: 1px solid green; */
     width: 20%;
+    padding: 10px;
 }
 
 /* EXTRAS BUTTON */
@@ -205,3 +208,63 @@
     padding: 12px 0 0 0;
     display: flex;
 }
+
+#quiz-creator-spotlight {
+    background-color: #f1f1f2;
+}
+
+.username-and-icon {
+    display: flex;
+}
+
+.creator-spotlight-username {
+    font-size: .9375rem;
+    font-weight: bold;
+}
+
+.mid-div-heading-text {
+    font-size: .75rem;
+    color: #666;
+    margin-bottom: .075rem;
+}
+
+.mid-div-text {
+    font-size: 1.25rem;
+}
+
+#user-spotlight-top-div {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #d8d8d8;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+
+#user-spotlight-middle-div {
+    display: flex;
+    justify-content: space-between;
+}
+
+#user-spotlight-bottom-div {
+    margin-top: 1.25rem;
+    display: flex;
+    align-items: center;
+}
+
+.user-spotlight-bottom-div-link {
+    font-size: .9375rem;
+    font-weight: bold;
+    color: black;
+    
+}
+
+.user-spotlight-bottom-div-link:hover {
+    color: #f90;
+    text-decoration: underline;
+}
+
+#user-profile-arrow {
+    color: #f90;
+    padding-left: 10px;
+}
+

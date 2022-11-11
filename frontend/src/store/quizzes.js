@@ -115,6 +115,14 @@ export const fetchQuizzesByCat = categoryId => async dispatch => {
     dispatch(setQuizzesByCategory(data))
 }
 
+export const fetchNumQuizzesAuthored = userId => async () => {
+    const res = await csrfFetch(`/api/users/${userId}/num_authored/quizzes`)
+    const data = await res.json()
+    console.log("data num authored")
+    console.log(data.numAuthored)
+    return data.numAuthored
+}
+
 const quizzesReducer = (state = {}, action ) => {
     switch(action.type) {
         case SET_QUIZZES:
