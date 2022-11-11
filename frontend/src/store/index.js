@@ -35,7 +35,7 @@ const rootReducer = combineReducers({
     comments: commentsReducer,
     quizTakes: quizTakesReducer,
     likes: likesReducer,
-    categories: (state = categories )=> state
+    categories: (state = categories ) => state
 })
 
 let enhancer;
