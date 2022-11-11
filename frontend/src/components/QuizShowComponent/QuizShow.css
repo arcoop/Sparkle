@@ -6,6 +6,7 @@
 #quiz-show-page {
     display: flex;
     justify-content: space-between;
+    margin-top: 10px;
 }
 
 #left-side {
