@@ -28,9 +28,9 @@ function App() {
         </Route>
 
         <Route exact path={"/quizzes"}>
-          <Navigation/>
+        
           <QuizIndex />
-          <Footer />
+
         </Route>
 
         <Route path={"/users/:id"}>
