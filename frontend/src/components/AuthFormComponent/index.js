@@ -16,7 +16,7 @@ const FormModal = ({type = "login"}) => {
         setErrors([])
         if (modal === "login" || modal === "create-quiz-login") {
             setModal("interimSignup")
-        } else if (modal === "signup") {
+        } else if (modal === "signup" || "create-quiz-signup") {
             setModal("login")
         } else if (modal === "interimSignup") {
             setErrors([])
@@ -87,8 +87,8 @@ const FormModal = ({type = "login"}) => {
     if (modal === "signup") text = "Already sparkling?"
 
     let modalForm;
-    if (modal === 'login') modalForm = <LoginForm />
-    if (modal === 'signup') modalForm = <SignupForm email={email} setEmail={setEmail}/>
+    if (modal === 'login' || modal === 'create-quiz-login') modalForm = <LoginForm />
+    if (modal === 'signup' || modal === 'create-quiz-signup') modalForm = <SignupForm email={email} setEmail={setEmail}/>
     if (modal === 'interimSignup') modalForm = <InterimSignUp email={email} setEmail={setEmail} errors={errors}/>
 
     

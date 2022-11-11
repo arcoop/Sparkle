@@ -49,6 +49,17 @@ export const Modal = ({onClose, type, children}) => {
         backgroundId = "modal-paused-background"
     }
 
+    if (type === "create-quiz-login") {
+        divId = "modal-content-login" 
+        backgroundId = "modal-background"
+
+    }
+
+    if (type === "create-quiz-signup") {
+        divId = "modal-content-signup"
+        backgroundId = "modal-background"
+    }
+
     return ReactDOM.createPortal(
         <div id="modal">
             <div id={backgroundId}

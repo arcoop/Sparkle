@@ -46,11 +46,11 @@ const QuizCreation = () => {
                                 <div className="not-logged-in-left">
                                     <ul className="quiz-promo-list">
                                         <li>
-                                            <i class="ri-checkbox-circle-line"></i>
+                                            <i className="ri-checkbox-circle-line"></i>
                                             <span>Create a quiz on any topic imagineable</span>
                                         </li>
                                         <li>
-                                            <i class="ri-checkbox-circle-line"></i>
+                                            <i className="ri-checkbox-circle-line"></i>
                                             <span>Share your quiz with friends and the world</span>
                                         </li>
                                     </ul>
