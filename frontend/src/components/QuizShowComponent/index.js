@@ -67,7 +67,7 @@ const QuizShow = () => {
         getNumQuizzesAuthored()
     }, [userId])
 
-    const extrasbutton = sessionUser.id === quiz.authorId ? <ExtrasButton quiz={quiz} /> : ""
+    const extrasbutton = (quiz.id && sessionUser.id === quiz.author.authorId) ? <ExtrasButton quiz={quiz} /> : ""
 
     return ( quiz.id &&
         <div className="page-wrapper">
