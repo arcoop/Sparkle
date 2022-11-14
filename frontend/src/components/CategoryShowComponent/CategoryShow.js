@@ -13,7 +13,6 @@ import { Link } from "react-router-dom";
 const CategoryShow = () => {
     const {name} = useParams()
     const dispatch = useDispatch();
-    console.log(name)
     const [activeIndex, setActiveIndex] = useState(1)
     
     useEffect(() => {
@@ -24,7 +23,7 @@ const CategoryShow = () => {
     const quizzes = useSelector(state => Object.values(state.quizzes))
     
     return (
-        <div className="page-wrapper">
+        <div className="">
             <Navigation />
             <div id="category-show-top-div"></div>
             <div id="category-show-header">

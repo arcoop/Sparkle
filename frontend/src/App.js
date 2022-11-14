@@ -65,7 +65,6 @@ function App() {
         </Route>
 
         <Route exact path="/categories/:name/">
-          {/* <QuizByCategory /> */}
           <CategoryShow />
         </Route>
 

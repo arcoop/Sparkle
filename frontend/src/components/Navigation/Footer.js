@@ -18,7 +18,7 @@ export const Footer = () => {
         getNumQuizTakes()
     }, [])
 
-    return (numQuizTakes &&
+    return (numQuizTakes && 
         <div id="footer-container">
                 <div id="footer-top-nav">
                     <div id="footer-left-nav">
