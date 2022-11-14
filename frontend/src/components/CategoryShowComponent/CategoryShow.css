@@ -1,3 +1,7 @@
+#category-show-content-container {
+    margin: 0 30px 50px;
+}
+
 #category-show-top-div {
     margin-bottom: 45px;
 }
@@ -11,12 +15,37 @@
 .category-show-tab {
     color: black;
     text-transform: uppercase;
+    font-weight: 500;
+    padding: 5px 0 8px 0;
+    margin-right: 45px;   
+    font-size: 90%;
 }
 
-#category-show-left-col {
+.category-show-tab:hover {
+    cursor: pointer;
+    color:#f90
+}
+
+.active-show-tab {
+    border-bottom: 3px solid #f90;
+}
+
+#category-show-all-quizzes {
     border-top: 1px solid #d8d8d8;
+
+}
+
+#category-show-tabs {
+    margin-top: 25px;
+    display: flex;
+}
+
+
+#category-show-left-col {
     display: flex;
     margin: 25px 0 0 ;
+    justify-content: flex-start;
+    gap: 25px;
 }
 
 #cat-shoq-quiz-info-right {
@@ -31,6 +60,7 @@
     font-weight: bold;
     margin-bottom: 10px;
     text-overflow: ellipsis;
+    text-transform: capitalize;
 }
 .cat-show-quiz-title:hover {
     color: #f90;

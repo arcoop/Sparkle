@@ -62,13 +62,13 @@ export const createQuizTake = quizTake => async dispatch => {
 }
 
 export const fetchNumberofQuizTakes = () => async () => {
-    const res = await csrfFetch('api/total/quiz_takes')
+    const res = await csrfFetch('/api/total/quiz_takes')
     const data = await res.json()
     return data.numQuizTakes.numTakes
 }
 
 export const fetchNumQuizTakesByUser = userdId => async () => {
-    const res = await csrfFetch(`/api/users/${userdId}/total/quiz_takes`)
+    const res = await csrfFetch(`/api/users/${userdId}/total/quiz_takes_user_quiz`)
     const data = await res.json()
     return data.numQuizTakes.numTakes
 }
@@ -80,7 +80,7 @@ export const fetchSortedQuizTakes = () => async () => {
 }
 
 export const fetchNumUserTakesByQuiz = quizId => async () => {
-    const res = await csrfFetch(`/api/quizzes/${quizId}/total/quiz_takes`)
+    const res = await csrfFetch(`/api/quizzes/${quizId}/total/quiz_takes/user_quiz`)
     const data = await res.json()
     return data.numQuizTakes.numTakes
 }

@@ -24,14 +24,19 @@ class Api::QuizTakesController < ApplicationController
     end
 
     def total
+        p "in total"
+        @quiz_takes = QuizTake.all
+        p @quiz_takes
+        render '/api/quiz_takes/total'
+    end
+
+    def total_user_quiz
         if params[:quiz_id]
             @quiz_takes = QuizTake.where(quiz_id: params[:quiz_id])
         elsif params[:user_id] 
             @quiz_takes = QuizTake.where(taker_id: params[:user_id])
-        else
-            @quiz_takes = QuizTake.all
         end
-        render '/api/quiz_takes/total'
+        render '/api/quiz_takes/total_user_quiz'
     end
 
     def sorted

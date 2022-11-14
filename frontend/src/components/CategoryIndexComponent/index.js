@@ -38,15 +38,15 @@ export default CategoriesIndex;
         
 export const CategoryIndexPage = () => {
     const dispatch = useDispatch()
-    
+
     const categories = useSelector(state => Object.values(state.categories)) || []
-    
+
     useEffect(() => {
         dispatch(fetchQuizzes())
     }, [])
     
     const quizzes = useSelector(state => Object.values(state.quizzes)) || []
-    
+
     return (
         <div className='categories-page-container'>
             <div className='categories-page-main-column'>

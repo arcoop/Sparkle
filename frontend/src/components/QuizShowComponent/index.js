@@ -63,9 +63,11 @@ const QuizShow = () => {
         const getNumQuizzesAuthored = async () => {
             setNumQuizzesAuthored(await dispatch(fetchNumQuizzesAuthored(userId)))
         }
-        getNumUserQuizTakes()
-        getNumQuizzesAuthored()
-    }, [userId])
+        if (quiz.id && userId) {
+            getNumUserQuizTakes()
+            getNumQuizzesAuthored()
+        }
+    }, [quizId, userId])
 
     const extrasbutton = (quiz.id && sessionUser.id === quiz.author.authorId) ? <ExtrasButton quiz={quiz} /> : ""
 
