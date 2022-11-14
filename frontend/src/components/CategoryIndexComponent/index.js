@@ -34,18 +34,19 @@ const CategoriesIndex = () => {
 //     )
 // }
 
+export default CategoriesIndex;
 
-const CategoryIndexPage = () => {
+export const CategoryIndexPage = () => {
     const dispatch = useDispatch()
-    
+
     const categories = useSelector(state => Object.values(state.categories)) || []
-    
+
     useEffect(() => {
         dispatch(fetchQuizzes())
     }, [])
     
     const quizzes = useSelector(state => Object.values(state.quizzes)) || []
-    
+
     return (
         <div className='categories-page-container'>
             <div className='categories-page-main-column'>
@@ -54,7 +55,7 @@ const CategoryIndexPage = () => {
                     {categories.map(cat => {
                         return (
                             <div className='quiz-cat-list'>
-                                <div className='quiz-by-cat-list-item'><Link className='quiz-cat-title-link' to={`/categories/${cat.name.toLowerCase()}`}><h1 className='cat-heading'>{cat.name}</h1></Link></div>
+                                <div className='quiz-by-cat-list-item'><Link className='quiz-cat-title-link' to={`/categories/${cat.name}`}><h1 className='cat-heading'>{cat.name}</h1></Link></div>
                                 <ul className='inner-quiz-list'>
                                         {quizzes.map(quiz => {
                                             if (quiz.category.categoryId == cat.id) {
@@ -74,5 +75,3 @@ const CategoryIndexPage = () => {
         </div>
     )
 }
-
-export default CategoryIndexPage;

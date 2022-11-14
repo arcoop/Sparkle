@@ -17,6 +17,8 @@
     border-top: 1px solid #d8d8d8;
     display: flex;
     margin: 25px 0 0 ;
+    justify-content: flex-start;
+    gap: 25px;
 }
 
 #cat-shoq-quiz-info-right {
@@ -31,6 +33,7 @@
     font-weight: bold;
     margin-bottom: 10px;
     text-overflow: ellipsis;
+    text-transform: capitalize;
 }
 .cat-show-quiz-title:hover {
     color: #f90;

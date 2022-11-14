@@ -18,9 +18,9 @@ const QuizByCategoryWithProps = ({category}) => {
 
     return ( 
         <div>
-            {quizzes.map(quiz => {
+            {quizzes.map((quiz, idx) => {
                 return (
-                    <QuizTile key={quiz.id} quiz={quiz}/>
+                    <QuizTile key={quiz.id*idx*7} quiz={quiz}/>
                 )
             })} 
 
