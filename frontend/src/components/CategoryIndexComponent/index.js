@@ -22,17 +22,6 @@ const CategoriesIndex = () => {
 
     )
 }
-
-// export const CategoryIndexPage = () => {
-    //     return (
-        //         <div>
-        //             <div className='cat-index-container'>
-        //             <CategoriesIndex />
-        //             </div>
-        
-        //         </div>
-        //     )
-        // }
         
 export default CategoriesIndex;
         
