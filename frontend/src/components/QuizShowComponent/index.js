@@ -76,7 +76,7 @@ const QuizShow = () => {
                 <div id="quiz-show-page">
                     <div id="left-side">
                         <div id="top-row">
-                            <p className="quiz-category"><Link className="quiz-show-cat-link" to={`/categories/${categoryName}`}>{categoryName}</Link></p>
+                            <p className="quiz-category"><Link className="quiz-show-cat-link" to={`/categories/${categoryName.toLowerCase()}`}>{categoryName}</Link></p>
                         </div>
                         <div id="top-level-info">
                             {image}

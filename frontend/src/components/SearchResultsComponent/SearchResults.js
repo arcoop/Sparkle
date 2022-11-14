@@ -41,7 +41,7 @@ const SearchResults = () => {
                     <li className="results-list-item" key={quiz.id}>
                     <Link className="result-title" to={`/quizzes/${quiz.id}`}>{quiz.title}</Link>
                     <p className="result-description">{quiz.description}</p>
-                    <p className="result-author-category">by <Link className="result-info" to={`/users/${author.id}`}>{author.username}</Link> in <Link className="result-info" to={`/categories/${category.id}`}>{category.name}</Link></p>
+                    <p className="result-author-category">by <Link className="result-info" to={`/users/${author.id}`}>{author.username}</Link> in <Link className="result-info" to={`/categories/${category.name.toLowerCase()}`}>{category.name}</Link></p>
                     </li>
                 )
             })}

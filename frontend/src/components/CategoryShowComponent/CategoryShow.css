@@ -2,10 +2,6 @@
     margin-bottom: 45px;
 }
 
-#category-show-header {
-
-}
-
 .category-show-title {
     text-transform: capitalize;
     font-size: 2.75rem;
@@ -19,4 +15,30 @@
 
 #category-show-left-col {
     border-top: 1px solid #d8d8d8;
+    display: flex;
+    margin: 25px 0 0 ;
+}
+
+#cat-shoq-quiz-info-right {
+    display: flex;
+    flex-direction: column;
+}
+
+.cat-show-quiz-title {
+    color: black;
+    font-size: 1.25rem;
+    line-height: 1.4375rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-overflow: ellipsis;
+}
+.cat-show-quiz-title:hover {
+    color: #f90;
+    text-decoration: underline;
+}
+
+.cat-show-quiz-desc {
+    font-size: .875rem;
+    line-height: 1.1875rem;
+    color: #666;
 }

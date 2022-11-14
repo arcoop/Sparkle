@@ -47,10 +47,6 @@ const QuizIndex = () => {
 
     const quizzesSortedByName = quizzesArr.slice().sort((a, b) => a.title.toLowerCase() < b.title.toLowerCase() ? -1 : 1)
 
-    // const users = useSelector(state => state.users)
-
-    // const categories = useSelector(state => state.categories)
-
     const categories = [
         [0,"no category chosen"],
         [1, "Entertainment"],

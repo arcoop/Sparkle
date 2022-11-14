@@ -38,6 +38,26 @@ const QuizTile = ({quiz, type}) => {
                 </Link>
                 <div className="quiz-tile-description">{quiz.description}</div>
             </div>
+
+    const mediumQuizTileCategory = <div className="quiz-tile">
+                <Link className="link-to-quiz-show" to={`/quizzes/${quiz.id}`}>
+                    <div className={`quiz-icon-tile medium`}>
+                        {image}
+                        <div className={`quiz-tile-title`}>{quiz.title}</div>
+                        <div className="second-div"></div>
+                        
+                    </div>
+                    <div className={`author-category-time`}>
+                        <div className="quiz-tile-author">by {username}</div>
+                        <div className="quiz-tile-cat">{categoryName}</div>
+                        <div className="quiz-tile-time">{quiz.quizTimer}m</div>
+                        <div className="hidden-div"></div>
+                    </div>
+                </Link>
+                <div className="quiz-tile-description"></div>
+            </div>
+
+    
         
     const largeQuizTile = <div className="quiz-tile">
                 <Link className="link-to-quiz-show" to={`/quizzes/${quiz.id}`}>
@@ -77,6 +97,7 @@ const QuizTile = ({quiz, type}) => {
     if (type === "small") tile = smallQuizTile
     if (type === "medium") tile = mediumQuizTile
     if (type === "large") tile = largeQuizTile
+    if (type === "medium-cat-show") tile = mediumQuizTileCategory
 
     return (
         <> 
