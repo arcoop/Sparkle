@@ -55,7 +55,7 @@ export const CategoryIndexPage = () => {
                     {categories.map(cat => {
                         return (
                             <div className='quiz-cat-list'>
-                                <div className='quiz-by-cat-list-item'><Link className='quiz-cat-title-link' to={`/categories/${cat.name}`}><h1 className='cat-heading'>{cat.name}</h1></Link></div>
+                                <div className='quiz-by-cat-list-item'><Link className='quiz-cat-title-link' to={`/categories/${cat.name.toLowerCase()}`}><h1 className='cat-heading'>{cat.name}</h1></Link></div>
                                 <ul className='inner-quiz-list'>
                                         {quizzes.map(quiz => {
                                             if (quiz.category.categoryId == cat.id) {

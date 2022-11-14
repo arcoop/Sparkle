@@ -1,5 +1,5 @@
 #category-show-content-container {
-    margin: 0 30px;
+    margin: 0 30px 50px;
 }
 
 #category-show-top-div {
@@ -15,8 +15,19 @@
 .category-show-tab {
     color: black;
     text-transform: uppercase;
-    font-weight: bold;
-    padding: 5px 45px 5px 0;
+    font-weight: 500;
+    padding: 5px 0 8px 0;
+    margin-right: 45px;   
+    font-size: 90%;
+}
+
+.category-show-tab:hover {
+    cursor: pointer;
+    color:#f90
+}
+
+.active-show-tab {
+    border-bottom: 3px solid #f90;
 }
 
 #category-show-all-quizzes {
@@ -26,6 +37,7 @@
 
 #category-show-tabs {
     margin-top: 25px;
+    display: flex;
 }
 
 
