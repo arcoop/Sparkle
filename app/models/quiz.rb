@@ -32,6 +32,10 @@ class Quiz < ApplicationRecord
 
     has_one_attached :icon
 
+    def self.find_category_by_name(name)
+        category = Category.find_by(name: name)
+    end
+
     # def ensure_photo
     #     unless self.photo.attached?
     #         errors.add(:photo, "must be attached")

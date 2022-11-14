@@ -11,9 +11,9 @@ Rails.application.routes.draw do
       get 'recent_takes/quiz_takes', to: "quiz_takes#recent_takes"
       get 'num_authored/quizzes', to: "quizzes#num_authored"
     end
-    resources :categories, only: [] do
-      get "/quizzes", to: "quizzes#quizzes_by_category"
-    end
+    # resources :categories, only: [] do
+    #   get "/quizzes", to: "quizzes#quizzes_by_category"
+    # end
     resources :quizzes, except: [:new, :edit] do
       resources :questions, only: [:index, :show]
       resources :comments, only: [:index]
@@ -32,7 +32,9 @@ Rails.application.routes.draw do
     get '/random/quizzes', to: "quizzes#random"
     get 'total/quiz_takes', to: "quiz_takes#total"
     get 'sorted/quiz_takes', to: "quiz_takes#sorted"
-    get 'categories/name', to: "quizzes#show"
+    get 'categories/:name', to: "categories#show", as: :category
+    get "/categories/:name/quizzes", to: "quizzes#quizzes_by_category", as: :category_quizzes
+
   end
 
 

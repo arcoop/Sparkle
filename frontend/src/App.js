@@ -9,8 +9,7 @@ import QuizShow from './components/QuizShowComponent';
 import UserShow from './components/UserShowComponent';
 import Footer from './components/Navigation/Footer';
 import QuizByCategory from './components/QuizByCategoryIndexComponent';
-import CategoriesIndex from './components/CategoryIndexComponent';
-import {CategoryIndexPage} from './components/CategoryIndexComponent'
+import CategoryIndexPage from './components/CategoryIndexComponent'
 import SearchResults from './components/SearchResultsComponent/SearchResults';
 import CategoryShow from './components/CategoryShowComponent/CategoryShow';
 
@@ -66,9 +65,8 @@ function App() {
         </Route>
 
         <Route exact path="/categories/:name/">
-          <Navigation />
-          <QuizByCategory />
-          <Footer />
+          {/* <QuizByCategory /> */}
+          <CategoryShow />
         </Route>
 
 

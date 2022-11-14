@@ -109,8 +109,8 @@ export const deleteQuiz = quizId => async dispatch => {
     dispatch(removeQuiz(quizId))
 }
 
-export const fetchQuizzesByCat = categoryId => async dispatch => {
-    const res = await csrfFetch(`/api/categories/${categoryId}/quizzes`)
+export const fetchQuizzesByCat = name => async dispatch => {
+    const res = await csrfFetch(`/api/categories/${name}/quizzes`)
     const data = await res.json()
     dispatch(setQuizzesByCategory(data))
 }

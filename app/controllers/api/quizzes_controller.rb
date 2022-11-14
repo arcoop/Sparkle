@@ -9,7 +9,10 @@ class Api::QuizzesController < ApplicationController
     end
 
     def quizzes_by_category 
-        @quizzes = Quiz.where(category_id: params[:category_id])
+        name = params[:name].capitalize() 
+        category = Quiz.find_category_by_name(name)
+        id = category.id
+        @quizzes = Quiz.where(category_id: id)
 
         render 'api/quizzes/quizzes_by_category'
     end

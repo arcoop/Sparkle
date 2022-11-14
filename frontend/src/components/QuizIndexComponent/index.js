@@ -35,7 +35,6 @@ const QuizIndex = () => {
                 getCurrentUserQuizTakes()
             } else getRecentQuizTakes()
         })
-        // dispatch(fetchUsers())
         document.title = "Sparkle!"
        
     }, [])

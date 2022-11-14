@@ -1,0 +1,22 @@
+#category-show-top-div {
+    margin-bottom: 45px;
+}
+
+#category-show-header {
+
+}
+
+.category-show-title {
+    text-transform: capitalize;
+    font-size: 2.75rem;
+    font-weight: 700;
+}
+
+.category-show-tab {
+    color: black;
+    text-transform: uppercase;
+}
+
+#category-show-left-col {
+    border-top: 1px solid #d8d8d8;
+}

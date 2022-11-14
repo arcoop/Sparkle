@@ -5,16 +5,16 @@ import { fetchQuizzes, fetchQuizzesByCat, getQuizzes } from "../../store/quizzes
 import QuizTile from "../QuizTileComponent"
 
 const QuizByCategory = () => {
-    const {categoryId} = useParams()
+    const {name} = useParams()
     
-
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(fetchQuizzesByCat(categoryId))
+        dispatch(fetchQuizzesByCat(name))
     }, [])
 
-    const quizzes = useSelector(getQuizzes)
+    const quizzes = useSelector(state => Object.values(state.quizzes))
+    console.log(quizzes)
 
     return ( 
         <div>
