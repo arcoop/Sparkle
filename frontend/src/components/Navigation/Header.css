@@ -66,7 +66,7 @@
     font-weight: 600;
     font-size: 14px;
     transition: .2s;
-    color: black;
+    color: black !important;
 }
 
 .left-nav-link:hover {
@@ -114,7 +114,7 @@
     border-radius: 3px;
     border: 1px solid #d8d8d8;
     position: absolute;
-    z-index: 1;
+    z-index: 2;
 }
 
 .categories-menu-heading {
