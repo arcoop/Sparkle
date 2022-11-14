@@ -12,6 +12,7 @@ import QuizByCategory from './components/QuizByCategoryIndexComponent';
 import CategoriesIndex from './components/CategoryIndexComponent';
 import {CategoryIndexPage} from './components/CategoryIndexComponent'
 import SearchResults from './components/SearchResultsComponent/SearchResults';
+import CategoryShow from './components/CategoryShowComponent/CategoryShow';
 
 function App() {
   return (
@@ -64,7 +65,7 @@ function App() {
           <Footer />
         </Route>
 
-        <Route exact path="/categories/:categoryId/">
+        <Route exact path="/categories/:name/">
           <Navigation />
           <QuizByCategory />
           <Footer />

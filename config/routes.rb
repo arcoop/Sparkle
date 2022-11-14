@@ -32,6 +32,7 @@ Rails.application.routes.draw do
     get '/random/quizzes', to: "quizzes#random"
     get 'total/quiz_takes', to: "quiz_takes#total"
     get 'sorted/quiz_takes', to: "quiz_takes#sorted"
+    get 'categories/name', to: "quizzes#show"
   end
 
 

@@ -275,3 +275,12 @@
     padding-left: 10px;
 }
 
+.quiz-show-cat-link {
+    color: black !important;
+}
+
+.quiz-show-cat-link:hover {
+    color: #f90 !important; 
+    text-decoration: underline;
+}
+

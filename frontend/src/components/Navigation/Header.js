@@ -50,30 +50,22 @@ const Header = () => {
         }
     }, [showMenu])
 
-
-    // const quizIds = useSelector(state => Object.keys(state.quizzes))
-    
-    // let quizId;
-    // let idx;
-
     const handleClick =  async () => {
         const randomQuizId = await dispatch(fetchRandomQuizID())
         history.push(`/quizzes/${randomQuizId}`)
     }
-
 
    return (
         <div>
             <div id="main-div">
                 <div id="left-nav">
                     <div id="extras">
-                        {/* <button onClick={openMenu(1)} id="headers-extras-button"> */}
                         <button onClick={() => openMenu(1)} id="headers-extras-button">
                         {showMenu === 1 ? <i className="fa-solid fa-x"></i> : <i className="fa-solid fa-bars"></i> }
                         </button>
                         {hamburgerMenu}
                     </div>
-                    <Link id="nav-home-link" to="/">
+                    <Link id="nav-home-link" to="/quizzes">
                         <div className="icon">
                             <i id="nav-home-link-icon" className="ri-lightbulb-flash-fill"></i>
                         </div>
@@ -81,12 +73,8 @@ const Header = () => {
                     </Link>
                     <div id="nav-links-left">
                         <Link className="left-nav-link" to='/categories'>Categories</Link>
-                        {/* <Link className="left-nav-link" to='/'>Badges</Link> */}
-                        {/* <Link className="left-nav-link" to='/'>Playlists</Link> */}
-                        {/* <Link className="left-nav-link" to='/'>Events</Link> */}
                         <Link className="left-nav-link" to='/create'>Create</Link>
                         <a target="_blank" className="left-nav-link" href="https://adina-cooper.com/">Adina Cooper</a>
-                        {/* <Link className="left-nav-link" to='/'>Quiz Lab</Link> */}
                     </div>
                 </div>
                 <div id="nav-buttons-right">
