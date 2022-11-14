@@ -24,18 +24,19 @@ const CategoriesIndex = () => {
 }
 
 // export const CategoryIndexPage = () => {
-//     return (
-//         <div>
-//             <div className='cat-index-container'>
-//             <CategoriesIndex />
-//             </div>
-
-//         </div>
-//     )
-// }
-
-
-const CategoryIndexPage = () => {
+    //     return (
+        //         <div>
+        //             <div className='cat-index-container'>
+        //             <CategoriesIndex />
+        //             </div>
+        
+        //         </div>
+        //     )
+        // }
+        
+export default CategoriesIndex;
+        
+export const CategoryIndexPage = () => {
     const dispatch = useDispatch()
     
     const categories = useSelector(state => Object.values(state.categories)) || []
@@ -74,5 +75,3 @@ const CategoryIndexPage = () => {
         </div>
     )
 }
-
-export default CategoryIndexPage;
