@@ -23,32 +23,34 @@ const CategoryShow = () => {
     const quizzes = useSelector(state => Object.values(state.quizzes))
     
     return (
-        <div className="">
+        <div className="page-wrapper">
             <Navigation />
-            <div id="category-show-top-div"></div>
-            <div id="category-show-header">
-                <div id="category-show-header-left">
-                    <h1 className="category-show-title">{name} quizzes</h1>
+            <div id="category-show-content-container">
+                <div id="category-show-top-div"></div>
+                <div id="category-show-header">
+                    <div id="category-show-header-left">
+                        <h1 className="category-show-title">{name} quizzes</h1>
+                    </div>
                 </div>
-            </div>
-            <div id="category-show-tabs">
-                <div id="category-tab-1" className="category-show-tab">all {name} quizzes</div>
-            </div>
-            <div id="category-show-all-quizzes">
-                    {quizzes.map((quiz, idx) => {
-                        return (
-                            <div key={quiz.id*idx} id="category-show-left-col">
-                                <div id="cat-show-quiz-tile-left">
-                                    <QuizTile quiz={quiz} type={"medium-cat-show"}/>
+                <div id="category-show-tabs">
+                    <div id="category-tab-1" className="category-show-tab">all {name} quizzes</div>
+                </div>
+                <div id="category-show-all-quizzes">
+                        {quizzes.map((quiz, idx) => {
+                            return (
+                                <div key={quiz.id*idx} id="category-show-left-col">
+                                    <div id="cat-show-quiz-tile-left">
+                                        <QuizTile quiz={quiz} type={"medium-cat-show"}/>
+                                    </div>
+                                    <div id="cat-show-quiz-info-right">
+                                        <Link to={`/quizzes/${quiz.id}`} className="cat-show-quiz-title">{quiz.title}</Link>
+                                        <div className="cat-show-quiz-desc">{quiz.description}</div>
+                                    </div>
                                 </div>
-                                <div id="cat-show-quiz-info-right">
-                                    <Link to={`/quizzes/${quiz.id}`} className="cat-show-quiz-title">{quiz.title}</Link>
-                                    <div className="cat-show-quiz-desc">{quiz.description}</div>
-                                </div>
-                            </div>
-                        )
-                    })}
-                <div id="category-show-right-col"></div>
+                            )
+                        })}
+                    <div id="category-show-right-col"></div>
+                </div>
             </div>
             <Footer />
         </div>

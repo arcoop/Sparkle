@@ -1,3 +1,7 @@
+#category-show-content-container {
+    margin: 0 30px;
+}
+
 #category-show-top-div {
     margin-bottom: 45px;
 }
@@ -11,10 +15,21 @@
 .category-show-tab {
     color: black;
     text-transform: uppercase;
+    font-weight: bold;
+    padding: 5px 45px 5px 0;
 }
 
-#category-show-left-col {
+#category-show-all-quizzes {
     border-top: 1px solid #d8d8d8;
+
+}
+
+#category-show-tabs {
+    margin-top: 25px;
+}
+
+
+#category-show-left-col {
     display: flex;
     margin: 25px 0 0 ;
     justify-content: flex-start;
