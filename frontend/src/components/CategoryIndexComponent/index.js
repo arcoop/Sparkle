@@ -37,29 +37,30 @@ export const CategoryIndexPage = () => {
     const quizzes = useSelector(state => Object.values(state.quizzes)) || []
 
     return (
-        <div className='categories-page-container'>
-            <div className='categories-page-main-column'>
+        <div className='categories-page-main-column'>
+            <div className='categories-page-header'>
                 <h1 className='categories-page-heading'>Sparkle Quiz Categories</h1>
-                <div className='cat-index-container'>
-                    {categories.map(cat => {
-                        return (
-                            <div className='quiz-cat-list'>
-                                <div className='quiz-by-cat-list-item'><Link className='quiz-cat-title-link' to={`/categories/${cat.name.toLowerCase()}`}><h1 className='cat-heading'>{cat.name}</h1></Link></div>
-                                <ul className='inner-quiz-list'>
-                                        {quizzes.map(quiz => {
-                                            if (quiz.category.categoryId == cat.id) {
-                                                return (
-                                                    <li className='quiz-title-list-item' key={quiz.id}>
-                                                        <Link to={`/quizzes/${quiz.id}`}>{quiz.title}</Link>
-                                                    </li>
-                                                )
-                                            }
-                                        })}
-                                </ul>
-                            </div>
-                        )
-                    })}
-                </div>
+                <p className='categories-page-subtitle'>Discover the most popular quizzes and quiz categories on Sparkle</p>
+            </div>
+            <div className='cat-index-container'>
+                {categories.map(cat => {
+                    return (
+                        <div className='quiz-cat-list'>
+                            <div className='quiz-by-cat-list-item'><Link className='quiz-cat-title-link' to={`/categories/${cat.name.toLowerCase()}`}><h1 className='cat-heading'>{cat.name}</h1></Link></div>
+                            <ul className='inner-quiz-list'>
+                                    {quizzes.map(quiz => {
+                                        if (quiz.category.categoryId == cat.id) {
+                                            return (
+                                                <li className='quiz-title-list-item' key={quiz.id}>
+                                                    <Link to={`/quizzes/${quiz.id}`}>{quiz.title}</Link>
+                                                </li>
+                                            )
+                                        }
+                                    })}
+                            </ul>
+                        </div>
+                    )
+                })}
             </div>
         </div>
     )
