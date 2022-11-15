@@ -5,6 +5,7 @@ import { createQuiz, searchQuizzes } from '../../store/quizzes';
 import './QuizCreateForm.css'
 import Navigation from '../Navigation';
 import { Link } from 'react-router-dom';
+import Footer from '../Navigation/Footer';
 
 const QuizForm = () => {
 
@@ -111,6 +112,7 @@ const QuizForm = () => {
                     </div>
 
             </div>
+            <Footer />
         </div>
     )
 

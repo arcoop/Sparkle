@@ -6,7 +6,7 @@
 
 #quiz-header {
     display: flex;
-    padding: 16px;
+    /* padding: 16px; */
     align-items: center;
     justify-content: space-between;
     width: 100%;

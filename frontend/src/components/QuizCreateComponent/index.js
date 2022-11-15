@@ -33,6 +33,7 @@ const QuizCreation = () => {
         } else {
             return (
                 <div className="page-wrapper">
+                    <Navigation />
                     <div className="quiz-create-not-logged-in-page">
                         <div className="quiz-create-not-logged-in">
                             <div className="not-logged-in-create-header">
@@ -67,6 +68,7 @@ const QuizCreation = () => {
                             </div>
                         </div>
                     </div>
+                    <Footer />
                 </div>
             )
         }
