@@ -11,7 +11,7 @@ const InterimSignUp = ({email, setEmail, errors}) => {
     //const [email, setEmail] = useState("")
     const sessionUser = useSelector(state => state.session.user)
     //const [emailPlaceholder, setEmailPlaceholder] = useState("Email")
-    const [float, setFloat] = useState("email-label")
+    const [float, setFloat] = useState(email.length >= 1 ? "email-label floating" : "email-label")
 
     if (sessionUser) return <Redirect to="/" />;
 
@@ -45,8 +45,8 @@ const InterimSignUp = ({email, setEmail, errors}) => {
                         onChange={e => setEmail(e.target.value)}
                         />
                 </div>
-            <div id="loginformmodal">
-            </div>
+            {/* <div id="loginformmodal">
+            </div> */}
 
         </div>
     )

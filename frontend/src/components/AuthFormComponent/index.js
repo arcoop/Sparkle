@@ -26,8 +26,25 @@ const FormModal = ({type = "login"}) => {
                 setModal("signup")
             }
         }
-        
-        // setModal( modal === ("login" || "create-quiz-login")  ? "signup" : "login")
+                // setModal( modal === ("login" || "create-quiz-login")  ? "signup" : "login")
+    }
+
+    const handleSignUpModal = () => {
+        setErrors([])
+        setModal("login")
+    }
+    const handleLoginModal = () => {
+        setErrors([])
+        setModal("interimSignup")
+    }
+
+    const handleInterimSignupModal = () => {
+        setErrors([])
+            if (email.length < 7 || !email.includes("@") || !email.split(".").length === 2) {
+                setErrors(["Invalid Email"])
+            } else {
+                setModal("signup")
+            }
     }
 
     const otherToggleModal = () => {
@@ -111,7 +128,7 @@ const FormModal = ({type = "login"}) => {
                                     <p id="text">{text}</p>
                                     <button 
                                         // className={formClass} onClick={toggleModal}>{modal === 'login' ? "Start Sparkling for Free" : "Log in"}
-                                        className={formClass} onClick={toggleModal}>{submitButtonText}
+                                        className={formClass} onClick={modal === "interimSignup" ? handleInterimSignupModal : (modal === "login" || modal === "create-quiz-login" ? handleLoginModal : handleSignUpModal)}>{submitButtonText}
                                     </button>
                                 </div>
                                 <div className="second-button">
