@@ -41,14 +41,14 @@
 }
 
 
-#category-show-left-col {
+.category-show-left-col {
     display: flex;
     margin: 25px 0 0 ;
     justify-content: flex-start;
     gap: 25px;
 }
 
-#cat-shoq-quiz-info-right {
+.cat-show-quiz-info-right {
     display: flex;
     flex-direction: column;
 }

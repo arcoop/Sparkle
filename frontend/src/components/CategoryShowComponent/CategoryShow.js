@@ -16,22 +16,23 @@ const CategoryShow = () => {
     const [activeIndex, setActiveIndex] = useState(1)
     
     useEffect(() => {
-        document.title = `${name.slice(0,1).toUpperCase()}${name.slice(1)} Quizzes`
         dispatch(fetchQuizzesByCat(name))
-    }, [name])
+        document.title = `${name.slice(0,1).toUpperCase()}${name.slice(1)} Quizzes`
+    }, [])
 
     const quizzes = useSelector(state => Object.values(state.quizzes))
+    console.log(quizzes) 
     const sortedQuizzesByDate = quizzes.slice().sort((a,b) => a.createdAt < b.createdAt ? 1 : -1)
     const sortedQuizzesByAlphabet = quizzes.slice().sort((a, b) => a.title.toLowerCase() < b.title.toLowerCase() ? -1 : 1)
 
     const quizListAll = <>
      {sortedQuizzesByAlphabet.map((quiz, idx) => {
             return (
-                <div key={quiz.id*idx} id="category-show-left-col">
-                    <div id="cat-show-quiz-tile-left">
+                <div key={`abc-${quiz.id}-${idx}`} className="category-show-left-col">
+                    <div className="cat-show-quiz-tile-left">
                         <QuizTile quiz={quiz} type={"medium-cat-show"}/>
                     </div>
-                    <div id="cat-show-quiz-info-right">
+                    <div className="cat-show-quiz-info-right">
                         <Link to={`/quizzes/${quiz.id}`} className="cat-show-quiz-title">{quiz.title}</Link>
                         <div className="cat-show-quiz-desc">{quiz.description}</div>
                     </div>
@@ -43,11 +44,11 @@ const CategoryShow = () => {
     const quizListNewest = <>
     {sortedQuizzesByDate.map((quiz, idx) => {
             return (
-                <div key={quiz.id*idx} id="category-show-left-col">
-                    <div id="cat-show-quiz-tile-left">
+                <div key={`123-${quiz.id}-${idx}`} className="category-show-left-col">
+                    <div className="cat-show-quiz-tile-left">
                         <QuizTile quiz={quiz} type={"medium-cat-show"}/>
                     </div>
-                    <div id="cat-show-quiz-info-right">
+                    <div className="cat-show-quiz-info-right">
                         <Link to={`/quizzes/${quiz.id}`} className="cat-show-quiz-title">{quiz.title}</Link>
                         <div className="cat-show-quiz-desc">{quiz.description}</div>
                     </div>

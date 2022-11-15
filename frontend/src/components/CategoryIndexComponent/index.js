@@ -12,7 +12,7 @@ const CategoriesIndex = () => {
     return (
         categories.map(category => {
             return (
-                <ul id='category-index'>
+                <ul key={category.id} id='category-index'>
                     <li className='category-item' key={category[0]}>
                         <Link className='category-link' to={`/categories/${(category.name).toLowerCase()}`}>{category.name}</Link>
                     </li>
@@ -45,13 +45,13 @@ export const CategoryIndexPage = () => {
             <div className='cat-index-container'>
                 {categories.map(cat => {
                     return (
-                        <div className='quiz-cat-list'>
+                        <div key={`${cat.name}${cat.id}`} className='quiz-cat-list'>
                             <div className='quiz-by-cat-list-item'><Link className='quiz-cat-title-link' to={`/categories/${cat.name.toLowerCase()}`}><h1 className='cat-heading'>{cat.name}</h1></Link></div>
                             <ul className='inner-quiz-list'>
-                                    {quizzes.map(quiz => {
+                                    {quizzes.map((quiz, idx) => {
                                         if (quiz.category.categoryId == cat.id) {
                                             return (
-                                                <li className='quiz-title-list-item' key={quiz.id}>
+                                                <li className='quiz-title-list-item' key={`${idx}-${cat.id}-${quiz.id}`}>
                                                     <Link to={`/quizzes/${quiz.id}`}>{quiz.title}</Link>
                                                 </li>
                                             )

@@ -21,7 +21,7 @@ const QuizTile = ({quiz, type}) => {
 
     const image = quiz.iconUrl ? <img src={quiz.iconUrl} alt="" /> : <img className="quiz-icon" src="https://cdn.writermag.com/2019/03/question-marks.jpg" alt="" />
 
-    const mediumQuizTile = <div className="quiz-tile">
+    const mediumQuizTile = <div key={`med ${quiz.id}`} className="quiz-tile">
                 <Link className="link-to-quiz-show" to={`/quizzes/${quiz.id}`}>
                     <div className={`quiz-icon-tile medium`}>
                         {image}
@@ -39,7 +39,7 @@ const QuizTile = ({quiz, type}) => {
                 <div className="quiz-tile-description">{quiz.description}</div>
             </div>
 
-    const mediumQuizTileCategory = <div className="quiz-tile med-cat-show">
+    const mediumQuizTileCategory = <div key={`med-cat ${quiz.id}`} className="quiz-tile med-cat-show">
                 <Link className="link-to-quiz-show" to={`/quizzes/${quiz.id}`}>
                     <div className={`quiz-icon-tile medium`}>
                         {image}
@@ -57,7 +57,7 @@ const QuizTile = ({quiz, type}) => {
 
     
         
-    const largeQuizTile = <div className="quiz-tile">
+    const largeQuizTile = <div key={`large ${quiz.id}`} className="quiz-tile">
                 <Link className="link-to-quiz-show" to={`/quizzes/${quiz.id}`}>
                     <div className={`quiz-icon-tile large`}>
                         {image}
@@ -75,7 +75,7 @@ const QuizTile = ({quiz, type}) => {
                 </Link>
             </div>
     
-    const smallQuizTile = <div className="small-quiz-tile">
+    const smallQuizTile = <div key={`small ${quiz.id}`} className="small-quiz-tile">
                 <Link className="small-link-to-quiz-show" to={`/quizzes/${quiz.id}`}>
                     <div className={`small-quiz-icon-tile`}>
                         {image}
