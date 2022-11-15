@@ -36,12 +36,7 @@ const QuizEditForm = () => {
     for (let i = 1; i < 30; i++) {
         times.push(i)
     }
-    const [answerType, setAnswerType] = useState("answer")
-    const [hintHeading, setHintHeading] = useState("Hint")
-    const [answerHeading, setAnswerHeading] = useState("Answer")
-    const [extraHeading, setExtraHeading] = useState("")
-    // const [category, setCategory] = useState(quiz.category)
-    const [categoryId, setCategoryId] = useState(quiz.categoryId)
+    const [categoryId, setCategoryId] = useState(quiz.category.categoryId)
     const [redirect, setRedirect] = useState(false)
     const [succesMessage, setSuccessMessage] = useState([])
     
@@ -258,7 +253,7 @@ const QuizEditForm = () => {
                                             <select className='quiz-edit-input' name="dropdown" id="category-select-options" onChange={e => setCategoryId(e.target.value)}>
                                                 {categories.map(cat => { 
                                                     return (
-                                                        <option selected={cat[0] === quiz.categoryId ? true : false} key={cat[0]} value={cat[0]}>{cat[1]}</option>
+                                                        <option selected={cat[0] === quiz.category.categoryId ? true : false} key={cat[0]} value={cat[0]}>{cat[1]}</option>
                                                     )
                                                 })}
                                             </select>
