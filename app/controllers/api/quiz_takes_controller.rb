@@ -24,9 +24,7 @@ class Api::QuizTakesController < ApplicationController
     end
 
     def total
-        p "in total"
         @quiz_takes = QuizTake.all
-        p @quiz_takes
         render '/api/quiz_takes/total'
     end
 

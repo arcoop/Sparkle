@@ -1,12 +1,8 @@
-#quiz-show-page-container {
-    margin: auto;
-    width: 70%;
-}
-
 #quiz-show-page {
     display: flex;
     justify-content: space-between;
-    margin-top: 10px;
+    margin: 30px;
+    /* width: 70%; */
 }
 
 #left-side {

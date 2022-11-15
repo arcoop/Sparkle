@@ -21,21 +21,17 @@ const CommentsCreate = () => {
     return (
         <div id='comment-create-div'>
             <div id='create-comment-left-side'>
-                <div>
                     <i id="commenter-user-icon" className="fa-regular fa-user"></i>
-                </div>
             </div>
-            <div id='main-create-comment-section'>
-                <form id='comment-create-form' onSubmit={handleSubmit}>
-                    <textarea
-                        id='comment-create-body'
-                        placeholder='Post a new comment...'
-                        onChange={(e)=> setBody(e.target.value)} 
-                    />
-                    <br />
-                    <button id="comment-submit-button" className='submit-button'>Post Comment</button>
-                </form>
-            </div>
+            <form id='comment-create-form' onSubmit={handleSubmit}>
+                <textarea
+                    id='comment-create-body'
+                    placeholder='Post a new comment...'
+                    onChange={(e)=> setBody(e.target.value)} 
+                />
+                <br />
+                <button id="comment-submit-button" className='submit-button'>Post Comment</button>
+            </form>
             
         </div>
     )

@@ -27,6 +27,7 @@
     cursor: text;
 }
 
+
 #comment-submit-button {
     border-radius: 4px;
     box-sizing: border-box;
@@ -37,3 +38,4 @@
     margin-left: 10px;
     margin-top: 5px;
 }
+
