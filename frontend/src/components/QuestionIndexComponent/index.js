@@ -27,13 +27,14 @@ const QuestionIndex = ({quiz}) => {
     const [modal, setModal] = useState(<></>)
     const [showModal, setShowModal] = useState(false)
     const [quizTakeCreated, setQuizTakeCreated] = useState(false)
+    const maxScore = (quiz.maxScore === 1 ? questions.length : quiz.maxScore)
     
     useEffect(() => {
         dispatch(fetchQuestions(quizId))
     }, [quizId])
 
     useEffect(() => {
-        if (!quizTakeCreated && (score === quiz.maxScore || (min === 0 && seconds === 0))) {
+        if (!quizTakeCreated && (score === maxScore || (min === 0 && seconds === 0))) {
             const quizTake = {takerId: sessionUser ? sessionUser.id : null, quizId: quizId, score: score, time: `${min}:${seconds}` }
             clearInterval()
             setQuizTakeCreated(true)
@@ -64,54 +65,54 @@ const QuestionIndex = ({quiz}) => {
         setSeconds(prevSecs => prevSecs === 0 ? 59 : prevSecs)  
          
         const timer = () => {
-
-            const handleResume = () =>{
-                setShowModal(false)
-                playQuiz(tempMin, tempSeconds, true)
-            }
-            const handlePause = () => {
-
-                setModal(  <Modal onClose = {() => setShowModal(false)} type={"quizPaused"}>
-                    <div className='quiz-paused-modal-content'>
-                        <div onClick={handleResume} id='resume-button' className='submit-button'>Resume</div>
-                        <div className='quiz-paused-info'>
-                            <div className='quiz-paused-text'>Quiz Paused</div>
-                            <div className='paused-quiz-title-descript'>
-                                <div>{quiz.title}</div>
-                                <div>{quiz.description}</div>
+                const handleResume = () =>{
+                    setShowModal(false)
+                    playQuiz(tempMin, tempSeconds, true)
+                }
+                const handlePause = () => {
+    
+                    setModal(  <Modal onClose = {() => setShowModal(false)} type={"quizPaused"}>
+                        <div className='quiz-paused-modal-content'>
+                            <div onClick={handleResume} id='resume-button' className='submit-button'>Resume</div>
+                            <div className='quiz-paused-info'>
+                                <div className='quiz-paused-text'>Quiz Paused</div>
+                                <div className='paused-quiz-title-descript'>
+                                    <div>{quiz.title}</div>
+                                    <div>{quiz.description}</div>
+                                </div>
+                                <div className='paused-time-remaining'>{tempMin < 10 ? `0${tempMin}` : tempMin}:{tempSeconds < 10 ? `0${tempSeconds}` : tempSeconds} Remaining</div>
                             </div>
-                            <div className='paused-time-remaining'>{tempMin < 10 ? `0${tempMin}` : tempMin}:{tempSeconds < 10 ? `0${tempSeconds}` : tempSeconds} Remaining</div>
-                        </div>
-                    </div>            
-
-            </Modal>)
-              
-                setShowModal(true)
-                clearInterval(secondsInterval)
-                clearInterval(minuteInterval)
-            }  
-            
-            setPauseButton(<div onClick={handlePause} className="quiz-score-time pause"><i id="quiz-pause" className="fa-solid fa-pause"></i></div>)
-
-            const secondsInterval = setInterval(() => {
-                if (tempSeconds === 0 && tempMin === 0) {
+                        </div>            
+    
+                </Modal>)
+                  
+                    setShowModal(true)
                     clearInterval(secondsInterval)
-                } else {
-                    tempSeconds = tempSeconds === 0 ? 59 : tempSeconds - 1
-                    setSeconds(prevSecs => prevSecs === 0 ? 59 : prevSecs - 1)
-                }
-            }, 1000)
-
-            const minuteInterval = setInterval(() => {
-                if (tempMin === 0 ) {
                     clearInterval(minuteInterval)
-                } else {
-                    tempMin -= 1; 
-                    setMin(prevMin => prevMin - 1)
-                }
-            }, 60000)
-        };
-        timer()
+                }  
+                
+                setPauseButton(<div onClick={handlePause} className="quiz-score-time pause"><i id="quiz-pause" className="fa-solid fa-pause"></i></div>)
+    
+                const secondsInterval = setInterval(() => {
+                    if (tempSeconds === 0 && tempMin === 0) {
+                        clearInterval(secondsInterval)
+                    } else {
+                        tempSeconds = tempSeconds === 0 ? 59 : tempSeconds - 1
+                        setSeconds(prevSecs => prevSecs === 0 ? 59 : prevSecs - 1)
+                    }
+                }, 1000)
+    
+                const minuteInterval = setInterval(() => {
+                    if (tempMin === 0 ) {
+                        clearInterval(minuteInterval)
+                    } else {
+                        tempMin -= 1; 
+                        setMin(prevMin => prevMin - 1)
+                    }
+                }, 60000)
+            };
+
+        timer();
     }
     
 
@@ -151,7 +152,7 @@ const QuestionIndex = ({quiz}) => {
                     <div id="right-side-quiz-header">
                         <div className="quiz-score-time" id="score">
                             <p className="score-time-heading" id="score-heading">Score:</p>
-                            <h3 className="score-time-info">{score}/{quiz.maxScore}</h3>
+                            <h3 className="score-time-info">{score}/{maxScore}</h3>
                         </div>
                         {pauseButton}
                         <div className="quiz-score-time" id="timer">
