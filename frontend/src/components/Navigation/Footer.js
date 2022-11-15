@@ -50,11 +50,11 @@ export const Footer = () => {
                             <div className="line-separator"></div>
                             <div className="footer-links">
                                 <p className="footer-header">Reach Me</p>
-                                <a target="_blank" href="https://adina-cooper.com/" className="footer-item-link">About Me</a>
                                 <a target="_blank" href="https://www.linkedin.com/in/adina-cooper/" className="footer-item-link">LinkedIn</a>
                                 <a target="_blank" href="https://angel.co/u/adina-cooper-1" className="footer-item-link">AngelList</a>
                                 <a target="_blank" href="https://github.com/arcoop" className="footer-item-link">GitHub</a>
                                 <a target="_blank" href="mailto:cooperadina@gmail.com?subject='Love your work!'&body='Really enjoyed looking at your work. Would love to set up a time to talk.'" className="footer-item-link">Email</a>
+                                <a target="_blank" href="https://adina-cooper.com/" className="footer-item-link">adina-cooper.com</a>
                             </div>
                         </div>
                         <div id="last-footer-links-section" className="footer-links-section">

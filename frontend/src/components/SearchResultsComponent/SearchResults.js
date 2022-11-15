@@ -29,19 +29,19 @@ const SearchResults = () => {
     let numResults = location.pathname.includes("quizzes") ? quizzes.length : users.length
     let resultsText = numResults === 1 ? "result" : "results"
     let author;
-    let category;
+    let categoryName;
 
     let results;
     if (location.pathname.includes("quizzes")) {
         results = <ul className="search-results">
             {quizzes.map(quiz => {
                 {author = quiz.author;}
-                {category = quiz.category;}
+                {categoryName = quiz.category.categoryName;}
                 return (
                     <li className="results-list-item" key={quiz.id}>
                     <Link className="result-title" to={`/quizzes/${quiz.id}`}>{quiz.title}</Link>
                     <p className="result-description">{quiz.description}</p>
-                    <p className="result-author-category">by <Link className="result-info" to={`/users/${author.id}`}>{author.username}</Link> in <Link className="result-info" to={`/categories/${category.name.toLowerCase()}`}>{category.name}</Link></p>
+                    <p className="result-author-category">by <Link className="result-info" to={`/users/${author.id}`}>{author.username}</Link> in <Link className="result-info" to={`/categories/${categoryName.toLowerCase()}`}>{categoryName}</Link></p>
                     </li>
                 )
             })}
@@ -52,10 +52,10 @@ const SearchResults = () => {
         results = <ul className="search-results">
         {users.map(user => {
             return (
-                <li className="results-list-item" key={user.id}>
-                    <Link to={`/users/${user.id}`}>
-                        <i className="fa-regular fa-user"></i>
-                        {user.username}
+                <li className="results-list-item user" key={user.id}>
+                    <Link className="user-list-item-link" to={`/users/${user.id}`}>
+                        <i className="fa-regular fa-user user-profile"></i>
+                        <p className="user-profile-username">{user.username}</p>
                     </Link>
                 </li>
             )

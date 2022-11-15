@@ -12,6 +12,19 @@
     margin-bottom: 5px;
 }
 
+.results-list-item.user {
+    border-bottom: 1px solid #d8d8d8;
+    padding: 20px;
+}
+
+.user-list-item-link {
+    display: flex;
+}
+
+.user-list-item-link:visited .user-profile-username {
+    color:#9f9f9f;
+}
+
 .result-title {
     font-weight: bold;
     font-size: 1.25rem;
@@ -67,6 +80,17 @@
    
 }
 
+.fa-user.user-profile {
+    color: rgb(49, 152, 200);
+    font-size: 20px;
+}
+
+.user-profile-username {
+    color: black;
+    margin-left: .9375rem;
+    font-weight: bold;
+    font-size: 14px;
+}
 
 .search-results-subheading {
     margin: 10px;
