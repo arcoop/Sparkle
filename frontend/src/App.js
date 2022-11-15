@@ -38,9 +38,7 @@ function App() {
         </Route>
 
         <Route exact path={"/create"}>
-          <Navigation />
           <QuizCreation />
-          <Footer />
         </Route>
 
         <Route path="/create/new">

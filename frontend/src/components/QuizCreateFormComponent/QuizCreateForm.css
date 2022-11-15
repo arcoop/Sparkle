@@ -1,11 +1,11 @@
-#page-container {
+#create-quiz-page-container {
     width: 1500px;
-    margin: auto;
-}
-
-#form-container {
+    margin: 50px 20px;
     display: flex;
     justify-content: space-between;
+    gap: 20px;
+    flex-direction: column;
+
 }
 
 #quiz-form-container-left-col {
@@ -52,7 +52,7 @@
 
 #similar-quizzes {
     padding: 12px;
-    height: 80px;
+    height: 200px;
     /* height: 175px; */
     border-radius: 5px;
     overflow: auto;

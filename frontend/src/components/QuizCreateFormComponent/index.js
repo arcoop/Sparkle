@@ -70,9 +70,8 @@ const QuizForm = () => {
                 </ul>
 
                 
-            <div id='page-container'>
+            <div className='page-container' id='create-quiz-page-container'>
                 <h1 className='page-title'>Create a New Quiz</h1>
-                <div id='form-container'>
                     <div id='quiz-form-container-left-col'>
                         <form className='quiz-create-form' onSubmit={handleSubmit}>
                             <div>
@@ -107,26 +106,10 @@ const QuizForm = () => {
                                     </select>
                                 </div>
                             </label>
-                            {/* <label className='input-label'>Quiz Icon */}
-                                {/* <input type="file" onChange={handleFile}/>
-                            </label>
-                            {preview} */}
                             <button className='submit-button' id="create-quiz" type='submit'>Create Quiz</button>
                         </form>
                     </div>
 
-                    {/* <div id='quiz-form-container-right-col'>
-                        <div id="items">
-                            <div>
-                                <h2>Quizzes Remaining</h2>
-                            </div>
-                            <div>
-                                <h2>Need Help?</h2>
-                            </div>
-                        </div>
-
-                    </div> */}
-                </div>
             </div>
         </div>
     )
