@@ -18,10 +18,9 @@ const CategoryShow = () => {
     useEffect(() => {
         dispatch(fetchQuizzesByCat(name))
         document.title = `${name.slice(0,1).toUpperCase()}${name.slice(1)} Quizzes`
-    }, [])
+    }, [name])
 
     const quizzes = useSelector(state => Object.values(state.quizzes))
-    console.log(quizzes) 
     const sortedQuizzesByDate = quizzes.slice().sort((a,b) => a.createdAt < b.createdAt ? 1 : -1)
     const sortedQuizzesByAlphabet = quizzes.slice().sort((a, b) => a.title.toLowerCase() < b.title.toLowerCase() ? -1 : 1)
 
