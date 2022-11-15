@@ -63,6 +63,7 @@ const QuizTile = ({quiz, type}) => {
                         {image}
                         <div className="large-quiz-info">
                             <div className={`quiz-tile-title-large`}>{quiz.title}</div>
+                            <div>{quiz.description}</div>
                             <div className={`author-category-time-large`}>
                                 <div className="quiz-tile-author">by {username}</div>
                                 <div className="quiz-tile-cat">{categoryName}</div>
