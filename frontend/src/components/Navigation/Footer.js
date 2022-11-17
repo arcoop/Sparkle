@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchNumberofQuizTakes } from "../../store/quizTakes";
 import './Footer.css'
+import Resume from '../../ResumeLink/AdinaCooper.pdf'
 
 export const Footer = () => {
 
@@ -64,7 +65,7 @@ export const Footer = () => {
                                 <a target="_blank" href="https://arcoop.github.io/Bang/" className="footer-item-link">Bang!</a>
                                 <a target="_blank" href="https://cubberd.herokuapp.com/about" className="footer-item-link">Cubberd</a>
                                 <a target="_blank" href="https://www.sporcle.com/" className="footer-item-link">Sporcle.com</a>
-                                <a target="_blank" href="" className="footer-item-link">Resume</a>
+                                <a target="_blank" href={Resume} className="footer-item-link">Resume</a>
                             </div>
                         </div>
                     </div>
