@@ -71,7 +71,7 @@ const QuizIndex = () => {
     if (sessionUser.id) {
         topDivText = <div>Welcome, <Link id="home-page-user-link" to={`/users/${sessionUser.id}`}>{sessionUser.username}</Link>!</div>
     } else {
-        topDivText = <div>Welcome to the world’s largest quiz community. Play a quiz or create your own. A sparkle shines in everyone!</div>
+        topDivText = <div>Welcome to the world’s largest quiz community. Play a quiz or <Link className='top-div-create-link' to='/create'>create</Link> your own. A sparkle shines in everyone!</div>
     }
 
     let recentQuizTakesDiv;

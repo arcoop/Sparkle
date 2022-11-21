@@ -235,3 +235,12 @@
 .popular-quiz-list-item.num {
     color: #f90;
 }
+
+.top-div-create-link {
+    color: black;
+    text-decoration: underline;
+}
+
+.top-div-create-link:hover {
+    color: #f90;
+}
