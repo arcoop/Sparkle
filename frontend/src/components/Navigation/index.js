@@ -16,17 +16,15 @@ const Navigation = () => {
             <div className="nav-link-items">
                 <Link className="navLinks" to="/" id="home-link">
                     <i className="fa-solid fa-house-chimney" id="home-button"></i> 
-                    <p>quizzes</p>
+                    quizzes
                 </Link>
-                <Link className="navLinks" to={'/create'} id="quiz-create-link">
-                        <p id="quiz-creation">quiz creation</p>
-                </Link>
+                <Link className="navLinks" to={'/create'} id="quiz-create-link">quiz creation</Link>
                 
                 <div className="line-break" id="nav-line-break"></div>
 
                 <a className="navLinks"  target="_blank" href="mailto:cooperadina@gmail.com?subject='Love your work!'&body='Really enjoyed looking at your work. Would love to set up a time to talk.'">
                     <i id="email-icon" className="fa-regular fa-envelope"></i>
-                    <p>Email me!</p>
+                    Email me!
                 </a>
                 
                 <a className="navLinks" target="_blank" href="https://www.linkedin.com/in/adina-cooper/">
