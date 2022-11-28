@@ -115,10 +115,22 @@
     border: 1px solid #d8d8d8;
     position: absolute;
     z-index: 2;
+    width: 300px;
+    top: 75px;
+    left: 0;
 }
 
 .categories-menu-heading {
     font-weight: bold;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-left: 80px;
+    color: black;
+}
+
+.categories-menu-heading:hover {
+    color: #f90;
+    text-decoration: underline;
 }
 
 #headers-extras-button {

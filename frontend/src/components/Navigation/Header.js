@@ -29,7 +29,7 @@ const Header = () => {
     }
 
     const hamburgerMenu = (
-        showMenu === 1 ? <div className="categories-menu"><h2 className="categories-menu-heading">All Categories</h2><CategoriesIndex /> </div> : <></>
+        showMenu === 1 ? <div className="categories-menu"><h2 className="categories-menu-heading"><Link to="/categories">Quiz Categories</Link></h2><CategoriesIndex /> </div> : <></>
     )
 
     const searchMenu = (
