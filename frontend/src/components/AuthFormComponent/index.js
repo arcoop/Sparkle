@@ -3,6 +3,7 @@ import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
 import { Modal } from "../../context/Modal";
 import InterimSignUp from "./InterimModalForm";
+import { useEffect } from "react";
 
 const FormModal = ({type = "login"}) => {
     const [showModal, setShowModal] = useState(false)
@@ -57,8 +58,9 @@ const FormModal = ({type = "login"}) => {
 
     const handleClose = () => {
         setShowModal(false)
-        setModal('login')
+        // setModal('login')
         setEmail("")
+        setErrors([])
     }
 
     let buttonText;
@@ -94,7 +96,7 @@ const FormModal = ({type = "login"}) => {
         formClass = "signup-link"
         submitButtonText = "Login"
     }
-    if (modal === 'interimSignup') {
+    if (modal === 'interimSignup' || modal === 'create-quiz-signup') {
         formClass = "interim-signup-link"
         submitButtonText = "CONTINUE"
     }
@@ -105,10 +107,9 @@ const FormModal = ({type = "login"}) => {
 
     let modalForm;
     if (modal === 'login' || modal === 'create-quiz-login') modalForm = <LoginForm />
-    if (modal === 'signup' || modal === 'create-quiz-signup') modalForm = <SignupForm email={email} setEmail={setEmail}/>
-    if (modal === 'interimSignup') modalForm = <InterimSignUp email={email} setEmail={setEmail} errors={errors}/>
+    if (modal === 'signup') modalForm = <SignupForm email={email} setEmail={setEmail}/>
+    if (modal === 'interimSignup' || modal === 'create-quiz-signup') modalForm = <InterimSignUp email={email} setEmail={setEmail} errors={errors}/>
 
-    
     return (
         <>            
             <button className={buttonClass} onClick={handleClick}>{buttonText}</button>
@@ -128,12 +129,12 @@ const FormModal = ({type = "login"}) => {
                                     <p id="text">{text}</p>
                                     <button 
                                         // className={formClass} onClick={toggleModal}>{modal === 'login' ? "Start Sparkling for Free" : "Log in"}
-                                        className={formClass} onClick={modal === "interimSignup" ? handleInterimSignupModal : (modal === "login" || modal === "create-quiz-login" ? handleLoginModal : handleSignUpModal)}>{submitButtonText}
+                                        className={formClass} onClick={modal === "interimSignup" || modal === "create-quiz-signup" ? handleInterimSignupModal : (modal === "login" ? handleLoginModal : handleSignUpModal)}>{submitButtonText}
                                     </button>
                                 </div>
                                 <div className="second-button">
-                                    {modal === "interimSignup" ? <p className="login-m-text">Already Sparkling?</p> : <></>}
-                                    {modal === "interimSignup" ? <button id="login-m-link" className="signup-link" onClick={otherToggleModal}>Log In</button> : <></>}
+                                    {modal === "interimSignup" || modal === "create-quiz-signup" ? <p className="login-m-text">Already Sparkling?</p> : <></>}
+                                    {modal === "interimSignup" || modal === "create-quiz-signup" ? <button id="login-m-link" className="signup-link" onClick={otherToggleModal}>Log In</button> : <></>}
                                 </div>
                             </div>
                         </div>
