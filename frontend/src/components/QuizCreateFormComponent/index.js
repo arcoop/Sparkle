@@ -90,7 +90,7 @@ const QuizForm = () => {
                                     <ul>
                                         {quizName.length > 1 && quizzes.map(quiz => {
                                             return (
-                                                <li key={quiz.id}><Link to={`/quizzes/${quiz.id}`}>{quiz.title}</Link></li>
+                                                <li key={`${quiz.id}${quiz.name}`}><Link to={`/quizzes/${quiz.id}`}>{quiz.title}</Link></li>
                                             )
                                         })}
                                     </ul>
@@ -99,9 +99,9 @@ const QuizForm = () => {
                             <label className='input-label'>Quiz Type
                                 <div className='select-button'>
                                     <select name="dropdown" id="dropdown" onChange={e => setQuizType(e.target.value)}>
-                                        {quizTypes.map(type => {
+                                        {quizTypes.map((type, i) => {
                                             return (
-                                                <option className='dropdown-item' key={type} value={type}>{type}</option>
+                                                <option className='dropdown-item' key={`${type}${i}`} value={type}>{type}</option>
                                             )
                                         })}
                                     </select>
