@@ -20,7 +20,7 @@ const ExtrasButton = ({quiz}) => {
     }
 
     const handleDelete = async => {
-        dispatch(deleteQuiz(quiz.id)).then(history.push('/quizzes'))
+        dispatch(deleteQuiz(quiz.id)).then(() => history.push('/quizzes'))
     }
 
     const menu = (
