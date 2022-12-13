@@ -46,3 +46,7 @@ table {
 a:visited {
     color: inherit;
 }
+
+a {
+	color: black;
+}
