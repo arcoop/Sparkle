@@ -23,7 +23,7 @@ const QuizCreation = () => {
                         </div>
                         <div id='button-box'>
                             <Link to={'/create/new'}>
-                                <button className="submit-button" id='create-quiz-button'>Create a Sporlce Quiz</button>
+                                <button className="submit-button" id='create-quiz-button'>Create a Sparkle Quiz</button>
                             </Link>
                         </div>
                 </div>
