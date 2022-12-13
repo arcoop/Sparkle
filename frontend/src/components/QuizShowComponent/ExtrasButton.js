@@ -19,6 +19,10 @@ const ExtrasButton = ({quiz}) => {
         history.push(`/create/edit/${quiz.id}`)
     }
 
+    const handleDelete = async => {
+        dispatch(deleteQuiz(quiz.id)).then(history.push('/quizzes'))
+    }
+
     const menu = (
         <ul className="quiz-extras-menu">
             <li className="quiz-menu-list-item">
@@ -28,7 +32,7 @@ const ExtrasButton = ({quiz}) => {
                 </button>
             </li>
             <li className="quiz-menu-list-item">
-                <button onClick={() => dispatch(deleteQuiz(quiz.id)) } className="quiz-menu-button" id="quiz-menu-delete-button">
+                <button onClick={handleDelete} className="quiz-menu-button" id="quiz-menu-delete-button">
                     <i className="fa-regular fa-trash-can"></i>
                     <p>Delete</p>
                 </button>
