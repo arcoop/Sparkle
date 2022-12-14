@@ -21,7 +21,6 @@ const QuestionsForm = ({quiz}) => {
     for (let i = 0; i <= num; i++) {
         rows.push(<QuestionsFormTile key={i} quiz={quiz} num={i+1} />)
     }
-    console.log(rows)
 
     return (
         <div>

@@ -9,20 +9,19 @@ import { Link } from 'react-router-dom'
 const QuizEditForm = () => {
     const {quizId} = useParams()
 
-    let quiz = useSelector(getQuiz(quizId)) || {title: "", quizType: "", id: 1};
-
-    let cat = useSelector(state => state.categories[quiz.categoryId]) || {}
-
+    const quiz = useSelector(state => state.quizzes[quizId]) || {title: "", quizType: ""}
+    
     useEffect(() => {
         dispatch(fetchQuiz(quizId))
         document.title = `Editing ${quiz.title}`
     }, [quizId])
-    
+
     
     useEffect(() => {
         setQuizName(quiz.title)
         setQuizType(quiz.quizType)
     }, [quiz]);
+    
 
     const [quizName, setQuizName] = useState(quiz.title)
     
@@ -36,7 +35,7 @@ const QuizEditForm = () => {
     for (let i = 1; i < 30; i++) {
         times.push(i)
     }
-    const [categoryId, setCategoryId] = useState(quiz.category.categoryId) || ""
+    const [categoryId, setCategoryId] = useState()
     const [redirect, setRedirect] = useState(false)
     const [succesMessage, setSuccessMessage] = useState([])
     
@@ -141,7 +140,7 @@ const QuizEditForm = () => {
 
     if (redirect) return <Redirect to={`/quizzes/${quizId}`} />
 
-    return ( quizId &&
+    return (quiz.id && 
 
         <div id='edit-form-container'>
             <ul className="sucess">
