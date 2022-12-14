@@ -11,7 +11,7 @@ import './QuizPaused.css'
 const QuestionIndex = ({quiz}) => {
     const dispatch = useDispatch()
     
-    const sessionUser = useSelector(state => state.session.user) || {}
+    const sessionUser = useSelector(state => state.session.user) || 0
     
     const questions = useSelector(getQuestions)
 
@@ -28,17 +28,20 @@ const QuestionIndex = ({quiz}) => {
     const [showModal, setShowModal] = useState(false)
     const [quizTakeCreated, setQuizTakeCreated] = useState(false)
     const maxScore = (quiz.maxScore === 1 ? questions.length : quiz.maxScore)
+    const [answeredQuestions, addAnsweredQuestion] = useState(new Set())
     
     useEffect(() => {
         dispatch(fetchQuestions(quizId))
     }, [quizId])
-
+    
     useEffect(() => {
         if (!quizTakeCreated && (score === maxScore || (min === 0 && seconds === 0))) {
             const quizTake = {takerId: sessionUser ? sessionUser.id : null, quizId: quizId, score: score, time: `${min}:${seconds}` }
             clearInterval()
-            setQuizTakeCreated(true)
-            dispatch(createQuizTake(quizTake))
+            if (sessionUser) {
+                setQuizTakeCreated(true)
+                dispatch(createQuizTake(quizTake))
+            }
         }
     }, [score, min, seconds])
 
@@ -49,9 +52,11 @@ const QuestionIndex = ({quiz}) => {
                 setInputVal("")
                 let answer = document.getElementById(Object.values(q)[0])
                 answer.className = "revealed-answer"
-                setUsedAnswers(prev => prev + [Object.values(q)[2]])
+                setUsedAnswers(prev => prev.concat([Object.values(q)[2]]))
+                addAnsweredQuestion(prev => prev.add(q.id))
             }
         })
+        console.log(answeredQuestions)
     }, [inputVal])
 
 
@@ -175,7 +180,7 @@ const QuestionIndex = ({quiz}) => {
                                 </td>
                                 <td>
                                     <div id="empty-div"></div>
-                                    <div id={Object.values(question)[0]} className="revealed-answer-hidden">{question.answer}</div>
+                                    <div id={Object.values(question)[0]} className={answeredQuestions.has(question.id) ? "revealed-answer" : "revealed-answer-hidden"}>{question.answer}</div>
                                 </td>
                             </tr>
                         )

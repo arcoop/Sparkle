@@ -12,7 +12,6 @@ const QuestionTile = ({question, setScore, inputVal, setInputVal}) => {
             let answer = document.getElementById(question)
             document.getElementById("revealed-answer").className="hidden"
             answer.className=("revealed-answer")
-            
         }
     }, [inputVal])
 }
