@@ -21,14 +21,13 @@ const QuestionIndex = ({quiz}) => {
     const [min, setMin] = useState(quiz.quizTimer || [])
     const [seconds, setSeconds] = useState(0)
     const [inputVal, setInputVal] = useState("")
-    const [usedAnswers, setUsedAnswers] = useState([])
+    const [usedAnswers, setUsedAnswers] = useState(new Set())
     const [pauseButton, setPauseButton] = useState(<div className="quiz-score-time pause-hidden"><i id="quiz-pause-hidden" className="fa-solid fa-pause"></i></div>)
     const [playOrAnswer, setPlayOrAnswer] = useState("play")
     const [modal, setModal] = useState(<></>)
     const [showModal, setShowModal] = useState(false)
     const [quizTakeCreated, setQuizTakeCreated] = useState(false)
     const maxScore = (quiz.maxScore === 1 ? questions.length : quiz.maxScore)
-    const [answeredQuestions, addAnsweredQuestion] = useState(new Set())
     
     useEffect(() => {
         dispatch(fetchQuestions(quizId))
@@ -47,16 +46,14 @@ const QuestionIndex = ({quiz}) => {
 
     useEffect(() => {
         questions.forEach(q => {
-            if (Object.values(q)[2].toLowerCase() === inputVal.toLowerCase() && !usedAnswers.includes(Object.values(q)[2])) {
+            if (Object.values(q)[2].toLowerCase() === inputVal.toLowerCase() && !usedAnswers.has(q.id)) {
                 setScore(score + 1)
                 setInputVal("")
                 let answer = document.getElementById(Object.values(q)[0])
                 answer.className = "revealed-answer"
-                setUsedAnswers(prev => prev.concat([Object.values(q)[2]]))
-                addAnsweredQuestion(prev => prev.add(q.id))
+                setUsedAnswers(prev => prev.add(q.id))
             }
         })
-        console.log(answeredQuestions)
     }, [inputVal])
 
 
@@ -180,7 +177,7 @@ const QuestionIndex = ({quiz}) => {
                                 </td>
                                 <td>
                                     <div id="empty-div"></div>
-                                    <div id={Object.values(question)[0]} className={answeredQuestions.has(question.id) ? "revealed-answer" : "revealed-answer-hidden"}>{question.answer}</div>
+                                    <div id={Object.values(question)[0]} className={usedAnswers.has(question.id) ? "revealed-answer" : "revealed-answer-hidden"}>{question.answer}</div>
                                 </td>
                             </tr>
                         )
