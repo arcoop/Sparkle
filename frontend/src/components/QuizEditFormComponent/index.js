@@ -36,7 +36,7 @@ const QuizEditForm = () => {
     for (let i = 1; i < 30; i++) {
         times.push(i)
     }
-    const [categoryId, setCategoryId] = useState(quiz.category.categoryId)
+    const [categoryId, setCategoryId] = useState(quiz.category.categoryId) || ""
     const [redirect, setRedirect] = useState(false)
     const [succesMessage, setSuccessMessage] = useState([])
     
