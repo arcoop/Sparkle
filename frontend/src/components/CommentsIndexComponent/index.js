@@ -22,7 +22,7 @@ const CommentsIndex = ({quizComments, quizId}) => {
             <h1 id="num-comments-header">{quizComments.length} Comments</h1>
             {quizComments.map(comment => {
                 return (
-                    <div>
+                    <div key={comment.id}>
                         <CommentTile comment={comment} setNumLikes={setNumLikes}/>
                          <hr />
                     </div>

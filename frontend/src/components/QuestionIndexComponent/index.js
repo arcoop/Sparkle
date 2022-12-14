@@ -169,7 +169,7 @@ const QuestionIndex = ({quiz}) => {
                 <tbody>
                     {questions.map(question => {
                         return (
-                            <tr className="question-table-row">
+                            <tr key={`question${question.id}`} className="question-table-row">
                                 <td className="question-table-question">
                                     <div id="question-container">
                                         <p className="question-body">{question.body}</p>
