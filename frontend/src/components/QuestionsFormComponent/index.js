@@ -8,17 +8,19 @@ const QuestionsForm = ({quiz}) => {
     const [num, setNum] = useState(0)
     const [body, setBody] = useState("")
     const [answer, setAnswer] = useState("")
-    const [inputNum, setInputNum] = useState()
+    const [inputNum, setInputNum] = useState(0)
 
-    
     const dispatch = useDispatch();
-    
+
+    // console.log(typeof(inputNum))
+
     const addRow = (e) => {
         e.preventDefault()
-        setNum(num + 1)
+        setNum(prev =>  prev + inputNum)
     }
     let rows = [] 
     for (let i = 0; i <= num; i++) {
+        console.log(typeof(num))
         rows.push(<QuestionsFormTile key={i} quiz={quiz} num={i+1} />)
     }
 
@@ -42,7 +44,7 @@ const QuestionsForm = ({quiz}) => {
                 <input 
                     type="text" 
                     className="row-input"
-                    onChange={e => setInputNum(e.target.value)} 
+                    onChange={e => setInputNum(parseInt(e.target.value))} 
                 />
                 <p>Row(s)</p>
             </div>
