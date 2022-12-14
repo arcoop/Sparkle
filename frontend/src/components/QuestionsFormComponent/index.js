@@ -12,15 +12,12 @@ const QuestionsForm = ({quiz}) => {
 
     const dispatch = useDispatch();
 
-    // console.log(typeof(inputNum))
-
     const addRow = (e) => {
         e.preventDefault()
         setNum(prev =>  prev + inputNum)
     }
     let rows = [] 
     for (let i = 0; i <= num; i++) {
-        console.log(typeof(num))
         rows.push(<QuestionsFormTile key={i} quiz={quiz} num={i+1} />)
     }
 

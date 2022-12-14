@@ -14,7 +14,6 @@ const QuizByCategory = () => {
     }, [])
 
     const quizzes = useSelector(state => Object.values(state.quizzes))
-    console.log(quizzes)
 
     return ( 
         <div>
