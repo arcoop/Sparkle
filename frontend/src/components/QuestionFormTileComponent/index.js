@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { createQuestion } from "../../store/questions";
+import './QuestionFormTile.css'
 
 const QuestionsFormTile = ({quiz, num, prevQuestion, prevAnswer}) => {
 
@@ -10,6 +11,7 @@ const QuestionsFormTile = ({quiz, num, prevQuestion, prevAnswer}) => {
     const [answer, setAnswer] = useState("")
     const [saveText, setSavedText] = useState("save question")
     const [buttonClass, setButtonClass] = useState("")
+    const [focused, setFocused] = useState(false)
 
     const dispatch = useDispatch()
 
@@ -31,9 +33,12 @@ const QuestionsFormTile = ({quiz, num, prevQuestion, prevAnswer}) => {
             <tr className="questions-table-row">
                 <td className="question-number">{num}</td>
                 <td className="question-body">
-                        <input type="text" 
+                        <input
+                        className="question-input" 
+                        type="text" 
                         value={prevQuestion}
                         onChange={(e) => setBody(e.target.value)}
+                        onClick={() => setFocused(true)}
                         />
                 </td>
                 <td className="question-answer">
@@ -54,9 +59,11 @@ const QuestionsFormTile = ({quiz, num, prevQuestion, prevAnswer}) => {
             <tr className="questions-table-row">
                 <td className="question-number">{num}</td>
                 <td className="question-body">
-                        <input type="text" 
+                        <input type="text"
+                        className="question-input"  
                         value={body}
                         onChange={(e) => setBody(e.target.value)}
+                        onClick={() => setFocused(true)}
                         />
                 </td>
                 <td className="question-answer">

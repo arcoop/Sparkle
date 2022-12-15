@@ -1,0 +1,6 @@
+.question-input:focus {
+    background-color: antiquewhite;
+    transition: .3s;
+    outline: 0 solid transparent;
+    /* border: 1px solid light gray; */
+}
