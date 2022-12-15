@@ -1,56 +1,68 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { createQuestion } from "../../store/questions";
+import { createQuestion, deleteQuestion, updateQuestion } from "../../store/questions";
 import './QuestionFormTile.css'
 
-const QuestionsFormTile = ({quiz, num, prevQuestion, prevAnswer}) => {
+const QuestionsFormTile = ({quiz, num, prevQuestion}) => {
 
     const {quizId} = useParams()
-    const [body, setBody] = useState("")
-    const [answer, setAnswer] = useState("")
+    const [body, setBody] = useState(prevQuestion ? prevQuestion.body : "")
+    const [answer, setAnswer] = useState(prevQuestion ? prevQuestion.answer : "")
     const [saveText, setSavedText] = useState("save question")
     const [buttonClass, setButtonClass] = useState("")
-    const [focused, setFocused] = useState(false)
-
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     let question;
 
     function saveQuestion(e) {
-        e.preventDefault()
-        question = {body: body, answer: answer, quizId: quizId}
-        dispatch(createQuestion(question))
-        setButtonClass("button-saved")
-        setSavedText("question saved")
-        // let button = document.getElementById("save-q-button")
-        // button.className = "button-saved"
+        e.preventDefault();
+        if (body !== "" && answer !== "") {
+            question = {body: body, answer: answer, quizId: quizId}
+            dispatch(createQuestion(question))
+        }
     }
 
-    // const handleChange = debounce(() => saveQuestion())
+    function editQuestion(e) {
+        e.preventDefault();
+        if (prevQuestion.body !== body || prevQuestion.answer !== answer) {
+            prevQuestion.body = body;
+            prevQuestion.answer = answer;
+            dispatch(updateQuestion(prevQuestion))
+        }
+    }
+
+    function getRidOfQuestion(e) {
+        e.preventDefault();
+        dispatch(deleteQuestion(prevQuestion))
+    }
+
     if (prevQuestion) {
         return (
             <tr className="questions-table-row">
                 <td className="question-number">{num}</td>
                 <td className="question-body">
                         <input
-                        className="question-input" 
                         type="text" 
-                        value={prevQuestion}
+                        className="question-input prev" 
+                        value={body}
                         onChange={(e) => setBody(e.target.value)}
-                        onClick={() => setFocused(true)}
+                        onBlur={editQuestion}
+                        // onClick={() => setFocused(true)}
                         />
                 </td>
                 <td className="question-answer">
-                        <input type="text" 
-                        value={prevAnswer}
+                        <input 
+                        type="text" 
+                        className="answers-input"
+                        value={answer}
                         onChange={(e) => setAnswer(e.target.value)}
+                        onBlur={editQuestion}
                         // onKeyUp={handleChange}
                         />
                 </td>
                 <td>
-                    <button id="save-q-button" className={buttonClass} onClick={saveQuestion}>{saveText}
-                        {/* <p id="saved-text" className="hidden">saved!</p> */}
+                    <button id="save-q-button" className={buttonClass} onClick={getRidOfQuestion}>delete question
                     </button>
                 </td>
         </tr>
@@ -60,27 +72,25 @@ const QuestionsFormTile = ({quiz, num, prevQuestion, prevAnswer}) => {
                 <td className="question-number">{num}</td>
                 <td className="question-body">
                         <input type="text"
-                        className="question-input"  
+                        className="question-input new"  
                         value={body}
                         onChange={(e) => setBody(e.target.value)}
-                        onClick={() => setFocused(true)}
+                        onBlur={saveQuestion}
                         />
                 </td>
                 <td className="question-answer">
                         <input type="text" 
                         value={answer}
                         onChange={(e) => setAnswer(e.target.value)}
-                        // onKeyUp={handleChange}
+                        onBlur={saveQuestion}
                         />
                 </td>
                 <td>
-                    <button id="save-q-button" className={buttonClass} onClick={saveQuestion}>{saveText}
-                        {/* <p id="saved-text" className="hidden">saved!</p> */}
+                    <button id="save-q-button" className={buttonClass} onClick={getRidOfQuestion}>{saveText}
                     </button>
                 </td>
             </tr>
     )
-
 }
 
 export default QuestionsFormTile;

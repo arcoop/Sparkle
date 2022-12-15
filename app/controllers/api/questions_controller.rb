@@ -15,14 +15,15 @@ class Api::QuestionsController < ApplicationController
         if @question.save
             render 'api/questions/show'
         else
-            p @question.errors.full_messages
             render json: {errors: @question.errors.full_messages}, status: :unprocessable_entity
         end
     end
 
     def update
         @question = Question.find(params[:id])
-        if !@question.update
+        if (@question.update(question_params))
+            render 'api/questions/show'
+        else
             render json: {errors: @question.errors.full_messages}, status: :unprocessable_entity
         end
     end
@@ -30,12 +31,14 @@ class Api::QuestionsController < ApplicationController
     def destroy
         @question = Question.find(params[:id])
         @question.destroy
+        # @questions = Quiz.find(params[:quiz_id]).questions
+        # render 'api/questions/index'
     end
 
 
     private
     def question_params
-        params.require(:question).permit(:body, :answer, :quiz_id,)
+        params.require(:question).permit(:id, :body, :answer, :quiz_id,)
     end
 
 end

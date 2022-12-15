@@ -8,7 +8,7 @@ const QuestionsForm = ({quiz}) => {
 
     useEffect(() => {
         dispatch(fetchQuestions(quiz.id))
-    }, [quiz])
+    }, [quiz.id])
 
     const questions = useSelector(state => Object.values(state.questions))
     
@@ -25,7 +25,7 @@ const QuestionsForm = ({quiz}) => {
     }
     
     let rows = [] 
-    for (let i = 0; i <= num; i++) {
+    for (let i = 0; i < num; i++) {
         let number = questions.length;
         rows.push(<QuestionsFormTile key={i} quiz={quiz} num={number + i + 1} />)
     }
@@ -43,7 +43,7 @@ const QuestionsForm = ({quiz}) => {
                         </tr>
                         {questions.map((question, idx) => {
                             return (
-                               <QuestionsFormTile key={`prevQ${idx}`} quiz={quiz} num={idx + 1} prevQuestion={question.body} prevAnswer={question.answer}/>
+                               <QuestionsFormTile key={`prevQ${idx}`} quiz={quiz} num={idx + 1} prevQuestion={question} prevAnswer={question.answer}/>
                             )
                         })}
                         {rows}
