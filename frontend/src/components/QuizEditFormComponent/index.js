@@ -314,7 +314,7 @@ const QuizEditForm = () => {
 
                 <div id='questions-tab' className={questionsTabClassName}>
                     <div className='questions-form'>
-                        <QuestionsForm />
+                        <QuestionsForm quiz={quiz} />
                     </div>
                 </div>
             </div>

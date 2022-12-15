@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { createQuestion } from "../../store/questions";
 
-const QuestionsFormTile = ({quiz, num}) => {
+const QuestionsFormTile = ({quiz, num, prevQuestion, prevAnswer}) => {
 
     const {quizId} = useParams()
     const [body, setBody] = useState("")
@@ -26,8 +26,31 @@ const QuestionsFormTile = ({quiz, num}) => {
     }
 
     // const handleChange = debounce(() => saveQuestion())
-
-    return (
+    if (prevQuestion) {
+        return (
+            <tr className="questions-table-row">
+                <td className="question-number">{num}</td>
+                <td className="question-body">
+                        <input type="text" 
+                        value={prevQuestion}
+                        onChange={(e) => setBody(e.target.value)}
+                        />
+                </td>
+                <td className="question-answer">
+                        <input type="text" 
+                        value={prevAnswer}
+                        onChange={(e) => setAnswer(e.target.value)}
+                        // onKeyUp={handleChange}
+                        />
+                </td>
+                <td>
+                    <button id="save-q-button" className={buttonClass} onClick={saveQuestion}>{saveText}
+                        {/* <p id="saved-text" className="hidden">saved!</p> */}
+                    </button>
+                </td>
+        </tr>
+        )
+    } else return (
             <tr className="questions-table-row">
                 <td className="question-number">{num}</td>
                 <td className="question-body">
