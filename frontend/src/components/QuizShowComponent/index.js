@@ -25,7 +25,7 @@ const QuizShow = () => {
         dispatch(fetchQuiz(quizId))
         dispatch(fetchComments(quizId))
         dispatch(fetchQuizTakesbyQuiz(quizId))
-        dispatch(fetchQuestions(quizId))
+        // dispatch(fetchQuestions(quizId))
     }, [quizId])
     
     const sessionUser = useSelector(state => state.session.user) || {}
@@ -106,9 +106,9 @@ const QuizShow = () => {
                             <p>{quiz.quizType}</p>
                         </div>
                     </div>
-                    <QuestionIndex quiz={quiz}/>
+                    <QuestionIndex />
                     <div id="#comments">
-                        <CommentsIndex quizComments={quizComments} quizId={quizId}/>
+                        <CommentsIndex quizComments={quizComments}/>
                         <CommentsCreate />
                     </div>
                 </div>

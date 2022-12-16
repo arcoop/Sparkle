@@ -8,7 +8,7 @@ import { Modal } from "../../context/Modal";
 import './QuizPaused.css'
 
 
-const QuestionIndex = ({quiz}) => {
+const QuestionIndex = () => {
     const dispatch = useDispatch()
     
     const sessionUser = useSelector(state => state.session.user) || 0
@@ -16,6 +16,7 @@ const QuestionIndex = ({quiz}) => {
     const questions = useSelector(getQuestions)
 
     const {quizId} = useParams()
+    const quiz = useSelector(state => state.quizzes[quizId])
     
     const [score, setScore] = useState(0)
     const [min, setMin] = useState(quiz.quizTimer || [])

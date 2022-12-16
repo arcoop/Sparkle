@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { fetchComments, getComments } from "../../store/comments"
+import { useParams } from "react-router-dom"
+import { fetchComments } from "../../store/comments"
 import CommentTile from "../CommentTileComponent"
 
-const CommentsIndex = ({quizComments, quizId}) => {
-    const dispatch = useDispatch()
-    const [dummy, setDummy] = useState(false)
+const CommentsIndex = ({quizComments}) => {
+// const CommentsIndex = () => {
+    const dispatch = useDispatch();
 
     const [numLikes, setNumLikes] = useState(false)
 
+    const {quizId} = useParams();
 
     useEffect(() => {
        if (numLikes){
