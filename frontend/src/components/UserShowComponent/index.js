@@ -18,7 +18,7 @@ const UserShow = () => {
     
     useEffect(() => {
         dispatch(fetchUser(id))
-        dispatch(fetchQuizzes())
+        // dispatch(fetchQuizzes())
         dispatch(fetchQuizTakesbyUser(id))
     },[id])
 
@@ -39,7 +39,7 @@ const UserShow = () => {
         document.title = `${user.username}'s Sparkle Profile`
     }, [user])
 
-    const quizzes = useSelector(getQuizzes)
+    // const quizzes = useSelector(getQuizzes)
     
     const formatDate = date => {
         const months = {
@@ -172,15 +172,22 @@ const UserShow = () => {
                                     <th className='quiz-takes-heading'>Score</th>
                                 </tr>
                                 {quizTakes.map((take, idx) => {
-                                    if (quizzes[take.quizId -1]) {
-                                        return (
-                                            <tr key={idx*idx} className='quiz-takes-row'>
-                                                <td className='quiz-takes-data'><Link className='quiztake-link' to={`/quizzes/${quizzes[take.quizId -1].id}`}>{quizzes[take.quizId -1].title}</Link></td>
-                                                <td className='quiz-takes-data'>{formatTime(take.createdAt)}</td>
-                                                <td className='quiz-takes-data'>{take.score}</td>
-                                            </tr>
-                                        )
-                                    }
+                                    return (
+                                        <tr key={idx*idx} className='quiz-takes-row'>
+                                            <td className='quiz-takes-data'><Link className='quiztake-link' to={`/quizzes/${take.quiz.quizId}`}>{take.quiz.quizTitle}</Link></td>
+                                            <td className='quiz-takes-data'>{formatTime(take.createdAt)}</td>
+                                            <td className='quiz-takes-data'>{take.score}</td>
+                                        </tr>
+                                    )
+                                    // if (quizzes[take.quizId -1]) {
+                                    //     return (
+                                    //         <tr key={idx*idx} className='quiz-takes-row'>
+                                    //             <td className='quiz-takes-data'><Link className='quiztake-link' to={`/quizzes/${quizzes[take.quizId -1].id}`}>{quizzes[take.quizId -1].title}</Link></td>
+                                    //             <td className='quiz-takes-data'>{formatTime(take.createdAt)}</td>
+                                    //             <td className='quiz-takes-data'>{take.score}</td>
+                                    //         </tr>
+                                    //     )
+                                    // }
                                 })}
                             </tbody>
                         </table>
