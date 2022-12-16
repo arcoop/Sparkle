@@ -2,9 +2,7 @@ likes = []
 json.comments do
     @comments.each do |comment|
         likes += comment.likes
-        json.set! comment.id do
-            json.merge! comment.attributes
-        end
+        json.partial! 'api/comments/comment', comment: comment
     end
 end
 

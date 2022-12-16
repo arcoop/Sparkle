@@ -5,7 +5,7 @@ export const SET_COMMENTS = 'comments/setComments'
 export const SET_COMMENT = 'comments/setComment'
 export const REMOVE_COMMENT = 'comments/removeComment'
 
-export const setComments = (payload) => ({
+export const setComments = payload => ({
     type: SET_COMMENTS,
     payload
 })

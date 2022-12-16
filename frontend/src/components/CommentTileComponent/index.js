@@ -12,14 +12,14 @@ import { createLike, deleteLike, fetchLikes, removeLike, updateLike } from "../.
 const CommentTile = ({comment}) => {
     const dispatch = useDispatch();
     
-    const userId = comment.commenterId
+    const commenterId = comment.commenter.commenterId
+    const commenterName = comment.commenter.commenterUsername
     
-    useEffect(() => {
-        dispatch(fetchUser(userId))
-        //dispatch(fetchLikes(comment))
-    }, [])
+    // useEffect(() => {
+    //     dispatch(fetchUser(userId))
+    // }, [])
     
-    const commenter = useSelector(state => state.users[userId])
+    // const commenter = useSelector(state => state.users[userId])
     const sessionUser = useSelector(state => state.session.user) || {}
     
     const commentLikes = useSelector(state => Object.values(state.likes))
@@ -30,7 +30,7 @@ const CommentTile = ({comment}) => {
     const [downButtonClass, setDownButtonClass] = useState("vote")
     
     //const [numPoints, setNumPoints] = useState(comment.points)
-    const commenterUsername = commenter ? commenter.username : ""
+    // const commenterUsername = commenter ? commenter.username : ""
     // const [showMenu, setShowMenu] = useState(false)
     const [editing, setEditing] = useState(false)
     //const [numLikes, setNumLikes] = useState(commentLikes.length)
@@ -126,7 +126,7 @@ const CommentTile = ({comment}) => {
                 <div className="comment-icon-section"> 
                     <div className="icon-top">
                         <div className="icon-link">
-                            <Link className="link-user-profile" to={`/users/${userId}`}>
+                            <Link className="link-user-profile" to={`/users/${commenterId}`}>
                                 <i id="commenter-user-icon" className="fa-regular fa-user"></i>
                             </Link>
                         </div>
@@ -135,7 +135,7 @@ const CommentTile = ({comment}) => {
                 </div>
                 <div className="comment-body-section">
                     <div className="comment-top-level-info">
-                        <Link className="commenter-username" to={`/users/${userId}`}>{commenterUsername}</Link>
+                        <Link className="commenter-username" to={`/users/${commenterId}`}>{commenterName}</Link>
                         <div className="comment-time">{formatTime(comment.createdAt)}</div>
                     </div>
                     <div className="comment-body">{commentBody}</div>
