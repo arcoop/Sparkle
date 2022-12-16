@@ -9,7 +9,7 @@ import './QuizPaused.css'
 
 
 const QuestionIndex = () => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     
     const sessionUser = useSelector(state => state.session.user) || 0
     

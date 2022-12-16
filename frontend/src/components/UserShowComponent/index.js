@@ -18,6 +18,7 @@ const UserShow = () => {
     
     useEffect(() => {
         dispatch(fetchUser(id))
+        dispatch(fetchQuizzes())
         dispatch(fetchQuizTakesbyUser(id))
     },[id])
 
@@ -25,6 +26,7 @@ const UserShow = () => {
     let user = useSelector(state => state.users[id]) || {username: "username...", email: "email..."}
 
     const quizTakes = useSelector(state => Object.values(state.quizTakes))
+    quizTakes.sort((a,b) => a.createdAt < b.createdAt ? 1 : -1)
 
     // let userQuizTakes = []
     // quizTakes.forEach(take => {
@@ -34,9 +36,8 @@ const UserShow = () => {
     // })
 
     useEffect(() => {
-        dispatch(fetchQuizzes())
         document.title = `${user.username}'s Sparkle Profile`
-    }, [id])
+    }, [user])
 
     const quizzes = useSelector(getQuizzes)
     
@@ -118,9 +119,9 @@ const UserShow = () => {
         if (user.quizzesAuthored) {
             return (
                 <ul className='quizzes-created-list'>
-                    {user.quizzesAuthored.map(quiz => {
+                    {user.quizzesAuthored.map((quiz, idx) => {
                         return (
-                            <li className='quizzes-created-link'><Link to={`/quizzes/${quiz.id}`}>{quiz.title}</Link></li>
+                            <li key={(quiz.id+idx + 1)*idx+1} className='quizzes-created-link'><Link to={`/quizzes/${quiz.id}`}>{quiz.title}</Link></li>
                         )
                     })}
                 </ul>
@@ -170,10 +171,10 @@ const UserShow = () => {
                                     <th className='quiz-takes-heading'>Time Taken</th>
                                     <th className='quiz-takes-heading'>Score</th>
                                 </tr>
-                                {quizTakes.map(take => {
+                                {quizTakes.map((take, idx) => {
                                     if (quizzes[take.quizId -1]) {
                                         return (
-                                            <tr className='quiz-takes-row'>
+                                            <tr key={idx*idx} className='quiz-takes-row'>
                                                 <td className='quiz-takes-data'><Link className='quiztake-link' to={`/quizzes/${quizzes[take.quizId -1].id}`}>{quizzes[take.quizId -1].title}</Link></td>
                                                 <td className='quiz-takes-data'>{formatTime(take.createdAt)}</td>
                                                 <td className='quiz-takes-data'>{take.score}</td>
