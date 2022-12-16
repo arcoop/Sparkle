@@ -28,6 +28,7 @@ const QuestionIndex = () => {
     const [modal, setModal] = useState(<></>)
     const [showModal, setShowModal] = useState(false)
     const [quizTakeCreated, setQuizTakeCreated] = useState(false)
+    const [started, setStarted] = useState(false)
     const maxScore = (quiz.maxScore === 1 ? questions.length : quiz.maxScore)
     
     useEffect(() => {
@@ -35,7 +36,7 @@ const QuestionIndex = () => {
     }, [quizId])
     
     useEffect(() => {
-        if (!quizTakeCreated && (score === maxScore || (min === 0 && seconds === 0))) {
+        if (started && !quizTakeCreated && (score === maxScore || (min === 0 && seconds === 0))) {
             const quizTake = {takerId: sessionUser ? sessionUser.id : null, quizId: quizId, score: score, time: `${min}:${seconds}` }
             clearInterval()
             if (sessionUser) {
@@ -60,6 +61,7 @@ const QuestionIndex = () => {
 
     const playQuiz = (tempMin, tempSeconds, resume = false) => {
         setPlayOrAnswer("answer")
+        if (!started) setStarted(true)
         if (resume) {
             setMin(prevMin => tempMin === 0 ? 0 : prevMin)
         } else {

@@ -44,6 +44,7 @@ class Api::QuizTakesController < ApplicationController
     end
 
     def create
+        p 'creating take'
         @quiz_take = QuizTake.new(quiz_takes_params)
         if @quiz_take.save
             render '/api/quiz_takes/show'
