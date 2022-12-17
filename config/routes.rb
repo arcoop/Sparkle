@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # root "articles#index"
   
   namespace :api, defaults: {format: :json} do
-    resources :users, only: [:create, :show, :index] do
+    resources :users, only: [:create, :show, :index, :update] do
       resources :quiz_takes, only: [:index]
       get 'total/quiz_takes_user_quiz', to: "quiz_takes#total_user_quiz"
       get 'recent_takes/quiz_takes', to: "quiz_takes#recent_takes"

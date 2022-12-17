@@ -40,9 +40,18 @@ export const fetchUser = userId => async dispatch => {
     const res = await csrfFetch(`/api/users/${userId}`)
     if (res.ok) {
         const data = await res.json()
-        dispatch(setUser(data.user))
-        return data.user
+        dispatch(setUser(data))
+        return data
     }
+}
+
+export const updateUser = user => async dispatch => {
+    const res = await csrfFetch(`/api/users/${user.id}`, {
+        method: 'PUT',
+        body: user
+    })
+    const data = await res.json();
+    dispatch(setUser(data))
 }
 
 const usersReducer = (state = {}, action) => {
@@ -50,7 +59,7 @@ const usersReducer = (state = {}, action) => {
         case SET_USERS:
             return {...action.payload}
         case SET_USER:
-            return {...state, [action.payload.id]: action.payload}
+            return {...action.payload}
         default:
             return state 
     }
