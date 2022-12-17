@@ -56,8 +56,8 @@ const Header = () => {
     }
 
    return (
-        <div>
-            <div id="main-div">
+        <div id="main-div">
+            {/* <div id="main-div"> */}
                 <div id="left-nav">
                     <div id="extras">
                         <button onClick={() => openMenu(1)} id="headers-extras-button">
@@ -71,11 +71,9 @@ const Header = () => {
                         </div>
                         <p className="nav-home-link-text">sparkle</p>
                     </Link>
-                    <div id="nav-links-left">
-                        <Link className="left-nav-link" to='/categories'>Categories</Link>
-                        <Link className="left-nav-link" to='/create'>Create</Link>
-                        <a target="_blank" className="left-nav-link" href="https://adina-cooper.com/">Adina Cooper</a>
-                    </div>
+                    <Link className="left-nav-link" to='/categories'>Categories</Link>
+                    <Link className="left-nav-link" to='/create'>Create</Link>
+                    <a target="_blank" className="left-nav-link" href="https://adina-cooper.com/">Adina Cooper</a>
                 </div>
                 <div id="nav-buttons-right">
                     <button onClick={handleClick} className="submit-button" id="right-nav-button">Random Quiz</button>
@@ -84,7 +82,7 @@ const Header = () => {
                     </button>
                 </div>
                 {searchMenu}
-            </div>
+            {/* </div> */}
 
 
         </div>

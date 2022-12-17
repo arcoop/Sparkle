@@ -13,6 +13,8 @@
     margin-left: 15px;
     white-space: nowrap;
     width: 50%;
+    gap: 15px;
+    align-items: center;
     /* overflow: hidden; */
 }
 
@@ -53,20 +55,13 @@
     font-weight: bold;
 }
 
-#nav-links-left {
-    width: 40%;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    text-transform: uppercase;
-}
-
 .left-nav-link {
     font-family: 'Roboto', sans-serif;
     font-weight: 600;
     font-size: 14px;
     transition: .2s;
     color: black !important;
+    text-transform: uppercase;
 }
 
 .left-nav-link:hover {

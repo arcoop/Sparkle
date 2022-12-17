@@ -26,7 +26,6 @@ const UserShow = () => {
     let user = useSelector(state => state.users[id]) || {username: "username...", email: "email..."}
 
     const quizTakes = useSelector(state => Object.values(state.quizTakes).sort(((a, b) => a.createdAt < b.createdAt ? 1 : -1)))
-    console.log(quizTakes)
 
     // quizTakes.sort((a,b) => a.createdAt < b.createdAt ? 1 : -1)
 
