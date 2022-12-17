@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       get 'total/quiz_takes', to: "quiz_takes#total"
       get 'total/quiz_takes_user_quiz', to: "quiz_takes#total_user_quiz"
     end
+    resources :categories, only: [:index]
     resource :session, only: [:show, :create, :destroy]
     resources :questions, only: [:create, :update, :destroy]
     resources :comments, only: [:update, :destroy, :create] do

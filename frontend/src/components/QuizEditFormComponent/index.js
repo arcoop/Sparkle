@@ -76,7 +76,6 @@ const QuizEditForm = () => {
         }
     }
 
-    
     const handleSubmit = e => {
         e.preventDefault()
         setErrors([])

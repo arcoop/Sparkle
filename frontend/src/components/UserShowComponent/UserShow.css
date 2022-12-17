@@ -206,3 +206,8 @@
     color: #f90;
     text-decoration: underline;
 }
+
+.load-quizzes {
+    cursor: pointer;
+    font-size: 12px;
+}

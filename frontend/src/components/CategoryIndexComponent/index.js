@@ -4,9 +4,17 @@ import { Link } from 'react-router-dom';
 import QuizByCategoryWithProps from '../QuizByCategoryIndexComponent/QuizByCategoryWithProps';
 import { useEffect } from 'react';
 import { fetchQuizzes } from '../../store/quizzes';
+import { fetchCategories } from '../../store/categories';
 
 
 const CategoriesIndex = () => {
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(fetchCategories())
+    }, [])
+
     const categories = useSelector(state => Object.values(state.categories))
 
     return (
@@ -26,14 +34,14 @@ const CategoriesIndex = () => {
 export default CategoriesIndex;
         
 export const CategoryIndexPage = () => {
-    const dispatch = useDispatch()
-
-    const categories = useSelector(state => Object.values(state.categories)) || []
-
+    const dispatch = useDispatch();
+    
     useEffect(() => {
         dispatch(fetchQuizzes())
+        dispatch(fetchCategories())
     }, [])
     
+    const categories = useSelector(state => Object.values(state.categories)) || []
     const quizzes = useSelector(state => Object.values(state.quizzes)) || []
 
     return (

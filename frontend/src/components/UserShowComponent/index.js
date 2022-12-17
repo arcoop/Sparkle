@@ -13,32 +13,28 @@ import { useState } from 'react';
 const UserShow = () => {
     const dispatch = useDispatch();
     const {id} = useParams();
+    const [loadQuizzes, setLoadQuizzes] = useState(false)
 
     const sessionUser = useSelector(state => state.session.user)
     
     useEffect(() => {
         dispatch(fetchUser(id))
-        // dispatch(fetchQuizzes())
         dispatch(fetchQuizTakesbyUser(id))
     },[id])
 
-    // let user = useSelector(getUser(id)) || {username: "username...", email: "email..."}
-    let user = useSelector(state => state.users[id]) || {username: "username...", email: "email..."}
+    const user = useSelector(state => state.users[id]) || {username: "username...", email: "email..."}
 
     const quizTakes = useSelector(state => Object.values(state.quizTakes).sort(((a, b) => a.createdAt < b.createdAt ? 1 : -1)))
-
-    // quizTakes.sort((a,b) => a.createdAt < b.createdAt ? 1 : -1)
-
-    // let userQuizTakes = []
-    // quizTakes.forEach(take => {
-    //     if (take['takerId'] == id) {
-    //         userQuizTakes.push(take)
-    //     }
-    // })
+    const quizTakesOnLoad = quizTakes.slice(0,10)
+    const quizTakesViewMore = quizTakes.slice(10)
 
     useEffect(() => {
         document.title = `${user.username}'s Sparkle Profile`
     }, [user])
+
+    const handleLoadQuizzes = () => {
+        setLoadQuizzes(loadQuizzes ? false : true)
+    }
 
     // const quizzes = useSelector(getQuizzes)
     
@@ -108,7 +104,7 @@ const UserShow = () => {
     }
 
     let onlineStatus;
-    if (sessionUser) {
+    if (sessionUser && user.username === sessionUser.username) {
         onlineStatus = 
         <div id='online'>
             <i id="online-circle" className="fa-solid fa-circle"></i>
@@ -172,7 +168,7 @@ const UserShow = () => {
                                     <th className='quiz-takes-heading'>Time Taken</th>
                                     <th className='quiz-takes-heading'>Score</th>
                                 </tr>
-                                {quizTakes.map((take, idx) => {
+                                {quizTakesOnLoad.map((take, idx) => {
                                     return (
                                         <tr key={idx*idx} className='quiz-takes-row'>
                                             <td className='quiz-takes-data'><Link className='quiztake-link' to={`/quizzes/${take.quiz.quizId}`}>{take.quiz.quizTitle}</Link></td>
@@ -180,16 +176,17 @@ const UserShow = () => {
                                             <td className='quiz-takes-data'>{take.score}</td>
                                         </tr>
                                     )
-                                    // if (quizzes[take.quizId -1]) {
-                                    //     return (
-                                    //         <tr key={idx*idx} className='quiz-takes-row'>
-                                    //             <td className='quiz-takes-data'><Link className='quiztake-link' to={`/quizzes/${quizzes[take.quizId -1].id}`}>{quizzes[take.quizId -1].title}</Link></td>
-                                    //             <td className='quiz-takes-data'>{formatTime(take.createdAt)}</td>
-                                    //             <td className='quiz-takes-data'>{take.score}</td>
-                                    //         </tr>
-                                    //     )
-                                    // }
                                 })}
+                                {loadQuizzes && quizTakesOnLoad.map((take, idx) => {
+                                    return (
+                                        <tr key={idx + 10 *idx + 10} className='quiz-takes-row'>
+                                            <td className='quiz-takes-data'><Link className='quiztake-link' to={`/quizzes/${take.quiz.quizId}`}>{take.quiz.quizTitle}</Link></td>
+                                            <td className='quiz-takes-data'>{formatTime(take.createdAt)}</td>
+                                            <td className='quiz-takes-data'>{take.score}</td>
+                                        </tr>
+                                    )
+                                })}
+                                <div className='load-quizzes' onClick={handleLoadQuizzes}>{loadQuizzes ? "Hide" : "View All"}</div>
                             </tbody>
                         </table>
                     </div>

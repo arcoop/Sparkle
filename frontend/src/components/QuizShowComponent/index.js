@@ -38,9 +38,7 @@ const QuizShow = () => {
     let categoryName = quiz.id ? quiz.category.categoryName : ""
 
     const quizComments = useSelector(state => Object.values(state.comments))
-    
-    // let category = useSelector(state => state.categories[categoryId]) || ""
-    
+        
     document.title = `${quiz.title}` || 'Sparkle'
 
     let takes = quiz.id ? quiz.takes : []
