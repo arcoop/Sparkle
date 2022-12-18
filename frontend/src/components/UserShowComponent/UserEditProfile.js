@@ -23,10 +23,9 @@ const UserEditProfile = () => {
         e.preventDefault();
         const formData = new FormData();
         formData.append('')
-
     }
 
-    return ( settingsTab === "Profile" &&
+    return ( 
         <div className="user-profile-edit">
             <div className='user-profile-el'>
                 <p className='user-profile-text photo'>Your Photo</p>
