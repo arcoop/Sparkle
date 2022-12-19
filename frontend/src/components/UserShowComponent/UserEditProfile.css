@@ -1,0 +1,59 @@
+.photo-upload-input {
+    display: none;
+}
+
+.settings-photo-upload {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    text-align: center;
+    display: inline-block;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.settings-photo-upload:hover .user-icon-bottom {
+    opacity: 1;
+}
+
+.settings-user-icon {
+    color: rgb(49, 152, 200);
+    font-size: 45px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 55px;
+}
+
+.user-icon-bottom {
+    background-color: black;
+    width: 150px;
+    height: 35px;
+    top: 70px;
+    display: inline-block;
+    position: relative;
+    opacity: .5;
+}
+
+#camera-icon {
+    color: white;
+    font-size: 28px;
+    position: relative;
+    top: 3px;
+}
+
+#photo-upload-label {
+    background-color: #f90;
+    color: white;
+    font-weight: bolder;
+    min-width: 85px;
+    text-align: center;
+    width: initial;
+    padding: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    box-sizing: border-box;
+    line-height: 2.7857em;
+    white-space: nowrap;
+    border-radius: 4px;
+}

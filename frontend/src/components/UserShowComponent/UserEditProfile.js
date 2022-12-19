@@ -32,7 +32,16 @@ const UserEditProfile = () => {
             <div className='user-profile-el'>
                 <p className='user-profile-text photo'>Your Photo</p>
                 <div className='photo-upload'>
-                    
+                    <label>
+                        <input className='photo-upload-input' type="file"/>
+                        <div className='settings-photo-upload'>
+                            <i id='settings-profile-user-icon' className="fa-regular fa-user settings-user-icon"></i>
+                            <div className='user-icon-bottom'>
+                                <i id='camera-icon' className="fa-solid fa-camera"></i>
+                            </div>
+                        </div>
+                    </label>
+                    <label id='photo-upload-label'><input className='photo-upload-input' type="file" />Choose File</label>
                 </div>
             </div>
             <div className='user-profile-el'>
