@@ -1,3 +1,13 @@
+.user-profile-edit {
+    border: 1px solid #d8d8d8;
+    padding: 20px 20px 0 20px;
+}
+
+.photo-upload {
+    display: flex;
+    align-items: top;
+}
+
 .photo-upload-input {
     display: none;
 }
@@ -56,4 +66,42 @@
     line-height: 2.7857em;
     white-space: nowrap;
     border-radius: 4px;
+    display: flex;
+    align-items: center;
+    height: 40px;
+}
+
+.user-profile-el {
+    display: flex;
+    margin-bottom: 20px;
+    /* max-width: 600px; */
+}
+
+.user-profile-text {
+    font-weight: bold;
+    font-size: .875rem;
+    text-align: right;
+    width: 125px;
+    margin-right: 15px;
+}
+
+.settings-input {
+    background-color: #e5e5e5;
+    border-radius: 3px;
+    border: 1px solid transparent;
+    padding: .75rem;
+    line-height: 1.125rem;
+    box-sizing: border-box;
+}
+
+.settings-input:focus {
+    background-color: white;
+    border-color: black;
+    cursor: text;
+    outline: none;
+}
+
+#settings-bio {
+    width: 450px;
+    height: 100px;
 }

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import './UserEditProfile.css'
 
@@ -21,13 +21,15 @@ const UserEditProfile = () => {
         }
     }
 
+    const sessionUser = useSelector(state => state.session.user)
+
     const handleSubmit = e => {
         e.preventDefault();
         const formData = new FormData();
         formData.append('')
     }
 
-    return ( 
+    return ( sessionUser.id && 
         <div className="user-profile-edit">
             <div className='user-profile-el'>
                 <p className='user-profile-text photo'>Your Photo</p>
@@ -41,23 +43,25 @@ const UserEditProfile = () => {
                             </div>
                         </div>
                     </label>
-                    <label id='photo-upload-label'><input className='photo-upload-input' type="file" />Choose File</label>
+                    <input id='photo-upload-input' className='photo-upload-input' type="file" />
+                    <label htmlFor='photo-upload-input' id='photo-upload-label'>Choose File</label>
                 </div>
             </div>
             <div className='user-profile-el'>
                 <p className='user-profile-text username'>Username</p>
+                <p>{sessionUser.username}</p>
             </div>
             <div className='user-profile-el'>
                 <p className='user-profile-text city'>City</p>
-                <input type="text" />
+                <input className='settings-input' type="text" />
             </div>
             <div className='user-profile-el'>
                 <p className='user-profile-text state-country'>State/Country</p>
-                <input type="text" />
+                <input className='settings-input' type="text" />
             </div>
             <div className='user-profile-el'>
                 <p className='user-profile-text bio'>Bio</p>
-                <textarea type="text" />
+                <textarea id='settings-bio' className='settings-input' type="text" />
             </div>
         </div>
     )
