@@ -45,6 +45,15 @@ export const fetchUser = userId => async dispatch => {
     }
 }
 
+export const updateUser = user => async dispatch => {
+    const res = await csrfFetch(`/api/users/${user.id}`, {
+        method: 'PUT',
+        body: user
+    })
+    const data = await res.json();
+    dispatch(setUser(data))
+}
+
 const usersReducer = (state = {}, action) => {
     switch(action.type) {
         case SET_USERS:
