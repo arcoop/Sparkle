@@ -57,9 +57,31 @@
 }
 
 #show-page-top-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#show-page-top-info-left {
     font-size: .9em;
     display: flex;
     margin: 25px;
+}
+
+#show-page-top-info-right {
+    margin-right: 10vw;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid black;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: .9em;
+    color: black;
+}
+
+#show-page-top-info-right:hover {
+    background-color: black;
+    color: white;
 }
 
 
