@@ -2,6 +2,25 @@
     display: flex;
 }
 
+.top-spacer {
+    margin-bottom: 45px;
+}
+
+.edit-page {
+    padding: 0 15px 20px 15px;
+    min-height: 450px;
+    position: relative;
+}
+
+.profile-page-heading {
+    font-size: 2em;
+    margin-block-start: .67em;
+    margin-block-end: .67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
 .left-settings-div {
     border: 1px solid #d8d8d8;
     border-radius: 4px;
@@ -38,3 +57,34 @@
     line-height: 15px;
     text-decoration: none;
 }
+
+.right-settings-tab {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* .save-changes {
+    width: 200px;
+    border-radius: .25rem;
+    box-sizing: border-box;
+    font-size: .75rem;
+    font-weight: 700;
+    line-height: .875rem;
+    text-transform: uppercase;
+    padding: .75rem 1rem;
+    text-align: center;
+}
+
+.changes {
+    background-color: #f90;
+    border: 1px solid #f90;
+    color: white;
+}
+
+.no-changes {
+    background-color: #f1f1f2;
+    color: #d8d8d8;
+    border: 1px solid #f1f1f2;
+    cursor: default;
+} */

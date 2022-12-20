@@ -7,7 +7,8 @@ const UserEditProfile = () => {
     const dispatch = useDispatch();
     const [profileIcon, setProfileIcon] = useState(null);
     const [profileIconURL, setProfileIconURL] = useState(null);
-    const location = useLocation(); 
+    const location = useLocation();
+    const [city, setCity] = useState("") 
 
     const handleFile = e => {
         const file = e.currentTarget.files[0]
@@ -26,7 +27,17 @@ const UserEditProfile = () => {
     const handleSubmit = e => {
         e.preventDefault();
         const formData = new FormData();
-        formData.append('')
+        formData.append('user[email]', sessionUser.email)
+        formData.append('user[username]', sessionUser.username)
+        if (profileIcon) formData.append('user[icon]', profileIcon)
+        if (sessionUser.id) {
+            formData.append('user[id]', sessionUser.id)
+            dispatch()
+        }
+    }
+
+    const handleCityChange = e => {
+        setCity(e.target.value)
     }
 
     return ( sessionUser.id && 
@@ -52,7 +63,7 @@ const UserEditProfile = () => {
                 <p>{sessionUser.username}</p>
             </div>
             <div className='user-profile-el'>
-                <p className='user-profile-text city'>City</p>
+                <p onChange={handleCityChange} className='user-profile-text city'>City</p>
                 <input className='settings-input' type="text" />
             </div>
             <div className='user-profile-el'>
