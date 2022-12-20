@@ -70,13 +70,6 @@ function App() {
         <Route path="/settings/">
           <UserEditForm />
         </Route>
-
-        {/* <Route exact path="/settings/basic-info">
-
-        </Route>
-        <Route exact path="/settings/password">
-
-        </Route> */}
         
         <Route>
           <h1>path not found</h1>
