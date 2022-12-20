@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
+import { updateUser } from '../../store/users';
 import './UserEditProfile.css'
 
 const UserEditProfile = () => {
@@ -9,6 +10,8 @@ const UserEditProfile = () => {
     const [profileIconURL, setProfileIconURL] = useState(null);
     const location = useLocation();
     const [city, setCity] = useState("") 
+    const [errors, setErrors] = useState([])
+    const [succesMessage, setSuccessMessage] = useState([])
 
     const handleFile = e => {
         const file = e.currentTarget.files[0]
@@ -32,7 +35,14 @@ const UserEditProfile = () => {
         if (profileIcon) formData.append('user[icon]', profileIcon)
         if (sessionUser.id) {
             formData.append('user[id]', sessionUser.id)
-            dispatch()
+            dispatch(updateUser(formData))
+                .catch(async res => {
+                    const data = await res.json();
+                    if (data && data.errors) setErrors(data.errors)
+                })
+                .then(async data => {
+                    setSuccessMessage(["user saved"])
+                })
         }
     }
 
