@@ -46,6 +46,7 @@ export const fetchUser = userId => async dispatch => {
 }
 
 export const updateUser = user => async dispatch => {
+    console.log("in fetch update user", user)
     const res = await csrfFetch(`/api/users/${user.id}`, {
         method: 'PUT',
         body: user

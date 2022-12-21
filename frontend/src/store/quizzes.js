@@ -58,12 +58,15 @@ export const createQuiz = quiz => async dispatch => {
 }
 
 export const updateQuiz = quiz => async dispatch => {
+    console.log("updating quiz", quiz)
+    console.log(quiz.id)
     const res = await csrfFetch(`/api/quizzes/${quiz.id}`, {
         method: 'PUT',
         body: quiz
         // body: JSON.stringify(quiz)
     })
-    const data = await res.json()
+    console.log(data)
+    const data = await res.json();
     dispatch(setQuiz(data))
 }
 

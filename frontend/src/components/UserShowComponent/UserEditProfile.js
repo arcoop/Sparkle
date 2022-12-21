@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { Redirect, useLocation } from 'react-router-dom';
 import { updateUser } from '../../store/users';
 import './UserEditProfile.css'
 
@@ -12,6 +12,7 @@ const UserEditProfile = () => {
     const [city, setCity] = useState("") 
     const [errors, setErrors] = useState([])
     const [succesMessage, setSuccessMessage] = useState([])
+    const [redirect, setRedirect] = useState(false)
 
     const handleFile = e => {
         const file = e.currentTarget.files[0]
@@ -29,6 +30,7 @@ const UserEditProfile = () => {
 
     const handleSubmit = e => {
         e.preventDefault();
+        setErrors([])
         const formData = new FormData();
         formData.append('user[email]', sessionUser.email)
         formData.append('user[username]', sessionUser.username)
@@ -56,7 +58,7 @@ const UserEditProfile = () => {
                 <p className='user-profile-text photo'>Your Photo</p>
                 <div className='photo-upload'>
                     <label>
-                        <input className='photo-upload-input' type="file"/>
+                        <input onChange={handleFile} className='photo-upload-input' type="file"/>
                         <div className='settings-photo-upload'>
                             <i id='settings-profile-user-icon' className="fa-regular fa-user settings-user-icon"></i>
                             <div className='user-icon-bottom'>
@@ -64,7 +66,7 @@ const UserEditProfile = () => {
                             </div>
                         </div>
                     </label>
-                    <input id='photo-upload-input' className='photo-upload-input' type="file" />
+                    <input onChange={handleFile} id='photo-upload-input' className='photo-upload-input' type="file" />
                     <label htmlFor='photo-upload-input' id='photo-upload-label'>Choose File</label>
                 </div>
             </div>
@@ -84,6 +86,7 @@ const UserEditProfile = () => {
                 <p className='user-profile-text bio'>Bio</p>
                 <textarea id='settings-bio' className='settings-input' type="text" />
             </div>
+            <div onClick={handleSubmit}>Save</div>
         </div>
     )
 }
