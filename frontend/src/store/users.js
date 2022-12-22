@@ -45,6 +45,24 @@ export const fetchUser = userId => async dispatch => {
     }
 }
 
+export const updateUserIcon = userFormData => async dispatch => {
+    const res = await csrfFetch(`/api/update_icon/users/${userFormData.get('user[id]')}`, {
+        method: 'PUT',
+        body: userFormData
+    })
+    const data = await res.json();
+    dispatch(setUser(data.user))
+}
+
+// export const deleteUserIcon = userFormData => async dispatch => {
+//     const res = await csrfFetch(`/api/delete_icon/users/${userFormData.get('user[id')}`, {
+//         method: 'PUT',
+//         body: userFormData
+//     })
+//     const data = await res.json();
+//     dispatch(setUser(data.user))
+// }
+
 export const updateUser = user => async dispatch => {
     const res = await csrfFetch(`/api/users/${user.get('user[id]')}`, {
         method: 'PUT',

@@ -81,6 +81,10 @@
     height: 40px;
 }
 
+#photo-upload-label:hover {
+    background-color: #ffc00a ;
+}
+
 .user-profile-el {
     display: flex;
     margin-bottom: 20px;
@@ -130,4 +134,11 @@
     display: inline-block;
     border-radius: 5px;
     width: 43px;
+}
+
+.settings-delete-icon:hover {
+    cursor: pointer;
+    background-color: #666;
+    color: white;
+
 }
