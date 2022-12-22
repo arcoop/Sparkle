@@ -13,6 +13,7 @@ const UserEditProfile = () => {
     const [errors, setErrors] = useState([])
     const [succesMessage, setSuccessMessage] = useState([])
     const [redirect, setRedirect] = useState(false)
+    const [successSubmission, setSuccessSubmission] = useState(false)
 
     const handleFile = e => {
         const file = e.currentTarget.files[0]
@@ -23,6 +24,23 @@ const UserEditProfile = () => {
                 setProfileIcon(file);
                 setProfileIconURL(fileReader.result);
             }
+        }
+
+        const formData = new FormData();
+        formData.append('user[email]', sessionUser.email)
+        formData.append('user[username]', sessionUser.username)
+        if (profileIcon) formData.append('user[icon]', profileIcon)
+        if (sessionUser.id) {
+            formData.append('user[id]', sessionUser.id)
+            dispatch(updateUser(formData))
+                .catch(async res => {
+                    const data = await res.json();
+                    if (data && data.errors) setErrors(data.errors)
+                })
+                .then(async data => {
+                    setSuccessMessage(["user saved"])
+                    setSuccessSubmission(true)
+                })
         }
     }
 
@@ -75,15 +93,12 @@ const UserEditProfile = () => {
                     <label>
                         <input onChange={handleFile} className='photo-upload-input' type="file"/>
                         {sessionUser.iconUrl ? userIcon : userProfilePic}
-                        {/* <div className='settings-photo-upload'>
-                            <i id='settings-profile-user-icon' className="fa-regular fa-user settings-user-icon"></i>
-                            <div className='user-icon-bottom'>
-                                <i id='camera-icon' className="fa-solid fa-camera"></i>
-                            </div>
-                        </div> */}
                     </label>
                     <input onChange={handleFile} id='photo-upload-input' className='photo-upload-input' type="file" />
-                    <label htmlFor='photo-upload-input' id='photo-upload-label'>Choose File</label>
+                    <div className='settings-photo-buttons'>
+                        <label htmlFor='photo-upload-input' id='photo-upload-label'>Choose File</label>
+                        <div className='settings-delete-icon'>Delete</div>
+                    </div>
                 </div>
             </div>
             <div className='user-profile-el'>

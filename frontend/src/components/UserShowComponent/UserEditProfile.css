@@ -6,6 +6,7 @@
 .photo-upload {
     display: flex;
     align-items: top;
+    gap: 20px;
 }
 
 .photo-upload-input {
@@ -113,4 +114,20 @@
 #settings-bio {
     width: 450px;
     height: 100px;
+}
+
+.settings-photo-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.settings-delete-icon {
+    background-color: #d8d8d8;
+    font-weight: bold;
+    font-size: .9em;
+    padding: 10px;
+    display: inline-block;
+    border-radius: 5px;
+    width: 43px;
 }
