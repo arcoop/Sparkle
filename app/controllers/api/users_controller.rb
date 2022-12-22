@@ -1,5 +1,5 @@
 class Api::UsersController < ApplicationController
-  wrap_parameters include: User.attribute_names + ['password']
+  wrap_parameters include: User.attribute_names + ['password', 'icon']
 
   def index
     @users = User.all
@@ -27,7 +27,7 @@ class Api::UsersController < ApplicationController
     end
   end
   def update
-    p params
+    p "in update"
     p params[:id]
     @user = User.find(params[:id])
     if @user.update(user_params)
@@ -39,6 +39,6 @@ class Api::UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:id, :email, :username, :password, :icon, :s, :created_at, :updated_at)
+    params.require(:user).permit(:email, :username, :password, :icon, :s, :id, :created_at, :updated_at)
   end
 end

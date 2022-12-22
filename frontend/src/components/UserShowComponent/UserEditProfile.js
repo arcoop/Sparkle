@@ -52,6 +52,21 @@ const UserEditProfile = () => {
         setCity(e.target.value)
     }
 
+    const userIcon = 
+    <div className='settings-photo-upload'>
+        <img className='settings-user-pic' src={`${sessionUser.iconUrl}`} alt="" />
+        <div className='user-icon-bottom user-pic'>
+            <i id='camera-icon' className="fa-solid fa-camera"></i>
+        </div>
+    </div>
+
+    const userProfilePic = <div className='settings-photo-upload'>
+        <i id='settings-profile-user-icon' className="fa-regular fa-user settings-user-icon"></i>
+        <div className='user-icon-bottom'>
+            <i id='camera-icon' className="fa-solid fa-camera"></i>
+        </div>
+    </div>
+
     return ( sessionUser.id && 
         <div className="user-profile-edit">
             <div className='user-profile-el'>
@@ -59,12 +74,13 @@ const UserEditProfile = () => {
                 <div className='photo-upload'>
                     <label>
                         <input onChange={handleFile} className='photo-upload-input' type="file"/>
-                        <div className='settings-photo-upload'>
+                        {sessionUser.iconUrl ? userIcon : userProfilePic}
+                        {/* <div className='settings-photo-upload'>
                             <i id='settings-profile-user-icon' className="fa-regular fa-user settings-user-icon"></i>
                             <div className='user-icon-bottom'>
                                 <i id='camera-icon' className="fa-solid fa-camera"></i>
                             </div>
-                        </div>
+                        </div> */}
                     </label>
                     <input onChange={handleFile} id='photo-upload-input' className='photo-upload-input' type="file" />
                     <label htmlFor='photo-upload-input' id='photo-upload-label'>Choose File</label>

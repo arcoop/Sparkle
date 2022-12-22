@@ -46,13 +46,12 @@ export const fetchUser = userId => async dispatch => {
 }
 
 export const updateUser = user => async dispatch => {
-    console.log("in fetch update user", user)
-    const res = await csrfFetch(`/api/users/${user.id}`, {
+    const res = await csrfFetch(`/api/users/${user.get('user[id]')}`, {
         method: 'PUT',
         body: user
     })
     const data = await res.json();
-    dispatch(setUser(data))
+    dispatch(setUser(data.user))
 }
 
 const usersReducer = (state = {}, action) => {
@@ -60,7 +59,7 @@ const usersReducer = (state = {}, action) => {
         case SET_USERS:
             return {...action.payload}
         case SET_USER:
-            return {...state, [action.payload.id]: action.payload}
+            return {[action.payload.id]: action.payload}
         default:
             return state 
     }

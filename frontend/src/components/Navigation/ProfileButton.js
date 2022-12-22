@@ -1,16 +1,24 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import { logout } from "../../store/session";
 import '../Navigation/Navigation.css'
 
 const ProfileButton = ({user}) => {
     
     const [showMenu, setShowMenu] = useState(false)
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const location = useLocation();
+    const history = useHistory();
 
     const openMenu = () => {
         if (!showMenu) setShowMenu(true)
+    }
+
+    const handleLogout = () => {
+        if (location.pathname.includes("settings")) {
+            dispatch(logout()).then(history.push('/quizzes'))
+        } else dispatch(logout())
     }
 
     const menu = (
@@ -23,7 +31,7 @@ const ProfileButton = ({user}) => {
             </li>
             <li id="break"><hr id="horizontal-line" /></li>
            <li className="menu-list">
-                <button className="menu-list-item" id="logout-button" onClick={() => {dispatch(logout())}}>
+                <button className="menu-list-item" id="logout-button" onClick={handleLogout}>
                         <i id="logout-circle" className="ri-logout-circle-r-line"></i>
                         <p id="logout-text">Logout</p>
                 </button>
