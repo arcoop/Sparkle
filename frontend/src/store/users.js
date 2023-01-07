@@ -1,4 +1,5 @@
 import csrfFetch from "./csrf";
+import { SET_CURRENT_USER } from "./session";
 
 const SET_USERS = 'users/setUsers'
 const SET_USER = 'users/setUser'
@@ -10,6 +11,11 @@ export const setUsers = users => ({
 
 export const setUser = user => ({
     type: SET_USER,
+    payload: user
+})
+
+export const setUserIcon = user => ({
+    type: SET_CURRENT_USER,
     payload: user
 })
 
@@ -51,7 +57,7 @@ export const updateUserIcon = userFormData => async dispatch => {
         body: userFormData
     })
     const data = await res.json();
-    dispatch(setUser(data.user))
+    dispatch(setUserIcon(data.user))
 }
 
 // export const deleteUserIcon = userFormData => async dispatch => {
@@ -69,7 +75,7 @@ export const updateUser = user => async dispatch => {
         body: user
     })
     const data = await res.json();
-    dispatch(setUser(data.user))
+    await dispatch(setUserIcon(data.user))
 }
 
 const usersReducer = (state = {}, action) => {

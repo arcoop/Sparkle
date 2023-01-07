@@ -1,17 +1,27 @@
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import Navigation from "../Navigation";
 import UserEditProfile from "./UserEditProfile";
 import './UserEditForm.css'
 import { Link } from "react-router-dom";
 import Footer from "../Navigation/Footer";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { fetchUser } from "../../store/users";
 
 const UserEditForm = () => {
     const location = useLocation();
+    const dispatch = useDispatch();
     // const [saveChangesButton, setSaveChangesButton] = useState("no-changes")
+    const sessionUser = useSelector(state => state.session.user)
 
-    return (
+    const user = useSelector(state => state.users ? state.users[sessionUser.id] : null)
+
+    useEffect(() => {
+        dispatch(fetchUser(sessionUser.id))
+    }, [])
+
+    return ( user &&
         <div className="page-wrapper">
             <Navigation />
             <div className="edit-page">
@@ -33,7 +43,7 @@ const UserEditForm = () => {
                         </ul>
                     </div>
                     <div className="right-settings-tab">
-                        <UserEditProfile />
+                        <UserEditProfile user={user}/>
                     </div>
                 </div>
             </div>
