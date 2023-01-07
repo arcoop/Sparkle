@@ -57,7 +57,7 @@ export const updateUserIcon = userFormData => async dispatch => {
         body: userFormData
     })
     const data = await res.json();
-    dispatch(setUserIcon(data.user))
+    dispatch(setUser(data.user))
 }
 
 // export const deleteUserIcon = userFormData => async dispatch => {
@@ -75,7 +75,7 @@ export const updateUser = user => async dispatch => {
         body: user
     })
     const data = await res.json();
-    await dispatch(setUserIcon(data.user))
+    await dispatch(setUser(data.user))
 }
 
 const usersReducer = (state = {}, action) => {
