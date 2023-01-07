@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useLocation } from 'react-router-dom';
-import { updateUser, updateUserIcon } from '../../store/users';
+import { fetchUser, updateUser, updateUserIcon } from '../../store/users';
 import './UserEditProfile.css'
 
 const UserEditProfile = () => {
@@ -18,9 +18,14 @@ const UserEditProfile = () => {
     
     const sessionUser = useSelector(state => state.session.user)
 
+    useEffect(() => {
+        if (sessionUser.id) {
+            dispatch(fetchUser(sessionUser.id))
+        }
+    }, [])
+
     const deleteIcon = () => {
         sessionUser.iconUrl = null
-        sessionUser.icon = null;
         setProfileIcon(null)
         setProfileIconURL(null)
         setErrors([])
@@ -28,6 +33,7 @@ const UserEditProfile = () => {
         userData.append('user[email]', sessionUser.email)
         userData.append('user[username]', sessionUser.username)
         userData.append('user[id]', sessionUser.id)
+        // userData.append('user[icon]', profileIcon)
         dispatch(updateUserIcon(userData))
             .catch(async res => {
                 const data = await res.json();
@@ -46,25 +52,24 @@ const UserEditProfile = () => {
             fileReader.readAsDataURL(file)
             fileReader.onload = () => {
                 setProfileIcon(file);
-                setProfileIconURL(fileReader.result);
+                setProfileIconURL(fileReader.result)
             }
-        }
 
-        const formData = new FormData();
-        formData.append('user[email]', sessionUser.email)
-        formData.append('user[username]', sessionUser.username)
-        if (profileIcon) formData.append('user[icon]', profileIcon)
-        if (sessionUser.id) {
-            formData.append('user[id]', sessionUser.id)
-            dispatch(updateUser(formData))
-                .catch(async res => {
-                    const data = await res.json();
-                    if (data && data.errors) setErrors(data.errors)
-                })
-                .then(async data => {
-                    setSuccessMessage(["user saved"])
-                    setSuccessSubmission(true)
-                })
+            const formData = new FormData();
+            formData.append('user[email]', sessionUser.email)
+            formData.append('user[username]', sessionUser.username)
+            if (profileIcon) formData.append('user[icon]', profileIcon)
+            if (sessionUser.id) {
+                formData.append('user[id]', sessionUser.id)
+                dispatch(updateUser(formData))
+                    .catch(async res => {
+                        const data = await res.json();
+                        if (data && data.errors) setErrors(data.errors)
+                    })
+                    .then(async data => {
+                        setSuccessMessage(["user saved"])
+                    })
+            }
         }
     }
 
@@ -107,8 +112,6 @@ const UserEditProfile = () => {
             <i id='camera-icon' className="fa-solid fa-camera"></i>
         </div>
     </div>
-
-    console.log(sessionUser.iconUrl)
 
     return ( sessionUser.id && 
         <div className="user-profile-edit">

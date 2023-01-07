@@ -28,18 +28,22 @@ class Api::UsersController < ApplicationController
   end
 
   def update_icon
+    p "deleting icon"
     @user = User.find(params[:id])
-    p @user
     @user.icon.purge
-    p 'purged'
+    p @user
     if @user.update(user_params)
       render :show
     else
+      p 'deleted'
+      p "not updated"
+      p @user.errors.full_messages
       render json: {errors: @user.errors.full_messages}, status: :unprocessable_entity
     end
   end
 
   def update
+    p "updating"
     @user = User.find(params[:id])
     if @user.update(user_params)
       render :show
