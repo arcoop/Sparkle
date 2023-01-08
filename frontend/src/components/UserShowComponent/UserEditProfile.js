@@ -10,7 +10,7 @@ const UserEditProfile = ({user}) => {
     // const user = useSelector(state => state.users[userId])
     const dispatch = useDispatch();
     const location = useLocation();
-    const [profileIcon, setProfileIcon] = useState(user.id ? user.icon : null);
+    const [profileIcon, setProfileIcon] = useState(user.id ? user.icon : null)
     const [profileIconURL, setProfileIconURL] = useState(user.id ? user.iconUrl : null);
     const [city, setCity] = useState(user.city ? user.city : null) 
     const [stateAndCountry, setStateAndCountry] = useState(user.stateCountry ? user.stateCountry : null)
