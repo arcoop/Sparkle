@@ -39,7 +39,6 @@ class Api::QuizzesController < ApplicationController
     end
     
     def create
-        p "inside create"
         @quiz = Quiz.new(quiz_params)
         @quiz.author = current_user
         if @quiz.save

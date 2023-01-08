@@ -9,10 +9,12 @@ const UserEditProfile = ({user}) => {
     // const sessionUser = useSelector(state => state.session.user)
     // const user = useSelector(state => state.users[userId])
     const dispatch = useDispatch();
+    const location = useLocation();
     const [profileIcon, setProfileIcon] = useState(user.id ? user.icon : null);
     const [profileIconURL, setProfileIconURL] = useState(user.id ? user.iconUrl : null);
-    const location = useLocation();
-    const [city, setCity] = useState("") 
+    const [city, setCity] = useState(user.city ? user.city : null) 
+    const [stateAndCountry, setStateAndCountry] = useState(user.stateCountry ? user.stateCountry : null)
+    const [bio, setBio] = useState(user.bio ? user.bio : null)
     const [errors, setErrors] = useState([])
     const [succesMessage, setSuccessMessage] = useState([])
     const [redirect, setRedirect] = useState(false)
@@ -78,6 +80,9 @@ const UserEditProfile = ({user}) => {
         const formData = new FormData();
         formData.append('user[email]', user.email)
         formData.append('user[username]', user.username)
+        if (city )formData.append('user[city]', city)
+        if (stateAndCountry) formData.append('user[state_country]', stateAndCountry)
+        if (bio) formData.append('user[bio]', bio)
         if (profileIcon) formData.append('user[icon]', profileIcon)
         if (user.id) {
             formData.append('user[id]', user.id)
@@ -94,6 +99,14 @@ const UserEditProfile = ({user}) => {
 
     const handleCityChange = e => {
         setCity(e.target.value)
+    }
+
+    const handleStateCountryChange = e => {
+        setStateAndCountry(e.target.value)
+    }
+
+    const handleBioChange = e => {
+        setBio(e.target.value)
     }
 
     const userProfilePic = 
@@ -136,11 +149,11 @@ const UserEditProfile = ({user}) => {
                 <input className='settings-input' type="text" />
             </div>
             <div className='user-profile-el'>
-                <p className='user-profile-text state-country'>State/Country</p>
+                <p onChange={handleStateCountryChange} className='user-profile-text state-country'>State/Country</p>
                 <input className='settings-input' type="text" />
             </div>
             <div className='user-profile-el'>
-                <p className='user-profile-text bio'>Bio</p>
+                <p onChange={handleBioChange} className='user-profile-text bio'>Bio</p>
                 <textarea id='settings-bio' className='settings-input' type="text" />
             </div>
             <div onClick={handleSubmit}>Save</div>

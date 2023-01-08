@@ -9,6 +9,9 @@
 #  session_token   :string           not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  city            :string
+#  state_country   :string
+#  bio             :text
 #
 class User < ApplicationRecord
   has_secure_password
