@@ -153,7 +153,7 @@ const UserEditProfile = ({user}) => {
                     <textarea onChange={handleBioChange} value={bio} id='settings-bio' className='settings-input' type="text" />
                 </div>
             </div>
-            <div className='edit-profile-save-button' onClick={handleSubmit}>Save</div>
+            <div className='edit-profile-save-button' onClick={handleSubmit}>Save Changes</div>
         </>
     )
 }
