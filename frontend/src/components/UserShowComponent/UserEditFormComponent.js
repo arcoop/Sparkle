@@ -43,7 +43,7 @@ const UserEditForm = () => {
                         </ul>
                     </div>
                     <div className="right-settings-tab">
-                        <UserEditProfile user={user}/>
+                        {location.pathname.includes("profile") && <UserEditProfile user={user}/>}
                     </div>
                 </div>
             </div>

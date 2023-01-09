@@ -76,8 +76,8 @@ const UserEditProfile = ({user}) => {
         formData.append('user[email]', user.email)
         formData.append('user[username]', user.username)
         formData.append('user[city]', city)
-        if (stateAndCountry) formData.append('user[state_country]', stateAndCountry)
-        if (bio) formData.append('user[bio]', bio)
+        formData.append('user[state_country]', stateAndCountry)
+        formData.append('user[bio]', bio)
         if (profileIcon) formData.append('user[icon]', profileIcon)
         if (user.id) {
             formData.append('user[id]', user.id)
@@ -120,39 +120,41 @@ const UserEditProfile = ({user}) => {
     </div>
 
     return ( user && 
-        <div className="user-profile-edit">
-            <div className='user-profile-el'>
-                <p className='user-profile-text photo'>Your Photo</p>
-                <div className='photo-upload'>
-                    <label>
-                        <input onChange={handleFile} className='photo-upload-input' type="file"/>
-                        {user.iconUrl ? userProfilePic : userIcon}
-                    </label>
-                    <input onChange={handleFile} id='photo-upload-input' className='photo-upload-input' type="file" />
-                    <div className='settings-photo-buttons'>
-                        <label htmlFor='photo-upload-input' id='photo-upload-label'>Choose File</label>
-                        <div onClick={deleteIcon} className='settings-delete-icon'>Delete</div>
+        <>
+            <div className="user-profile-edit">
+                <div className='user-profile-el'>
+                    <p className='user-profile-text photo'>Your Photo</p>
+                    <div className='photo-upload'>
+                        <label>
+                            <input onChange={handleFile} className='photo-upload-input' type="file"/>
+                            {user.iconUrl ? userProfilePic : userIcon}
+                        </label>
+                        <input onChange={handleFile} id='photo-upload-input' className='photo-upload-input' type="file" />
+                        <div className='settings-photo-buttons'>
+                            <label htmlFor='photo-upload-input' id='photo-upload-label'>Choose File</label>
+                            <div onClick={deleteIcon} className='settings-delete-icon'>Delete</div>
+                        </div>
                     </div>
                 </div>
+                <div className='user-profile-el'>
+                    <p className='user-profile-text username'>Username</p>
+                    <p>{user.username}</p>
+                </div>
+                <div className='user-profile-el'>
+                    <p className='user-profile-text city'>City</p>
+                    <input onChange={handleCityChange} value={city} className='settings-input' type="text" />
+                </div>
+                <div className='user-profile-el'>
+                    <p className='user-profile-text state-country'>State/Country</p>
+                    <input onChange={handleStateCountryChange} value={stateAndCountry} className='settings-input' type="text" />
+                </div>
+                <div className='user-profile-el'>
+                    <p className='user-profile-text bio'>Bio</p>
+                    <textarea onChange={handleBioChange} value={bio} id='settings-bio' className='settings-input' type="text" />
+                </div>
             </div>
-            <div className='user-profile-el'>
-                <p className='user-profile-text username'>Username</p>
-                <p>{user.username}</p>
-            </div>
-            <div className='user-profile-el'>
-                <p className='user-profile-text city'>City</p>
-                <input onChange={handleCityChange} value={city} className='settings-input' type="text" />
-            </div>
-            <div className='user-profile-el'>
-                <p className='user-profile-text state-country'>State/Country</p>
-                <input onChange={handleStateCountryChange} value={stateAndCountry} className='settings-input' type="text" />
-            </div>
-            <div className='user-profile-el'>
-                <p className='user-profile-text bio'>Bio</p>
-                <textarea onChange={handleBioChange} value={bio} id='settings-bio' className='settings-input' type="text" />
-            </div>
-            <div onClick={handleSubmit}>Save</div>
-        </div>
+            <div className='edit-profile-save-button' onClick={handleSubmit}>Save</div>
+        </>
     )
 }
 
