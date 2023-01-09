@@ -98,11 +98,12 @@ const SignupForm = ({email, setEmail}) => {
                 </div>
 
                 <div className="cred-div">
-                    <label onClick={handlePasswordClick} className={passwordFloat}>Password</label>
+                    <label onFocus={handlePasswordClick} onClick={handlePasswordClick} className={passwordFloat}>Password</label>
                     <input className={"signup-credentials"}
                         autoFocus
                         type="password"
                         onClick={handlePasswordClick}
+                        onFocus={handlePasswordClick}
                         value={password}
                         onChange={e => setPassword(e.target.value)}
                     />
@@ -110,21 +111,23 @@ const SignupForm = ({email, setEmail}) => {
 
     
                 <div className="cred-div">
-                    <label onClick={handleConfirmPassClick} className={confirmPasswordFloat}>Confirm Password</label>
+                    <label onFocus={handleConfirmPassClick} onClick={handleConfirmPassClick} className={confirmPasswordFloat}>Confirm Password</label>
                     <input className="signup-credentials"
                         type="password"
                         value={confirmPassword}
                         onChange={(e => {setConfirmPassword(e.target.value)} )}
                         onClick={handleConfirmPassClick}
+                        onFocus={handleConfirmPassClick}
                     />
                 </div>
         
                 <div className="cred-div">
-                    <label onClick={handleUsernameClick} className={usernameFloat}>Username</label>
+                    <label onFocus={handleUsernameClick} onClick={handleUsernameClick} className={usernameFloat}>Username</label>
                     <input className="signup-credentials"
                         type="text"
                         value={username}
                         onClick={handleUsernameClick}
+                        onFocus={handleUsernameClick}
                         onChange={e => setUsername(e.target.value)}
                         />
                 </div>

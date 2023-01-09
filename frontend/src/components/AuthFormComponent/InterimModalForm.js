@@ -37,11 +37,12 @@ const InterimSignUp = ({email, setEmail, errors}) => {
 
     
                 <div className="email-cred-div">
-                    <label onClick={() => setFloat("email-label floating")} className={float}>Email</label>
+                    <label onFocus={() => setFloat("email-label floating")} onClick={() => setFloat("email-label floating")} className={float}>Email</label>
                     <input className="signup-credentials"
                         type="text"
                         value={email}
                         onClick={() => setFloat("email-label floating")}
+                        onFocus={() => setFloat("email-label floating") }
                         onChange={e => setEmail(e.target.value)}
                         />
                 </div>
