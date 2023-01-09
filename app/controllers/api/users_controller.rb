@@ -1,5 +1,5 @@
 class Api::UsersController < ApplicationController
-  wrap_parameters include: User.attribute_names + ['password']
+  wrap_parameters include: User.attribute_names + ['password', 'icon']
 
   def index
     @users = User.all
@@ -27,8 +27,27 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def update_icon
+    @user = User.find(params[:id])
+    @user.icon.purge
+    if @user.update(user_params)
+      render :show
+    else
+      render json: {errors: @user.errors.full_messages}, status: :unprocessable_entity
+    end
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      render :show
+    else
+      render json: {errors: @user.errors.full_messages}, status: :unprocessable_entity
+    end
+  end
+
   private
   def user_params
-    params.require(:user).permit(:email, :username, :password, :s, :created_at)
+    params.require(:user).permit(:email, :username, :password, :city, :state_country, :bio, :icon, :s, :id, :created_at, :updated_at)
   end
 end

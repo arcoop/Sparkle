@@ -39,7 +39,6 @@ class Api::QuizzesController < ApplicationController
     end
     
     def create
-        p "inside create"
         @quiz = Quiz.new(quiz_params)
         @quiz.author = current_user
         if @quiz.save
@@ -50,14 +49,12 @@ class Api::QuizzesController < ApplicationController
     end
 
     def update
-        p "editing quiz"
         if @quiz.update(quiz_params)
             render 'api/quizzes/show'
         else
             p @quiz.errors.full_messages
             render json: {errors: @quiz.errors.full_messages}, status: :unprocessable_entity
         end
-        p "done editing"
     end
 
     def destroy

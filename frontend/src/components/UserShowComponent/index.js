@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { fetchUser, fetchUsers, getUser } from '../../store/users';
 import './UserShow.css'
 import { Link } from 'react-router-dom';
@@ -14,6 +14,7 @@ const UserShow = () => {
     const dispatch = useDispatch();
     const {id} = useParams();
     const [loadQuizzes, setLoadQuizzes] = useState(false)
+    const history = useHistory();
 
     const sessionUser = useSelector(state => state.session.user)
     
@@ -142,11 +143,14 @@ const UserShow = () => {
                             {/* <button id='edit-button'>Edit Profile</button> */}
                         </div>
                         <div id='show-page-top-info'>
-                            {onlineStatus}
-                            <div id='user-since'>
-                                <i id='clock-icon' className="fa-solid fa-clock"></i>
-                                <p>User since {formatDate(user.createdAt)}</p>
+                            <div id='show-page-top-info-left'>
+                                {onlineStatus}
+                                <div id='user-since'>
+                                    <i id='clock-icon' className="fa-solid fa-clock"></i>
+                                    <p>User since {formatDate(user.createdAt)}</p>
+                                </div>
                             </div>
+                            <Link to={'/settings/profile'} id='show-page-top-info-right'>Edit Profile</Link>
                         </div>
                     </div>
                 </div>

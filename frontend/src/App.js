@@ -12,6 +12,7 @@ import QuizByCategory from './components/QuizByCategoryIndexComponent';
 import { CategoryIndexPage } from './components/CategoryIndexComponent'
 import SearchResults from './components/SearchResultsComponent/SearchResults';
 import CategoryShow from './components/CategoryShowComponent/CategoryShow';
+import UserEditForm from './components/UserShowComponent/UserEditFormComponent';
 
 function App() {
   return (
@@ -66,7 +67,10 @@ function App() {
           <CategoryShow />
         </Route>
 
-
+        <Route path="/settings/">
+          <UserEditForm />
+        </Route>
+        
         <Route>
           <h1>path not found</h1>
         </Route>

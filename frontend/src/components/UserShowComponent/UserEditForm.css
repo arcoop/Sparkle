@@ -1,0 +1,95 @@
+.profile-page {
+    display: flex;
+}
+
+.top-spacer {
+    margin-bottom: 45px;
+}
+
+.edit-page {
+    padding: 0 15px 20px 15px;
+    min-height: 450px;
+    position: relative;
+}
+
+.profile-page-heading {
+    font-size: 2em;
+    margin-block-start: .67em;
+    margin-block-end: .67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
+.left-settings-div {
+    border: 1px solid #d8d8d8;
+    border-radius: 4px;
+    margin-right: 20px;
+    text-transform: uppercase;
+    font-size: 85%;
+    width: 182px;
+    font-weight: bold;
+}
+
+.settings-div-header {
+    background-color: #f1f1f2;
+    padding: 12px 18px;
+    font-size: 120%;
+}
+
+.settings-wrapper {
+    padding: 2px 4px;
+}
+
+.settings-nav-item:hover {
+    background-color: #ffebcc;
+}
+
+.on {
+    border-left: 4px solid #f90;
+}
+
+.settings-li-link {
+    color: black;
+    display: inline-block;
+    padding: 10px 5px;
+    width: 122px;
+    line-height: 15px;
+    text-decoration: none;
+}
+
+.right-settings-tab {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.user-profile-edit {
+    border: 1px solid #d8d8d8;
+    padding: 20px 20px 0 20px;
+}
+
+/* .save-changes {
+    width: 200px;
+    border-radius: .25rem;
+    box-sizing: border-box;
+    font-size: .75rem;
+    font-weight: 700;
+    line-height: .875rem;
+    text-transform: uppercase;
+    padding: .75rem 1rem;
+    text-align: center;
+}
+
+.changes {
+    background-color: #f90;
+    border: 1px solid #f90;
+    color: white;
+}
+
+.no-changes {
+    background-color: #f1f1f2;
+    color: #d8d8d8;
+    border: 1px solid #f1f1f2;
+    cursor: default;
+} */
