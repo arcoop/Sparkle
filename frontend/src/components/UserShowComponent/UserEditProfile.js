@@ -12,17 +12,13 @@ const UserEditProfile = ({user}) => {
     const location = useLocation();
     const [profileIcon, setProfileIcon] = useState(user.id ? user.icon : null)
     const [profileIconURL, setProfileIconURL] = useState(user.id ? user.iconUrl : null);
-    const [city, setCity] = useState(user.city ? user.city : null) 
-    const [stateAndCountry, setStateAndCountry] = useState(user.stateCountry ? user.stateCountry : null)
-    const [bio, setBio] = useState(user.bio ? user.bio : null)
+    const [city, setCity] = useState(user.city ? user.city : "") 
+    const [stateAndCountry, setStateAndCountry] = useState(user.stateCountry ? user.stateCountry : "")
+    const [bio, setBio] = useState(user.bio ? user.bio : "")
     const [errors, setErrors] = useState([])
     const [succesMessage, setSuccessMessage] = useState([])
     const [redirect, setRedirect] = useState(false)
     const [successSubmission, setSuccessSubmission] = useState(false)
-
-    useEffect(() => {
-        dispatch(fetchUser(user.id))
-    }, [user.iconUrl])
 
     const deleteIcon = () => {
         user.iconUrl = null
@@ -33,7 +29,6 @@ const UserEditProfile = ({user}) => {
         userData.append('user[email]', user.email)
         userData.append('user[username]', user.username)
         userData.append('user[id]', user.id)
-        // userData.append('user[icon]', profileIcon)
         dispatch(updateUserIcon(userData))
             .catch(async res => {
                 const data = await res.json();
@@ -80,7 +75,7 @@ const UserEditProfile = ({user}) => {
         const formData = new FormData();
         formData.append('user[email]', user.email)
         formData.append('user[username]', user.username)
-        if (city )formData.append('user[city]', city)
+        formData.append('user[city]', city)
         if (stateAndCountry) formData.append('user[state_country]', stateAndCountry)
         if (bio) formData.append('user[bio]', bio)
         if (profileIcon) formData.append('user[icon]', profileIcon)
@@ -145,16 +140,16 @@ const UserEditProfile = ({user}) => {
                 <p>{user.username}</p>
             </div>
             <div className='user-profile-el'>
-                <p onChange={handleCityChange} className='user-profile-text city'>City</p>
-                <input className='settings-input' type="text" />
+                <p className='user-profile-text city'>City</p>
+                <input onChange={handleCityChange} value={city} className='settings-input' type="text" />
             </div>
             <div className='user-profile-el'>
-                <p onChange={handleStateCountryChange} className='user-profile-text state-country'>State/Country</p>
-                <input className='settings-input' type="text" />
+                <p className='user-profile-text state-country'>State/Country</p>
+                <input onChange={handleStateCountryChange} value={stateAndCountry} className='settings-input' type="text" />
             </div>
             <div className='user-profile-el'>
-                <p onChange={handleBioChange} className='user-profile-text bio'>Bio</p>
-                <textarea id='settings-bio' className='settings-input' type="text" />
+                <p className='user-profile-text bio'>Bio</p>
+                <textarea onChange={handleBioChange} value={bio} id='settings-bio' className='settings-input' type="text" />
             </div>
             <div onClick={handleSubmit}>Save</div>
         </div>
