@@ -20,7 +20,8 @@ const LoginForm = () => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        setErrors([])
+        setEmailErrors([])
+        setPasswordErrors([])
         const user = {credential, password}
         return dispatch(login(user))
             .catch(async(res) => {
@@ -33,7 +34,10 @@ const LoginForm = () => {
                         setEmailErrors(["Missing email or username"])
                     } else if (password.length < 1 ) {
                         setPasswordErrors(["Missing password"])
-                    } else setErrors(["Incorrect login information"])
+                    } else {
+                        setEmailErrors(["Incorrect login information"])
+                        setPasswordErrors(["Incorrect login information"])
+                    }
                 }
             })
     }
@@ -70,16 +74,16 @@ const LoginForm = () => {
 
     const handleUsernameClick = () => {
         if (password.length < 1) {
-            setPasswordFloat("label")
-        } else setPasswordFloat("label floating")
-        setUsernameFloat("label floating")
+            setPasswordFloat(password.length > 0 ? "label credential-errors" : "label")
+        } else setPasswordFloat(passwordErrors.length > 0 ? "label floating credential-errors" : "label floating")
+        setUsernameFloat(emailErrors.length > 0 ? "label floating credential-errors" : "label floating")
     }
 
     const handlePasswordClick = () => {
         if (credential.length < 1) {
-            setUsernameFloat("label")
-        } else setUsernameFloat("label floating")
-        setPasswordFloat("label floating")
+            setUsernameFloat(emailErrors.length > 0 ? "label credential-errors" : "label")
+        } else setUsernameFloat(emailErrors.length > 0 ? "label floating credential-errors" : "label floating")
+        setPasswordFloat(passwordErrors.length > 0 ? "label floating credential-errors" : "label floating")
     }
 
 
@@ -104,25 +108,35 @@ const LoginForm = () => {
             </div>
                 <form id="loginform" onSubmit={handleSubmit}>
                         <div className="cred-div">
-                            <label onFocus={handleUsernameClick} onClick={handleUsernameClick} className={usernameFloat}>Email Address or Username<p className="required">*</p></label>
-                            <input className={usernameFloat === "label has-focus" ? "credentials has-focus" : emailErrors.length > 0 || errors.length > 0 ? "credentials cred-errors" : "credentials"}
+                            <label onFocus={handleUsernameClick} onClick={handleUsernameClick} className={emailErrors.length > 0 ? `${usernameFloat} credential-errors` : usernameFloat}>Email Address or Username<p className="required">*</p></label>
+                            <input className={usernameFloat === "label has-focus" ? "credentials has-focus" : emailErrors.length > 0 ? "credentials cred-errors" : "credentials"}
                                 type="text"
                                 value={credential}
                                 onClick={handleUsernameClick}
                                 onFocus={handleUsernameClick}
                                 onChange={e => setCredential(e.target.value)}
                                 />
+                            {emailErrors.map(error => {
+                                return (
+                                    <div className="error" key={`${error} credential`}>{error} </div>
+                                )
+                            })}
                         </div>
                     <br></br>
                     <div className="cred-div">
-                        <label onFocus={handlePasswordClick} onClick={handlePasswordClick} className={passwordFloat}>Password <p className="required">*</p></label>
+                        <label onFocus={handlePasswordClick} onClick={handlePasswordClick} className={passwordErrors.length > 0 ? `${passwordFloat} credential-errors` : passwordFloat}>Password <p className="required">*</p></label>
                         <input type="password"
-                            className={passwordErrors.length > 0 || errors.length > 1 ? "credentials cred-errors" : "credentials"}
+                            className={passwordErrors.length > 0 ? "credentials cred-errors" : "credentials"}
                             value={password}
                             onClick={handlePasswordClick}
                             onFocus={handlePasswordClick}
                             onChange={e => setPassword(e.target.value)}
                             />
+                        {passwordErrors.map(error => {
+                            return (
+                                <div className="error" key={`${error} password`}>{error}</div>
+                            )
+                        })}
                     </div>
                     <br></br>
                     <button className="log-in" type="submit">LOG IN</button>
