@@ -13,6 +13,8 @@ const LoginForm = () => {
     const [errors, setErrors] = useState([])
     const [usernameFloat, setUsernameFloat] = useState("label has-focus")
     const [passwordFloat, setPasswordFloat] = useState("label")
+    const [emailErrors, setEmailErrors] = useState([])
+    const [passwordErrors, setPasswordErrors] = useState([])
     
     let username;
 
@@ -24,7 +26,14 @@ const LoginForm = () => {
             .catch(async(res) => {
                 const data = await res.json();
                 if (data && data.errors) {
-                    setErrors(["Incorrect login information"])
+                    if (credential.length < 1 && password.length < 1) {
+                        setEmailErrors(["Missing email or username"])
+                        setPasswordErrors(["Missing password"])
+                    } else if (credential.length < 1) {
+                        setEmailErrors(["Missing email or username"])
+                    } else if (password.length < 1 ) {
+                        setPasswordErrors(["Missing password"])
+                    } else setErrors(["Incorrect login information"])
                 }
             })
     }
@@ -62,14 +71,14 @@ const LoginForm = () => {
     const handleUsernameClick = () => {
         if (password.length < 1) {
             setPasswordFloat("label")
-        } else setPasswordFloat("label hidden")
+        } else setPasswordFloat("label floating")
         setUsernameFloat("label floating")
     }
 
     const handlePasswordClick = () => {
         if (credential.length < 1) {
             setUsernameFloat("label")
-        } else setUsernameFloat("label hidden")
+        } else setUsernameFloat("label floating")
         setPasswordFloat("label floating")
     }
 
@@ -95,8 +104,8 @@ const LoginForm = () => {
             </div>
                 <form id="loginform" onSubmit={handleSubmit}>
                         <div className="cred-div">
-                            <label onFocus={handleUsernameClick} onClick={handleUsernameClick} className={usernameFloat}>Email Address or Username</label>
-                            <input className={usernameFloat === "label has-focus" ? "credentials has-focus" : "credentials"}
+                            <label onFocus={handleUsernameClick} onClick={handleUsernameClick} className={usernameFloat}>Email Address or Username<p className="required">*</p></label>
+                            <input className={usernameFloat === "label has-focus" ? "credentials has-focus" : emailErrors.length > 0 || errors.length > 0 ? "credentials cred-errors" : "credentials"}
                                 type="text"
                                 value={credential}
                                 onClick={handleUsernameClick}
@@ -106,9 +115,9 @@ const LoginForm = () => {
                         </div>
                     <br></br>
                     <div className="cred-div">
-                        <label onFocus={handlePasswordClick} onClick={handlePasswordClick} className={passwordFloat}>Password</label>
+                        <label onFocus={handlePasswordClick} onClick={handlePasswordClick} className={passwordFloat}>Password <p className="required">*</p></label>
                         <input type="password"
-                            className="credentials"
+                            className={passwordErrors.length > 0 || errors.length > 1 ? "credentials cred-errors" : "credentials"}
                             value={password}
                             onClick={handlePasswordClick}
                             onFocus={handlePasswordClick}

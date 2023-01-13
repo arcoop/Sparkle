@@ -152,6 +152,12 @@
     color: #666;
     padding: 9px;
     pointer-events: none;
+    display: flex;
+    gap: 3px;
+}
+
+.required {
+    color: #b00;
 }
 
 .label:hover {
@@ -224,3 +230,9 @@
     transition-property: top, font-size, font-weight, opacity;
     transition-timing-function: ease-in;
 }
+
+.cred-errors {
+    outline: 1px solid #b00;
+    color: #b00;
+}
+
