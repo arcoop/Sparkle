@@ -11,8 +11,6 @@ const FormModal = ({type = "login"}) => {
     const [email, setEmail] = useState("")
     const [errors, setErrors] = useState([])
 
-    console.log(modal)
-
     //types: login, interimSignup, signup,
 
     const toggleModal = () => {
@@ -29,7 +27,6 @@ const FormModal = ({type = "login"}) => {
                 setModal("signup")
             }
         }
-                // setModal( modal === ("login" || "create-quiz-login")  ? "signup" : "login")
     }
 
     const handleSignUpModal = () => {

@@ -86,6 +86,18 @@ const LoginForm = () => {
         setPasswordFloat(passwordErrors.length > 0 ? "label floating credential-errors" : "label floating")
     }
 
+    const handleUsernameBlur = () => {
+        if (credential.length < 1) {
+            setUsernameFloat(emailErrors.length > 0 ? "label credential-errors" : "label")
+        } else setUsernameFloat(emailErrors.length > 0 ? "label floating credential-errors" : "label floating")
+    }
+
+    const handlePasswordBlur = () => {
+        if (password.length < 1) {
+            setPasswordFloat(password.length > 0 ? "label credential-errors" : "label")
+        } else setPasswordFloat(passwordErrors.length > 0 ? "label floating credential-errors" : "label floating")
+    }
+
 
     return (
         <div>
@@ -114,6 +126,7 @@ const LoginForm = () => {
                                 value={credential}
                                 onClick={handleUsernameClick}
                                 onFocus={handleUsernameClick}
+                                onBlur={handleUsernameBlur}
                                 onChange={e => setCredential(e.target.value)}
                                 />
                             {emailErrors.map(error => {
@@ -130,6 +143,7 @@ const LoginForm = () => {
                             value={password}
                             onClick={handlePasswordClick}
                             onFocus={handlePasswordClick}
+                            onBlur={handlePasswordBlur}
                             onChange={e => setPassword(e.target.value)}
                             />
                         {passwordErrors.map(error => {
