@@ -19,6 +19,7 @@ const SignupForm = ({email, setEmail}) => {
     const [confirmPasswordFloat, setConfirmPasswordFloat] = useState("sign-up-label")
     const [usernameFloat, setUsernameFloat] = useState("sign-up-label")
     const dispatch = useDispatch()
+    const [passwordErrors, setPasswordErrors] = useState([])
 
     if (sessionUser) return <Redirect to="/" />;
 
@@ -31,11 +32,14 @@ const SignupForm = ({email, setEmail}) => {
                 .catch(async(res) => {
                     const data = await res.json()
                     if (data && data.errors) {
-                        setErrors(data.errors)
+                        if (password.length < 6) {
+                            setPasswordErrors(["Must be between 6 and 16 characters long"])
+                        }
+                        setErrors(["Sorry, this username is already taken."])
                     }
                 })
         } else {
-            setErrors(["passwords do not match"])
+            setPasswordErrors(["passwords do not match"])
         }
     }
 
@@ -76,13 +80,13 @@ const SignupForm = ({email, setEmail}) => {
 
     return (
         <>
-            <ul className="errors">
+            {/* <ul className="errors">
                 {errors.map(error => {
                     return (
-                        <li className="error" key={error}>{error}</li>
+                        <li className="sign-up-error" key={error}>{error}</li>
                     )
                 })}
-            </ul>
+            </ul> */}
 
             <h2 id="join-text">Join for Free</h2>
             <p id="subtitle">By continuing you agree to our Terms of Use and Privacy Policy.</p>
@@ -95,6 +99,11 @@ const SignupForm = ({email, setEmail}) => {
                         value={email}
                         onChange={e => setEmail(e.target.value)}
                         />
+                    {errors.map(error => {
+                        return (
+                            <div className="sign-up-error" key={`${error}-cred`}>{error}</div>
+                        )
+                    })}
                 </div>
 
                 <div className="cred-div">
@@ -107,6 +116,11 @@ const SignupForm = ({email, setEmail}) => {
                         value={password}
                         onChange={e => setPassword(e.target.value)}
                     />
+                    {passwordErrors.map(error => {
+                        return (
+                            <div className="sign-up-error" key={`${error}-pass`}>{error}</div>
+                        )
+                    })}
                 </div>
 
     

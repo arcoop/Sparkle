@@ -226,3 +226,13 @@
 .sign-up-label.hidden {
     display: none;
 }
+
+.sign-up-error {
+    color: #b00;
+    list-style: none;
+    font-size: .65rem;
+    margin-bottom: .4375rem;
+    margin-top: 7px;
+    margin-left: 30px;
+
+}

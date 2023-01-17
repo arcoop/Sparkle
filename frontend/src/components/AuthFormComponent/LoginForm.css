@@ -160,6 +160,14 @@
     color: #b00;
 }
 
+.error {
+    color: #b00;
+    list-style: none;
+    font-size: .65rem;
+    margin-bottom: .4375rem;
+    margin-top: 7px;
+}
+
 .label:hover {
     cursor: text;
 }
@@ -232,7 +240,10 @@
 }
 
 .cred-errors {
-    outline: 1px solid #b00;
-    color: #b00;
+    outline: 2px solid #b00;
+}
+
+.credential-errors {
+    color: #b00 !important;
 }
 
