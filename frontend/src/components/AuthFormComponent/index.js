@@ -11,6 +11,8 @@ const FormModal = ({type = "login"}) => {
     const [email, setEmail] = useState("")
     const [errors, setErrors] = useState([])
 
+    console.log(modal)
+
     //types: login, interimSignup, signup,
 
     const toggleModal = () => {
@@ -87,7 +89,7 @@ const FormModal = ({type = "login"}) => {
     ///const formClass = (modal === "login" ? "signup-link" : "signup-link")
     let formClass;
     let submitButtonText;
-    if (modal === 'login') {
+    if (modal === 'login' || modal === 'create-quiz-login') {
         formClass = "signup-link"
         submitButtonText = "Start Sparkling for Free"
     }
@@ -129,7 +131,7 @@ const FormModal = ({type = "login"}) => {
                                     <p id="text">{text}</p>
                                     <button 
                                         // className={formClass} onClick={toggleModal}>{modal === 'login' ? "Start Sparkling for Free" : "Log in"}
-                                        className={formClass} onClick={modal === "interimSignup" || modal === "create-quiz-signup" ? handleInterimSignupModal : (modal === "login" ? handleLoginModal : handleSignUpModal)}>{submitButtonText}
+                                        className={formClass} onClick={modal === "interimSignup" || modal === "create-quiz-signup" ? handleInterimSignupModal : (modal === "login" || modal === "create-quiz-login" ? handleLoginModal : handleSignUpModal)}>{submitButtonText}
                                     </button>
                                 </div>
                                 <div className="second-button">

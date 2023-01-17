@@ -141,7 +141,6 @@ const LoginForm = () => {
                     <br></br>
                     <button className="log-in" type="submit">LOG IN</button>
                 </form>
-            
         </div>
     )
 }
