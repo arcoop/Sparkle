@@ -43,11 +43,6 @@ const SignupForm = ({email, setEmail}) => {
         }
     }
 
-    // const confirmPasswordClick = () => {
-    //     setPasswordPlaceholder("Password")
-    //     setConfirmPassPlaceholder("")
-    // }
-
     const handlePasswordClick = () => {
         if (confirmPassword.length < 1)  {
             setConfirmPasswordFloat("sign-up-label")
@@ -78,6 +73,25 @@ const SignupForm = ({email, setEmail}) => {
         setUsernameFloat("sign-up-label floating")
     }
 
+    const handlePasswordBlur = () => {
+        if (password.length < 1)  {
+            setPasswordFloat("sign-up-label")
+        } else setPasswordFloat("sign-up-label hidden")
+    }
+
+    const handleConfirmPassBlur = () => {
+        if (confirmPassword.length < 1)  {
+            setConfirmPasswordFloat("sign-up-label")
+        } else setConfirmPasswordFloat("sign-up-label hidden")
+    }
+
+    const handleUsernameBlur = () => {
+        if (username.length < 1) {
+            setUsernameFloat("sign-up-label")
+        } else setUsernameFloat("sign-up-label hidden")
+    }
+
+
     return (
         <>
             {/* <ul className="errors">
@@ -107,12 +121,13 @@ const SignupForm = ({email, setEmail}) => {
                 </div>
 
                 <div className="cred-div">
-                    <label onFocus={handlePasswordClick} onClick={handlePasswordClick} className={passwordFloat}>Password</label>
+                    <label onFocus={handlePasswordClick} onClick={handlePasswordClick} className={passwordFloat}>Password<p className="required">*</p></label>
                     <input className={"signup-credentials"}
                         autoFocus
                         type="password"
                         onClick={handlePasswordClick}
                         onFocus={handlePasswordClick}
+                        onBlur={handlePasswordBlur}
                         value={password}
                         onChange={e => setPassword(e.target.value)}
                     />
@@ -125,23 +140,25 @@ const SignupForm = ({email, setEmail}) => {
 
     
                 <div className="cred-div">
-                    <label onFocus={handleConfirmPassClick} onClick={handleConfirmPassClick} className={confirmPasswordFloat}>Confirm Password</label>
+                    <label onFocus={handleConfirmPassClick} onClick={handleConfirmPassClick} className={confirmPasswordFloat}>Confirm Password<p className="required">*</p></label>
                     <input className="signup-credentials"
                         type="password"
                         value={confirmPassword}
                         onChange={(e => {setConfirmPassword(e.target.value)} )}
                         onClick={handleConfirmPassClick}
                         onFocus={handleConfirmPassClick}
+                        onBlur={handleConfirmPassBlur}
                     />
                 </div>
         
                 <div className="cred-div">
-                    <label onFocus={handleUsernameClick} onClick={handleUsernameClick} className={usernameFloat}>Username</label>
+                    <label onFocus={handleUsernameClick} onClick={handleUsernameClick} className={usernameFloat}>Username<p className="required">*</p></label>
                     <input className="signup-credentials"
                         type="text"
                         value={username}
                         onClick={handleUsernameClick}
                         onFocus={handleUsernameClick}
+                        onBlur={handleUsernameBlur}
                         onChange={e => setUsername(e.target.value)}
                         />
                 </div>

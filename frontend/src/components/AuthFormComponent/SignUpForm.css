@@ -236,3 +236,13 @@
     margin-left: 30px;
 
 }
+
+.sign-up-label {
+    display: flex;
+    gap: 3px;
+}
+
+.email-label {
+    display: flex;
+    gap: 3px;
+}
