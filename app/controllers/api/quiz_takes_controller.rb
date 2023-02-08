@@ -3,9 +3,9 @@ class Api::QuizTakesController < ApplicationController
 
     def index 
         if params[:quiz_id]
-            @quiz_takes = QuizTake.where(quiz_id: params[:quiz_id])
+            @quiz_takes = QuizTake.where(quiz_id: params[:quiz_id]).includes(:quiz)
         elsif params[:user_id] 
-            @quiz_takes = QuizTake.where(taker_id: params[:user_id])
+            @quiz_takes = QuizTake.where(taker_id: params[:user_id]).includes(:taker)
         else
             @quiz_takes = QuizTake.all.order(created_at: :desc).limit(5)
         end
@@ -14,9 +14,9 @@ class Api::QuizTakesController < ApplicationController
     
     def recent_takes
         if params[:quiz_id]
-            @quiz_takes = QuizTake.where(quiz_id: params[:quiz_id]).limit(5)
+            @quiz_takes = QuizTake.where(quiz_id: params[:quiz_id]).includes(:quiz).limit(5)
         elsif params[:user_id] 
-            @quiz_takes = QuizTake.where(taker_id: params[:user_id]).order(created_at: :desc).limit(5)
+            @quiz_takes = QuizTake.where(taker_id: params[:user_id]).includes(:taker).order(created_at: :desc).limit(5)
         else
             @quiz_takes = QuizTake.all.order(created_at: :desc).limit(5)
         end
@@ -30,9 +30,9 @@ class Api::QuizTakesController < ApplicationController
 
     def total_user_quiz
         if params[:quiz_id]
-            @quiz_takes = QuizTake.where(quiz_id: params[:quiz_id])
+            @quiz_takes = QuizTake.where(quiz_id: params[:quiz_id]).includes(:quiz)
         elsif params[:user_id] 
-            @quiz_takes = QuizTake.where(taker_id: params[:user_id])
+            @quiz_takes = QuizTake.where(taker_id: params[:user_id]).includes(:taker)
         end
         render '/api/quiz_takes/total_user_quiz'
     end
@@ -48,7 +48,6 @@ class Api::QuizTakesController < ApplicationController
         if @quiz_take.save
             render '/api/quiz_takes/show'
         else
-            p @quiz_take.errors.full_messages
             render json: {errors: @quiz_take.errors.full_messages}, status: :unprocessable_entity
         end
     end

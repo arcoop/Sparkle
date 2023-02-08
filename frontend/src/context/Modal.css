@@ -48,13 +48,11 @@
 #modal-content-signup {
     font-family: 'Roboto', sans-serif;
     border-radius: .75rem;
-    /* padding: 10px 0 5px 3px; */
     position: absolute;
     background-color: white;
     width: 480px;
     height: 550px;
     display: flex;
-    /* flex-direction: column; */
     justify-content: space-between;
     overflow: hidden;
 }
@@ -62,15 +60,12 @@
 #modal-content-interim {
     font-family: 'Roboto', sans-serif;
     border-radius: .75rem;
-    /* padding: 10px 0 5px 3px; */
     position: absolute;
     background-color: white;
     width: 480px;
     height: 550px;
     display: flex;
-    /* flex-direction: column; */
     justify-content: space-between;
-    /* z-index: 3; */
 }
 
 #modal-paused {

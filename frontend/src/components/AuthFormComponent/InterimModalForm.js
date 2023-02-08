@@ -7,22 +7,10 @@ import './SignUpForm.css'
 import FormModal from "."
 
 const InterimSignUp = ({email, setEmail, errors}) => {
-
-    //const [email, setEmail] = useState("")
     const sessionUser = useSelector(state => state.session.user)
-    //const [emailPlaceholder, setEmailPlaceholder] = useState("Email")
     const [float, setFloat] = useState(email.length >= 1 ? "email-label floating" : "email-label")
 
     if (sessionUser) return <Redirect to="/" />;
-
-    // const handleSubmit = e => {
-    //     e.preventDefault();
-    //     if (email.length < 7 || !email.includes("@") || !email.split(".").length === 2) {
-    //         setErrors(["Enter a valid email"])
-    //     }
-    // }
-
-
 
     return (
         <div>
@@ -36,8 +24,6 @@ const InterimSignUp = ({email, setEmail, errors}) => {
 
             <h2 id="join-text">Join for Free</h2>
             <p id="subtitle">By continuing you agree to our Terms of Use and Privacy Policy.</p>
-
-    
                 <div className="email-cred-div">
                     <label onFocus={() => setFloat("email-label floating")} onClick={() => setFloat("email-label floating")} className={float}>Email<p className="required">*</p></label>
                     <input className="signup-credentials"
@@ -49,9 +35,6 @@ const InterimSignUp = ({email, setEmail, errors}) => {
                         onChange={e => setEmail(e.target.value)}
                         />
                 </div>
-            {/* <div id="loginformmodal">
-            </div> */}
-
         </div>
     )
 }

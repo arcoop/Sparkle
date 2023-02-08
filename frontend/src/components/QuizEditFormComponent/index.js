@@ -17,10 +17,10 @@ const QuizEditForm = () => {
     }, [quizId])
 
     
-    useEffect(() => {
-        setQuizName(quiz.title)
-        setQuizType(quiz.quizType)
-    }, [quiz]);
+    // useEffect(() => {
+    //     setQuizName(quiz.title)
+    //     setQuizType(quiz.quizType)
+    // }, [quiz]);
     
 
     const [quizName, setQuizName] = useState(quiz.title)
@@ -38,8 +38,6 @@ const QuizEditForm = () => {
     const [categoryId, setCategoryId] = useState()
     const [redirect, setRedirect] = useState(false)
     const [succesMessage, setSuccessMessage] = useState([])
-
-    console.log(description)
     
     const categories = [
         [0,"no category chosen"],
