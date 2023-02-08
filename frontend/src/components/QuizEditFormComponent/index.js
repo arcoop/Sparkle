@@ -77,12 +77,14 @@ const QuizEditForm = () => {
     }
 
     const handleSubmit = e => {
+        console.log("submitting")
         e.preventDefault()
         setErrors([])
         const formData = new FormData();
         formData.append('quiz[title]', quizName)
         formData.append('quiz[quiz_type]', quizType);
         formData.append('quiz[category_id]', categoryId);
+        console.log("description", description)
         formData.append('quiz[description]', description);
         formData.append('quiz[quiz_timer]', timer);
         if (quizIcon) formData.append('quiz[icon]', quizIcon)
@@ -102,6 +104,8 @@ const QuizEditForm = () => {
         }
 
     }
+
+    // console.log(description)
 
     const preview = quizIconUrl ? <img id='quiz-icon-preview' src={quizIconUrl} alt=""/> : <div id='quiz-icon-preview'></div>;
 
