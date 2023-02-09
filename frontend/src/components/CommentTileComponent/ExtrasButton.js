@@ -30,15 +30,17 @@ const ExtrasButton = ({stateChanger, comment}) => {
         </ul>
     )
 
-    const signedOutMenu = (
-        <ul className="comment-menu">
-            <li className="comment-menu-list-item">
-                <button className="comment-menu-button" id="hide-button">Hide</button>
-            </li>
-        </ul>
-    )
+    // const signedOutMenu = (
+    //     <ul className="comment-menu">
+    //         <li className="comment-menu-list-item">
+    //             <button className="comment-menu-button" id="hide-button">Hide</button>
+    //         </li>
+    //     </ul>
+    // )
 
-    const menu = sessionUser.id === comment.commenterId ? signedInMenu : signedOutMenu
+    // const menu = sessionUser.id === comment.commenterId ? signedInMenu : signedOutMenu
+    const menu = sessionUser.id === comment.commenter.commenterId ? signedInMenu : ""
+    // console.log(comment.commenter.commenterId)
 
     useEffect(() => {
         const closeMenu = () => {

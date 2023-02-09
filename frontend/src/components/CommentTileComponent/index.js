@@ -116,6 +116,7 @@ const CommentTile = ({comment}) => {
   
     const pointsText = numLikes === 1 ? 'point' : 'points'
 
+    const extrasButtonDiv = commenterId === sessionUser.id ? <ExtrasButton stateChanger={setEditing} comment={comment}/> : <></>
 
    // let upButtonClass = comment.userLiked.likeType ? "selected up" : "vote"
    // let downButtonClass = comment.userLiked.likeType === false ? "selected down" : "vote"
@@ -148,7 +149,8 @@ const CommentTile = ({comment}) => {
             </div>
 
             <div className="side-comment-tile">
-                <ExtrasButton stateChanger={setEditing} comment={comment}/>
+                {extrasButtonDiv}
+                {/* <ExtrasButton stateChanger={setEditing} comment={comment}/> */}
             </div>
         </div>
     )
