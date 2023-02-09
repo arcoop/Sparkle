@@ -49,8 +49,6 @@ class Api::QuizzesController < ApplicationController
     end
 
     def update
-        debugger
-        p 'updating'
         if @quiz.update(quiz_params)
             render 'api/quizzes/show'
         else

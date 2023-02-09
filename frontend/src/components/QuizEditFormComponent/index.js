@@ -77,14 +77,13 @@ const QuizEditForm = () => {
     }
 
     const handleSubmit = e => {
-        console.log("submitting")
+        // console.log("submitting")
         e.preventDefault()
         setErrors([])
         const formData = new FormData();
         formData.append('quiz[title]', quizName)
         formData.append('quiz[quiz_type]', quizType);
         formData.append('quiz[category_id]', categoryId);
-        console.log("description", description)
         formData.append('quiz[description]', description);
         formData.append('quiz[quiz_timer]', timer);
         if (quizIcon) formData.append('quiz[icon]', quizIcon)
