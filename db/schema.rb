@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_08_141645) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_18_165529) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -70,6 +70,25 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_08_141645) do
     t.index ["liker_id"], name: "index_likes_on_liker_id"
   end
 
+  create_table "mentions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "message_id", null: false
+    t.boolean "read", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["message_id"], name: "index_mentions_on_message_id"
+    t.index ["user_id", "message_id"], name: "index_mentions_on_user_id_and_message_id", unique: true
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.bigint "author_id", null: false
+    t.bigint "room_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_messages_on_author_id"
+    t.index ["room_id"], name: "index_messages_on_room_id"
+  end
+
   create_table "questions", force: :cascade do |t|
     t.text "body", null: false
     t.text "answer", null: false
@@ -111,6 +130,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_08_141645) do
     t.index ["title"], name: "index_quizzes_on_title", unique: true
   end
 
+  create_table "rooms", force: :cascade do |t|
+    t.bigint "owner_id", null: false
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_id"], name: "index_rooms_on_owner_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "username", null: false
@@ -132,9 +159,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_08_141645) do
   add_foreign_key "comments", "users", column: "commenter_id"
   add_foreign_key "likes", "users", column: "comment_id"
   add_foreign_key "likes", "users", column: "liker_id"
+  add_foreign_key "mentions", "messages"
+  add_foreign_key "mentions", "users"
+  add_foreign_key "messages", "rooms"
+  add_foreign_key "messages", "users", column: "author_id"
   add_foreign_key "questions", "quizzes"
   add_foreign_key "quiz_takes", "quizzes"
   add_foreign_key "quiz_takes", "users", column: "taker_id"
   add_foreign_key "quizzes", "categories"
   add_foreign_key "quizzes", "users", column: "author_id"
+  add_foreign_key "rooms", "users", column: "owner_id"
 end
