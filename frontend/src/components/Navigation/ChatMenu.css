@@ -1,0 +1,13 @@
+.chat-box {
+    position: absolute;
+    border: 1px solid black;
+    width: 200px;
+    height: 400px;
+    left: -150px;
+    top: 340px;
+    background-color: grey;
+}
+.chat-head {
+    display: flex;
+    justify-content: space-between;
+}

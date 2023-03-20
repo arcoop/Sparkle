@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import React from "react";
 import FormModal from "../AuthFormComponent";
 import Header from "./Header";
-
+import ChatMenu from "./ChatMenu";
 
 const Navigation = () => {
     const sessionUser = useSelector(state => state.session.user)
@@ -45,6 +45,9 @@ const Navigation = () => {
     if (sessionUser) {
         rightNav = (
             <div className="right-nav">
+                <div className="chat-button">
+                    <ChatMenu />
+                </div>
                 <div className="profile-button">
                     <ProfileButton user={sessionUser}/>
                 </div>

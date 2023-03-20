@@ -77,7 +77,7 @@ const Room = () => {
   
   return (
     <div>
-      Room!
+      Chat
       <form onSubmit={handleSubmit}>
         <textarea 
           rows={body.split('\n').length}

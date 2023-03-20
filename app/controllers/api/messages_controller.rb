@@ -5,7 +5,7 @@ class Api::MessagesController < ApplicationController
         @message = Message.new(message_params)
 
         if @message.save
-            RoomsChannel.broadcast_to(@message.room, @message)
+            LiveChatChannel.broadcast_to(@message.room, @message)
             render :show, locals: {message: @message}
         else
             render json: @message.erros.full_messages, status: 422

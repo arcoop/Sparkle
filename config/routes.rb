@@ -29,6 +29,9 @@ Rails.application.routes.draw do
     end
     resources :quiz_takes, only: [:create, :show, :index]
     resources :likes, only: [:create, :update, :destroy]
+
+    resources :rooms, only: [:index, :show, :create, :destroy]
+    resources :messages, only: [:create, :destroy] 
     
     put '/update_icon/users/:id', to: "users#update_icon", as: :update_icon
     put '/delete_icon/users/:id', to: "users#delete_icon", as: :delete_icon

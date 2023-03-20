@@ -26,6 +26,11 @@
     width: 40%;
 }
 
+.right-nav {
+    display: flex;
+    align-items: center;
+}
+
 #home-link {
     white-space: nowrap;
     /* padding: 0 0.75rem; */
@@ -121,8 +126,6 @@
 #email-icon {
     margin-right: 5px;
 }
-
-
 
 .loginsignup {
     display: flex;
@@ -261,4 +264,12 @@
 
 .inner-header {
     position: relative;
+}
+
+.chat-button {
+    position: relative;
+}
+.chat-button:hover {
+    cursor: pointer;
+    background-color: #ffa800;
 }
